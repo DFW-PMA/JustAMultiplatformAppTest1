@@ -8,10 +8,20 @@
 import SwiftUI
 
 @main
-struct JustASwiftLogTest1App: App {
-    var body: some Scene {
-        WindowGroup {
+struct JustASwiftLogTest1App: App 
+{
+    
+    var body: some Scene 
+    {
+        
+        WindowGroup 
+        {
+            
             ContentView()
+            
         }
+        
     }
+    
 }
+

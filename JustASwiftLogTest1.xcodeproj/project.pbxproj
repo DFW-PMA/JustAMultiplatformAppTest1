@@ -52,8 +52,8 @@
 		F028C5AF2C48610A007C459E /* JustASwiftLogTest1 */ = {
 			isa = PBXGroup;
 			children = (
+				F028C5BF2C486134007C459E /* Views */,
 				F028C5B02C48610A007C459E /* JustASwiftLogTest1App.swift */,
-				F028C5B22C48610A007C459E /* ContentView.swift */,
 				F028C5B42C48610B007C459E /* Assets.xcassets */,
 				F028C5B92C48610B007C459E /* JustASwiftLogTest1.entitlements */,
 				F028C5B62C48610B007C459E /* Preview Content */,
@@ -67,6 +67,14 @@
 				F028C5B72C48610B007C459E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F028C5BF2C486134007C459E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F028C5B22C48610A007C459E /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,18 +281,19 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogTest1/JustASwiftLogTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 01.01.24C199;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = JustASwiftLogTest1;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustASwiftLogTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -300,18 +309,19 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogTest1/JustASwiftLogTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 01.01.24C199;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = JustASwiftLogTest1;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustASwiftLogTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
