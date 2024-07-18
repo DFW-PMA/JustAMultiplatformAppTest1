@@ -11,6 +11,7 @@
 		F028C5B32C48610A007C459E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028C5B22C48610A007C459E /* ContentView.swift */; };
 		F028C5B52C48610B007C459E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B42C48610B007C459E /* Assets.xcassets */; };
 		F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B72C48610B007C459E /* Preview Assets.xcassets */; };
+		F03240302C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		F028C5B42C48610B007C459E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F028C5B72C48610B007C459E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F028C5B92C48610B007C459E /* JustASwiftLogTest1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JustASwiftLogTest1.entitlements; sourceTree = "<group>"; };
+		F032402F2C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustASwiftLogTest1AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +54,9 @@
 		F028C5AF2C48610A007C459E /* JustASwiftLogTest1 */ = {
 			isa = PBXGroup;
 			children = (
-				F028C5BF2C486134007C459E /* Views */,
 				F028C5B02C48610A007C459E /* JustASwiftLogTest1App.swift */,
+				F032402F2C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift */,
+				F028C5BF2C486134007C459E /* Views */,
 				F028C5B42C48610B007C459E /* Assets.xcassets */,
 				F028C5B92C48610B007C459E /* JustASwiftLogTest1.entitlements */,
 				F028C5B62C48610B007C459E /* Preview Content */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
+				F03240302C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift in Sources */,
 				F028C5B12C48610A007C459E /* JustASwiftLogTest1App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,7 +285,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogTest1/JustASwiftLogTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.01.24C199;
+				CURRENT_PROJECT_VERSION = 02.01.24C200;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -309,7 +313,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogTest1/JustASwiftLogTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.01.24C199;
+				CURRENT_PROJECT_VERSION = 02.01.24C200;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;

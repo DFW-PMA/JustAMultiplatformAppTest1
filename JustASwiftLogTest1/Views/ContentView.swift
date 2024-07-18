@@ -2,7 +2,8 @@
 //  ContentView.swift
 //  JustASwiftLogTest1
 //
-//  Created by Daryl Cox on 7/17/24.
+//  Created by Daryl Cox on 07/17/24.
+//  Copyright © JustMacApps 2023-2024. All rights reserved.
 //
 
 import SwiftUI
@@ -28,7 +29,7 @@ struct ContentView: View
             
             Spacer()
             
-            Text("--- JustASwiftLogTest1(.swift).(v1.0101).ContentView.body(someView) ---")
+            Text("--- JustASwiftLogTest1(.swift).(v1.0102).ContentView.body(someView) ---")
             
             Spacer()
             
