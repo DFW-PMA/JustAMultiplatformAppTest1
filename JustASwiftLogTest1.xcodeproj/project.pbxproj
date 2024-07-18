@@ -12,6 +12,7 @@
 		F028C5B52C48610B007C459E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B42C48610B007C459E /* Assets.xcassets */; };
 		F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B72C48610B007C459E /* Preview Assets.xcassets */; };
 		F03240302C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustASwiftLogTest1AppDelegate.swift */; };
+		F0A443392C498ED6005EEE81 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = F0A443382C498ED6005EEE81 /* Logging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0A443392C498ED6005EEE81 /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +98,9 @@
 			dependencies = (
 			);
 			name = JustASwiftLogTest1;
+			packageProductDependencies = (
+				F0A443382C498ED6005EEE81 /* Logging */,
+			);
 			productName = JustASwiftLogTest1;
 			productReference = F028C5AD2C48610A007C459E /* JustASwiftLogTest1.app */;
 			productType = "com.apple.product-type.application";
@@ -124,6 +129,9 @@
 				Base,
 			);
 			mainGroup = F028C5A42C486109007C459E;
+			packageReferences = (
+				F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			productRefGroup = F028C5AE2C48610A007C459E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -285,7 +293,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogTest1/JustASwiftLogTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 02.03.24C200;
+				CURRENT_PROJECT_VERSION = 02.10.24C200;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -313,7 +321,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogTest1/JustASwiftLogTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 02.03.24C200;
+				CURRENT_PROJECT_VERSION = 02.10.24C200;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -355,6 +363,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F0A443382C498ED6005EEE81 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F028C5A52C486109007C459E /* Project object */;
 }

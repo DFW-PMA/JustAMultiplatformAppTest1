@@ -11,8 +11,23 @@ import SwiftUI
 struct ContentView: View 
 {
     
+    struct ClassInfo
+    {
+        
+        static let sClsId        = "ContentView"
+        static let sClsVers      = "v1.0108"
+        static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
+        static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+        static let bClsTrace     = true
+        static let bClsFileLog   = true
+        
+    }
+
     var body: some View 
     {
+
+        let _ = swLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) \(ClassInfo.sClsCopyRight)...")
+        
         VStack 
         {
             
@@ -29,7 +44,9 @@ struct ContentView: View
             
             Spacer()
             
-            Text("--- JustASwiftLogTest1(.swift).(v1.0102).ContentView.body(someView) ---")
+            Text("--- [JustASwiftLogTest1] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
+            Text("")
+            Text("\(ClassInfo.sClsCopyRight)")
             
             Spacer()
             
@@ -38,6 +55,23 @@ struct ContentView: View
         
     }
     
+    func swLoggerMsg(sMessage:String)
+    {
+
+        let sTraceCls:String       = ClassInfo.sClsId
+        let sCurrMethod:String     = #function
+        let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
+        let appDelegate:JustASwiftLogTest1AppDelegate
+                                   = JustASwiftLogTest1AppDelegate.ClassSingleton.appDelegate!
+
+    //  print("...Inside \(ClassInfo.sClsDisp).swLoggerMsg() - \(sMessage)...")
+
+        appDelegate.swiftLogger?.info("\(sMessage)")
+
+        return
+
+    }   // End of func swLoggerMsg().
+
 }
 
 #Preview 

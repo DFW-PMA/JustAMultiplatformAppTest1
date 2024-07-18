@@ -9,6 +9,7 @@
 import Cocoa
 import Foundation
 import SwiftUI
+import Logging
 
 class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
 {
@@ -17,7 +18,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
         
         static let sClsId          = "JustASwiftLogTest1AppDelegate"
-        static let sClsVers        = "v1.0102"
+        static let sClsVers        = "v1.0206"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -29,7 +30,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     struct ClassSingleton
     {
 
-        static var jmJustASwiftLogTest1AppDelegate:JustASwiftLogTest1AppDelegate? = nil
+        static var appDelegate:JustASwiftLogTest1AppDelegate? = nil
 
     }
 
@@ -52,6 +53,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     let bClsTraceInternal:Bool                   = true
     var bAppDelegateTraceLogInitRequired:Bool    = true
     var sInitAppDelegateTraceLogTag:String       = "-unknown-"
+    var swiftLogger:Logger?                      = nil
 
     open func toString()->String
     {
@@ -82,6 +84,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
         asToString.append("'bClsTraceInternal': [\(self.bClsTraceInternal)],")
         asToString.append("'bAppDelegateTraceLogInitRequired': [\(self.bAppDelegateTraceLogInitRequired)],")
         asToString.append("'sInitAppDelegateTraceLogTag': [\(self.sInitAppDelegateTraceLogTag)],")
+        asToString.append("'swiftLogger': [\(self.swiftLogger)],")
         asToString.append("],")
         asToString.append("]")
 
@@ -95,21 +98,26 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
         
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
         super.init()
         
-        ClassSingleton.jmJustASwiftLogTest1AppDelegate = self
+        ClassSingleton.appDelegate = self
 
         self.cAppDelegateInitCalls += 1
+
+    //  self.swiftLogger = Logger(label: "net.justmacapps.\(JustASwiftLogTest1AppDelegate.sApplicationName)")
+        self.swiftLogger = Logger(label: "net.justmacapps")
+
+        self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - SwiftLog 'logger' instance has been created...")
         
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:"\(sCurrMethodDisp)<>\(self.cAppDelegateInitCalls)")
 
         // Exit:
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
 
         return
 
@@ -119,12 +127,16 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
         if (self.bAppDelegateTraceLogInitRequired == true)
         {
+            
+        //  let logger = Logger(label: "net.justmacapps.\(JustASwiftLogTest1AppDelegate.sApplicationName)")
+        //  
+        //  logger.info("\(sCurrMethodDisp) AppDelegate is starting - SwiftLog 'logger' instance has been created...")
 
-            print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) AppDelegate is starting - parameter 'initappdelegatetracelogtag' is [\(initappdelegatetracelogtag)]...")
+            self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - parameter 'initappdelegatetracelogtag' is [\(initappdelegatetracelogtag)]...")
 
             self.sInitAppDelegateTraceLogTag = initappdelegatetracelogtag
 
@@ -135,11 +147,11 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
 
                 let sSearchMessage:String = "Supplied 'init' AppDelegate Trace Log loader TAG string is an 'empty' string - defaulting it to [\(self.sInitAppDelegateTraceLogTag)] - Warning!"
 
-                print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) \(sSearchMessage)")
+                self.swiftLogger?.info("\(sCurrMethodDisp) \(sSearchMessage)")
 
             }
 
-            print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) AppDelegate TraceLog setup was called by [\(self.sInitAppDelegateTraceLogTag)]...")
+            self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate TraceLog setup was called by [\(self.sInitAppDelegateTraceLogTag)]...")
 
             self.bAppDelegateTraceLogInitRequired = false
 
@@ -155,12 +167,12 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
         if (self.bAppTitleSetupRequired == true)
         {
 
-            print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Setting up the Application 'title'...")
+            self.swiftLogger?.info("\(sCurrMethodDisp) Setting up the Application 'title'...")
 
             self.initAppDelegateTraceLog(initappdelegatetracelogtag:sCurrMethodDisp)
 
@@ -177,7 +189,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
 
             }
 
-            print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
+            self.swiftLogger?.info("\(sCurrMethodDisp) Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
 
             self.bAppTitleSetupRequired = false
 
@@ -193,15 +205,15 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:sCurrMethodDisp)
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
 
         // Exit:
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Method Exiting...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting...")
 
     }   // End of func applicationWillFinishLaunching().
 
@@ -209,13 +221,13 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         let cArgs              = Int(CommandLine.argc)
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:sCurrMethodDisp)
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
         
         for i in 0..<cArgs
         {
@@ -223,13 +235,13 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
             let sArg  = String(cString: CommandLine.unsafeArgv[i]!)
             let sArgV = sArg
             
-            print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
+            self.swiftLogger?.info("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
             
         }
 
         // Exit:
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Method Exiting...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting...")
 
     }   // End of func applicationDidFinishLaunching().
 
@@ -237,18 +249,18 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)]...")
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) AppDelegate is stopping...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate is stopping...")
 
         // Exit:
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Method Exiting...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting...")
 
-        ClassSingleton.jmJustASwiftLogTest1AppDelegate = nil
+        ClassSingleton.appDelegate = nil
 
     }   // End of func applicationWillTerminate().
 
@@ -256,16 +268,16 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
+        self.swiftLogger?.info("\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
 
         // Exit:
 
-        print("\(ClassInfo.sClsDisp).\(sCurrMethodDisp) Method Exiting...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting...")
 
     }   // End of func application().
 
