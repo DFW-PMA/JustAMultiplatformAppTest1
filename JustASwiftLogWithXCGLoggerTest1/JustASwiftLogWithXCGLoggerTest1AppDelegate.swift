@@ -10,6 +10,7 @@ import Cocoa
 import Foundation
 import SwiftUI
 import Logging
+import XCGLogger
 
 class JustASwiftLogWithXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
 {
@@ -18,7 +19,7 @@ class JustASwiftLogWithXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegat
     {
         
         static let sClsId          = "JustASwiftLogWithXCGLoggerTest1AppDelegate"
-        static let sClsVers        = "v1.0101"
+        static let sClsVers        = "v1.0104"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -54,6 +55,7 @@ class JustASwiftLogWithXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegat
     var bAppDelegateTraceLogInitRequired:Bool    = true
     var sInitAppDelegateTraceLogTag:String       = "-unknown-"
     var swiftLogger:Logger?                      = nil
+    let xcgLogger:XCGLogger                      = XCGLogger.default
 
     open func toString()->String
     {
@@ -84,7 +86,8 @@ class JustASwiftLogWithXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegat
         asToString.append("'bClsTraceInternal': [\(self.bClsTraceInternal)],")
         asToString.append("'bAppDelegateTraceLogInitRequired': [\(self.bAppDelegateTraceLogInitRequired)],")
         asToString.append("'sInitAppDelegateTraceLogTag': [\(self.sInitAppDelegateTraceLogTag)],")
-        asToString.append("'swiftLogger': [\(self.swiftLogger)],")
+        asToString.append("'swiftLogger': [\(String(describing: self.swiftLogger))],")
+        asToString.append("'xcgLogger': [\(String(describing: self.xcgLogger))],")
         asToString.append("],")
         asToString.append("]")
 
@@ -105,11 +108,49 @@ class JustASwiftLogWithXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegat
         ClassSingleton.appDelegate = self
 
         self.cAppDelegateInitCalls += 1
+        
+    //  self.xcgLogger.setup(level: .debug,
+    //                       showLogIdentifier: true,
+    //                       showFunctionName: true,
+    //                       showThreadName: true,
+    //                       showLevel: true,
+    //                       showFileNames: true,
+    //                       showLineNumbers: true,
+    //                       showDate: true,
+    //                       writeToFile: "",
+    //                       fileLevel: .debug)
 
-    //  self.swiftLogger = Logger(label: "net.justmacapps.\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)")
-        self.swiftLogger = Logger(label: "net.justmacapps")
+        self.xcgLogger.setup(level: .verbose,
+                             showLogIdentifier: true,
+                             showFunctionName: true,
+                             showThreadName: true,
+                             showLevel: true,
+                             showFileNames: true,
+                             showLineNumbers: true,
+                             showDate: true,
+                             writeToFile: "~/Documents/\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName).log",
+                             fileLevel: .verbose)
+        
+        self.xcgLogger.identifier = "net.justmacapps.\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)"
 
-        self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - SwiftLog 'logger' instance has been created...")
+        self.xcgLogger.info("\(sCurrMethodDisp) AppDelegate is starting - XCGLogger 'log' instance 'self.xcgLogger' has been created...")
+
+    //  LoggingSystem.bootstrap 
+    //  {
+    //
+    //      var swiftLogBackendHandler = PuppyLogHandler(label: "net.justmacapps.\(JustASwiftLogWithPuppyTest1AppDelegate.sApplicationName)", 
+    //                                                   puppy: self.puppyBackend)
+    //
+    //      handler.logLevel = .trace
+    //
+    //      return handler
+    //
+    //  }
+
+        self.swiftLogger = Logger(label: "net.justmacapps.\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)")
+    //  self.swiftLogger = Logger(label: "net.justmacapps")
+
+        self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - SwiftLog 'logger' instance 'self.swiftLogger' has been created...")
         
         self.swiftLogger?.info("\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)]...")
 

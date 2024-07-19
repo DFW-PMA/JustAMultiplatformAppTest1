@@ -13,6 +13,8 @@
 		F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B72C48610B007C459E /* Preview Assets.xcassets */; };
 		F03240302C49672900ED9508 /* JustASwiftLogWithXCGLoggerTest1AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustASwiftLogWithXCGLoggerTest1AppDelegate.swift */; };
 		F0A443392C498ED6005EEE81 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = F0A443382C498ED6005EEE81 /* Logging */; };
+		F0C6A8FF2C4AA2A40004606A /* ObjcExceptionBridging in Frameworks */ = {isa = PBXBuildFile; productRef = F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */; };
+		F0C6A9012C4AA2A40004606A /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = F0C6A9002C4AA2A40004606A /* XCGLogger */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +32,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C6A8FF2C4AA2A40004606A /* ObjcExceptionBridging in Frameworks */,
 				F0A443392C498ED6005EEE81 /* Logging in Frameworks */,
+				F0C6A9012C4AA2A40004606A /* XCGLogger in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +104,8 @@
 			name = JustASwiftLogWithXCGLoggerTest1;
 			packageProductDependencies = (
 				F0A443382C498ED6005EEE81 /* Logging */,
+				F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */,
+				F0C6A9002C4AA2A40004606A /* XCGLogger */,
 			);
 			productName = JustASwiftLogWithXCGLoggerTest1;
 			productReference = F028C5AD2C48610A007C459E /* JustASwiftLogWithXCGLoggerTest1.app */;
@@ -131,6 +137,7 @@
 			mainGroup = F028C5A42C486109007C459E;
 			packageReferences = (
 				F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */,
+				F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */,
 			);
 			productRefGroup = F028C5AE2C48610A007C459E /* Products */;
 			projectDirPath = "";
@@ -293,7 +300,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogWithXCGLoggerTest1/JustASwiftLogWithXCGLoggerTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.02.24C201;
+				CURRENT_PROJECT_VERSION = 01.05.24C201;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogWithXCGLoggerTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -321,7 +328,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustASwiftLogWithXCGLoggerTest1/JustASwiftLogWithXCGLoggerTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.02.24C201;
+				CURRENT_PROJECT_VERSION = 01.05.24C201;
 				DEVELOPMENT_ASSET_PATHS = "\"JustASwiftLogWithXCGLoggerTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -373,6 +380,14 @@
 				minimumVersion = 1.6.1;
 			};
 		};
+		F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DaveWoodCom/XCGLogger";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -380,6 +395,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */;
 			productName = Logging;
+		};
+		F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */;
+			productName = ObjcExceptionBridging;
+		};
+		F0C6A9002C4AA2A40004606A /* XCGLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */;
+			productName = XCGLogger;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
