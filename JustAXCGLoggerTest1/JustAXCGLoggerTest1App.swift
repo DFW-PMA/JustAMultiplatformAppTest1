@@ -1,6 +1,6 @@
 //
-//  JustASwiftLogWithXCGLoggerTest1App.swift
-//  JustASwiftLogWithXCGLoggerTest1
+//  JustAXCGLoggerTest1App.swift
+//  JustAXCGLoggerTest1
 //
 //  Created by Daryl Cox on 07/19/2024.
 //  Copyright © JustMacApps 2023-2024. All rights reserved.
@@ -9,13 +9,13 @@
 import SwiftUI
 
 @main
-struct JustASwiftLogWithXCGLoggerTest1App: App 
+struct JustAXCGLoggerTest1App: App 
 {
     
     struct ClassInfo
     {
         
-        static let sClsId        = "JustASwiftLogWithXCGLoggerTest1App"
+        static let sClsId        = "JustAXCGLoggerTest1App"
         static let sClsVers      = "v1.0101"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
@@ -26,7 +26,7 @@ struct JustASwiftLogWithXCGLoggerTest1App: App
 
     // App Data field(s):
 
-    @NSApplicationDelegateAdaptor(JustASwiftLogWithXCGLoggerTest1AppDelegate.self)
+    @NSApplicationDelegateAdaptor(JustAXCGLoggerTest1AppDelegate.self)
     var appDelegate
 
     let sAppBundlePath:String = Bundle.main.bundlePath
@@ -36,7 +36,7 @@ struct JustASwiftLogWithXCGLoggerTest1App: App
         
     //  let _ = print("...\(ClassInfo.sClsDisp):body - 'sAppBundlePath' is [\(sAppBundlePath)]...")
         
-        let _ = swLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) - 'sAppBundlePath' is [\(sAppBundlePath)]...")
+        let _ = xcgLogger(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) - 'sAppBundlePath' is [\(sAppBundlePath)]...")
         
         WindowGroup 
         {
@@ -47,22 +47,22 @@ struct JustASwiftLogWithXCGLoggerTest1App: App
         
     }
     
-    func swLoggerMsg(sMessage:String)
+    func xcgLogger(sMessage:String)
     {
 
         let sTraceCls:String       = ClassInfo.sClsId
         let sCurrMethod:String     = #function
         let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
-        let appDelegate:JustASwiftLogWithXCGLoggerTest1AppDelegate
-                                   = JustASwiftLogWithXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
+        let appDelegate:JustAXCGLoggerTest1AppDelegate
+                                   = JustAXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
 
-    //  print("...Inside \(ClassInfo.sClsDisp).swLoggerMsg() - \(sMessage)...")
+    //  print("...Inside \(ClassInfo.sClsDisp).xcgLogger() - \(sMessage)...")
 
-        appDelegate.swiftLogger?.info("\(sMessage)")
+        appDelegate.xcgLogger?.info("\(sMessage)")
 
         return
 
-    }   // End of func swLoggerMsg().
+    }   // End of func xcgLogger().
 
 }
 
