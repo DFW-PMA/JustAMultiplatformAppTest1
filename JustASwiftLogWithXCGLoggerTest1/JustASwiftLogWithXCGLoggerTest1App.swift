@@ -1,22 +1,22 @@
 //
-//  JustASwiftLogTest1App.swift
-//  JustASwiftLogTest1
+//  JustASwiftLogWithXCGLoggerTest1App.swift
+//  JustASwiftLogWithXCGLoggerTest1
 //
-//  Created by Daryl Cox on 07/17/2024.
+//  Created by Daryl Cox on 07/19/2024.
 //  Copyright © JustMacApps 2023-2024. All rights reserved.
 //
 
 import SwiftUI
 
 @main
-struct JustASwiftLogTest1App: App 
+struct JustASwiftLogWithXCGLoggerTest1App: App 
 {
     
     struct ClassInfo
     {
         
-        static let sClsId        = "JustASwiftLogTest1App"
-        static let sClsVers      = "v1.0107"
+        static let sClsId        = "JustASwiftLogWithXCGLoggerTest1App"
+        static let sClsVers      = "v1.0101"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -26,7 +26,7 @@ struct JustASwiftLogTest1App: App
 
     // App Data field(s):
 
-    @NSApplicationDelegateAdaptor(JustASwiftLogTest1AppDelegate.self)
+    @NSApplicationDelegateAdaptor(JustASwiftLogWithXCGLoggerTest1AppDelegate.self)
     var appDelegate
 
     let sAppBundlePath:String = Bundle.main.bundlePath
@@ -53,8 +53,8 @@ struct JustASwiftLogTest1App: App
         let sTraceCls:String       = ClassInfo.sClsId
         let sCurrMethod:String     = #function
         let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
-        let appDelegate:JustASwiftLogTest1AppDelegate
-                                   = JustASwiftLogTest1AppDelegate.ClassSingleton.appDelegate!
+        let appDelegate:JustASwiftLogWithXCGLoggerTest1AppDelegate
+                                   = JustASwiftLogWithXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
 
     //  print("...Inside \(ClassInfo.sClsDisp).swLoggerMsg() - \(sMessage)...")
 

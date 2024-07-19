@@ -1,8 +1,8 @@
 //
-//  JustASwiftLogTest1AppDelegate.swift
-//  JustASwiftLogTest1
+//  JustASwiftLogWithXCGLoggerTest1AppDelegate.swift
+//  JustASwiftLogWithXCGLoggerTest1
 //
-//  Created by JustMacApps.net on 07/18/2024.
+//  Created by JustMacApps.net on 07/19/2024.
 //  Copyright © 2023-2024 JustMacApps. All rights reserved.
 //
 
@@ -11,33 +11,33 @@ import Foundation
 import SwiftUI
 import Logging
 
-class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
+class JustASwiftLogWithXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
 {
 
     struct ClassInfo
     {
         
-        static let sClsId          = "JustASwiftLogTest1AppDelegate"
-        static let sClsVers        = "v1.0206"
+        static let sClsId          = "JustASwiftLogWithXCGLoggerTest1AppDelegate"
+        static let sClsVers        = "v1.0101"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
-        static let sClsLogFilespec = "JustASwiftLogTest1.log"
+        static let sClsLogFilespec = "JustASwiftLogWithXCGLoggerTest1.log"
         
     }
 
     struct ClassSingleton
     {
 
-        static var appDelegate:JustASwiftLogTest1AppDelegate? = nil
+        static var appDelegate:JustASwiftLogWithXCGLoggerTest1AppDelegate? = nil
 
     }
 
     // App 'name' field:
 
     static
-    let sApplicationName:String                  = "JustASwiftLogTest1"
+    let sApplicationName:String                  = "JustASwiftLogWithXCGLoggerTest1"
 
     // Various App field(s):
 
@@ -70,7 +70,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
         asToString.append("'bClsFileLog': [\(ClassInfo.bClsFileLog)],")
         asToString.append("],")
         asToString.append("[")
-        asToString.append("'sApplicationName': [\(JustASwiftLogTest1AppDelegate.sApplicationName)],")
+        asToString.append("'sApplicationName': [\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)],")
         asToString.append("],")
         asToString.append("[")
         asToString.append("'cAppDelegateInitCalls': (\(self.cAppDelegateInitCalls)),")
@@ -106,18 +106,18 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
 
         self.cAppDelegateInitCalls += 1
 
-    //  self.swiftLogger = Logger(label: "net.justmacapps.\(JustASwiftLogTest1AppDelegate.sApplicationName)")
+    //  self.swiftLogger = Logger(label: "net.justmacapps.\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)")
         self.swiftLogger = Logger(label: "net.justmacapps")
 
         self.swiftLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - SwiftLog 'logger' instance has been created...")
         
-        self.swiftLogger?.info("\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)]...")
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:"\(sCurrMethodDisp)<>\(self.cAppDelegateInitCalls)")
 
         // Exit:
 
-        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)]...")
 
         return
 
@@ -132,7 +132,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
         if (self.bAppDelegateTraceLogInitRequired == true)
         {
             
-        //  let logger = Logger(label: "net.justmacapps.\(JustASwiftLogTest1AppDelegate.sApplicationName)")
+        //  let logger = Logger(label: "net.justmacapps.\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)")
         //  
         //  logger.info("\(sCurrMethodDisp) AppDelegate is starting - SwiftLog 'logger' instance has been created...")
 
@@ -179,7 +179,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
             if (self.bUseApplicationShortTitle == true)
             {
 
-                self.sApplicationTitle = JustASwiftLogTest1AppDelegate.sApplicationName
+                self.sApplicationTitle = JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName
 
             }
             else
@@ -209,7 +209,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:sCurrMethodDisp)
 
-        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)]...")
 
         // Exit:
 
@@ -226,7 +226,7 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:sCurrMethodDisp)
 
-        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogTest1AppDelegate.sApplicationName)]...")
+        self.swiftLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustASwiftLogWithXCGLoggerTest1AppDelegate.sApplicationName)]...")
         self.swiftLogger?.info("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
         
         for i in 0..<cArgs
@@ -281,5 +281,5 @@ class JustASwiftLogTest1AppDelegate: NSObject, NSApplicationDelegate, Observable
 
     }   // End of func application().
 
-}   // End of class JustASwiftLogTest1AppDelegate(NSObject, NSApplicationDelegate, ObservableObject).
+}   // End of class JustASwiftLogWithXCGLoggerTest1AppDelegate(NSObject, NSApplicationDelegate, ObservableObject).
 
