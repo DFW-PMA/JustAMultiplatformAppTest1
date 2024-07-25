@@ -12,7 +12,8 @@
 		F028C5B52C48610B007C459E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B42C48610B007C459E /* Assets.xcassets */; };
 		F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B72C48610B007C459E /* Preview Assets.xcassets */; };
 		F03240302C49672900ED9508 /* JustAXCGLoggerTest1AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustAXCGLoggerTest1AppDelegate.swift */; };
-		F0A443392C498ED6005EEE81 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = F0A443382C498ED6005EEE81 /* Logging */; };
+		F0981DB42C52C5AE0054CE7C /* JustAXCGLoggerTest1AppGlobalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0981DB32C52C5AD0054CE7C /* JustAXCGLoggerTest1AppGlobalInfo.swift */; };
+		F0A443392C498ED6005EEE81 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		F0C6A8FF2C4AA2A40004606A /* ObjcExceptionBridging in Frameworks */ = {isa = PBXBuildFile; productRef = F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */; };
 		F0C6A9012C4AA2A40004606A /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = F0C6A9002C4AA2A40004606A /* XCGLogger */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 		F028C5B72C48610B007C459E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F028C5B92C48610B007C459E /* JustAXCGLoggerTest1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JustAXCGLoggerTest1.entitlements; sourceTree = "<group>"; };
 		F032402F2C49672900ED9508 /* JustAXCGLoggerTest1AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustAXCGLoggerTest1AppDelegate.swift; sourceTree = "<group>"; };
+		F0981DB32C52C5AD0054CE7C /* JustAXCGLoggerTest1AppGlobalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustAXCGLoggerTest1AppGlobalInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +35,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0C6A8FF2C4AA2A40004606A /* ObjcExceptionBridging in Frameworks */,
-				F0A443392C498ED6005EEE81 /* Logging in Frameworks */,
+				F0A443392C498ED6005EEE81 /* (null) in Frameworks */,
 				F0C6A9012C4AA2A40004606A /* XCGLogger in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +62,7 @@
 		F028C5AF2C48610A007C459E /* JustAXCGLoggerTest1 */ = {
 			isa = PBXGroup;
 			children = (
+				F0981DB32C52C5AD0054CE7C /* JustAXCGLoggerTest1AppGlobalInfo.swift */,
 				F028C5B02C48610A007C459E /* JustAXCGLoggerTest1App.swift */,
 				F032402F2C49672900ED9508 /* JustAXCGLoggerTest1AppDelegate.swift */,
 				F028C5BF2C486134007C459E /* Views */,
@@ -103,7 +106,6 @@
 			);
 			name = JustAXCGLoggerTest1;
 			packageProductDependencies = (
-				F0A443382C498ED6005EEE81 /* Logging */,
 				F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */,
 				F0C6A9002C4AA2A40004606A /* XCGLogger */,
 			);
@@ -136,7 +138,6 @@
 			);
 			mainGroup = F028C5A42C486109007C459E;
 			packageReferences = (
-				F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */,
 				F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */,
 			);
 			productRefGroup = F028C5AE2C48610A007C459E /* Products */;
@@ -166,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
+				F0981DB42C52C5AE0054CE7C /* JustAXCGLoggerTest1AppGlobalInfo.swift in Sources */,
 				F03240302C49672900ED9508 /* JustAXCGLoggerTest1AppDelegate.swift in Sources */,
 				F028C5B12C48610A007C459E /* JustAXCGLoggerTest1App.swift in Sources */,
 			);
@@ -300,7 +302,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAXCGLoggerTest1/JustAXCGLoggerTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.09.24C201;
+				CURRENT_PROJECT_VERSION = 02.06.24C207;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAXCGLoggerTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -328,7 +330,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAXCGLoggerTest1/JustAXCGLoggerTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.09.24C201;
+				CURRENT_PROJECT_VERSION = 02.06.24C207;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAXCGLoggerTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -372,14 +374,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-log";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.1;
-			};
-		};
 		F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DaveWoodCom/XCGLogger";
@@ -391,11 +385,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F0A443382C498ED6005EEE81 /* Logging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F0A443372C498ED6005EEE81 /* XCRemoteSwiftPackageReference "swift-log" */;
-			productName = Logging;
-		};
 		F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F0C6A8FD2C4AA2A40004606A /* XCRemoteSwiftPackageReference "XCGLogger" */;

@@ -16,7 +16,7 @@ struct JustAXCGLoggerTest1App: App
     {
         
         static let sClsId        = "JustAXCGLoggerTest1App"
-        static let sClsVers      = "v1.0101"
+        static let sClsVers      = "v1.0204"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -50,15 +50,14 @@ struct JustAXCGLoggerTest1App: App
     func xcgLogger(sMessage:String)
     {
 
-        let sTraceCls:String       = ClassInfo.sClsId
-        let sCurrMethod:String     = #function
-        let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
-        let appDelegate:JustAXCGLoggerTest1AppDelegate
-                                   = JustAXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
+    //  let sCurrMethod:String     = #function
+    //  let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
+    //  let appDelegate:JustAXCGLoggerTest1AppDelegate
+    //                             = JustAXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
 
     //  print("...Inside \(ClassInfo.sClsDisp).xcgLogger() - \(sMessage)...")
 
-        appDelegate.xcgLogger?.info("\(sMessage)")
+        self.appDelegate.xcgLogger?.info("\(sMessage)")
 
         return
 

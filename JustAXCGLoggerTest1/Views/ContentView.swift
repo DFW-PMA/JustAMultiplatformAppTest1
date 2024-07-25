@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0101"
+        static let sClsVers      = "v1.0102"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -58,9 +58,9 @@ struct ContentView: View
     func xcgLoggerMsg(sMessage:String)
     {
 
-        let sTraceCls:String       = ClassInfo.sClsId
-        let sCurrMethod:String     = #function
-        let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
+    //  let sTraceCls:String       = ClassInfo.sClsId
+    //  let sCurrMethod:String     = #function
+    //  let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
         let appDelegate:JustAXCGLoggerTest1AppDelegate
                                    = JustAXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
 

@@ -9,7 +9,6 @@
 import Cocoa
 import Foundation
 import SwiftUI
-import Logging
 import XCGLogger
 
 class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
@@ -19,7 +18,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
     {
         
         static let sClsId          = "JustAXCGLoggerTest1AppDelegate"
-        static let sClsVers        = "v1.0202"
+        static let sClsVers        = "v1.0305"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -37,8 +36,9 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
 
     // App 'name' field:
 
-    static
-    let sApplicationName:String                  = "JustAXCGLoggerTest1"
+//  static
+//  let sApplicationName:String                  = "JustAXCGLoggerTest1"
+    let sApplicationName:String                  = AppGlobalInfo.sGlobalInfoAppId
 
     // Various App field(s):
 
@@ -47,7 +47,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
     var bAppTitleSetupRequired:Bool              = true
     let bUseApplicationShortTitle:Bool           = false
     var sApplicationTitle:String                 = "-N/A-"
-    let sApplicationShortTitle:String            = "JASLT1"
+    let sApplicationShortTitle:String            = "JAXCGLT1"
 
     // Misc:
 
@@ -76,7 +76,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         asToString.append("'bClsFileLog': [\(ClassInfo.bClsFileLog)],")
         asToString.append("],")
         asToString.append("[")
-        asToString.append("'sApplicationName': [\(JustAXCGLoggerTest1AppDelegate.sApplicationName)],")
+        asToString.append("'sApplicationName': [\(self.sApplicationName)],")
         asToString.append("],")
         asToString.append("[")
         asToString.append("'cAppDelegateInitCalls': (\(self.cAppDelegateInitCalls)),")
@@ -91,8 +91,8 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         asToString.append("'bAppDelegateTraceLogInitRequired': [\(self.bAppDelegateTraceLogInitRequired)],")
         asToString.append("'sInitAppDelegateTraceLogTag': [\(self.sInitAppDelegateTraceLogTag)],")
         asToString.append("'bAppDelegateLogFilespecIsUsable': [\(String(describing: self.bAppDelegateLogFilespecIsUsable))],")
-        asToString.append("'urlAppDelegateLogFilepath': [\(String(describing: self.urlAppDelegateLogFilepath))],")
         asToString.append("'urlAppDelegateLogFilespec': [\(String(describing: self.urlAppDelegateLogFilespec))],")
+        asToString.append("'urlAppDelegateLogFilepath': [\(String(describing: self.urlAppDelegateLogFilepath))],")
         asToString.append("'sAppDelegateLogFilespec': [\(String(describing: self.sAppDelegateLogFilespec))],")
         asToString.append("'sAppDelegateLogFilepath': [\(String(describing: self.sAppDelegateLogFilepath))],")
         asToString.append("'xcgLogger': [\(String(describing: self.xcgLogger))],")
@@ -118,16 +118,17 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         self.cAppDelegateInitCalls           += 1
         self.bAppDelegateLogFilespecIsUsable  = false
 
+        print("\(sCurrMethodDisp) - Invoked - #(\(self.cAppDelegateInitCalls)) time(s) - 'self' is [\(self)]...")
+
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:"\(sCurrMethodDisp)<>\(self.cAppDelegateInitCalls)")
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustAXCGLoggerTest1AppDelegate.sApplicationName)]...")
-
-        self.xcgLogger?.info("\(sCurrMethodDisp) AppDelegate is starting...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Method Invoked- #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - 'self' is [\(self)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
         
         // Exit:
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(JustAXCGLoggerTest1AppDelegate.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(self.sApplicationName)]...")
 
         return
 
@@ -186,15 +187,15 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         //  self.urlAppDelegateLogFilepath = try FileManager.default.url(for: .downloadsDirectory ,in: .userDomainMask ,appropriateFor: nil, create: true)
             self.urlAppDelegateLogFilepath = try FileManager.default.url(for: .documentDirectory ,in: .userDomainMask ,appropriateFor: nil, create: true)
             self.urlAppDelegateLogFilespec = self.urlAppDelegateLogFilepath?.appendingPathComponent(ClassInfo.sClsLogFilespec)
-            self.sAppDelegateLogFilespec    = self.urlAppDelegateLogFilespec?.path
-            self.sAppDelegateLogFilepath    = self.urlAppDelegateLogFilepath?.path
+            self.sAppDelegateLogFilespec   = self.urlAppDelegateLogFilespec?.path
+            self.sAppDelegateLogFilepath   = self.urlAppDelegateLogFilepath?.path
 
-            print("'[\(String(describing: ClassInfo.sClsDisp))].init(...)' - ...'self.sAppDelegateLogFilespec' (computed) is [\(String(describing: self.sAppDelegateLogFilespec))]...")
-            print("'[\(String(describing: ClassInfo.sClsDisp))].init(...)' - ...'self.sAppDelegateLogFilepath' (resolved #2) is [\(String(describing: self.sAppDelegateLogFilepath))]...")
+            print("'[\(String(describing: ClassInfo.sClsDisp))]' - ...'self.sAppDelegateLogFilespec' (computed) is [\(String(describing: self.sAppDelegateLogFilespec))]...")
+            print("'[\(String(describing: ClassInfo.sClsDisp))]' - ...'self.sAppDelegateLogFilepath' (resolved #2) is [\(String(describing: self.sAppDelegateLogFilepath))]...")
 
             try FileManager.default.createDirectory(atPath: sAppDelegateLogFilepath, withIntermediateDirectories: true, attributes: nil)
 
-            let sContents = "\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(JustAXCGLoggerTest1AppDelegate.sApplicationName)]..."
+            let sContents = "\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(self.sApplicationName)]..."
 
             try sContents.write(toFile: self.sAppDelegateLogFilespec, atomically:true, encoding:String.Encoding.utf8)
 
@@ -281,7 +282,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
             if (self.bUseApplicationShortTitle == true)
             {
 
-                self.sApplicationTitle = JustAXCGLoggerTest1AppDelegate.sApplicationName
+                self.sApplicationTitle = self.sApplicationName
 
             }
             else
@@ -309,7 +310,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustAXCGLoggerTest1AppDelegate.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)]...")
 
         // Exit:
 
@@ -324,7 +325,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         let cArgs              = Int(CommandLine.argc)
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(JustAXCGLoggerTest1AppDelegate.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
         
         for i in 0..<cArgs
@@ -401,7 +402,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         do 
         {
 
-            let sContents = "\(sCurrMethodDisp) ...Clearing the AppDelegate (trace) 'Log' file [\(self.sAppDelegateLogFilespec)]..."
+            let sContents = "\(sCurrMethodDisp) ...Clearing the AppDelegate (trace) 'Log' file [\(String(describing: self.sAppDelegateLogFilespec))]..."
 
             try sContents.write(toFile: self.sAppDelegateLogFilespec, atomically:true, encoding:String.Encoding.utf8)
 
@@ -409,7 +410,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         catch _
         {
 
-            self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting - Exception in clearing the AppDelegate (trace) 'Log' file [\(self.sAppDelegateLogFilespec)]...")
+            self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting - Exception in clearing the AppDelegate (trace) 'Log' file [\(String(describing: self.sAppDelegateLogFilespec))]...")
 
             return
 
