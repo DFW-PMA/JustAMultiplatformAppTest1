@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F028C5AC2C48610A007C459E"
-               BuildableName = "JustAXCGLoggerTest1.app"
-               BlueprintName = "JustAXCGLoggerTest1"
-               ReferencedContainer = "container:JustAXCGLoggerTest1.xcodeproj">
+               BuildableName = "JustAXCGLoggerWithLogonTest2.app"
+               BlueprintName = "JustAXCGLoggerWithLogonTest2"
+               ReferencedContainer = "container:JustAXCGLoggerWithLogonTest2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F028C5AC2C48610A007C459E"
-            BuildableName = "JustAXCGLoggerTest1.app"
-            BlueprintName = "JustAXCGLoggerTest1"
-            ReferencedContainer = "container:JustAXCGLoggerTest1.xcodeproj">
+            BuildableName = "JustAXCGLoggerWithLogonTest2.app"
+            BlueprintName = "JustAXCGLoggerWithLogonTest2"
+            ReferencedContainer = "container:JustAXCGLoggerWithLogonTest2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -69,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F028C5AC2C48610A007C459E"
-            BuildableName = "JustAXCGLoggerTest1.app"
-            BlueprintName = "JustAXCGLoggerTest1"
-            ReferencedContainer = "container:JustAXCGLoggerTest1.xcodeproj">
+            BuildableName = "JustAXCGLoggerWithLogonTest2.app"
+            BlueprintName = "JustAXCGLoggerWithLogonTest2"
+            ReferencedContainer = "container:JustAXCGLoggerWithLogonTest2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

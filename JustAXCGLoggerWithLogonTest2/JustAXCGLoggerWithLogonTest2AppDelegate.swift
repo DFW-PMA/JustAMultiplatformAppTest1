@@ -1,6 +1,6 @@
 //
-//  JustAXCGLoggerTest1AppDelegate.swift
-//  JustAXCGLoggerTest1
+//  JustAXCGLoggerWithLogonTest2AppDelegate.swift
+//  JustAXCGLoggerWithLogonTest2
 //
 //  Created by JustMacApps.net on 07/19/2024.
 //  Copyright © 2023-2024 JustMacApps. All rights reserved.
@@ -11,33 +11,31 @@ import Foundation
 import SwiftUI
 import XCGLogger
 
-class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
+class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, ObservableObject
 {
 
     struct ClassInfo
     {
         
-        static let sClsId          = "JustAXCGLoggerTest1AppDelegate"
-        static let sClsVers        = "v1.0305"
+        static let sClsId          = "JustAXCGLoggerWithLogonTest2AppDelegate"
+        static let sClsVers        = "v1.0401"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
-        static let sClsLogFilespec = "JustAXCGLoggerTest1.log"
+        static let sClsLogFilespec = "JustAXCGLoggerWithLogonTest2.log"
         
     }
 
     struct ClassSingleton
     {
 
-        static var appDelegate:JustAXCGLoggerTest1AppDelegate? = nil
+        static var appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate? = nil
 
     }
 
     // App 'name' field:
 
-//  static
-//  let sApplicationName:String                  = "JustAXCGLoggerTest1"
     let sApplicationName:String                  = AppGlobalInfo.sGlobalInfoAppId
 
     // Various App field(s):
@@ -47,7 +45,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
     var bAppTitleSetupRequired:Bool              = true
     let bUseApplicationShortTitle:Bool           = false
     var sApplicationTitle:String                 = "-N/A-"
-    let sApplicationShortTitle:String            = "JAXCGLT1"
+    let sApplicationShortTitle:String            = "JAXCGLWLT1"
 
     // Misc:
 
@@ -184,7 +182,6 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         do 
         {
 
-        //  self.urlAppDelegateLogFilepath = try FileManager.default.url(for: .downloadsDirectory ,in: .userDomainMask ,appropriateFor: nil, create: true)
             self.urlAppDelegateLogFilepath = try FileManager.default.url(for: .documentDirectory ,in: .userDomainMask ,appropriateFor: nil, create: true)
             self.urlAppDelegateLogFilespec = self.urlAppDelegateLogFilepath?.appendingPathComponent(ClassInfo.sClsLogFilespec)
             self.sAppDelegateLogFilespec   = self.urlAppDelegateLogFilespec?.path
@@ -195,7 +192,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
 
             try FileManager.default.createDirectory(atPath: sAppDelegateLogFilepath, withIntermediateDirectories: true, attributes: nil)
 
-            let sContents = "\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(self.sApplicationName)]..."
+            let sContents = "\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]..."
 
             try sContents.write(toFile: self.sAppDelegateLogFilespec, atomically:true, encoding:String.Encoding.utf8)
 
@@ -310,7 +307,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
 
         // Exit:
 
@@ -325,7 +322,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         let cArgs              = Int(CommandLine.argc)
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
         
         for i in 0..<cArgs
@@ -350,7 +347,7 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
 
         self.xcgLogger?.info("\(sCurrMethodDisp) AppDelegate is stopping...")
@@ -422,89 +419,5 @@ class JustAXCGLoggerTest1AppDelegate: NSObject, NSApplicationDelegate, Observabl
 
     }   // End of open func clearAppDelegateTraceLogFile().
 
-}   // End of class JustAXCGLoggerTest1AppDelegate(NSObject, NSApplicationDelegate, ObservableObject).
-
-// ------------------------------------------------------------------------------------------------
-// OLDER Code: Didn't work out...
-// ------------------------------------------------------------------------------------------------
-//  self.xcgLogger?.setup(level: .debug,
-//                       showLogIdentifier: true,
-//                       showFunctionName: true,
-//                       showThreadName: true,
-//                       showLevel: true,
-//                       showFileNames: true,
-//                       showLineNumbers: true,
-//                       showDate: true,
-//                       writeToFile: "",
-//                       fileLevel: .debug)
-//  self.xcgLogger?.setup(level: .debug,
-//                       showLogIdentifier: true,
-//                       showFunctionName: true,
-//                       showThreadName: true,
-//                       showLevel: true,
-//                       showFileNames: true,
-//                       showLineNumbers: true,
-//                       showDate: true,
-//                       writeToFile: "",
-//                       fileLevel: .debug)
-//  
-//  self.xcgLogger?.setup(level:             .verbose,
-//                        showLogIdentifier: true,
-//                        showFunctionName:  true,
-//                        showThreadName:    true,
-//                        showLevel:         true,
-//                        showFileNames:     true,
-//                        showLineNumbers:   true,
-//                        showDate:          true,
-//                        writeToFile:       self.urlAppDelegateLogFilespec,
-//                    //  writeToFile:       self.sLogFilespec,
-//                    //  writeToFile:       "~/Documents/\(JustAXCGLoggerTest1AppDelegate.sApplicationName).log",
-//                    //  writeToFile:       "~/Data/Documents/\(JustAXCGLoggerTest1AppDelegate.sApplicationName).log",
-//                        fileLevel:         .verbose)
-//
-//      self.xcgLogger? = XCGLogger(identifier: "net.justmacapps.\(JustAXCGLoggerTest1AppDelegate.sApplicationName).advancedSysLogger",
-//                                  includeDefaultDestinations: false)
-//      self.xcgLogger? = XCGLogger(identifier: "net.justmacapps.\(JustAXCGLoggerTest1AppDelegate.sApplicationName).advancedSysLogger",
-//                                  includeDefaultDestinations: true)
-//
-//      let xcgSystemDestination = AppleSystemLogDestination(identifier: "net.justmacapps.\(JustAXCGLoggerTest1AppDelegate.sApplicationName).advancedSysLogger.systemDestination")
-//
-//  //  xcgSystemDestination.outputLevel       = .debug
-//      xcgSystemDestination.outputLevel       = .verbose
-//  //  xcgSystemDestination.showLogIdentifier = false
-//      xcgSystemDestination.showLogIdentifier = true
-//      xcgSystemDestination.showFunctionName  = true
-//      xcgSystemDestination.showThreadName    = true
-//      xcgSystemDestination.showLevel         = true
-//      xcgSystemDestination.showFileName      = true
-//      xcgSystemDestination.showLineNumber    = true
-//      xcgSystemDestination.showDate          = true
-//
-//      self.xcgLogger?.add(destination: xcgSystemDestination)
-//
-//      let xcgFileDestination = FileDestination(writeToFile: "~/Documents/\(JustAXCGLoggerTest1AppDelegate.sApplicationName).log", 
-//                                               identifier:  "net.justmacapps.\(JustAXCGLoggerTest1AppDelegate.sApplicationName).advancedSysLogger.xcgFileDestination")
-//
-//      xcgFileDestination.outputLevel       = .verbose
-//      xcgFileDestination.showLogIdentifier = true
-//      xcgFileDestination.showFunctionName  = true
-//      xcgFileDestination.showThreadName    = true
-//      xcgFileDestination.showLevel         = true
-//      xcgFileDestination.showFileName      = true
-//      xcgFileDestination.showLineNumber    = true
-//      xcgFileDestination.showDate          = true
-//
-//      // Process this destination in the background:
-//
-//      xcgFileDestination.logQueue = XCGLogger.logQueue
-//
-//      self.xcgLogger?.add(destination: xcgFileDestination)
-//
-//      self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' has been created (to 2 destinations: System Console and File)...")
-//
-//      self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' FileDestination is writing to [\(String(describing: xcgFileDestination.writeToFileURL))]...")
-// ------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------
-
-
+}   // End of class JustAXCGLoggerWithLogonTest2AppDelegate(NSObject, NSApplicationDelegate, ObservableObject).
 

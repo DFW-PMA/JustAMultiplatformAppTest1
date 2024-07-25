@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  JustAXCGLoggerTest1
+//  JustAXCGLoggerWithLogonTest2
 //
 //  Created by Daryl Cox on 07/19/24.
 //  Copyright © JustMacApps 2023-2024. All rights reserved.
@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0102"
+        static let sClsVers      = "v1.0201"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -33,7 +33,6 @@ struct ContentView: View
             
             Spacer()
             
-        //  Image(systemName: "globe")
             Image(systemName: "globe.desk.fill")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
@@ -44,7 +43,7 @@ struct ContentView: View
             
             Spacer()
             
-            Text("--- [JustAXCGLoggerTest1] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
+            Text("--- [JustAXCGLoggerWithLogonTest2] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
             Text("")
             Text("\(ClassInfo.sClsCopyRight)")
             
@@ -58,13 +57,8 @@ struct ContentView: View
     func xcgLoggerMsg(sMessage:String)
     {
 
-    //  let sTraceCls:String       = ClassInfo.sClsId
-    //  let sCurrMethod:String     = #function
-    //  let sCurrMethodDisp:String = "'"+sCurrMethod+"'"
-        let appDelegate:JustAXCGLoggerTest1AppDelegate
-                                   = JustAXCGLoggerTest1AppDelegate.ClassSingleton.appDelegate!
-
-    //  print("...Inside \(ClassInfo.sClsDisp).xcgLoggerMsg() - \(sMessage)...")
+        let appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
+                                   = JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!
 
         appDelegate.xcgLogger?.info("\(sMessage)")
 
