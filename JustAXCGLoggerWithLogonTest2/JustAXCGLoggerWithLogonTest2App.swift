@@ -16,7 +16,7 @@ struct JustAXCGLoggerWithLogonTest2App: App
     {
         
         static let sClsId        = "JustAXCGLoggerWithLogonTest2App"
-        static let sClsVers      = "v1.0301"
+        static let sClsVers      = "v1.0306"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -40,8 +40,28 @@ struct JustAXCGLoggerWithLogonTest2App: App
         {
             
             ContentView()
+                .navigationTitle(AppGlobalInfo.sGlobalInfoAppId)
             
         }
+        .commands 
+        {
+
+            AppInfoCommands()
+
+            HelpCommands()
+
+        }
+        
+        #if os(macOS)
+
+        Settings
+        {
+      
+            SettingsSingleView()
+      
+        }
+
+        #endif
         
     }
     
