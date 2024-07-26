@@ -16,13 +16,17 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0401"
+        static let sClsVers        = "v1.0402"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
         
     }
+
+    // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
+
+    @EnvironmentObject private   var appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
 
     // App Data field(s):
 
@@ -32,7 +36,8 @@ struct HelpBasicView: View
     private var sLogFileText:String
     {
         
-        JmFileIO.readFile(sFilespec: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
+    //  JmFileIO.readFile(sFilespec: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
+        JmFileIO.readFile(sFilespec: self.appDelegate.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
         
     }
 

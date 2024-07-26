@@ -15,13 +15,19 @@ struct HelpCommands: Commands
     {
         
         static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.0604"
+        static let sClsVers        = "v1.0607"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
         
     }
+
+    // Do NOT use this <here> - @EnvironmentObject has NO AppDelegate (causes a CRASH).
+    //     The 'var body: some Commands' is NOT in the parental Tree structure of the App (and ContentView).
+    // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
+
+    // @EnvironmentObject private var appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
 
     var body: some Commands
     {
@@ -38,6 +44,7 @@ struct HelpCommands: Commands
             }
 
         //  NavigationLink(destination: HelpBasicView(sHelpBasicContents: "\(ClassInfo.sClsDisp) - 'basic' HELP Placeholder ---").navigationBarBackButtonHidden(true))
+        //  NavigationLink(destination: HelpBasicView(sHelpBasicContents: self.appDelegate.getAppDelegateHelpBasicContents()).navigationBarBackButtonHidden(true))
             NavigationLink(destination: HelpBasicView(sHelpBasicContents: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.getAppDelegateHelpBasicContents()).navigationBarBackButtonHidden(true))
             {
       
@@ -68,8 +75,10 @@ struct HelpCommands: Commands
 
         let appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
                 = JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!
-
+      
         appDelegate.xcgLogger?.info("\(sMessage)")
+
+    //  self.appDelegate.xcgLogger?.info("\(sMessage)")
 
         return
 
@@ -80,9 +89,10 @@ struct HelpCommands: Commands
 
         let appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
                 = JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!
-
-
+      
         appDelegate.clearAppDelegateTraceLogFile()
+
+    //  self.appDelegate.clearAppDelegateTraceLogFile()
         
         return
         

@@ -17,13 +17,17 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.0403"
+        static let sClsVers        = "v1.0404"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
         
     }
+
+    // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
+
+    @EnvironmentObject private var appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
 
     // App Data field(s):
 
@@ -34,7 +38,8 @@ struct LogFileView: View
     private var sLogFileText:String
     {
         
-        JmFileIO.readFile(sFilespec: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
+    //  JmFileIO.readFile(sFilespec: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
+        JmFileIO.readFile(sFilespec: self.appDelegate.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
         
     }
 
@@ -66,7 +71,8 @@ struct LogFileView: View
                 
                 }
 
-            Text(JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec ?? "...empty...")
+        //  Text(JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec ?? "...empty...")
+            Text(self.appDelegate.sAppDelegateLogFilespec ?? "...empty...")
                 .contextMenu
                 {
                 
@@ -90,7 +96,8 @@ struct LogFileView: View
             Button("Preview Log file") 
             {
 
-                self.logFileUrl = JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.urlAppDelegateLogFilespec
+            //  self.logFileUrl = JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.urlAppDelegateLogFilespec
+                self.logFileUrl = self.appDelegate.urlAppDelegateLogFilespec
 
                 xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):LogFileView.Button('Preview Log file') performed for the URL of [\(String(describing: self.logFileUrl))]...")
 
@@ -106,10 +113,7 @@ struct LogFileView: View
     func xcgLoggerMsg(sMessage:String)
     {
 
-        let appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
-                = JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!
-
-        appDelegate.xcgLogger?.info("\(sMessage)")
+        self.appDelegate.xcgLogger?.info("\(sMessage)")
 
         return
 
@@ -118,7 +122,6 @@ struct LogFileView: View
     func copyLogFilespecToClipboard()
     {
         
-    //  let _ = xcgLoggerMsg(sMessage:"...\(ClassInfo.sClsDisp):ContentView in ContextMenu.copyLogFilespecToClipboard() for text of [\(JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!)]...")
         xcgLoggerMsg(sMessage:"...\(ClassInfo.sClsDisp):ContentView in ContextMenu.copyLogFilespecToClipboard() for text of [\(JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!)]...")
         
         pasteboard.prepareForNewContents()
