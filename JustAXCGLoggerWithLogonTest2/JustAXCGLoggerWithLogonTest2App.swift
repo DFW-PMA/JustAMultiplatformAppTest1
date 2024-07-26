@@ -16,7 +16,7 @@ struct JustAXCGLoggerWithLogonTest2App: App
     {
         
         static let sClsId        = "JustAXCGLoggerWithLogonTest2App"
-        static let sClsVers      = "v1.0401"
+        static let sClsVers      = "v1.0402"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -24,10 +24,14 @@ struct JustAXCGLoggerWithLogonTest2App: App
         
     }
 
-    // App Data field(s):
+    // AppDelegate:
+    //     (NOTE: This causes the AppDelegate class to instantiate
+    //            - use this ONLY once in an App or it will cause multiple instantiation(s) of AppDelegate...
 
     @NSApplicationDelegateAdaptor(JustAXCGLoggerWithLogonTest2AppDelegate.self)
     var appDelegate
+
+    // App Data field(s):
 
     let sAppBundlePath:String = Bundle.main.bundlePath
 
