@@ -18,7 +18,7 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
     {
         
         static let sClsId          = "JustAXCGLoggerWithLogonTest2AppDelegate"
-        static let sClsVers        = "v1.0501"
+        static let sClsVers        = "v1.0504"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -256,6 +256,7 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
             self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) TYPE is [\(String(describing: type(of: listXCGLoggerDestinations?[index])))]...")
             self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) 'is' FileDestination [\(String(describing: (listXCGLoggerDestinations?[index] is FileDestination)))]...")
+            self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) Destination 'identifier' is [\(String(describing: listXCGLoggerDestinations?[index].identifier))]...")
             self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) is [\(String(describing: listXCGLoggerDestinations?[index]))]...")
 
             if ((listXCGLoggerDestinations?[index] is FileDestination) == true)
@@ -263,7 +264,7 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
                 let xcgFileDestination = listXCGLoggerDestinations?[index] as! FileDestination
 
-                self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' FileDestination is writing to [\(String(describing: xcgFileDestination.writeToFileURL))]...")
+                self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to file [\(String(describing: xcgFileDestination.writeToFileURL))]...")
 
             }
 
@@ -428,6 +429,41 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
         self.xcgLogger?.info("\(sCurrMethodDisp) Invoked...")
 
+        // Locate and remove the FileDestination from the 'default' xcgLogger?:
+
+        let listXCGLoggerDestinations    = self.xcgLogger?.destinations
+        var xcgFileDestinationIdentifier = XCGLogger.Constants.fileDestinationIdentifier
+        
+        self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance has these destinations (\(listXCGLoggerDestinations!.count)): [\(String(describing: listXCGLoggerDestinations))]...")
+        
+        for index in 0 ..< (listXCGLoggerDestinations!.count) 
+        {
+
+            self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) TYPE is [\(String(describing: type(of: listXCGLoggerDestinations?[index])))]...")
+            self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) 'is' FileDestination [\(String(describing: (listXCGLoggerDestinations?[index] is FileDestination)))]...")
+            self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) Destination 'identifier' is [\(String(describing: listXCGLoggerDestinations?[index].identifier))]...")
+            self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) is [\(String(describing: listXCGLoggerDestinations?[index]))]...")
+
+            if ((listXCGLoggerDestinations?[index] is FileDestination) == true)
+            {
+
+                let xcgFileDestination = listXCGLoggerDestinations?[index] as! FileDestination
+
+                xcgFileDestinationIdentifier = xcgFileDestination.identifier
+
+                self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to file [\(String(describing: xcgFileDestination.writeToFileURL))]...")
+
+                if (xcgFileDestinationIdentifier == XCGLogger.Constants.fileDestinationIdentifier)
+                {
+
+                    self.xcgLogger?.remove(destination: xcgFileDestination)
+
+                }
+
+            }
+
+        }
+
         // Clear the AppDelegate (trace) 'Log' file:
 
         if (self.bAppDelegateLogFilespecIsUsable == false)
@@ -455,6 +491,31 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
             return
 
         }
+
+        // Construct and set-up a <new> 'default' FileDestination:
+
+        let xcgFileDestination = FileDestination(writeToFile: self.urlAppDelegateLogFilespec!, 
+                                                 identifier:  XCGLogger.Constants.fileDestinationIdentifier)
+                                             //  identifier:  "net.justmacapps.\(JustAXCGLoggerTest1AppDelegate.sApplicationName).advancedSysLogger.xcgFileDestination")
+        
+        xcgFileDestination.outputLevel       = .verbose
+        xcgFileDestination.showLogIdentifier = true
+        xcgFileDestination.showFunctionName  = true
+        xcgFileDestination.showThreadName    = true
+        xcgFileDestination.showLevel         = true
+        xcgFileDestination.showFileName      = true
+        xcgFileDestination.showLineNumber    = true
+        xcgFileDestination.showDate          = true
+        
+        // Process this destination in the background:
+        
+        xcgFileDestination.logQueue = XCGLogger.logQueue
+        
+        // Re-add the 'default' FileDestination to xcgLogger?:
+
+        self.xcgLogger?.add(destination: xcgFileDestination)
+        
+        self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to [\(String(describing: xcgFileDestination.writeToFileURL))]...")
 
         // Exit:
 
