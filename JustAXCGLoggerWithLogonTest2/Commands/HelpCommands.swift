@@ -15,7 +15,7 @@ struct HelpCommands: Commands
     {
         
         static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.0603"
+        static let sClsVers        = "v1.0604"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -37,13 +37,13 @@ struct HelpCommands: Commands
       
             }
 
-    //  //  NavigationLink(destination: HelpBasicView(sHelpBasicContents: self.appDelegate.getAppDelegateHelpBasicContents()).navigationBarBackButtonHidden(true))
-    //      NavigationLink(destination: HelpBasicView(sHelpBasicContents: "\(ClassInfo.sClsDisp) - 'basic' HELP Placeholder ---").navigationBarBackButtonHidden(true))
-    //      {
-    //
-    //          Label("\(ClassInfo.sClsId) 'Basic' HELP viewer...", systemImage: "questionmark.circle")
-    //
-    //      }
+        //  NavigationLink(destination: HelpBasicView(sHelpBasicContents: "\(ClassInfo.sClsDisp) - 'basic' HELP Placeholder ---").navigationBarBackButtonHidden(true))
+            NavigationLink(destination: HelpBasicView(sHelpBasicContents: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.getAppDelegateHelpBasicContents()).navigationBarBackButtonHidden(true))
+            {
+      
+                Label("\(ClassInfo.sClsId) 'Basic' HELP viewer...", systemImage: "questionmark.circle")
+      
+            }
 
             NavigationLink(destination: LogFileView().navigationBarBackButtonHidden(true))
             {

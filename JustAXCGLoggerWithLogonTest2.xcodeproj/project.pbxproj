@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0289D292C53D85B001B19CD /* JmUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0289D282C53D85B001B19CD /* JmUserDefaults.swift */; };
+		F0289D2B2C53D863001B19CD /* HelpBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0289D2A2C53D863001B19CD /* HelpBasicView.swift */; };
+		F0289D2F2C53D933001B19CD /* HelpBasic.html in Resources */ = {isa = PBXBuildFile; fileRef = F0289D2D2C53D933001B19CD /* HelpBasic.html */; };
+		F0289D302C53D933001B19CD /* HelpBasic.md in Resources */ = {isa = PBXBuildFile; fileRef = F0289D2E2C53D933001B19CD /* HelpBasic.md */; };
+		F0289D332C53D98D001B19CD /* HelpBasicMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0289D312C53D98D001B19CD /* HelpBasicMode.swift */; };
+		F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */; };
 		F028C5B12C48610A007C459E /* JustAXCGLoggerWithLogonTest2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028C5B02C48610A007C459E /* JustAXCGLoggerWithLogonTest2App.swift */; };
 		F028C5B32C48610A007C459E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028C5B22C48610A007C459E /* ContentView.swift */; };
 		F028C5B52C48610B007C459E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B42C48610B007C459E /* Assets.xcassets */; };
@@ -25,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0289D282C53D85B001B19CD /* JmUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmUserDefaults.swift; sourceTree = "<group>"; };
+		F0289D2A2C53D863001B19CD /* HelpBasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpBasicView.swift; sourceTree = "<group>"; };
+		F0289D2D2C53D933001B19CD /* HelpBasic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HelpBasic.html; sourceTree = "<group>"; };
+		F0289D2E2C53D933001B19CD /* HelpBasic.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = HelpBasic.md; sourceTree = "<group>"; };
+		F0289D312C53D98D001B19CD /* HelpBasicMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpBasicMode.swift; sourceTree = "<group>"; };
+		F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpBasicLoader.swift; sourceTree = "<group>"; };
 		F028C5AD2C48610A007C459E /* JustAXCGLoggerWithLogonTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustAXCGLoggerWithLogonTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F028C5B02C48610A007C459E /* JustAXCGLoggerWithLogonTest2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustAXCGLoggerWithLogonTest2App.swift; sourceTree = "<group>"; };
 		F028C5B22C48610A007C459E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +67,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0289D272C53D84A001B19CD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F0289D2D2C53D933001B19CD /* HelpBasic.html */,
+				F0289D2E2C53D933001B19CD /* HelpBasic.md */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F0289D2C2C53D920001B19CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */,
+				F0289D312C53D98D001B19CD /* HelpBasicMode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F028C5A42C486109007C459E = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +109,8 @@
 				F032402F2C49672900ED9508 /* JustAXCGLoggerWithLogonTest2AppDelegate.swift */,
 				F0D17B8B2C52E4BD000E5A52 /* Commands */,
 				F0D17B862C52E3D5000E5A52 /* JmUtils */,
+				F0289D2C2C53D920001B19CD /* Models */,
+				F0289D272C53D84A001B19CD /* Resources */,
 				F028C5BF2C486134007C459E /* Views */,
 				F028C5B42C48610B007C459E /* Assets.xcassets */,
 				F028C5B92C48610B007C459E /* JustAXCGLoggerWithLogonTest2.entitlements */,
@@ -98,6 +130,7 @@
 		F028C5BF2C486134007C459E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F0289D2A2C53D863001B19CD /* HelpBasicView.swift */,
 				F0D17B912C52E951000E5A52 /* LogFileView.swift */,
 				F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */,
 				F028C5B22C48610A007C459E /* ContentView.swift */,
@@ -108,6 +141,7 @@
 		F0D17B862C52E3D5000E5A52 /* JmUtils */ = {
 			isa = PBXGroup;
 			children = (
+				F0289D282C53D85B001B19CD /* JmUserDefaults.swift */,
 				F0D17B872C52E414000E5A52 /* JmFileIO.swift */,
 				F0D17B882C52E414000E5A52 /* JmStringExtensions.swift */,
 			);
@@ -189,6 +223,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */,
+				F0289D2F2C53D933001B19CD /* HelpBasic.html in Resources */,
+				F0289D302C53D933001B19CD /* HelpBasic.md in Resources */,
 				F028C5B52C48610B007C459E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,13 +238,17 @@
 			files = (
 				F0D17B8F2C52E942000E5A52 /* HelpCommands.swift in Sources */,
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
+				F0289D332C53D98D001B19CD /* HelpBasicMode.swift in Sources */,
 				F0981DB42C52C5AE0054CE7C /* JustAXCGLoggerWithLogonTest2AppGlobalInfo.swift in Sources */,
 				F0D17B932C52E951000E5A52 /* LogFileView.swift in Sources */,
+				F0289D2B2C53D863001B19CD /* HelpBasicView.swift in Sources */,
 				F0D17B922C52E951000E5A52 /* SettingsSingleView.swift in Sources */,
 				F03240302C49672900ED9508 /* JustAXCGLoggerWithLogonTest2AppDelegate.swift in Sources */,
 				F0D17B892C52E414000E5A52 /* JmFileIO.swift in Sources */,
+				F0289D292C53D85B001B19CD /* JmUserDefaults.swift in Sources */,
 				F0D17B8D2C52E572000E5A52 /* AppInfoCommands.swift in Sources */,
 				F028C5B12C48610A007C459E /* JustAXCGLoggerWithLogonTest2App.swift in Sources */,
+				F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */,
 				F0D17B8A2C52E414000E5A52 /* JmStringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +382,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAXCGLoggerWithLogonTest2/JustAXCGLoggerWithLogonTest2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.15.24C207;
+				CURRENT_PROJECT_VERSION = 02.02.24C208;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAXCGLoggerWithLogonTest2/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -370,7 +410,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAXCGLoggerWithLogonTest2/JustAXCGLoggerWithLogonTest2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 01.15.24C207;
+				CURRENT_PROJECT_VERSION = 02.02.24C208;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAXCGLoggerWithLogonTest2/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;

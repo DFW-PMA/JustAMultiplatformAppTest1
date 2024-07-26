@@ -18,7 +18,7 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
     {
         
         static let sClsId          = "JustAXCGLoggerWithLogonTest2AppDelegate"
-        static let sClsVers        = "v1.0401"
+        static let sClsVers        = "v1.0501"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -47,14 +47,22 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
     var sApplicationTitle:String                 = "-N/A-"
     let sApplicationShortTitle:String            = "JAXCGLWLT1"
 
+    let sHelpBasicFileExt:String                 = "html"     // 'help' File extension: "md", "html", or "txt"
+    var sHelpBasicContents:String                = "-N/A-"
+
+    @AppStorage("helpBasicMode") 
+    var helpBasicMode                            = HelpBasicMode.simpletext
+
+    var helpBasicLoader:HelpBasicLoader          = HelpBasicLoader()
+
     // Misc:
 
     let bClsTraceInternal:Bool                   = true
     var bAppDelegateTraceLogInitRequired:Bool    = true
     var sInitAppDelegateTraceLogTag:String       = "-unknown-"
     var bAppDelegateLogFilespecIsUsable:Bool     = false
-    var urlAppDelegateLogFilepath:URL?           = nil
     var urlAppDelegateLogFilespec:URL?           = nil
+    var urlAppDelegateLogFilepath:URL?           = nil
     var sAppDelegateLogFilespec:String!          = nil
     var sAppDelegateLogFilepath:String!          = nil
     var xcgLogger:XCGLogger?                     = XCGLogger.default
@@ -83,6 +91,12 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
         asToString.append("'bAppTitleSetupRequired': [\(self.bAppTitleSetupRequired)],")
         asToString.append("'bUseApplicationShortTitle': [\(self.bUseApplicationShortTitle)],")
         asToString.append("'sApplicationTitle': [\(self.sApplicationTitle)],")
+        asToString.append("],")
+        asToString.append("[")
+        asToString.append("'sHelpBasicFileExt': [\(self.sHelpBasicFileExt)],")
+        asToString.append("'sHelpBasicContents': [\(self.sHelpBasicContents)],")
+        asToString.append("'helpBasicMode': [\(self.helpBasicMode)],")
+        asToString.append("'helpBasicLoader': [\(self.helpBasicLoader.toString())],")
         asToString.append("],")
         asToString.append("[")
         asToString.append("'bClsTraceInternal': [\(self.bClsTraceInternal)],")
@@ -120,13 +134,13 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
         self.initAppDelegateTraceLog(initappdelegatetracelogtag:"\(sCurrMethodDisp)<>\(self.cAppDelegateInitCalls)")
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Method Invoked- #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Method Invoked - #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - 'self' is [\(self)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
         
         // Exit:
 
-        self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting - #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
 
         return
 
@@ -301,6 +315,26 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
     }   // End of func getAppDelegateApplicationTitle().
 
+    func getAppDelegateHelpBasicContents() -> String
+    {
+
+    //  let sCurrMethod:String = #function
+    //  let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        if (self.helpBasicLoader.bHelpSetupRequired == true)
+        {
+
+        //  self.initAppDelegateTraceLog(initappdelegatetracelogtag:sCurrMethodDisp)
+
+            self.sHelpBasicContents                 = self.helpBasicLoader.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'")
+            self.helpBasicLoader.bHelpSetupRequired = false
+
+        }
+
+        return self.sHelpBasicContents
+
+    }   // End of func getAppDelegateHelpBasicContents().
+
     func applicationWillFinishLaunching(_ aNotification: Notification) 
     {
 
@@ -309,6 +343,15 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
         self.xcgLogger?.info("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
 
+        // Help:
+
+        if (self.helpBasicLoader.bHelpSetupRequired == true)
+        {
+
+            self.sHelpBasicContents = self.helpBasicLoader.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'appDidFinish...()'")
+
+        }
+        
         // Exit:
 
         self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting...")
