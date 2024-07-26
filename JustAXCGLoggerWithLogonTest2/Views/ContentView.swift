@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0302"
+        static let sClsVers      = "v1.0304"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -27,6 +27,10 @@ struct ContentView: View
 
     @EnvironmentObject private var appDelegate:JustAXCGLoggerWithLogonTest2AppDelegate
 
+    // App Data field(s):
+
+    @State private var cContentViewRefreshButtonPresses:Int = 0
+    
     var body: some View 
     {
 
@@ -50,6 +54,21 @@ struct ContentView: View
             Text("--- [JustAXCGLoggerWithLogonTest2] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
             Text("")
             Text("\(ClassInfo.sClsCopyRight)")
+            
+            Spacer()
+            
+            Button("Refresh - #(\(self.cContentViewRefreshButtonPresses))...")
+            {
+                
+                self.cContentViewRefreshButtonPresses += 1
+                
+                let _ = xcgLoggerMsg(sMessage:"...\(ClassInfo.sClsDisp),ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
+
+            }
+            .controlSize(.extraLarge)
+            .background(Color(red: 0, green: 0.5, blue: 0.5))
+            .foregroundStyle(.white)
+            .buttonStyle(.borderedProminent)
             
             Spacer()
             
