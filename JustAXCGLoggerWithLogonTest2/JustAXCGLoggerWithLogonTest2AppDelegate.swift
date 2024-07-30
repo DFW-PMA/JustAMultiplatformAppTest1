@@ -18,7 +18,7 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
     {
         
         static let sClsId          = "JustAXCGLoggerWithLogonTest2AppDelegate"
-        static let sClsVers        = "v1.0504"
+        static let sClsVers        = "v1.0505"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -294,7 +294,8 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
             if (self.bUseApplicationShortTitle == true)
             {
 
-                self.sApplicationTitle = self.sApplicationName
+            //  self.sApplicationTitle = self.sApplicationName
+                self.sApplicationTitle = self.sApplicationShortTitle
 
             }
             else
@@ -352,6 +353,20 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
             self.sHelpBasicContents = self.helpBasicLoader.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'appDidFinish...()'")
 
         }
+
+        // Objective-C call(s):
+
+        let calledObjCModule = CalledObjCModule()
+
+        let sInternalVariable:String? = calledObjCModule.getInternalVariable()
+
+        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #1 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
+
+        let sHelloMessage:String = "Message from 'JustAXCGLoggerWithLogonTest2AppDelegate'..."
+        
+        calledObjCModule.sayHello(sHelloMessage)
+        
+        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #2 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
         
         // Exit:
 
