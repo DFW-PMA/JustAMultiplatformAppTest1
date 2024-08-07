@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0501"
+        static let sClsVers      = "v1.0502"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -41,9 +41,31 @@ struct ContentView: View
             
             Spacer()
             
-            Image(systemName: "globe.desk.fill")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
+        //  Image(systemName: "globe.desk.fill")
+        //      .imageScale(.large)
+        //      .foregroundStyle(.tint)
+
+        if #available(iOS 17.0, *)
+        {
+
+            Image(ImageResource(name: "Gfx/AppIcon", bundle: Bundle.main))
+                .resizable()
+                .scaledToFit()
+                .containerRelativeFrame(.horizontal)
+                    { size, axis in
+                        size * 0.2
+                    }
+
+        }
+        else
+        {
+
+            Image(ImageResource(name: "Gfx/AppIcon", bundle: Bundle.main))
+                .resizable()
+                .scaledToFit()
+                .frame(width:100, height: 100, alignment:.center)
+
+        }
             
             Spacer(minLength: 10)
             
