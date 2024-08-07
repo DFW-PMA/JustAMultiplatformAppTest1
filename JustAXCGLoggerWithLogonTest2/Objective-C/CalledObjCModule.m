@@ -64,6 +64,14 @@
 
     NSLog(@"--- CalledObjCModule.sayHello() - Invoked ---");
     NSLog(@"      parameter 'message': %@", message);
+    
+    if (_jmObjCSwiftEnvBridge) {
+        NSLog(@"--- CalledObjCModule.sayHello() - Test - '_jmObjCSwiftEnvBridge' is NOT Null - is [%@] ---", _jmObjCSwiftEnvBridge);
+        [_jmObjCSwiftEnvBridge jmLogMsg:message];
+    } else {
+        NSLog(@"--- CalledObjCModule.sayHello() - Test - '_jmObjCSwiftEnvBridge' is Null - Error! ---");
+    }
+
     NSLog(@"--- CalledObjCModule.sayHello() - Exiting ---");
 
 }
