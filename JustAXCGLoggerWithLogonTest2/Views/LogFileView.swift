@@ -17,7 +17,7 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.0404"
+        static let sClsVers        = "v1.0502"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -31,6 +31,10 @@ struct LogFileView: View
 
     // App Data field(s):
 
+    @State private var cLogFileViewAppLogClearButtonPresses:Int = 0
+
+    @State private var isAppLogClearShowingAlert:Bool           = false
+    
     @State  var logFileUrl:URL?
     
     private let pasteboard = NSPasteboard.general
@@ -48,6 +52,8 @@ struct LogFileView: View
         
         VStack
         {
+
+            Spacer()
 
             Text("Log file:")
                 .font(.callout)
@@ -71,6 +77,8 @@ struct LogFileView: View
                 
                 }
 
+            Text("")
+
         //  Text(JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec ?? "...empty...")
             Text(self.appDelegate.sAppDelegateLogFilespec ?? "...empty...")
                 .contextMenu
@@ -93,6 +101,8 @@ struct LogFileView: View
                 
                 }
 
+            Spacer()
+
             Button("Preview Log file") 
             {
 
@@ -105,6 +115,43 @@ struct LogFileView: View
 
             }
             .quickLookPreview($logFileUrl)
+            .controlSize(.regular)
+            .background(Color(red: 0, green: 0.5, blue: 0.5))
+            .foregroundStyle(.white)
+            .buttonStyle(.borderedProminent)
+
+            Spacer()
+
+            Button
+            {
+
+                self.cLogFileViewAppLogClearButtonPresses += 1
+
+                let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):LogFileView in Button(Xcode).'App Log 'Clear'.#(\(self.cLogFileViewAppLogClearButtonPresses))'...")
+
+                self.appDelegate.clearAppDelegateTraceLogFile()
+
+                self.isAppLogClearShowingAlert = true
+
+            }
+            label: 
+            {
+
+                Text("App Log 'Clear'")
+
+            }
+            .alert("App Log has been 'Cleared'...", isPresented:$isAppLogClearShowingAlert)
+            {
+
+                Button("Ok", role:.cancel) { }
+
+            }
+            .controlSize(.regular)
+            .background(Color(red: 0, green: 0.5, blue: 0.5))
+            .foregroundStyle(.white)
+            .buttonStyle(.borderedProminent)
+
+            Spacer()
 
         }
         

@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0304"
+        static let sClsVers      = "v1.0401"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -65,7 +65,7 @@ struct ContentView: View
                 let _ = xcgLoggerMsg(sMessage:"...\(ClassInfo.sClsDisp),ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
 
             }
-            .controlSize(.extraLarge)
+            .controlSize(.regular)
             .background(Color(red: 0, green: 0.5, blue: 0.5))
             .foregroundStyle(.white)
             .buttonStyle(.borderedProminent)
