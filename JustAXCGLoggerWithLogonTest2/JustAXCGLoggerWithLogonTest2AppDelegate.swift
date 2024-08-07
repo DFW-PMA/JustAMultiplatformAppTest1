@@ -18,7 +18,7 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
     {
         
         static let sClsId          = "JustAXCGLoggerWithLogonTest2AppDelegate"
-        static let sClsVers        = "v1.0505"
+        static let sClsVers        = "v1.0601"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -36,36 +36,40 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
     // App 'name' field:
 
-    let sApplicationName:String                  = AppGlobalInfo.sGlobalInfoAppId
+    let sApplicationName:String               = AppGlobalInfo.sGlobalInfoAppId
 
     // Various App field(s):
 
-    var cAppDelegateInitCalls:Int                = 0
+    var cAppDelegateInitCalls:Int             = 0
 
-    var bAppTitleSetupRequired:Bool              = true
-    let bUseApplicationShortTitle:Bool           = false
-    var sApplicationTitle:String                 = "-N/A-"
-    let sApplicationShortTitle:String            = "JAXCGLWLT1"
+    var bAppTitleSetupRequired:Bool           = true
+    let bUseApplicationShortTitle:Bool        = false
+    var sApplicationTitle:String              = "-N/A-"
+    let sApplicationShortTitle:String         = "JAXCGLWLT1"
 
-    let sHelpBasicFileExt:String                 = "html"     // 'help' File extension: "md", "html", or "txt"
-    var sHelpBasicContents:String                = "-N/A-"
+    let sHelpBasicFileExt:String              = "html"     // 'help' File extension: "md", "html", or "txt"
+    var sHelpBasicContents:String             = "-N/A-"
 
     @AppStorage("helpBasicMode") 
-    var helpBasicMode                            = HelpBasicMode.simpletext
+    var helpBasicMode                         = HelpBasicMode.simpletext
 
-    var helpBasicLoader:HelpBasicLoader          = HelpBasicLoader()
+    var helpBasicLoader:HelpBasicLoader       = HelpBasicLoader()
 
     // Misc:
 
-    let bClsTraceInternal:Bool                   = true
-    var bAppDelegateTraceLogInitRequired:Bool    = true
-    var sInitAppDelegateTraceLogTag:String       = "-unknown-"
-    var bAppDelegateLogFilespecIsUsable:Bool     = false
-    var urlAppDelegateLogFilespec:URL?           = nil
-    var urlAppDelegateLogFilepath:URL?           = nil
-    var sAppDelegateLogFilespec:String!          = nil
-    var sAppDelegateLogFilepath:String!          = nil
-    var xcgLogger:XCGLogger?                     = XCGLogger.default
+    let bClsTraceInternal:Bool                = true
+    var bAppDelegateTraceLogInitRequired:Bool = true
+    var sInitAppDelegateTraceLogTag:String    = "-unknown-"
+    var bAppDelegateLogFilespecIsUsable:Bool  = false
+    var urlAppDelegateLogFilespec:URL?        = nil
+    var urlAppDelegateLogFilepath:URL?        = nil
+    var sAppDelegateLogFilespec:String!       = nil
+    var sAppDelegateLogFilepath:String!       = nil
+    var xcgLogger:XCGLogger?                  = XCGLogger.default
+    
+    // Swift/ObjC Bridge:
+
+    @objc var jmObjCSwiftEnvBridge:JmObjCSwiftEnvBridge? = nil
 
     open func toString()->String
     {
@@ -109,6 +113,9 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
         asToString.append("'sAppDelegateLogFilepath': [\(String(describing: self.sAppDelegateLogFilepath))],")
         asToString.append("'xcgLogger': [\(String(describing: self.xcgLogger))],")
         asToString.append("],")
+        asToString.append("[")
+        asToString.append("'jmObjCSwiftEnvBridge': [\(String(describing: self.jmObjCSwiftEnvBridge))],")
+        asToString.append("],")
         asToString.append("]")
 
         let sContents:String = "{"+(asToString.joined(separator: ""))+"}"
@@ -137,6 +144,50 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
         self.xcgLogger?.info("\(sCurrMethodDisp) Method Invoked - #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) AppDelegate is starting - 'self' is [\(self)]...")
         self.xcgLogger?.info("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
+        
+        // Setup the Objective-C/Swift Bridge:
+
+    //  self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge(xcgLogger:self.xcgLogger!)
+
+        self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
+
+        self.jmObjCSwiftEnvBridge?.setXCGLoggerInstance(xcgLogger:self.xcgLogger!)
+
+        // Objective-C call(s):
+
+        let calledObjCModule = CalledObjCModule()
+
+        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
+
+        calledObjCModule.initInstance()
+
+        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
+
+    // ------------------------------------------------------------------------------------------------------
+    //  Things that did NOT work:
+    // ------------------------------------------------------------------------------------------------------
+    //
+    //  self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #1 - invoking 'setObjCSwiftEnvBridge()' with a parameter 'self.jmObjCSwiftEnvBridge' of [\(String(describing: self.jmObjCSwiftEnvBridge))]...")
+    //
+    //  let _ = #selector(setter: calledObjCModule.setObjCSwiftEnvBridge(_ :self.jmObjCSwiftEnvBridge!))
+    //  
+    //  calledObjCModule.setObjCSwiftEnvBridge(self.jmObjCSwiftEnvBridge!)
+    //
+    //  calledObjCModule._jmObjCSwiftEnvBridge = self.jmObjCSwiftEnvBridge!
+    //  
+    //  self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #1 - invoked 'setObjCSwiftEnvBridge()' with a parameter 'self.jmObjCSwiftEnvBridge' of [\(String(describing: self.jmObjCSwiftEnvBridge))]...")
+    //
+    // ------------------------------------------------------------------------------------------------------
+
+        let sInternalVariable:String? = calledObjCModule.getInternalVariable()
+
+        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #2 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
+
+        let sHelloMessage:String = "Message from 'JustAXCGLoggerWithLogonTest2AppDelegate'..."
+        
+        calledObjCModule.sayHello(sHelloMessage)
+        
+        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #3 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
         
         // Exit:
 
@@ -354,20 +405,6 @@ class JustAXCGLoggerWithLogonTest2AppDelegate: NSObject, NSApplicationDelegate, 
 
         }
 
-        // Objective-C call(s):
-
-        let calledObjCModule = CalledObjCModule()
-
-        let sInternalVariable:String? = calledObjCModule.getInternalVariable()
-
-        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #1 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
-
-        let sHelloMessage:String = "Message from 'JustAXCGLoggerWithLogonTest2AppDelegate'..."
-        
-        calledObjCModule.sayHello(sHelloMessage)
-        
-        self.xcgLogger?.info("\(sCurrMethodDisp) Objective-C call #2 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
-        
         // Exit:
 
         self.xcgLogger?.info("\(sCurrMethodDisp) Method Exiting...")

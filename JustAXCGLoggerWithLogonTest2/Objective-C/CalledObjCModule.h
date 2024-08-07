@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CalledObjCModule : NSObject
+#import "JmObjCSwiftEnvBridge-Bridging-Header.h"
 
+//@interface JmObjCSwiftEnvBridge: NSObject
+//@end
+
+@interface CalledObjCModule : NSObject
+- (void)initInstance;
+- (void)setObjCSwiftEnvBridge:(JmObjCSwiftEnvBridge * _Nullable)jmobjcswiftenvbridge;
 - (NSString * _Nullable)getInternalVariable;
-- (void)sayHello:(NSString * _Nonnull)message;
+- (void)sayHello:(NSString * _Nullable)message;
+
+// @property (nonatomic, strong) JmObjCSwiftEnvBridge * _Nullable jmObjCSwiftEnvBridge;
 
 @end

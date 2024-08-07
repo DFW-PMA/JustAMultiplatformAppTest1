@@ -16,7 +16,7 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0402"
+        static let sClsVers        = "v1.0501"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -33,22 +33,12 @@ struct HelpBasicView: View
     @AppStorage("helpBasicMode") var helpBasicMode             = HelpBasicMode.hypertext
     @State                       var sHelpBasicContents:String = "----NOT-Loaded-(View)----"
 
-    private var sLogFileText:String
-    {
-        
-    //  JmFileIO.readFile(sFilespec: JustAXCGLoggerWithLogonTest2AppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
-        JmFileIO.readFile(sFilespec: self.appDelegate.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
-        
-    }
-
     var body: some View 
     {
         
         VStack
         {
 
-            Divider()
-            
             HStack
             {
                 
@@ -61,8 +51,6 @@ struct HelpBasicView: View
                 
             }
             .padding()
-
-            Divider()
 
         }
         .padding()
