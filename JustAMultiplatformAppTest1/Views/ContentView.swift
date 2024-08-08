@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0507"
+        static let sClsVers      = "v1.0508"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -43,10 +43,6 @@ struct ContentView: View
             
             Spacer()
             
-        //  Image(systemName: "globe.desk.fill")
-        //      .imageScale(.large)
-        //      .foregroundStyle(.tint)
-
         if #available(iOS 17.0, *)
         {
 
@@ -77,7 +73,8 @@ struct ContentView: View
                     { bShow in
                         if (bShow == true)
                         {
-                            shouldContentViewShowAlert = true
+                            shouldContentViewShowAlert            = true
+                            appDelegate.isAppDelegateShowingAlert = false
                         }
                     })
                 .alert("\(appDelegate.sAppDelegateGlobalAlertMessage ?? "")", isPresented:$shouldContentViewShowAlert)
