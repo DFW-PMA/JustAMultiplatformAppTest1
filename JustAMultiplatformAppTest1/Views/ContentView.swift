@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0502"
+        static let sClsVers      = "v1.0507"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -30,6 +30,8 @@ struct ContentView: View
     // App Data field(s):
 
     @State private var cContentViewRefreshButtonPresses:Int = 0
+
+    @State private var shouldContentViewShowAlert:Bool      = false
     
     var body: some View 
     {
@@ -70,6 +72,20 @@ struct ContentView: View
             Spacer(minLength: 10)
             
             Text("Hello, world!")
+                .onReceive(appDelegate.$isAppDelegateShowingAlert,
+                    perform:
+                    { bShow in
+                        if (bShow == true)
+                        {
+                            shouldContentViewShowAlert = true
+                        }
+                    })
+                .alert("\(appDelegate.sAppDelegateGlobalAlertMessage ?? "")", isPresented:$shouldContentViewShowAlert)
+                {
+
+                    Button("\(appDelegate.sAppDelegateGlobalAlertButtonText ?? "")", role:.cancel) { }
+
+                }
             
             Spacer()
             

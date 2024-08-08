@@ -16,7 +16,7 @@ struct JustAMultiplatformAppTest1App: App
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1App"
-        static let sClsVers      = "v1.0402"
+        static let sClsVers      = "v1.0503"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -30,9 +30,9 @@ struct JustAMultiplatformAppTest1App: App
 
     @NSApplicationDelegateAdaptor(JustAMultiplatformAppTest1NSAppDelegate.self)
     var appDelegate
-
+    
     // App Data field(s):
-
+    
     let sAppBundlePath:String = Bundle.main.bundlePath
 
     var body: some Scene 

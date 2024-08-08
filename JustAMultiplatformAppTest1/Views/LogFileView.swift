@@ -17,7 +17,7 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.0601"
+        static let sClsVers        = "v1.0701"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -39,13 +39,6 @@ struct LogFileView: View
     
     private let pasteboard = NSPasteboard.general
     
-    private var sLogFileText:String
-    {
-        
-        JmFileIO.readFile(sFilespec: self.appDelegate.sAppDelegateLogFilespec!) ?? "--- empty LOG file ---"
-        
-    }
-
     var body: some View 
     {
         
