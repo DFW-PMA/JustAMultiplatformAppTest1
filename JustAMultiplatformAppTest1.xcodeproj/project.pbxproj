@@ -19,6 +19,7 @@
 		F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B72C48610B007C459E /* Preview Assets.xcassets */; };
 		F03240302C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift */; };
 		F042521C2C59356600EA22D8 /* CalledObjCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F04252192C59356600EA22D8 /* CalledObjCModule.m */; };
+		F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */; };
 		F0981DB42C52C5AE0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0981DB32C52C5AD0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift */; };
 		F0A443392C498ED6005EEE81 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */; };
@@ -49,6 +50,7 @@
 		F04252192C59356600EA22D8 /* CalledObjCModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalledObjCModule.m; sourceTree = "<group>"; };
 		F042521A2C59356600EA22D8 /* CalledObjCModule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CalledObjCModule-Bridging-Header.h"; sourceTree = "<group>"; };
 		F042521B2C59356600EA22D8 /* CalledObjCModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalledObjCModule.h; sourceTree = "<group>"; };
+		F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmXcodeBuildSettings.swift; sourceTree = "<group>"; };
 		F0981DB32C52C5AD0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustAMultiplatformAppTest1AppGlobalInfo.swift; sourceTree = "<group>"; };
 		F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmObjCSwiftEnvBridge.swift; sourceTree = "<group>"; };
 		F0A59E042C5962E900302BA8 /* JmObjCSwiftEnvBridge-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JmObjCSwiftEnvBridge-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		F0D17B862C52E3D5000E5A52 /* JmUtils */ = {
 			isa = PBXGroup;
 			children = (
+				F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */,
 				F0289D282C53D85B001B19CD /* JmUserDefaults.swift */,
 				F0D17B872C52E414000E5A52 /* JmFileIO.swift */,
 				F0D17B882C52E414000E5A52 /* JmStringExtensions.swift */,
@@ -270,6 +273,7 @@
 				F0289D292C53D85B001B19CD /* JmUserDefaults.swift in Sources */,
 				F0D17B8D2C52E572000E5A52 /* AppInfoCommands.swift in Sources */,
 				F028C5B12C48610A007C459E /* JustAMultiplatformAppTest1App.swift in Sources */,
+				F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */,
 				F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */,
 				F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */,
 				F0D17B8A2C52E414000E5A52 /* JmStringExtensions.swift in Sources */,
@@ -408,19 +412,21 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 02.10.24C221;
+				CURRENT_PROJECT_VERSION = 03.01.24C235;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest1;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,19 +448,21 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 02.10.24C221;
+				CURRENT_PROJECT_VERSION = 03.01.24C235;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest1;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.01;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;

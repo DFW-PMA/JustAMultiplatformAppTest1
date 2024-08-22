@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0508"
+        static let sClsVers      = "v1.0601"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -36,7 +36,8 @@ struct ContentView: View
     var body: some View 
     {
 
-        let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) \(ClassInfo.sClsCopyRight)...")
+    //  let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) \(ClassInfo.sClsCopyRight)...")
+        let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppCopyright)...")
         
         VStack 
         {
@@ -88,7 +89,8 @@ struct ContentView: View
             
             Text("--- [JustAMultiplatformAppTest1] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
             Text("")
-            Text("\(ClassInfo.sClsCopyRight)")
+            Text("\(JmXcodeBuildSettings.jmAppCopyright)")
+        //  Text("\(ClassInfo.sClsCopyRight)")
             
             Spacer()
             
