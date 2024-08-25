@@ -14,4 +14,8 @@
 *.vpj
 *.vpwhistuxml
 
+# ignore Xcode per-User settings binary file
+UserInterfaceState.xcuserstate
+
+
 
