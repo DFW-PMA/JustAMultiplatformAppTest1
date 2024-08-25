@@ -19,12 +19,11 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0102"
+        static let sClsVers        = "v1.0103"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
-        static let sClsLogFilespec = "JustAMultiplatformAppTest1.log"
         
     }
 
@@ -256,7 +255,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         {
 
             self.urlAppDelegateVisitorLogFilepath = try FileManager.default.url(for: .documentDirectory ,in: .userDomainMask ,appropriateFor: nil, create: true)
-            self.urlAppDelegateVisitorLogFilespec = self.urlAppDelegateVisitorLogFilepath?.appendingPathComponent(ClassInfo.sClsLogFilespec)
+            self.urlAppDelegateVisitorLogFilespec = self.urlAppDelegateVisitorLogFilepath?.appendingPathComponent(AppGlobalInfo.sClsLogFilespec)
             self.sAppDelegateVisitorLogFilespec   = self.urlAppDelegateVisitorLogFilespec?.path
             self.sAppDelegateVisitorLogFilepath   = self.urlAppDelegateVisitorLogFilepath?.path
 

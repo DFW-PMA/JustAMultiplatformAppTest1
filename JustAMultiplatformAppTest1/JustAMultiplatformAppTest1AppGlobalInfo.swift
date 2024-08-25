@@ -15,6 +15,7 @@ struct AppGlobalInfo
     static let sGlobalInfoAppVers:String      = "v1.0401"
     static let sGlobalInfoAppDisp:String      = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
     static let sGlobalInfoAppCopyRight:String = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+    static let sClsLogFilespec:String         = "JustAMultiplatformAppTest1.log"
 
     static let bUseApplicationShortTitle:Bool = false
     static let sApplicationTitle:String       = "-N/A-"
