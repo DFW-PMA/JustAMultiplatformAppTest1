@@ -416,7 +416,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 04.03.24C237;
+				CURRENT_PROJECT_VERSION = 05.01.24C238;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -452,7 +452,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 04.03.24C237;
+				CURRENT_PROJECT_VERSION = 05.01.24C238;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;

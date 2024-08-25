@@ -16,7 +16,7 @@ struct JustAMultiplatformAppTest1App: App
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1App"
-        static let sClsVers      = "v1.0503"
+        static let sClsVers      = "v1.0601"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -28,12 +28,23 @@ struct JustAMultiplatformAppTest1App: App
     //     (NOTE: This causes the AppDelegate class to instantiate
     //            - use this ONLY once in an App or it will cause multiple instantiation(s) of AppDelegate...
 
+#if os(macOS)
+
     @NSApplicationDelegateAdaptor(JustAMultiplatformAppTest1NSAppDelegate.self)
     var appDelegate
-    
+
+#elseif os(iOS)
+
+    @UIApplicationDelegateAdaptor(JustAMultiplatformAppTest1UIAppDelegate.self)
+    var appDelegate
+
+#endif
+
     // App Data field(s):
+
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
-    let sAppBundlePath:String = Bundle.main.bundlePath
+    let sAppBundlePath:String                     = Bundle.main.bundlePath
 
     var body: some Scene 
     {
@@ -63,7 +74,7 @@ struct JustAMultiplatformAppTest1App: App
 
         }
         
-        #if os(macOS)
+    #if os(macOS)
 
         Settings
         {
@@ -72,14 +83,17 @@ struct JustAMultiplatformAppTest1App: App
       
         }
 
-        #endif
+    #endif
         
     }
     
-    func xcgLogger(sMessage:String)
+    func xcgLogger(_ sMessage:String)
     {
 
-        self.appDelegate.xcgLogger?.info("\(sMessage)")
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
 
         return
 
