@@ -31,6 +31,7 @@
 		F0D17B8F2C52E942000E5A52 /* HelpCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B8E2C52E942000E5A52 /* HelpCommands.swift */; };
 		F0D17B922C52E951000E5A52 /* SettingsSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */; };
 		F0D17B932C52E951000E5A52 /* LogFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B912C52E951000E5A52 /* LogFileView.swift */; };
+		F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		F0D17B8E2C52E942000E5A52 /* HelpCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCommands.swift; sourceTree = "<group>"; };
 		F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSingleView.swift; sourceTree = "<group>"; };
 		F0D17B912C52E951000E5A52 /* LogFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFileView.swift; sourceTree = "<group>"; };
+		F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmAppDelegateVisitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		F0D17B862C52E3D5000E5A52 /* JmUtils */ = {
 			isa = PBXGroup;
 			children = (
+				F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */,
 				F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */,
 				F0289D282C53D85B001B19CD /* JmUserDefaults.swift */,
 				F0D17B872C52E414000E5A52 /* JmFileIO.swift */,
@@ -274,6 +277,7 @@
 				F0D17B8D2C52E572000E5A52 /* AppInfoCommands.swift in Sources */,
 				F028C5B12C48610A007C459E /* JustAMultiplatformAppTest1App.swift in Sources */,
 				F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */,
+				F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */,
 				F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */,
 				F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */,
 				F0D17B8A2C52E414000E5A52 /* JmStringExtensions.swift in Sources */,
@@ -412,7 +416,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 04.01.24C237;
+				CURRENT_PROJECT_VERSION = 04.02.24C237;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -448,7 +452,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 04.01.24C237;
+				CURRENT_PROJECT_VERSION = 04.02.24C237;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;

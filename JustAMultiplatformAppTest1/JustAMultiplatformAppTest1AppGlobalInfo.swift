@@ -11,10 +11,15 @@ import SwiftUI
 struct AppGlobalInfo
 {
     
-    static let sGlobalInfoAppId        = "JustAMultiplatformAppTest1"
-    static let sGlobalInfoAppVers      = "v1.0301"
-    static let sGlobalInfoAppDisp      = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
-    static let sGlobalInfoAppCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+    static let sGlobalInfoAppId:String        = "JustAMultiplatformAppTest1"
+    static let sGlobalInfoAppVers:String      = "v1.0401"
+    static let sGlobalInfoAppDisp:String      = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
+    static let sGlobalInfoAppCopyRight:String = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+
+    static let bUseApplicationShortTitle:Bool = false
+    static let sApplicationTitle:String       = "-N/A-"
+    static let sApplicationShortTitle:String  = "JAMpAT1"
+    static let sHelpBasicFileExt:String       = "html"     // 'help' File extension: "md", "html", or "txt"
     
 }
 

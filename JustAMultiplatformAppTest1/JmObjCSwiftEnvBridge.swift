@@ -20,7 +20,7 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.0301"
+        static let sClsVers        = "v1.0401"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) DFW-PMA 2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -66,7 +66,6 @@ public class JmObjCSwiftEnvBridge: NSObject
         
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
-        
         
         self.cJmObjCSwiftEnvBridgeMethodCalls += 1
 
