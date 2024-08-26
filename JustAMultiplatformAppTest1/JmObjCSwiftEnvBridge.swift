@@ -20,7 +20,7 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.0501"
+        static let sClsVers        = "v1.0503"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) DFW-PMA 2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -42,23 +42,30 @@ public class JmObjCSwiftEnvBridge: NSObject
     private override init()
     {
         
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
+    //  let sCurrMethod:String = #function
+    //  let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
         
         super.init()
 
         self.cJmObjCSwiftEnvBridgeMethodCalls += 1
 
-        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked...")
-
-        // Exit:
-
-        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
+    //  self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked...")
+    //
+    //  // Exit:
+    //
+    //  self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
 
         return
 
     }   // End of init().
     
+    class public func sharedEnvBridge() -> JmObjCSwiftEnvBridge
+    {
+        
+        return sharedObjCSwiftEnvBridge
+        
+    }   // End of class public func sharedEnvBridge().
+
     private func xcgLogMsg(_ sMessage:String)
     {
 
@@ -70,13 +77,6 @@ public class JmObjCSwiftEnvBridge: NSObject
         return
 
     }   // End of private func xcgLogMsg().
-
-    class public func sharedEnvBridge() -> JmObjCSwiftEnvBridge
-    {
-        
-        return sharedObjCSwiftEnvBridge
-        
-    }   // End of class public func sharedEnvBridge().
 
     @objc public func jmLogMsg(_ message:NSString)
     {

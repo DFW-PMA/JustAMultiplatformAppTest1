@@ -15,7 +15,7 @@ struct HelpCommands: Commands
     {
         
         static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.0901"
+        static let sClsVers        = "v1.0903"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -69,26 +69,26 @@ struct HelpCommands: Commands
           
             }
 
-            Button
-            {
-
-                self.cHelpCommandsAppLogClearButtonPresses += 1
-
-                let _ = xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
-
-                self.clearAppDelegateTraceLogFile()
-
-            }
-            label: 
-            {
-
-                Text("\(ClassInfo.sClsId) 'clear' Log file")
-
-            }
-            .controlSize(.regular)
-            .background(Color(red: 0, green: 0.5, blue: 0.5))
-            .foregroundStyle(.white)
-            .buttonStyle(.borderedProminent)
+        //  Button
+        //  {
+        //
+        //      self.cHelpCommandsAppLogClearButtonPresses += 1
+        //
+        //      let _ = xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
+        //
+        //      self.clearAppDelegateTraceLogFile()
+        //
+        //  }
+        //  label: 
+        //  {
+        //
+        //      Text("\(ClassInfo.sClsId) 'clear' Log file")
+        //
+        //  }
+        //  .controlSize(.regular)
+        //  .background(Color(red: 0, green: 0.5, blue: 0.5))
+        //  .foregroundStyle(.white)
+        //  .buttonStyle(.borderedProminent)
 
         }
 
@@ -114,6 +114,8 @@ struct HelpCommands: Commands
 
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
       
+        self.cHelpCommandsAppLogClearButtonPresses += 1
+        
         jmAppDelegateVisitor.clearAppDelegateVisitorTraceLogFile()
 
         jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"

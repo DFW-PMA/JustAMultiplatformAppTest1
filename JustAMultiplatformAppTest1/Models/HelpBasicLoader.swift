@@ -17,7 +17,7 @@ class HelpBasicLoader: NSObject
     {
         
         static let sClsId        = "HelpBasicLoader"
-        static let sClsVers      = "v1.0701"
+        static let sClsVers      = "v1.0702"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -29,7 +29,7 @@ class HelpBasicLoader: NSObject
 
     var bHelpSetupRequired:Bool                   = true
     var sHelpBasicLoaderTag                       = ""
-    var sHelpBasicFileExt:String                  = "html"     // 'help' File extension: "md", "html", or "txt"
+    var sHelpBasicFileExt:String                  = "md"        // 'help' File extension: "md", "html", or "txt"
     var sHelpBasicContents:String                 = "-N/A-"
 
     @AppStorage("helpBasicMode") 
@@ -109,7 +109,7 @@ class HelpBasicLoader: NSObject
             if (self.sHelpBasicFileExt.count < 1)
             {
 
-                self.sHelpBasicFileExt    = "html"
+                self.sHelpBasicFileExt    = "md"
 
                 let sSearchMessage:String = "\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Supplied 'help' Basic loader TAG string is an 'empty' string - defaulting it to [\(self.sHelpBasicFileExt)] - Warning!"
 

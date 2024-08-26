@@ -19,7 +19,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0306"
+        static let sClsVers        = "v1.0310"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -169,10 +169,10 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is starting - 'self' is [\(self)]...")
         self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
         
-//      // Setup the Objective-C/Swift Bridge:
-//
-//      self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
-//
+        // Setup the Objective-C/Swift Bridge:
+  
+        self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
+  
 //  //  self.jmObjCSwiftEnvBridge?.setXCGLoggerInstance(xcgLogger:self.xcgLogger!)
 //      
 //      self.xcgLogMsg("\(sCurrMethodDisp) 'self' is [\(self)] and 'self.jmObjCSwiftEnvBridge' is (\(String(describing: self.jmObjCSwiftEnvBridge))) and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))]...")
@@ -361,10 +361,12 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
         if (self.bAppTitleSetupRequired == true)
         {
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Invoked - Setting up the Application 'title'...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Setting up the Application 'title'...")
 
             if (self.bUseApplicationShortTitle == true)
             {
@@ -379,13 +381,15 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
             }
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
 
             self.bAppTitleSetupRequired = false
 
         }
 
         // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
         return self.sApplicationTitle
 
@@ -397,24 +401,30 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        if (self.helpBasicLoader == nil)
+        {
+
+            self.helpBasicLoader = HelpBasicLoader()
+
+        }
+
         if (self.helpBasicLoader?.bHelpSetupRequired == true)
         {
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Invoked - Setting up HELP 'basic' content(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Setting up HELP 'basic' content(s)...")
 
-            if (self.helpBasicLoader == nil)
-            {
-
-                self.helpBasicLoader = HelpBasicLoader()
-
-            }
-
-            self.sHelpBasicContents                 = self.helpBasicLoader?.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'") ?? "-N/A-"
+            self.sHelpBasicContents                  = self.helpBasicLoader?.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'") ?? "---Error: HELP was NOT loaded properly---"
             self.helpBasicLoader?.bHelpSetupRequired = false
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - Having set up the HELP 'basic' content(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Set up the HELP 'basic' content(s)...")
 
         }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
         return self.sHelpBasicContents
 
