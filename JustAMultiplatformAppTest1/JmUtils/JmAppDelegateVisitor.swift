@@ -12,14 +12,14 @@ import SwiftUI
 import XCGLogger
 
 @objc(JmAppDelegateVisitor)
-class JmAppDelegateVisitor: NSObject, ObservableObject
+public class JmAppDelegateVisitor: NSObject, ObservableObject
 {
 
     struct ClassInfo
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0310"
+        static let sClsVers        = "v1.0405"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -172,30 +172,30 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         // Setup the Objective-C/Swift Bridge:
   
         self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
+
+        self.jmObjCSwiftEnvBridge?.setJmAppDelegateVisitorInstance(jmAppDelegateVisitor:self)
   
-//  //  self.jmObjCSwiftEnvBridge?.setXCGLoggerInstance(xcgLogger:self.xcgLogger!)
-//      
-//      self.xcgLogMsg("\(sCurrMethodDisp) 'self' is [\(self)] and 'self.jmObjCSwiftEnvBridge' is (\(String(describing: self.jmObjCSwiftEnvBridge))) and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))]...")
-//
-//      // Objective-C call(s):
-//
-//      let calledObjCModule = CalledObjCModule()
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
-//
-//      calledObjCModule.initInstance()
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
-//
-//      let sInternalVariable:String? = calledObjCModule.getInternalVariable()
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
-//
-//      let sHelloMessage:String = "Message from 'JmAppDelegateVisitor'..."
-//      
-//      calledObjCModule.sayHello(sHelloMessage)
-//      
-//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) 'self' is [\(self)] and 'self.jmObjCSwiftEnvBridge' is (\(String(describing: self.jmObjCSwiftEnvBridge))) and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))]...")
+  
+        // Objective-C call(s):
+  
+        let calledObjCModule = CalledObjCModule()
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
+  
+        calledObjCModule.initInstance()
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
+  
+        let sInternalVariable:String? = calledObjCModule.getInternalVariable()
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
+  
+        let sHelloMessage:String = "Message from 'JmAppDelegateVisitor'..."
+        
+        calledObjCModule.sayHello(sHelloMessage)
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
         
         // Exit:
 

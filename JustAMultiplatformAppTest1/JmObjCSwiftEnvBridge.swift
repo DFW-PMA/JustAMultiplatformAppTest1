@@ -20,7 +20,7 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.0503"
+        static let sClsVers        = "v1.0602"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) DFW-PMA 2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -31,52 +31,83 @@ public class JmObjCSwiftEnvBridge: NSObject
     // Class 'singleton' instance:
 
     @objc(sharedObjCSwiftEnvBridge)
-    static let sharedObjCSwiftEnvBridge           = JmObjCSwiftEnvBridge()
+    static let sharedObjCSwiftEnvBridge            = JmObjCSwiftEnvBridge()
 
     // Various App field(s):
 
-    var cJmObjCSwiftEnvBridgeMethodCalls:Int      = 0
+    var cJmObjCSwiftEnvBridgeMethodCalls:Int       = 0
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    var jmAppDelegateVisitor:JmAppDelegateVisitor? = nil
 
     private override init()
     {
         
-    //  let sCurrMethod:String = #function
-    //  let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
         
         super.init()
-
+      
         self.cJmObjCSwiftEnvBridgeMethodCalls += 1
-
-    //  self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked...")
-    //
-    //  // Exit:
-    //
-    //  self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
+      
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked...")
+      
+        // Exit:
+      
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
 
         return
 
     }   // End of init().
     
-    class public func sharedEnvBridge() -> JmObjCSwiftEnvBridge
-    {
-        
-        return sharedObjCSwiftEnvBridge
-        
-    }   // End of class public func sharedEnvBridge().
-
     private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        if (self.jmAppDelegateVisitor == nil)
+        {
+
+            print("\(sMessage)")
+
+        }
+        else
+        {
+
+            self.jmAppDelegateVisitor?.xcgLogMsg(sMessage)
+
+        }
 
         // Exit:
 
         return
 
     }   // End of private func xcgLogMsg().
+
+    public func setJmAppDelegateVisitorInstance(jmAppDelegateVisitor:JmAppDelegateVisitor)
+    {
+        
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
+        
+        self.cJmObjCSwiftEnvBridgeMethodCalls += 1
+    
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - supplied parameter 'jmAppDelegateVisitor' is [\(jmAppDelegateVisitor)]...")
+
+        self.jmAppDelegateVisitor = jmAppDelegateVisitor
+    //  self.jmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+        // Exit:
+
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting - 'self.jmAppDelegateVisitor' is [\(String(describing: self.jmAppDelegateVisitor))]...")
+    
+        return
+
+    } // End of public func setJmAppDelegateVisitorInstance().
+
+    class public func sharedEnvBridge() -> JmObjCSwiftEnvBridge
+    {
+        
+        return sharedObjCSwiftEnvBridge
+        
+    }   // End of class public func sharedEnvBridge().
 
     @objc public func jmLogMsg(_ message:NSString)
     {

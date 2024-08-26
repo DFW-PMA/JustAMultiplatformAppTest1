@@ -6,7 +6,7 @@
 //  Copyright © 2023-2024 JustMacApps. All rights reserved.
 //
 
-import Cocoa
+//import Cocoa
 import Foundation
 import SwiftUI
 import XCGLogger
@@ -18,7 +18,7 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
     {
         
         static let sClsId          = "JustAMultiplatformAppTest1NSAppDelegate"
-        static let sClsVers        = "v1.0901"
+        static let sClsVers        = "v1.0903"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
