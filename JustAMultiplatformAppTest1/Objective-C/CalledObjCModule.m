@@ -32,16 +32,16 @@
 
 }
 
-- (void)setObjCSwiftEnvBridge:(JmObjCSwiftEnvBridge * _Nullable)jmobjcswiftenvbridge
-{
-
-    NSLog(@"--- CalledObjCModule.setObjCSwiftEnvBridge() - Invoked - parameter 'jmobjcswiftenvbridge' is [%@] ---", jmobjcswiftenvbridge);
-
-    _jmObjCSwiftEnvBridge = jmobjcswiftenvbridge;
-
-    NSLog(@"--- CalledObjCModule.setObjCSwiftEnvBridge() - Exiting - '_jmObjCSwiftEnvBridge' is [%@] ---", jmobjcswiftenvbridge);
-
-}
+//  - (void)setObjCSwiftEnvBridge:(JmObjCSwiftEnvBridge * _Nullable)jmobjcswiftenvbridge
+//  {
+//
+//      NSLog(@"--- CalledObjCModule.setObjCSwiftEnvBridge() - Invoked - parameter 'jmobjcswiftenvbridge' is [%@] ---", jmobjcswiftenvbridge);
+//
+//      _jmObjCSwiftEnvBridge = jmobjcswiftenvbridge;
+//
+//      NSLog(@"--- CalledObjCModule.setObjCSwiftEnvBridge() - Exiting - '_jmObjCSwiftEnvBridge' is [%@] ---", jmobjcswiftenvbridge);
+//
+//  }
 
 - (NSString * _Nullable)getInternalVariable
 {

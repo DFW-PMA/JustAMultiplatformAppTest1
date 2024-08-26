@@ -19,7 +19,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0103"
+        static let sClsVers        = "v1.0306"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -54,7 +54,8 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
     @AppStorage("helpBasicMode") 
     var helpBasicMode                                    = HelpBasicMode.simpletext
 
-    var helpBasicLoader:HelpBasicLoader                  = HelpBasicLoader()
+    var helpBasicLoader:HelpBasicLoader?                 = nil
+//  var helpBasicLoader:HelpBasicLoader                  = HelpBasicLoader()
 
     // Misc:
 
@@ -120,7 +121,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         asToString.append("'sHelpBasicFileExt': [\(self.sHelpBasicFileExt)],")
         asToString.append("'sHelpBasicContents': [\(self.sHelpBasicContents)],")
         asToString.append("'helpBasicMode': [\(self.helpBasicMode)],")
-        asToString.append("'helpBasicLoader': [\(self.helpBasicLoader.toString())],")
+        asToString.append("'helpBasicLoader': [\(String(describing: self.helpBasicLoader?.toString()))],")
         asToString.append("],")
         asToString.append("[")
         asToString.append("'bClsTraceInternal': [\(self.bClsTraceInternal)],")
@@ -164,46 +165,58 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
         self.initAppDelegateVisitorTraceLog(initappdelegatetracelogtag:"\(sCurrMethodDisp)<>\(self.cAppDelegateVisitorInitCalls)")
 
-        xcgLogMsg("\(sCurrMethodDisp) Method Invoked - #(\(self.cAppDelegateVisitorInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
-        xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is starting - 'self' is [\(self)]...")
-        xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Method Invoked - #(\(self.cAppDelegateVisitorInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is starting - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
         
-        // Setup the Objective-C/Swift Bridge:
-
-        self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
-
-        self.jmObjCSwiftEnvBridge?.setXCGLoggerInstance(xcgLogger:self.xcgLogger!)
-        
-        xcgLogMsg("\(sCurrMethodDisp) 'self' is [\(self)] and 'self.jmObjCSwiftEnvBridge' is (\(String(describing: self.jmObjCSwiftEnvBridge))) and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))]...")
-
-        // Objective-C call(s):
-
-        let calledObjCModule = CalledObjCModule()
-
-        xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
-
-        calledObjCModule.initInstance()
-
-        xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
-
-        let sInternalVariable:String? = calledObjCModule.getInternalVariable()
-
-        xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
-
-        let sHelloMessage:String = "Message from 'JmAppDelegateVisitor'..."
-        
-        calledObjCModule.sayHello(sHelloMessage)
-        
-        xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
+//      // Setup the Objective-C/Swift Bridge:
+//
+//      self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
+//
+//  //  self.jmObjCSwiftEnvBridge?.setXCGLoggerInstance(xcgLogger:self.xcgLogger!)
+//      
+//      self.xcgLogMsg("\(sCurrMethodDisp) 'self' is [\(self)] and 'self.jmObjCSwiftEnvBridge' is (\(String(describing: self.jmObjCSwiftEnvBridge))) and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))]...")
+//
+//      // Objective-C call(s):
+//
+//      let calledObjCModule = CalledObjCModule()
+//
+//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
+//
+//      calledObjCModule.initInstance()
+//
+//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
+//
+//      let sInternalVariable:String? = calledObjCModule.getInternalVariable()
+//
+//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
+//
+//      let sHelloMessage:String = "Message from 'JmAppDelegateVisitor'..."
+//      
+//      calledObjCModule.sayHello(sHelloMessage)
+//      
+//      self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
         
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting - #(\(self.cAppDelegateVisitorInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - #(\(self.cAppDelegateVisitorInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
 
         return
 
     }   // End of private init().
         
+    @objc public func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.xcgLogger?.info(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of @objc public func xcgLogMsg().
+
     private func initAppDelegateVisitorTraceLog(initappdelegatetracelogtag:String = "-unknown-")
     {
 
@@ -216,7 +229,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
             self.setupAppDelegateVisitorTraceLogFile()
             self.setupAppDelegateVisitorXCGLogger()
 
-            xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'initappdelegatetracelogtag' is [\(initappdelegatetracelogtag)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'initappdelegatetracelogtag' is [\(initappdelegatetracelogtag)]...")
 
             self.sInitAppDelegateVisitorTraceLogTag = initappdelegatetracelogtag
 
@@ -227,11 +240,11 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
                 let sSearchMessage:String = "Supplied 'init' AppDelegateVisitor Trace Log loader TAG string is an 'empty' string - defaulting it to [\(self.sInitAppDelegateVisitorTraceLogTag)] - Warning!"
 
-                xcgLogMsg("\(sCurrMethodDisp) \(sSearchMessage)")
+                self.xcgLogMsg("\(sCurrMethodDisp) \(sSearchMessage)")
 
             }
 
-            xcgLogMsg("\(sCurrMethodDisp) Exiting - AppDelegateVisitor TraceLog setup was called by [\(self.sInitAppDelegateVisitorTraceLogTag)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - AppDelegateVisitor TraceLog setup was called by [\(self.sInitAppDelegateVisitorTraceLogTag)]...")
 
             self.bAppDelegateVisitorTraceLogInitRequired = false
 
@@ -264,11 +277,13 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
             try FileManager.default.createDirectory(atPath: sAppDelegateVisitorLogFilepath, withIntermediateDirectories: true, attributes: nil)
 
-            let sContents = "\(sCurrMethodDisp) Method Invoked - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]..."
+            let sContents = "\(sCurrMethodDisp) Invoked - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]..."
 
             try sContents.write(toFile: self.sAppDelegateVisitorLogFilespec, atomically:true, encoding:String.Encoding.utf8)
 
             self.bAppDelegateVisitorLogFilespecIsUsable = true
+
+            print("'[\(sCurrMethodDisp)] - Exiting...")
 
         }
         catch
@@ -307,22 +322,22 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
         let listXCGLoggerDestinations = self.xcgLogger?.destinations
         
-        xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance has these destinations (\(listXCGLoggerDestinations!.count)): [\(String(describing: listXCGLoggerDestinations))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance has these destinations (\(listXCGLoggerDestinations!.count)): [\(String(describing: listXCGLoggerDestinations))]...")
         
         for index in 0 ..< (listXCGLoggerDestinations!.count) 
         {
 
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) TYPE is [\(String(describing: type(of: listXCGLoggerDestinations?[index])))]...")
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) 'is' FileDestination [\(String(describing: (listXCGLoggerDestinations?[index] is FileDestination)))]...")
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) Destination 'identifier' is [\(String(describing: listXCGLoggerDestinations?[index].identifier))]...")
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) is [\(String(describing: listXCGLoggerDestinations?[index]))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) TYPE is [\(String(describing: type(of: listXCGLoggerDestinations?[index])))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) 'is' FileDestination [\(String(describing: (listXCGLoggerDestinations?[index] is FileDestination)))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) Destination 'identifier' is [\(String(describing: listXCGLoggerDestinations?[index].identifier))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) is [\(String(describing: listXCGLoggerDestinations?[index]))]...")
 
             if ((listXCGLoggerDestinations?[index] is FileDestination) == true)
             {
 
                 let xcgFileDestination = listXCGLoggerDestinations?[index] as! FileDestination
 
-                xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to file [\(String(describing: xcgFileDestination.writeToFileURL))]...")
+                self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to file [\(String(describing: xcgFileDestination.writeToFileURL))]...")
 
             }
 
@@ -334,21 +349,11 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
         // Exit:
 
+        self.xcgLogMsg("'[\(sCurrMethodDisp)] - Exiting...")
+
         return
 
     }   // End of private func setupAppDelegateVisitorXCGLogger().
-
-    @objc public func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.xcgLogger?.info(sMessage)
-
-        // Exit:
-
-        return
-
-    }   // End of @objc public func xcgLogMsg().
 
     @objc public func getAppDelegateVisitorApplicationTitle() -> String
     {
@@ -359,7 +364,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         if (self.bAppTitleSetupRequired == true)
         {
 
-            xcgLogMsg("\(sCurrMethodDisp) Invoked - Setting up the Application 'title'...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Invoked - Setting up the Application 'title'...")
 
             if (self.bUseApplicationShortTitle == true)
             {
@@ -374,7 +379,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
             }
 
-            xcgLogMsg("\(sCurrMethodDisp) Exiting - Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
 
             self.bAppTitleSetupRequired = false
 
@@ -392,15 +397,22 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        if (self.helpBasicLoader.bHelpSetupRequired == true)
+        if (self.helpBasicLoader?.bHelpSetupRequired == true)
         {
 
-            xcgLogMsg("\(sCurrMethodDisp) Invoked - Setting up HELP 'basic' content(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Invoked - Setting up HELP 'basic' content(s)...")
 
-            self.sHelpBasicContents                 = self.helpBasicLoader.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'")
-            self.helpBasicLoader.bHelpSetupRequired = false
+            if (self.helpBasicLoader == nil)
+            {
 
-            xcgLogMsg("\(sCurrMethodDisp) Exiting - Set up the HELP 'basic' content(s)...")
+                self.helpBasicLoader = HelpBasicLoader()
+
+            }
+
+            self.sHelpBasicContents                 = self.helpBasicLoader?.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'") ?? "-N/A-"
+            self.helpBasicLoader?.bHelpSetupRequired = false
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - Having set up the HELP 'basic' content(s)...")
 
         }
 
@@ -414,11 +426,11 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
     }   // End of @objc public func appDelegateVisitorWillFinishLaunching().
 
@@ -429,8 +441,8 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         let cArgs              = Int(CommandLine.argc)
 
-        xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-        xcgLogMsg("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
         
         for i in 0..<cArgs
         {
@@ -438,13 +450,13 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
             let sArg  = String(cString: CommandLine.unsafeArgv[i]!)
             let sArgV = sArg
             
-            xcgLogMsg("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
             
         }
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
     }   // End of @objc public func appDelegateVisitorDidFinishLaunching().
 
@@ -454,14 +466,14 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-        xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
 
-        xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is stopping...")
+        self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is stopping...")
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
     }   // End of @objc public func appDelegateVisitorWillTerminate().
 
@@ -471,14 +483,14 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        xcgLogMsg("\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
-        xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
 
-        xcgLogMsg("\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
+        self.xcgLogMsg("\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
     }   // End of @objc public func appDelegateVisitor().
 
@@ -488,22 +500,22 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
         // Locate and remove the FileDestination from the 'default' xcgLogger?:
 
         let listXCGLoggerDestinations    = self.xcgLogger?.destinations
         var xcgFileDestinationIdentifier = XCGLogger.Constants.fileDestinationIdentifier
         
-        xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance has these destinations (\(listXCGLoggerDestinations!.count)): [\(String(describing: listXCGLoggerDestinations))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance has these destinations (\(listXCGLoggerDestinations!.count)): [\(String(describing: listXCGLoggerDestinations))]...")
         
         for index in 0 ..< (listXCGLoggerDestinations!.count) 
         {
 
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) TYPE is [\(String(describing: type(of: listXCGLoggerDestinations?[index])))]...")
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) 'is' FileDestination [\(String(describing: (listXCGLoggerDestinations?[index] is FileDestination)))]...")
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) Destination 'identifier' is [\(String(describing: listXCGLoggerDestinations?[index].identifier))]...")
-            xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) is [\(String(describing: listXCGLoggerDestinations?[index]))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) TYPE is [\(String(describing: type(of: listXCGLoggerDestinations?[index])))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) 'is' FileDestination [\(String(describing: (listXCGLoggerDestinations?[index] is FileDestination)))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) Destination 'identifier' is [\(String(describing: listXCGLoggerDestinations?[index].identifier))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' (default) instance destination #(\(index)) is [\(String(describing: listXCGLoggerDestinations?[index]))]...")
 
             if ((listXCGLoggerDestinations?[index] is FileDestination) == true)
             {
@@ -512,7 +524,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
                 xcgFileDestinationIdentifier = xcgFileDestination.identifier
 
-                xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to file [\(String(describing: xcgFileDestination.writeToFileURL))]...")
+                self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to file [\(String(describing: xcgFileDestination.writeToFileURL))]...")
 
                 if (xcgFileDestinationIdentifier == XCGLogger.Constants.fileDestinationIdentifier)
                 {
@@ -530,7 +542,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         if (self.bAppDelegateVisitorLogFilespecIsUsable == false)
         {
 
-            xcgLogMsg("\(sCurrMethodDisp) Exiting - 'self.bAppDelegateVisitorLogFilespecIsUsable' is [\(self.bAppDelegateVisitorLogFilespecIsUsable)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'self.bAppDelegateVisitorLogFilespecIsUsable' is [\(self.bAppDelegateVisitorLogFilespecIsUsable)]...")
 
             return
 
@@ -547,7 +559,7 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
         catch _
         {
 
-            xcgLogMsg("\(sCurrMethodDisp) Exiting - Exception in clearing the AppDelegateVisitor (trace) 'Log' file [\(String(describing: self.sAppDelegateVisitorLogFilespec))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - Exception in clearing the AppDelegateVisitor (trace) 'Log' file [\(String(describing: self.sAppDelegateVisitorLogFilespec))]...")
 
             return
 
@@ -575,11 +587,13 @@ class JmAppDelegateVisitor: NSObject, ObservableObject
 
         self.xcgLogger?.add(destination: xcgFileDestination)
         
-        xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to [\(String(describing: xcgFileDestination.writeToFileURL))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' FileDestination with 'identifier' of [\(xcgFileDestination.identifier)] is writing to [\(String(describing: xcgFileDestination.writeToFileURL))]...")
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
 
     }   // End of @objc public func clearAppDelegateVisitorTraceLogFile().
 

@@ -29,6 +29,10 @@ struct AppInfoCommands: Commands
 
     // @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
+    // App Data field(s):
+
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
     var body: some Commands
     {
         
@@ -39,9 +43,9 @@ struct AppInfoCommands: Commands
             {
 
                 NSApplication.shared.orderFrontStandardAboutPanel(
-                    options: [NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "\(ClassInfo.sClsCopyRight)",
+                    options: [NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "\(JmXcodeBuildSettings.jmAppCopyright)",
                               NSApplication.AboutPanelOptionKey.credits: 
-                                  NSAttributedString(string: "Log file at \((JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!.sAppDelegateLogFilespec ?? "-N-A-")) (Usable [\(JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!.bAppDelegateLogFilespecIsUsable)])",
+                                  NSAttributedString(string: "Log file at \((jmAppDelegateVisitor.sAppDelegateVisitorLogFilespec ?? "-N-A-")) (Usable [\(jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable)])",
                                                      attributes: [NSAttributedString.Key.font: NSFont.messageFont(ofSize: NSFont.smallSystemFontSize)]
                                                      ),
                              ]
@@ -54,19 +58,17 @@ struct AppInfoCommands: Commands
 
     }
     
-    func xcgLoggerMsg(sMessage:String)
+    private func xcgLogMsg(_ sMessage:String)
     {
 
-        let appDelegate:JustAMultiplatformAppTest1NSAppDelegate
-                = JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!
-      
-        appDelegate.xcgLogger?.info("\(sMessage)")
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
 
-    //  self.appDelegate.xcgLogger?.info("\(sMessage)")
+        // Exit:
 
         return
 
-    }   // End of func xcgLoggerMsg().
+    }   // End of private func xcgLogMsg().
 
-}
+}   // End of struct AppInfoCommands(Commands). 
 

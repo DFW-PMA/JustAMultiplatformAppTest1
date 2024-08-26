@@ -15,7 +15,7 @@ struct HelpCommands: Commands
     {
         
         static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.0804"
+        static let sClsVers        = "v1.0901"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -33,7 +33,7 @@ struct HelpCommands: Commands
 
     @State private var cHelpCommandsAppLogClearButtonPresses:Int = 0
 
-    @State private var isAppLogClearShowingAlert:Bool           = false
+    var jmAppDelegateVisitor:JmAppDelegateVisitor                = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
     var body: some Commands
     {
@@ -41,14 +41,14 @@ struct HelpCommands: Commands
         CommandGroup(replacing: .help) 
         {
 
-            Button(action: {xcgLoggerMsg(sMessage:"Clicked on the \(ClassInfo.sClsDisp)Help menu #1...")})
+            Button(action: {xcgLogMsg("Clicked on the \(ClassInfo.sClsDisp)Help menu #1...")})
             {
       
                 Text("\(ClassInfo.sClsId) 'help' #1...")
       
             }
 
-            NavigationLink(destination: HelpBasicView(sHelpBasicContents: JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!.getAppDelegateHelpBasicContents()).navigationBarBackButtonHidden(true))
+            NavigationLink(destination: HelpBasicView(sHelpBasicContents: jmAppDelegateVisitor.getAppDelegateVisitorHelpBasicContents()).navigationBarBackButtonHidden(true))
             {
       
                 Label("\(ClassInfo.sClsId) 'Basic' HELP viewer...", systemImage: "questionmark.circle")
@@ -62,25 +62,21 @@ struct HelpCommands: Commands
       
              }
 
-        //  Button(action: {clearAppDelegateTraceLogFile()})
-        //  {
-        //
-        //      Text("\(ClassInfo.sClsId) 'clear' Log file")
-        //
-        //  }
+            Button(action: {clearAppDelegateTraceLogFile()})
+            {
+          
+                Text("\(ClassInfo.sClsId) 'clear' Log file")
+          
+            }
 
             Button
             {
 
                 self.cHelpCommandsAppLogClearButtonPresses += 1
 
-                let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
+                let _ = xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
 
                 self.clearAppDelegateTraceLogFile()
-
-            //  self.isAppLogClearShowingAlert = true
-            //
-            //  let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))' - 'self.isAppLogClearShowingAlert' is [\(self.isAppLogClearShowingAlert)]...")
 
             }
             label: 
@@ -89,12 +85,6 @@ struct HelpCommands: Commands
                 Text("\(ClassInfo.sClsId) 'clear' Log file")
 
             }
-        //  .alert("Alert:: App Log has been 'Cleared'...", isPresented:$isAppLogClearShowingAlert)
-        //  {
-        //
-        //      Button("Ok", role:.cancel) { }
-        //
-        //  }
             .controlSize(.regular)
             .background(Color(red: 0, green: 0.5, blue: 0.5))
             .foregroundStyle(.white)
@@ -104,35 +94,41 @@ struct HelpCommands: Commands
 
     }
 
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     func clearAppDelegateTraceLogFile()
     {
 
-        let appDelegate:JustAMultiplatformAppTest1NSAppDelegate
-                = JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
       
-        appDelegate.clearAppDelegateTraceLogFile()
+        jmAppDelegateVisitor.clearAppDelegateVisitorTraceLogFile()
 
-        appDelegate.sAppDelegateGlobalAlertButtonText = "Ok"
-        appDelegate.sAppDelegateGlobalAlertMessage    = "Alert:: App Log has been 'Cleared'..."
-        appDelegate.isAppDelegateShowingAlert         = true
+        jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
+        jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'Cleared'..."
+        jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
 
-        let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))' - 'self.isAppLogClearShowingAlert' is [\(self.isAppLogClearShowingAlert)]...")
+        xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
         return
         
     }   // End of func clearAppDelegateTraceLogFile().
     
-    func xcgLoggerMsg(sMessage:String)
-    {
-
-        let appDelegate:JustAMultiplatformAppTest1NSAppDelegate
-                = JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!
-      
-        appDelegate.xcgLogger?.info("\(sMessage)")
-
-        return
-
-    }   // End of func xcgLoggerMsg().
-
 }   // End of struct HelpCommands(Commands).
 

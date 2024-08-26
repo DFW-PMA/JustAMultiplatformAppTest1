@@ -16,7 +16,7 @@ struct JustAMultiplatformAppTest1App: App
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1App"
-        static let sClsVers      = "v1.0601"
+        static let sClsVers      = "v1.0702"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -46,10 +46,22 @@ struct JustAMultiplatformAppTest1App: App
     
     let sAppBundlePath:String                     = Bundle.main.bundlePath
 
+    func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of func xcgLogMsg().
+
     var body: some Scene 
     {
         
-        let _ = xcgLogger(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) - 'sAppBundlePath' is [\(sAppBundlePath)]...")
+        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):body(some Scene) - 'sAppBundlePath' is [\(sAppBundlePath)]...")
         
         WindowGroup 
         {
@@ -59,7 +71,7 @@ struct JustAMultiplatformAppTest1App: App
                 .onOpenURL(perform: 
                 { url in
                     
-                    xcgLogger(sMessage:"\(ClassInfo.sClsDisp):ContentView.onOpenURL() performed for the URL of [\(url)]...")
+                    xcgLogMsg("\(ClassInfo.sClsDisp):ContentView.onOpenURL() performed for the URL of [\(url)]...")
 
                 })
 
@@ -87,17 +99,5 @@ struct JustAMultiplatformAppTest1App: App
         
     }
     
-    func xcgLogger(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-
-        // Exit:
-
-        return
-
-    }   // End of func xcgLogger().
-
-}
+}   // End of struct JustAMultiplatformAppTest1App(App). 
 

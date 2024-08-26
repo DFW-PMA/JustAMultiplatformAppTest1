@@ -20,7 +20,7 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.0401"
+        static let sClsVers        = "v1.0501"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) DFW-PMA 2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -31,13 +31,13 @@ public class JmObjCSwiftEnvBridge: NSObject
     // Class 'singleton' instance:
 
     @objc(sharedObjCSwiftEnvBridge)
-    static let sharedObjCSwiftEnvBridge = JmObjCSwiftEnvBridge()
+    static let sharedObjCSwiftEnvBridge           = JmObjCSwiftEnvBridge()
 
     // Various App field(s):
 
-    var cJmObjCSwiftEnvBridgeMethodCalls:Int = 0
+    var cJmObjCSwiftEnvBridgeMethodCalls:Int      = 0
 
-    var xcgLogger:XCGLogger?                 = nil
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
     private override init()
     {
@@ -48,12 +48,29 @@ public class JmObjCSwiftEnvBridge: NSObject
         super.init()
 
         self.cJmObjCSwiftEnvBridgeMethodCalls += 1
-        self.xcgLogger                         = nil
 
-        print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked ...")
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
+
+        return
 
     }   // End of init().
     
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     class public func sharedEnvBridge() -> JmObjCSwiftEnvBridge
     {
         
@@ -61,33 +78,6 @@ public class JmObjCSwiftEnvBridge: NSObject
         
     }   // End of class public func sharedEnvBridge().
 
-    public func setXCGLoggerInstance(xcgLogger:XCGLogger)
-    {
-        
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
-        
-        self.cJmObjCSwiftEnvBridgeMethodCalls += 1
-
-        print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - parameter 'xcgLogger' is [\(String(describing: xcgLogger))]...")
-
-        self.xcgLogger = xcgLogger
-
-        if ((self.xcgLogger) != nil) 
-        {
-
-            self.xcgLogger?.info("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting - parameter 'xcgLogger' was [\(String(describing: xcgLogger))] and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))]...")
-
-        }
-        else
-        {
-
-            print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting - parameter 'xcgLogger' was [\(String(describing: xcgLogger))] and 'self.xcgLogger' is [\(String(describing: self.xcgLogger))] but is Null - Error!")
-
-        }
-
-    } // End of public func setXCGLoggerInstance().
-    
     @objc public func jmLogMsg(_ message:NSString)
     {
 
@@ -96,28 +86,45 @@ public class JmObjCSwiftEnvBridge: NSObject
 
         self.cJmObjCSwiftEnvBridgeMethodCalls += 1
 
-        if ((self.xcgLogger) != nil) 
-        {
+        self.xcgLogMsg("-------------------------------------------------------------------------------------------------------------")
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - Swift code has been called with a parameter 'message' of [\(message)]...")
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' JmObjCSwiftEnvBridge 'self' is [\(self)]...")
+        self.xcgLogMsg("-------------------------------------------------------------------------------------------------------------")
 
-            self.xcgLogger?.info("-------------------------------------------------------------------------------------------------------------")
-            self.xcgLogger?.info("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Swift code has been called with a parameter 'message' of [\(message)]...")
-            self.xcgLogger?.info("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' JmObjCSwiftEnvBridge 'self' is [\(self)]...")
-            self.xcgLogger?.info("-------------------------------------------------------------------------------------------------------------")
+        // Exit:
 
-        }
-        else
-        {
-
-            print("-------------------------------------------------------------------------------------------------------------")
-            print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Swift code has been called with a parameter 'message' of [\(message)]...")
-            print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting - 'self.xcgLogger' is [\(String(describing: self.xcgLogger))] but is Null - Error!")
-            print("-------------------------------------------------------------------------------------------------------------")
-
-        }
+        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
 
         return
 
-    }   // End of jmLogMsg().
+    }   // End of @objc public func jmLogMsg().
 
-}   // End of class JmObjCSwiftEnvBridge.
+    //  public func setXCGLoggerInstance(xcgLogMsg:XCGLogger)
+    //  {
+    //      
+    //      let sCurrMethod:String = #function
+    //      let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
+    //      
+    //      self.cJmObjCSwiftEnvBridgeMethodCalls += 1
+    //
+    //      print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - parameter 'xcgLogMsg' is [\(String(describing: xcgLogMsg))]...")
+    //
+    //      self.xcgLogMsg = xcgLogMsg
+    //
+    //      if ((self.xcgLogMsg) != nil) 
+    //      {
+    //
+    //          self.xcgLogMsg?("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting - parameter 'xcgLogMsg' was [\(String(describing: xcgLogMsg))] and 'self.xcgLogMsg' is [\(String(describing: self.xcgLogMsg))]...")
+    //
+    //      }
+    //      else
+    //      {
+    //
+    //          print("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting - parameter 'xcgLogMsg' was [\(String(describing: xcgLogMsg))] and 'self.xcgLogMsg' is [\(String(describing: self.xcgLogMsg))] but is Null - Error!")
+    //
+    //      }
+    //
+    //  } // End of public func setXCGLoggerInstance().
+
+}   // End of class JmObjCSwiftEnvBridge(NSObject).
 

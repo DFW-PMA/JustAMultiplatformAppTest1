@@ -12,7 +12,7 @@
 
 @interface CalledObjCModule : NSObject
 - (void)initInstance;
-- (void)setObjCSwiftEnvBridge:(JmObjCSwiftEnvBridge * _Nullable)jmobjcswiftenvbridge;
+// - (void)setObjCSwiftEnvBridge:(JmObjCSwiftEnvBridge * _Nullable)jmobjcswiftenvbridge;
 - (NSString * _Nullable)getInternalVariable;
 - (void)sayHello:(NSString * _Nullable)message;
 @end

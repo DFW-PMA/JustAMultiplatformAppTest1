@@ -15,7 +15,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0601"
+        static let sClsVers      = "v1.0802"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -23,9 +23,9 @@ struct ContentView: View
         
     }
 
-    // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
-
-    @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
+//  // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
+//
+//  @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
     // App Data field(s):
 
@@ -33,11 +33,24 @@ struct ContentView: View
 
     @State private var shouldContentViewShowAlert:Bool      = false
     
+    var jmAppDelegateVisitor:JmAppDelegateVisitor           = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+    func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of func xcgLogMsg().
+
     var body: some View 
     {
 
-    //  let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) \(ClassInfo.sClsCopyRight)...")
-        let _ = xcgLoggerMsg(sMessage:"\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppCopyright)...")
+        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppCopyright)...")
         
         VStack 
         {
@@ -69,28 +82,27 @@ struct ContentView: View
             Spacer(minLength: 10)
             
             Text("Hello, world!")
-                .onReceive(appDelegate.$isAppDelegateShowingAlert,
+                .onReceive(jmAppDelegateVisitor.$isAppDelegateVisitorShowingAlert,
                     perform:
                     { bShow in
                         if (bShow == true)
                         {
-                            shouldContentViewShowAlert            = true
-                            appDelegate.isAppDelegateShowingAlert = false
+                            shouldContentViewShowAlert                            = true
+                            jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert = false
                         }
                     })
-                .alert("\(appDelegate.sAppDelegateGlobalAlertMessage ?? "")", isPresented:$shouldContentViewShowAlert)
+                .alert("\(jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage ?? "")", isPresented:$shouldContentViewShowAlert)
                 {
 
-                    Button("\(appDelegate.sAppDelegateGlobalAlertButtonText ?? "")", role:.cancel) { }
+                    Button("\(jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText ?? "")", role:.cancel) { }
 
                 }
             
             Spacer()
             
-            Text("--- [JustAMultiplatformAppTest1] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
+            Text("--- [\(AppGlobalInfo.sGlobalInfoAppId)] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
             Text("")
             Text("\(JmXcodeBuildSettings.jmAppCopyright)")
-        //  Text("\(ClassInfo.sClsCopyRight)")
             
             Spacer()
             
@@ -99,7 +111,7 @@ struct ContentView: View
                 
                 self.cContentViewRefreshButtonPresses += 1
                 
-                let _ = xcgLoggerMsg(sMessage:"...\(ClassInfo.sClsDisp),ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
+                let _ = xcgLogMsg("...\(ClassInfo.sClsDisp),ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
 
             }
             .controlSize(.regular)
@@ -114,15 +126,6 @@ struct ContentView: View
         
     }
     
-    func xcgLoggerMsg(sMessage:String)
-    {
-
-        self.appDelegate.xcgLogger?.info("\(sMessage)")
-
-        return
-
-    }   // End of func xcgLoggerMsg().
-
 }
 
 #Preview 

@@ -17,7 +17,7 @@ class HelpBasicLoader: NSObject
     {
         
         static let sClsId        = "HelpBasicLoader"
-        static let sClsVers      = "v1.0601"
+        static let sClsVers      = "v1.0701"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -25,17 +25,19 @@ class HelpBasicLoader: NSObject
         
     }
 
-    // Various App field(s):
+    // App Data field(s):
 
-    var bHelpSetupRequired:Bool   = true
-    var sHelpBasicLoaderTag       = ""
-    var sHelpBasicFileExt:String  = "html"     // 'help' File extension: "md", "html", or "txt"
-    var sHelpBasicContents:String = "-N/A-"
+    var bHelpSetupRequired:Bool                   = true
+    var sHelpBasicLoaderTag                       = ""
+    var sHelpBasicFileExt:String                  = "html"     // 'help' File extension: "md", "html", or "txt"
+    var sHelpBasicContents:String                 = "-N/A-"
 
     @AppStorage("helpBasicMode") 
-    var helpBasicMode             = HelpBasicMode.simpletext
+    var helpBasicMode                             = HelpBasicMode.simpletext
 
-    open func toString()->String
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+    public func toString() -> String
     {
 
         var asToString:[String] = Array()
@@ -55,6 +57,9 @@ class HelpBasicLoader: NSObject
         asToString.append("'sHelpBasicContents': [\(self.sHelpBasicContents)],")
         asToString.append("'helpBasicMode': [\(self.helpBasicMode)],")
         asToString.append("],")
+        asToString.append("[")
+        asToString.append("'jmAppDelegateVisitor': [\(self.jmAppDelegateVisitor)],")
+        asToString.append("],")
         asToString.append("]")
 
         let sContents:String = "{"+(asToString.joined(separator: ""))+"}"
@@ -63,15 +68,25 @@ class HelpBasicLoader: NSObject
 
     }   // End of public func toString().
 
-    func loadHelpBasicContents(helpbasicfileext:String = "html", helpbasicloadertag:String = "-unknown-") -> String
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
+    public func loadHelpBasicContents(helpbasicfileext:String = "html", helpbasicloadertag:String = "-unknown-") -> String
     {
 
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "'"+sCurrMethod+"'"
-        let appDelegate:JustAMultiplatformAppTest1NSAppDelegate
-                               = JustAMultiplatformAppTest1NSAppDelegate.ClassSingleton.appDelegate!
 
-        appDelegate.xcgLogger?.info("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Invoked...")
+        self.xcgLogMsg("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Invoked...")
 
         if (self.bHelpSetupRequired == true)
         {
@@ -85,7 +100,7 @@ class HelpBasicLoader: NSObject
 
                 let sSearchMessage:String = "\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Supplied 'help' Basic loader TAG string is an 'empty' string - defaulting it to [\(self.sHelpBasicLoaderTag)] - Warning!"
 
-                appDelegate.xcgLogger?.info(sSearchMessage)
+                self.xcgLogMsg(sSearchMessage)
 
             }
 
@@ -98,11 +113,11 @@ class HelpBasicLoader: NSObject
 
                 let sSearchMessage:String = "\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Supplied 'help' Basic loader TAG string is an 'empty' string - defaulting it to [\(self.sHelpBasicFileExt)] - Warning!"
 
-                appDelegate.xcgLogger?.info(sSearchMessage)
+                self.xcgLogMsg(sSearchMessage)
 
             }
 
-            appDelegate.xcgLogger?.info("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Loading the HELP 'Basic' contents from file extension of [\(self.sHelpBasicFileExt)] via [\(self.sHelpBasicLoaderTag)]...")
+            self.xcgLogMsg("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Loading the HELP 'Basic' contents from file extension of [\(self.sHelpBasicFileExt)] via [\(self.sHelpBasicLoaderTag)]...")
 
             if let fpBasicHelp = Bundle.main.path(forResource: "HelpBasic", ofType: self.sHelpBasicFileExt)
             {
@@ -112,9 +127,7 @@ class HelpBasicLoader: NSObject
 
                     self.sHelpBasicContents = try String(contentsOfFile: fpBasicHelp)
 
-                    print("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - HELP 'basic' contents 'self.sHelpBasicContents' via [\(self.sHelpBasicLoaderTag)] are [\(self.sHelpBasicContents)]...")
-
-                    appDelegate.xcgLogger?.info("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - HELP 'basic' contents 'self.sHelpBasicContents' via [\(self.sHelpBasicLoaderTag)] are [\(self.sHelpBasicContents)]...")
+                    self.xcgLogMsg("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - HELP 'basic' contents 'self.sHelpBasicContents' via [\(self.sHelpBasicLoaderTag)] are [\(self.sHelpBasicContents)]...")
 
                     if (self.sHelpBasicFileExt == "html")
                     {
@@ -158,15 +171,18 @@ class HelpBasicLoader: NSObject
 
             }
 
-            appDelegate.xcgLogger?.info("")
+            self.xcgLogMsg("")
 
         }
 
-        appDelegate.xcgLogger?.info("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Exiting...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(ClassInfo.sClsDisp) \(sCurrMethodDisp) - Exiting...")
 
         return self.sHelpBasicContents
 
-    }   // End of func loadHelpBasicContents().
+    }   // End of public func loadHelpBasicContents().
 
 }   // End of class HelpBasicLoader(NSObject).
 

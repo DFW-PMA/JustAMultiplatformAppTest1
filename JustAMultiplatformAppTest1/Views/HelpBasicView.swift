@@ -16,7 +16,7 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0601"
+        static let sClsVers        = "v1.0701"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -24,9 +24,9 @@ struct HelpBasicView: View
         
     }
 
-    // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
-
-    @EnvironmentObject private   var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
+//  // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
+//
+//  @EnvironmentObject private   var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
     // App Data field(s):
 
@@ -70,8 +70,8 @@ struct HelpBasicView: View
             do 
             {
                 
-                if let nsAttributedString = try? NSAttributedString(data: Data(sHelpBasicContents.utf8), 
-                                                                    options: [.documentType: NSAttributedString.DocumentType.html], 
+                if let nsAttributedString = try? NSAttributedString(data:               Data(sHelpBasicContents.utf8), 
+                                                                    options:            [.documentType: NSAttributedString.DocumentType.html], 
                                                                     documentAttributes: nil),
                    let attributedString   = try? AttributedString(nsAttributedString, including: \.appKit) 
                 {

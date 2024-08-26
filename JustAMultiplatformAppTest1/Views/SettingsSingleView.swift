@@ -15,7 +15,7 @@ struct SettingsSingleView: View
     {
         
         static let sClsId        = "SettingsSingleView"
-        static let sClsVers      = "v1.0501"
+        static let sClsVers      = "v1.0601"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true

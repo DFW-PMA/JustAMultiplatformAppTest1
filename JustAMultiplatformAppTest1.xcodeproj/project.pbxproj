@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0002DC02C7C0ABF00520A9F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F0002DBF2C7C0ABF00520A9F /* README.md */; };
 		F0289D292C53D85B001B19CD /* JmUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0289D282C53D85B001B19CD /* JmUserDefaults.swift */; };
 		F0289D2B2C53D863001B19CD /* HelpBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0289D2A2C53D863001B19CD /* HelpBasicView.swift */; };
 		F0289D2F2C53D933001B19CD /* HelpBasic.html in Resources */ = {isa = PBXBuildFile; fileRef = F0289D2D2C53D933001B19CD /* HelpBasic.html */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0002DBF2C7C0ABF00520A9F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F0289D282C53D85B001B19CD /* JmUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmUserDefaults.swift; sourceTree = "<group>"; };
 		F0289D2A2C53D863001B19CD /* HelpBasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpBasicView.swift; sourceTree = "<group>"; };
 		F0289D2D2C53D933001B19CD /* HelpBasic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HelpBasic.html; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				F0289D272C53D84A001B19CD /* Resources */,
 				F028C5BF2C486134007C459E /* Views */,
 				F028C5B42C48610B007C459E /* Assets.xcassets */,
+				F0002DBF2C7C0ABF00520A9F /* README.md */,
 				F028C5B92C48610B007C459E /* JustAMultiplatformAppTest1.entitlements */,
 				F028C5B62C48610B007C459E /* Preview Content */,
 			);
@@ -251,6 +254,7 @@
 			files = (
 				F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */,
 				F0289D2F2C53D933001B19CD /* HelpBasic.html in Resources */,
+				F0002DC02C7C0ABF00520A9F /* README.md in Resources */,
 				F0289D302C53D933001B19CD /* HelpBasic.md in Resources */,
 				F028C5B52C48610B007C459E /* Assets.xcassets in Resources */,
 			);
@@ -416,7 +420,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 05.01.24C238;
+				CURRENT_PROJECT_VERSION = 05.06.24C238;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -452,7 +456,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 05.01.24C238;
+				CURRENT_PROJECT_VERSION = 05.06.24C238;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
