@@ -17,7 +17,7 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0609"
+        static let sClsVers      = "v1.0610"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
         static let bClsTrace     = true
@@ -47,6 +47,18 @@ struct AppAboutView: View
         return
 
     }   // End of init().
+
+    func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
+
+        // Exit...
+
+        return
+
+    }   // End of func xcgLogMsg().
 
     var body: some View 
     {
@@ -139,18 +151,6 @@ struct AppAboutView: View
         
     }
     
-    func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
-
-        // Exit...
-
-        return
-
-    }   // End of func xcgLogMsg().
-
 }
 
 @available(iOS 13.0, *)

@@ -16,7 +16,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0107"
+        static let sClsVers      = "v1.0109"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -29,13 +29,15 @@ struct SettingsSingleViewIos: View
 //  @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var cContentViewAppAboutButtonPresses:Int   = 0
-    @State private var cContentViewAppLogViewButtonPresses:Int = 0
+    @State private var cContentViewAppAboutButtonPresses:Int    = 0
+    @State private var cContentViewAppHelpViewButtonPresses:Int = 0
+    @State private var cContentViewAppLogViewButtonPresses:Int  = 0
 
-    @State private var isAppAboutViewModal:Bool                = false
-    @State private var isAppLogViewModal:Bool                  = false
+    @State private var isAppAboutViewModal:Bool                 = false
+    @State private var isAppHelpViewModal:Bool                  = false
+    @State private var isAppLogViewModal:Bool                   = false
     
-    var jmAppDelegateVisitor:JmAppDelegateVisitor              = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    var jmAppDelegateVisitor:JmAppDelegateVisitor               = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
     init()
     {
@@ -96,6 +98,39 @@ struct SettingsSingleViewIos: View
                     {
                     
                         AppAboutView()
+                    
+                    }
+                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+                //  .foregroundColor(.accentColor)
+
+                    Spacer()
+
+                    Button
+                    {
+
+                        self.cContentViewAppHelpViewButtonPresses += 1
+
+                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView in Button(Xcode).'App HelpView'.#(\(self.cContentViewAppHelpViewButtonPresses))...")
+
+                        self.isAppHelpViewModal.toggle()
+
+                    }
+                    label: 
+                    {
+                        
+                    //  Text("Help")
+
+                        Label("", systemImage: "questionmark.circle")
+                            .padding()
+                            .imageScale(.large)
+
+                    }
+                    .fullScreenCover(isPresented:$isAppHelpViewModal)
+                    {
+                    
+                    //  HelpBasicView()
+                        HelpBasicView(sHelpBasicContents: jmAppDelegateVisitor.getAppDelegateVisitorHelpBasicContents())
+                            .navigationBarBackButtonHidden(true)
                     
                     }
                 //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))

@@ -16,7 +16,7 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0701"
+        static let sClsVers        = "v1.0706"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -30,14 +30,86 @@ struct HelpBasicView: View
 
     // App Data field(s):
 
+#if os(iOS)
+
+    @Environment(\.presentationMode) var presentationMode
+
+#endif
+
     @AppStorage("helpBasicMode") var helpBasicMode             = HelpBasicMode.hypertext
     @State                       var sHelpBasicContents:String = "----NOT-Loaded-(View)----"
+
+    var jmAppDelegateVisitor:JmAppDelegateVisitor              = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+//  init()
+//  {
+//
+//      let sCurrMethod:String = #function
+//      let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+//      
+//      self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+//
+//      // Exit...
+//
+//      self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+//
+//      return
+//
+//  }   // End of init().
+
+    func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
+
+        // Exit...
+
+        return
+
+    }   // End of func xcgLogMsg().
 
     var body: some View 
     {
         
         VStack
         {
+
+        #if os(iOS)
+
+            HStack(alignment:.center)           // HStack #1.3
+            {
+
+                Spacer()
+
+            //  Button("Dismiss") 
+                Button
+                {
+
+                    let _ = xcgLogMsg("\(ClassInfo.sClsDisp):HelpBasicView.Button(Xcode).'Dismiss' pressed...")
+
+                    self.presentationMode.wrappedValue.dismiss()
+
+                    //  dismiss()
+
+                }
+                label: 
+                {
+
+                    Label("", systemImage: "xmark.circle")
+                        .padding()
+                        .imageScale(.large)
+
+                }
+            //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+            //  .foregroundColor(.accentColor)
+                .padding()
+
+            }   // End of HStack #1.1
+
+            Spacer(minLength:5)
+
+        #endif
 
             HStack
             {
@@ -61,7 +133,12 @@ struct HelpBasicView: View
     func renderHELPContentsInTextView() -> Text
     {
 
-        var textField:Text
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+        
+        var tfHELPContents:Text
 
         switch helpBasicMode
         {
@@ -78,19 +155,19 @@ struct HelpBasicView: View
                    let attributedString   = try? AttributedString(nsAttributedString, including: \.appKit) 
                 {
 
-                    textField = Text(attributedString)
+                    tfHELPContents = Text(attributedString)
 
                 }
                 else
                 {
 
-                    textField = Text(sHelpBasicContents)
+                    tfHELPContents = Text(sHelpBasicContents)
 
                 }
 
             #elseif os(iOS)
 
-                textField = Text(sHelpBasicContents)
+                tfHELPContents = Text(sHelpBasicContents)
 
             #endif
                 
@@ -100,7 +177,7 @@ struct HelpBasicView: View
             do
             {
                 
-                textField = Text(try! AttributedString(markdown: sHelpBasicContents))
+                tfHELPContents = Text(try! AttributedString(markdown: sHelpBasicContents))
                 
             }
             
@@ -108,13 +185,17 @@ struct HelpBasicView: View
             do
             {
                 
-                textField = Text(sHelpBasicContents)
+                tfHELPContents = Text(sHelpBasicContents)
                 
             }
             
         }
 
-        return textField
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'tfHELPContents' is [\(tfHELPContents)]...")
+        
+        return tfHELPContents
 
     }   // End of func renderHELPContentsInTextView().
 
