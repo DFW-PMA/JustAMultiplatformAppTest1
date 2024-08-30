@@ -1,0 +1,100 @@
+{
+  "" : {
+    "const-values" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1_iOS-master.swiftconstvalues",
+    "dependencies" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1_iOS-master.d",
+    "diagnostics" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1_iOS-master.dia",
+    "emit-module-dependencies" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1_iOS-master-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1_iOS-master-emit-module.dia",
+    "swift-dependencies" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1_iOS-master.swiftdeps"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JmObjCSwiftEnvBridge.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmObjCSwiftEnvBridge.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmObjCSwiftEnvBridge.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmObjCSwiftEnvBridge.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JmUtils/JmAppDelegateVisitor.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmAppDelegateVisitor.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmAppDelegateVisitor.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmAppDelegateVisitor.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JmUtils/JmFileIO.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmFileIO.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmFileIO.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmFileIO.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JmUtils/JmStringExtensions.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmStringExtensions.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmStringExtensions.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmStringExtensions.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JmUtils/JmUserDefaults.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmUserDefaults.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmUserDefaults.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmUserDefaults.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JmUtils/JmXcodeBuildSettings.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmXcodeBuildSettings.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmXcodeBuildSettings.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JmXcodeBuildSettings.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1App.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1App.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1App.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1App.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1AppGlobalInfo.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1AppGlobalInfo.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1AppGlobalInfo.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1AppGlobalInfo.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1UIAppDelegate.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1UIAppDelegate.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1UIAppDelegate.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/JustAMultiplatformAppTest1UIAppDelegate.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Models/HelpBasicLoader.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicLoader.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicLoader.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicLoader.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Models/HelpBasicMode.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicMode.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicMode.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicMode.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Views/AppAboutView.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/AppAboutView.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/AppAboutView.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/AppAboutView.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Views/ContentView.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Views/HelpBasicView.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicView.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicView.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/HelpBasicView.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Views/LogFileView.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/LogFileView.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/LogFileView.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/LogFileView.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Views/SettingsSingleView.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/SettingsSingleView.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/SettingsSingleView.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/SettingsSingleView.o"
+  },
+  "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/JustAMultiplatformAppTest1/Views/SettingsSingleViewIos.swift" : {
+    "index-unit-output-path" : "/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/SettingsSingleViewIos.o",
+    "llvm-bc" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/SettingsSingleViewIos.bc",
+    "object" : "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultiplatformAppTest1/build/JustAMultiplatformAppTest1.build/Release/JustAMultiplatformAppTest1_iOS.build/Objects-normal/arm64/SettingsSingleViewIos.o"
+  }
+}

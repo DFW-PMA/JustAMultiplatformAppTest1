@@ -17,7 +17,7 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0603"
+        static let sClsVers      = "v1.0604"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
         static let bClsTrace     = true
@@ -75,6 +75,7 @@ struct AppAboutView: View
                 }
                 .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
                 .foregroundColor(.accentColor)
+                .padding()
 
             }   // End of HStack #1.1
 

@@ -16,7 +16,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0102"
+        static let sClsVers      = "v1.0104"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -65,7 +65,7 @@ struct SettingsSingleViewIos: View
             {
 
                 Spacer()
-                    .frame(height:50)
+                    .frame(height:5)
                 
                 HStack(alignment:.center)           // HStack #1.3
                 {
