@@ -6,6 +6,8 @@
 //  Copyright © JustMacApps 2023-2024. All rights reserved.
 //
 
+import Foundation
+import Combine
 import SwiftUI
 
 struct ContentView: View 

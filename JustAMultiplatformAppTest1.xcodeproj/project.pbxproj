@@ -43,7 +43,7 @@
 		F0289D2E2C53D933001B19CD /* HelpBasic.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = HelpBasic.md; sourceTree = "<group>"; };
 		F0289D312C53D98D001B19CD /* HelpBasicMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpBasicMode.swift; sourceTree = "<group>"; };
 		F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpBasicLoader.swift; sourceTree = "<group>"; };
-		F028C5AD2C48610A007C459E /* JustAMultiplatformAppTest1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustAMultiplatformAppTest1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F028C5AD2C48610A007C459E /* JustAMultiplatformAppTest1_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustAMultiplatformAppTest1_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F028C5B02C48610A007C459E /* JustAMultiplatformAppTest1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustAMultiplatformAppTest1App.swift; sourceTree = "<group>"; };
 		F028C5B22C48610A007C459E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F028C5B42C48610B007C459E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		F028C5AE2C48610A007C459E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F028C5AD2C48610A007C459E /* JustAMultiplatformAppTest1.app */,
+				F028C5AD2C48610A007C459E /* JustAMultiplatformAppTest1_Mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F028C5AC2C48610A007C459E /* JustAMultiplatformAppTest1 */ = {
+		F028C5AC2C48610A007C459E /* JustAMultiplatformAppTest1_Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F028C5BC2C48610B007C459E /* Build configuration list for PBXNativeTarget "JustAMultiplatformAppTest1" */;
+			buildConfigurationList = F028C5BC2C48610B007C459E /* Build configuration list for PBXNativeTarget "JustAMultiplatformAppTest1_Mac" */;
 			buildPhases = (
 				F028C5A92C48610A007C459E /* Sources */,
 				F028C5AA2C48610A007C459E /* Frameworks */,
@@ -201,13 +201,13 @@
 			);
 			dependencies = (
 			);
-			name = JustAMultiplatformAppTest1;
+			name = JustAMultiplatformAppTest1_Mac;
 			packageProductDependencies = (
 				F0C6A8FE2C4AA2A40004606A /* ObjcExceptionBridging */,
 				F0C6A9002C4AA2A40004606A /* XCGLogger */,
 			);
 			productName = JustAMultiplatformAppTest1;
-			productReference = F028C5AD2C48610A007C459E /* JustAMultiplatformAppTest1.app */;
+			productReference = F028C5AD2C48610A007C459E /* JustAMultiplatformAppTest1_Mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -242,7 +242,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F028C5AC2C48610A007C459E /* JustAMultiplatformAppTest1 */,
+				F028C5AC2C48610A007C459E /* JustAMultiplatformAppTest1_Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -420,7 +420,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 07.01.24C241;
+				CURRENT_PROJECT_VERSION = 08.01.24C243;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -456,7 +456,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 07.01.24C241;
+				CURRENT_PROJECT_VERSION = 08.01.24C243;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -493,7 +493,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F028C5BC2C48610B007C459E /* Build configuration list for PBXNativeTarget "JustAMultiplatformAppTest1" */ = {
+		F028C5BC2C48610B007C459E /* Build configuration list for PBXNativeTarget "JustAMultiplatformAppTest1_Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F028C5BD2C48610B007C459E /* Debug */,
