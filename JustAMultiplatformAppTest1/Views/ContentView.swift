@@ -17,7 +17,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0802"
+        static let sClsVers      = "v1.0805"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -31,12 +31,36 @@ struct ContentView: View
 
     // App Data field(s):
 
+#if os(iOS)
+
+    @State private var cAppViewSettingsButtonPresses:Int = 0
+  
+    @State private var isAppSettingsModal:Bool           = false
+
+#endif
+
     @State private var cContentViewRefreshButtonPresses:Int = 0
 
     @State private var shouldContentViewShowAlert:Bool      = false
     
     var jmAppDelegateVisitor:JmAppDelegateVisitor           = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
+    init()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of init().
+
     func xcgLogMsg(_ sMessage:String)
     {
 
@@ -57,8 +81,51 @@ struct ContentView: View
         VStack 
         {
             
-            Spacer()
+        #if os(iOS)
+
+            HStack
+            {
+
+                Spacer()
+
+                Button
+                {
+
+                    self.cAppViewSettingsButtonPresses += 1
+
+                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)VVSwiftSplashView3Plus16 in Button(Xcode).'Settings'.#(\(self.cAppViewSettingsButtonPresses))...")
+
+                    self.isAppSettingsModal.toggle()
+
+                }
+                label: 
+                {
+
+                    Label("", systemImage: "gearshape")
+                        .padding()
+                        .imageScale(.large)
+
+                }
+            //  .sheet(isPresented:$isAppSettingsModal, content:
+            //      {
+            //
+            //          SettingsSingleView()
+            //
+            //      }
+            //  )
+                .fullScreenCover(isPresented:$isAppSettingsModal)
+                {
+
+                    SettingsSingleView()
+
+                }
+
+            }
+
+        #endif
             
+            Spacer(minLength:10)
+
         if #available(iOS 17.0, *)
         {
 
@@ -67,7 +134,7 @@ struct ContentView: View
                 .scaledToFit()
                 .containerRelativeFrame(.horizontal)
                     { size, axis in
-                        size * 0.2
+                        size * 0.15
                     }
 
         }
@@ -77,13 +144,13 @@ struct ContentView: View
             Image(ImageResource(name: "Gfx/AppIcon", bundle: Bundle.main))
                 .resizable()
                 .scaledToFit()
-                .frame(width:100, height: 100, alignment:.center)
+                .frame(width:75, height: 75, alignment:.center)
 
         }
             
             Spacer(minLength: 10)
             
-            Text("Hello, world!")
+            Text("--- [\(AppGlobalInfo.sGlobalInfoAppId)] ---")
                 .onReceive(jmAppDelegateVisitor.$isAppDelegateVisitorShowingAlert,
                     perform:
                     { bShow in
@@ -102,9 +169,13 @@ struct ContentView: View
             
             Spacer()
             
-            Text("--- [\(AppGlobalInfo.sGlobalInfoAppId)] \(ClassInfo.sClsDisp).ContentView.body(someView) ---")
-            Text("")
+            Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
+                .italic()
+
+            Spacer(minLength: 4)
+
             Text("\(JmXcodeBuildSettings.jmAppCopyright)")
+                .italic()
             
             Spacer()
             

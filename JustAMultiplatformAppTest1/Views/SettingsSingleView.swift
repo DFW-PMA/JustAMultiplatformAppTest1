@@ -15,7 +15,7 @@ struct SettingsSingleView: View
     {
         
         static let sClsId        = "SettingsSingleView"
-        static let sClsVers      = "v1.0601"
+        static let sClsVers      = "v1.0701"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -23,57 +23,55 @@ struct SettingsSingleView: View
         
     }
     
+    // App Data field(s):
+
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+    init()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of init().
+
     var body: some View 
     {
         
-        VStack(alignment:.leading)              // VStack #1
-        {
+        let _ = self.xcgLogMsg("...'SettingsSingleView(.swift):body'...")
 
-            Spacer()
-                .frame(height:5)
-            
-            Divider()
-                .border(Color.purple, width:5)
-            
-            HStack(alignment:.center)           // HStack #1.1
-            {
-            
-                Spacer()
-                    .frame(width:30)
-                
-                Text("Preferences:")
-            
-            }   // End of HStack #1.1
+    #if os(macOS)
 
-            Divider()
-                .border(Color.purple, width:5)
+        SettingsSingleViewMac()
 
-            Spacer()
-                .frame(height:5)
+    #elseif os(iOS)
 
-            HStack(alignment:.bottom)   // HStack #1.2
-            {
+        SettingsSingleViewIos()
 
-                Spacer()
-                    .frame(width:60, height:10)
+    #endif
 
-                Text("Settings field #1...")
-                    .frame(alignment:.bottom)
-
-                Spacer()
-                    .frame(width:60, height:10)
-
-            }   // End of HStack #1.2
-            
-            Spacer()
-                .frame(height:5)
-
-        }   // End of VStack #1
-        .background(Color.black)
-        .frame(minWidth: 250, idealWidth: 300, maxWidth: .infinity, minHeight: 70, idealHeight: 100, maxHeight: .infinity)
-        
     }
     
+    func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
+
+        // Exit...
+
+        return
+
+    }   // End of func xcgLogMsg().
+
 }
 
 #Preview 

@@ -35,6 +35,9 @@
 		F028C5B32C48610A007C459E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028C5B22C48610A007C459E /* ContentView.swift */; };
 		F028C5B52C48610B007C459E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B42C48610B007C459E /* Assets.xcassets */; };
 		F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F028C5B72C48610B007C459E /* Preview Assets.xcassets */; };
+		F029E0B62C82386D00FC96B9 /* SettingsSingleViewIos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029E0B32C82386D00FC96B9 /* SettingsSingleViewIos.swift */; };
+		F029E0B72C82386D00FC96B9 /* SettingsSingleViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029E0B42C82386D00FC96B9 /* SettingsSingleViewMac.swift */; };
+		F029E0BB2C823ACB00FC96B9 /* AppAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029E0B92C823ACB00FC96B9 /* AppAboutView.swift */; };
 		F03240302C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift */; };
 		F042521C2C59356600EA22D8 /* CalledObjCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F04252192C59356600EA22D8 /* CalledObjCModule.m */; };
 		F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */; };
@@ -107,6 +110,9 @@
 		F028C5B42C48610B007C459E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F028C5B72C48610B007C459E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F028C5B92C48610B007C459E /* JustAMultiplatformAppTest1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JustAMultiplatformAppTest1.entitlements; sourceTree = "<group>"; };
+		F029E0B32C82386D00FC96B9 /* SettingsSingleViewIos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSingleViewIos.swift; sourceTree = "<group>"; };
+		F029E0B42C82386D00FC96B9 /* SettingsSingleViewMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSingleViewMac.swift; sourceTree = "<group>"; };
+		F029E0B92C823ACB00FC96B9 /* AppAboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAboutView.swift; sourceTree = "<group>"; };
 		F032402F2C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustAMultiplatformAppTest1NSAppDelegate.swift; sourceTree = "<group>"; };
 		F04252192C59356600EA22D8 /* CalledObjCModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalledObjCModule.m; sourceTree = "<group>"; };
 		F042521A2C59356600EA22D8 /* CalledObjCModule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CalledObjCModule-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -219,6 +225,9 @@
 		F028C5BF2C486134007C459E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F029E0B92C823ACB00FC96B9 /* AppAboutView.swift */,
+				F029E0B32C82386D00FC96B9 /* SettingsSingleViewIos.swift */,
+				F029E0B42C82386D00FC96B9 /* SettingsSingleViewMac.swift */,
 				F0289D2A2C53D863001B19CD /* HelpBasicView.swift */,
 				F0D17B912C52E951000E5A52 /* LogFileView.swift */,
 				F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */,
@@ -378,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D17B8F2C52E942000E5A52 /* HelpCommands.swift in Sources */,
+				F029E0B72C82386D00FC96B9 /* SettingsSingleViewMac.swift in Sources */,
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
 				F0289D332C53D98D001B19CD /* HelpBasicMode.swift in Sources */,
 				F0981DB42C52C5AE0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift in Sources */,
@@ -412,7 +422,9 @@
 				F0BCCC5E2C820EF1007EA382 /* SettingsSingleView.swift in Sources */,
 				F0BCCC602C820EF1007EA382 /* JmFileIO.swift in Sources */,
 				F0BCCC612C820EF1007EA382 /* JmUserDefaults.swift in Sources */,
+				F029E0B62C82386D00FC96B9 /* SettingsSingleViewIos.swift in Sources */,
 				F0BCCC632C820EF1007EA382 /* JustAMultiplatformAppTest1App.swift in Sources */,
+				F029E0BB2C823ACB00FC96B9 /* AppAboutView.swift in Sources */,
 				F0BCCC642C820EF1007EA382 /* JmXcodeBuildSettings.swift in Sources */,
 				F0BCCC652C820EF1007EA382 /* JmAppDelegateVisitor.swift in Sources */,
 				F0BCCC662C820EF1007EA382 /* JmObjCSwiftEnvBridge.swift in Sources */,
@@ -574,7 +586,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 08.04.24C243;
+				CURRENT_PROJECT_VERSION = 08.10.24C243;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -590,6 +602,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.01;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -610,7 +623,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 08.04.24C243;
+				CURRENT_PROJECT_VERSION = 08.10.24C243;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -626,7 +639,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.01;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -646,7 +659,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 08.04.24C243;
+				CURRENT_PROJECT_VERSION = 08.10.24C243;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -665,6 +678,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.01;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -688,7 +702,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 08.04.24C243;
+				CURRENT_PROJECT_VERSION = 08.10.24C243;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -707,7 +721,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.01;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -725,7 +739,9 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J434W9VGHF;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = driverkit;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
 			};
@@ -737,7 +753,9 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J434W9VGHF;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = driverkit;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
 			};
