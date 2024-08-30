@@ -17,7 +17,7 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0604"
+        static let sClsVers      = "v1.0609"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
         static let bClsTrace     = true
@@ -63,7 +63,8 @@ struct AppAboutView: View
 
                 Spacer()
 
-                Button("Dismiss") 
+            //  Button("Dismiss") 
+                Button
                 {
 
                     let _ = xcgLogMsg("\(ClassInfo.sClsDisp):AppAboutView.Button(Xcode).'Dismiss' pressed...")
@@ -73,8 +74,16 @@ struct AppAboutView: View
                     //  dismiss()
 
                 }
-                .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                .foregroundColor(.accentColor)
+                label: 
+                {
+
+                    Label("", systemImage: "xmark.circle")
+                        .padding()
+                        .imageScale(.large)
+
+                }
+            //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+            //  .foregroundColor(.accentColor)
                 .padding()
 
             }   // End of HStack #1.1

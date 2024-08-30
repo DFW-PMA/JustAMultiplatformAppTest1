@@ -17,7 +17,7 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.0902"
+        static let sClsVers        = "v1.0905"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -30,6 +30,8 @@ struct LogFileView: View
 //  @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
     // App Data field(s):
+
+    @Environment(\.presentationMode) var presentationMode
 
     @State private var cLogFileViewAppLogClearButtonPresses:Int = 0
 
@@ -68,6 +70,42 @@ struct LogFileView: View
         {
 
             Spacer()
+
+        #if os(iOS)
+
+            HStack(alignment:.center)           // HStack #1.3
+            {
+
+                Spacer()
+
+            //  Button("Dismiss") 
+                Button
+                {
+
+                    let _ = xcgLogMsg("\(ClassInfo.sClsDisp):AppAboutView.Button(Xcode).'Dismiss' pressed...")
+
+                    self.presentationMode.wrappedValue.dismiss()
+
+                    //  dismiss()
+
+                }
+                label: 
+                {
+
+                    Label("", systemImage: "xmark.circle")
+                        .padding()
+                        .imageScale(.large)
+
+                }
+            //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+            //  .foregroundColor(.accentColor)
+                .padding()
+
+            }   // End of HStack #1.1
+
+            Spacer()
+
+        #endif
 
             Text("Log file:")
                 .font(.callout)

@@ -16,7 +16,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0104"
+        static let sClsVers      = "v1.0107"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -29,11 +29,13 @@ struct SettingsSingleViewIos: View
 //  @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var cContentViewAppAboutButtonPresses:Int = 0
+    @State private var cContentViewAppAboutButtonPresses:Int   = 0
+    @State private var cContentViewAppLogViewButtonPresses:Int = 0
 
-    @State private var isAppAboutViewModal:Bool              = false
+    @State private var isAppAboutViewModal:Bool                = false
+    @State private var isAppLogViewModal:Bool                  = false
     
-    var jmAppDelegateVisitor:JmAppDelegateVisitor            = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    var jmAppDelegateVisitor:JmAppDelegateVisitor              = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
     init()
     {
@@ -83,7 +85,11 @@ struct SettingsSingleViewIos: View
                     label: 
                     {
                         
-                        Text("App About")
+                    //  Text("About")
+
+                        Label("", systemImage: "questionmark.diamond")
+                            .padding()
+                            .imageScale(.large)
 
                     }
                     .fullScreenCover(isPresented:$isAppAboutViewModal)
@@ -92,12 +98,44 @@ struct SettingsSingleViewIos: View
                         AppAboutView()
                     
                     }
-                    .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                    .foregroundColor(.accentColor)
+                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+                //  .foregroundColor(.accentColor)
 
                     Spacer()
 
-                    Button("Dismiss") 
+                    Button
+                    {
+
+                        self.cContentViewAppLogViewButtonPresses += 1
+
+                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView in Button(Xcode).'App LogView'.#(\(self.cContentViewAppLogViewButtonPresses))...")
+
+                        self.isAppLogViewModal.toggle()
+
+                    }
+                    label: 
+                    {
+                        
+                    //  Text("LogView")
+
+                        Label("", systemImage: "doc.text.magnifyingglass")
+                            .padding()
+                            .imageScale(.large)
+
+                    }
+                    .fullScreenCover(isPresented:$isAppLogViewModal)
+                    {
+                    
+                        LogFileView()
+                    
+                    }
+                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+                //  .foregroundColor(.accentColor)
+
+                    Spacer()
+
+                //  Button("Dismiss") 
+                    Button
                     {
 
                         let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView.Button(Xcode).'Dismiss' pressed...")
@@ -107,8 +145,16 @@ struct SettingsSingleViewIos: View
                         //  dismiss()
 
                     }
-                    .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                    .foregroundColor(.accentColor)
+                    label: 
+                    {
+
+                        Label("", systemImage: "xmark.circle")
+                            .padding()
+                            .imageScale(.large)
+
+                    }
+                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
+                //  .foregroundColor(.accentColor)
 
                 }   // End of HStack #1.1
 
