@@ -16,7 +16,7 @@ struct JustAMultiplatformAppTest1App: App
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1App"
-        static let sClsVers      = "v1.0702"
+        static let sClsVers      = "v1.0801"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -77,7 +77,8 @@ struct JustAMultiplatformAppTest1App: App
 
         }
         .handlesExternalEvents(matching: [])
-        .commands 
+    #if os(macOS)
+        .commands
         {
 
             AppInfoCommands()
@@ -85,16 +86,15 @@ struct JustAMultiplatformAppTest1App: App
             HelpCommands()
 
         }
+    #endif
         
     #if os(macOS)
-
         Settings
         {
       
             SettingsSingleView()
       
         }
-
     #endif
         
     }

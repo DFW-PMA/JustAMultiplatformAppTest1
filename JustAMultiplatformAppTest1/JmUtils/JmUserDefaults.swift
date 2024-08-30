@@ -6,9 +6,15 @@
 //  Copyright © 2023-2024 JustMacApps. All rights reserved.
 //
 
-import Cocoa
+
 import Foundation
 import SwiftUI
+
+#if canImport(Cocoa)
+import Cocoa
+#else
+import UIKit
+#endif
 
 @objc(JmUserDefaults)
 class JmUserDefaults: NSObject

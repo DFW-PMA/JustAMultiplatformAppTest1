@@ -11,6 +11,10 @@ import Foundation
 import SwiftUI
 import XCGLogger
 
+#if os(iOS)
+import UIKit
+#endif
+
 @objc(JmAppDelegateVisitor)
 public class JmAppDelegateVisitor: NSObject, ObservableObject
 {
@@ -19,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0405"
+        static let sClsVers        = "v1.0502"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -169,6 +173,10 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is starting - 'self' is [\(self)]...")
         self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
         
+        // Dump the App 'Info.plist':
+
+        let _ = self.dumpAppInfoPlistToLog()
+
         // Setup the Objective-C/Swift Bridge:
   
         self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
@@ -216,6 +224,8 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         return
 
     }   // End of @objc public func xcgLogMsg().
+
+    // Method(s) to setup the file and console 'logging' output:
 
     private func initAppDelegateVisitorTraceLog(initappdelegatetracelogtag:String = "-unknown-")
     {
@@ -355,155 +365,6 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     }   // End of private func setupAppDelegateVisitorXCGLogger().
 
-    @objc public func getAppDelegateVisitorApplicationTitle() -> String
-    {
-
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
-
-        if (self.bAppTitleSetupRequired == true)
-        {
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Setting up the Application 'title'...")
-
-            if (self.bUseApplicationShortTitle == true)
-            {
-
-                self.sApplicationTitle = self.sApplicationShortTitle
-
-            }
-            else
-            {
-
-                self.sApplicationTitle = self.sApplicationName
-
-            }
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
-
-            self.bAppTitleSetupRequired = false
-
-        }
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-
-        return self.sApplicationTitle
-
-    }   // End of @objc public func getAppDelegateVisitorApplicationTitle().
-
-    @objc public func getAppDelegateVisitorHelpBasicContents() -> String
-    {
-
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
-
-        if (self.helpBasicLoader == nil)
-        {
-
-            self.helpBasicLoader = HelpBasicLoader()
-
-        }
-
-        if (self.helpBasicLoader?.bHelpSetupRequired == true)
-        {
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Setting up HELP 'basic' content(s)...")
-
-            self.sHelpBasicContents                  = self.helpBasicLoader?.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'") ?? "---Error: HELP was NOT loaded properly---"
-            self.helpBasicLoader?.bHelpSetupRequired = false
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Set up the HELP 'basic' content(s)...")
-
-        }
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-
-        return self.sHelpBasicContents
-
-    }   // End of @objc public func getAppDelegateVisitorHelpBasicContents().
-
-    @objc public func appDelegateVisitorWillFinishLaunching(_ aNotification: Notification) 
-    {
-
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-
-    }   // End of @objc public func appDelegateVisitorWillFinishLaunching().
-
-    @objc public func appDelegateVisitorDidFinishLaunching(_ aNotification: Notification) 
-    {
-
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-        let cArgs              = Int(CommandLine.argc)
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-        self.xcgLogMsg("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
-        
-        for i in 0..<cArgs
-        {
-            
-            let sArg  = String(cString: CommandLine.unsafeArgv[i]!)
-            let sArgV = sArg
-            
-            self.xcgLogMsg("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
-            
-        }
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-
-    }   // End of @objc public func appDelegateVisitorDidFinishLaunching().
-
-    @objc public func appDelegateVisitorWillTerminate(_ aNotification: Notification) 
-    {
-
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
-
-        self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is stopping...")
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-
-    }   // End of @objc public func appDelegateVisitorWillTerminate().
-
-    @objc public func appDelegateVisitorApplication(_ application: NSApplication, open urls: [URL])
-    {
-
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
-        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
-
-        self.xcgLogMsg("\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-
-    }   // End of @objc public func appDelegateVisitor().
-
     @objc public func clearAppDelegateVisitorTraceLogFile()
     {
 
@@ -606,6 +467,352 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         return
 
     }   // End of @objc public func clearAppDelegateVisitorTraceLogFile().
+
+    // Method(s) that act as AppDelegate 'helpers':
+
+    @objc public func dumpAppInfoPlistToLog() -> Bool
+    {
+        
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        let infoFileURL = Bundle.main.url(forResource: "Info", withExtension: "plist")
+
+        if (infoFileURL == nil)
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Locating the 'resource' URL for the 'Info.plist' (in Bundle.Resources) failed - Warning!")
+
+            return false
+
+        }
+
+        var formatinfoplist                  = PropertyListSerialization.PropertyListFormat.xml
+        var dictInfoPlist:[String:AnyObject] = [:]
+
+        do 
+        {
+
+            let pListInfo = try Data(contentsOf: infoFileURL!)
+          
+            dictInfoPlist = try PropertyListSerialization.propertyList(from:    pListInfo,
+                                                                       options: PropertyListSerialization.ReadOptions.mutableContainersAndLeaves,
+                                                                       format:  &formatinfoplist) as! [String:AnyObject]
+
+        }
+        catch
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Error reading plist: \(error), format: \(formatinfoplist)...")
+
+            return false
+
+        }
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Read the dictionary 'dictInfoPlist' with (\(dictInfoPlist.count)) element(s) of [\(dictInfoPlist)] from file [\(String(describing: infoFileURL))]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return true
+
+    }   // End of @objc public func dumpAppInfoPlistToLog().
+
+    @objc public func dumpAppCommandLineArgs()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        let cArgs              = Int(CommandLine.argc)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters are:")
+        
+        for i in 0..<cArgs
+        {
+            
+            let sArg  = String(cString: CommandLine.unsafeArgv[i]!)
+            let sArgV = sArg
+            
+            self.xcgLogMsg("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
+            
+        }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorDidFinishLaunching().
+
+    @objc public func getAppDelegateVisitorApplicationTitle() -> String
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        if (self.bAppTitleSetupRequired == true)
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Setting up the Application 'title'...")
+
+            if (self.bUseApplicationShortTitle == true)
+            {
+
+                self.sApplicationTitle = self.sApplicationShortTitle
+
+            }
+            else
+            {
+
+                self.sApplicationTitle = self.sApplicationName
+
+            }
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Set up of the Application 'title' of [\(self.sApplicationTitle)] done...")
+
+            self.bAppTitleSetupRequired = false
+
+        }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return self.sApplicationTitle
+
+    }   // End of @objc public func getAppDelegateVisitorApplicationTitle().
+
+    @objc public func getAppDelegateVisitorHelpBasicContents() -> String
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        if (self.helpBasicLoader == nil)
+        {
+
+            self.helpBasicLoader = HelpBasicLoader()
+
+        }
+
+        if (self.helpBasicLoader?.bHelpSetupRequired == true)
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Setting up HELP 'basic' content(s)...")
+
+            self.sHelpBasicContents                  = self.helpBasicLoader?.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'") ?? "---Error: HELP was NOT loaded properly---"
+            self.helpBasicLoader?.bHelpSetupRequired = false
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Set up the HELP 'basic' content(s)...")
+
+        }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return self.sHelpBasicContents
+
+    }   // End of @objc public func getAppDelegateVisitorHelpBasicContents().
+
+#if os(macOS)
+
+    // NSApplicationDelegate method(s):
+
+    @objc public func appDelegateVisitorWillFinishLaunching(_ aNotification: Notification) 
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorWillFinishLaunching().
+
+    @objc public func appDelegateVisitorDidFinishLaunching(_ aNotification: Notification) 
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        self.dumpAppCommandLineArgs()
+
+    //  self.xcgLogMsg("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
+    //  
+    //  for i in 0..<cArgs
+    //  {
+    //      
+    //      let sArg  = String(cString: CommandLine.unsafeArgv[i]!)
+    //      let sArgV = sArg
+    //      
+    //      self.xcgLogMsg("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
+    //      
+    //  }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorDidFinishLaunching().
+
+    @objc public func appDelegateVisitorWillTerminate(_ aNotification: Notification) 
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is stopping...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorWillTerminate().
+
+    @objc public func appDelegateVisitorApplication(_ application: NSApplication, open urls: [URL])
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitor().
+
+#elseif os(iOS)
+
+    // UIApplicationDelegate method(s):
+
+    // NOTE: This method can NOT be marked @objc because 'willFinishLaunchingWithOptions' is a Swift struct...
+    
+//  @objc public func appDelegateVisitorWillFinishLaunching(_ aNotification: Notification)
+    public func appDelegateVisitorWillFinishLaunchingWithOptions(_ uiApplication:UIApplication, willFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+    //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'willFinishLaunchingWithOptions' is [\(willFinishLaunchingWithOptions)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return true
+
+    }   // End of public func appDelegateVisitorWillFinishLaunching().
+    
+    // NOTE: This method can NOT be marked @objc because 'willFinishLaunchingWithOptions' is a Swift struct...
+    
+//  @objc public func appDelegateVisitorDidFinishLaunching(_ aNotification: Notification)
+    public func appDelegateVisitorDidFinishLaunchingWithOptions(_ uiApplication:UIApplication, didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+    //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'didFinishLaunchingWithOptions' is [\(didFinishLaunchingWithOptions)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        self.dumpAppCommandLineArgs()
+
+    //  self.xcgLogMsg("\(sCurrMethodDisp) The Command line input #(\(cArgs)) parameters...")
+    //  
+    //  for i in 0..<cArgs
+    //  {
+    //      
+    //      let sArg  = String(cString: CommandLine.unsafeArgv[i]!)
+    //      let sArgV = sArg
+    //      
+    //      self.xcgLogMsg("\(sCurrMethodDisp) Input parameter #(\(i)) is [\(sArgV)]...")
+    //      
+    //  }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return true
+
+    }   // End of public func appDelegateVisitorDidFinishLaunching().
+
+//  @objc public func appDelegateVisitorWillTerminate(_ aNotification: Notification) 
+    @objc public func appDelegateVisitorWillTerminate(_ uiApplication: UIApplication)
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+    //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+
+        self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is stopping...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorWillTerminate().
+
+//  @objc public func appDelegateVisitorApplication(_ application: NSApplication, open urls: [URL])
+    @objc public func appDelegateVisitorApplication(_ application: UIApplication, open urls: [URL])
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'application' is [\(application)] - 'urls' are [\(urls)]...")
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) -> Unhandled url(s) -> \(urls)")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorApplication().
+
+#endif
 
 }   // End of class JmAppDelegateVisitor(NSObject, ObservableObject).
 

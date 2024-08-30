@@ -11,14 +11,14 @@ import Foundation
 import SwiftUI
 import XCGLogger
 
-class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, ObservableObject
+class JustAMultiplatformAppTest1UIAppDelegate: NSObject, UIApplicationDelegate, ObservableObject
 {
 
     struct ClassInfo
     {
         
-        static let sClsId          = "JustAMultiplatformAppTest1NSAppDelegate"
-        static let sClsVers        = "v1.1001"
+        static let sClsId          = "JustAMultiplatformAppTest1UIAppDelegate"
+        static let sClsVers        = "v1.0101"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -29,7 +29,7 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
     struct ClassSingleton
     {
 
-        static var appDelegate:JustAMultiplatformAppTest1NSAppDelegate? = nil
+        static var appDelegate:JustAMultiplatformAppTest1UIAppDelegate? = nil
 
     }
 
@@ -99,54 +99,62 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
 
     }   // End of public func xcgLogMsg().
 
-    func applicationWillFinishLaunching(_ aNotification: Notification) 
+//  func applicationWillFinishLaunching(_ aNotification: Notification) 
+    func applicationWillFinishLaunchingWithOptions(_ uiApplication:UIApplication, willFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool
     {
 
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
+    //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'willFinishLaunchingWithOptions' is [\(willFinishLaunchingWithOptions)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
 
-        self.jmAppDelegateVisitor.appDelegateVisitorWillFinishLaunching(aNotification)
+        let _ = self.jmAppDelegateVisitor.appDelegateVisitorWillFinishLaunchingWithOptions(uiApplication, willFinishLaunchingWithOptions:willFinishLaunchingWithOptions)
 
         // Exit:
 
         self.xcgLogMsg("\(sCurrMethodDisp) Method Exiting...")
 
-        return
+        return true
 
-    }   // End of func applicationWillFinishLaunching().
+    }   // End of func applicationWillFinishLaunchingWithOptions().
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) 
+//  func applicationDidFinishLaunching(_ aNotification: Notification) 
+    func applicationDidFinishLaunchingWithOptions(_ uiApplication:UIApplication, didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool
     {
 
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
+    //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'didFinishLaunchingWithOptions' is [\(didFinishLaunchingWithOptions)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
 
-        self.jmAppDelegateVisitor.appDelegateVisitorDidFinishLaunching(aNotification)
+    //  self.jmAppDelegateVisitor.appDelegateVisitorWillFinishLaunching(aNotification)
+        let _ = self.jmAppDelegateVisitor.appDelegateVisitorWillFinishLaunchingWithOptions(uiApplication, willFinishLaunchingWithOptions:didFinishLaunchingWithOptions)
 
         // Exit:
 
         self.xcgLogMsg("\(sCurrMethodDisp) Method Exiting...")
 
-        return
+        return true
 
-    }   // End of func applicationDidFinishLaunching().
+    }   // End of func applicationDidFinishLaunchingWithOptions().
 
-    func applicationWillTerminate(_ aNotification: Notification) 
+//  func applicationWillTerminate(_ aNotification: Notification) 
+    func applicationWillTerminate(_ uiApplication:UIApplication)
     {
 
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
+    //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)] - 'self' is [\(self)]...")
 
         self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
+
         self.xcgLogMsg("\(sCurrMethodDisp) AppDelegate is stopping...")
 
-        self.jmAppDelegateVisitor.appDelegateVisitorWillTerminate(aNotification)
+        self.jmAppDelegateVisitor.appDelegateVisitorWillTerminate(uiApplication)
 
         // Exit:
 
@@ -158,7 +166,8 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
 
     }   // End of func applicationWillTerminate().
 
-    func application(_ application: NSApplication, open urls: [URL])
+//  func application(_ application: NSApplication, open urls: [URL])
+    func application(_ application: UIApplication, open urls: [URL])
     {
 
         let sCurrMethod:String = #function

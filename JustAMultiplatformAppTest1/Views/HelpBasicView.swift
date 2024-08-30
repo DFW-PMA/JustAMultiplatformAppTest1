@@ -70,21 +70,29 @@ struct HelpBasicView: View
             do 
             {
                 
+            #if os(macOS)
+
                 if let nsAttributedString = try? NSAttributedString(data:               Data(sHelpBasicContents.utf8), 
                                                                     options:            [.documentType: NSAttributedString.DocumentType.html], 
                                                                     documentAttributes: nil),
                    let attributedString   = try? AttributedString(nsAttributedString, including: \.appKit) 
                 {
-                    
+
                     textField = Text(attributedString)
-                    
+
                 }
                 else
                 {
-                    
+
                     textField = Text(sHelpBasicContents)
-                    
+
                 }
+
+            #elseif os(iOS)
+
+                textField = Text(sHelpBasicContents)
+
+            #endif
                 
             }
             
