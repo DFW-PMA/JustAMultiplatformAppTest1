@@ -16,7 +16,7 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0805"
+        static let sClsVers        = "v1.0808"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -46,25 +46,28 @@ struct HelpBasicView: View
 //           'Argument passed to call that takes no arguments'..
 //       >>> Adding the parameter 'sHelpBasicContents' silences this error but it appears that the 'set' does NOT work...
 //       >>> Confirmed by test output...
+//       >>> ANSWER: see below - must access the variable name with a leading '_' and
+//       >>>                     wrap the inbound parameter with a 'State()' method ('wrapper').
 // --------------------------------------------------------------------------------------------------------------------
-//
-//  init(sHelpBasicContents:String)
-//  {
-//  
-//      let sCurrMethod:String = #function
-//      let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-//      
-//      self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'sHelpBasicContents' is [\(sHelpBasicContents)]...")
-//
-//      self.sHelpBasicContents = sHelpBasicContents
-//  
-//      // Exit...
-//  
-//      self.xcgLogMsg("\(sCurrMethodDisp) Exiting 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)] - parameter 'sHelpBasicContents' was [\(sHelpBasicContents)]...")
-//  
-//      return
-//  
-//  }   // End of init().
+  
+    init(sHelpBasicContents:String)
+    {
+    
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'sHelpBasicContents' is [\(sHelpBasicContents)]...")
+  
+    //  self.sHelpBasicContents  = sHelpBasicContents
+        self._sHelpBasicContents = State(initialValue: sHelpBasicContents)
+    
+        // Exit...
+    
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)] - parameter 'sHelpBasicContents' was [\(sHelpBasicContents)]...")
+    
+        return
+    
+    }   // End of init().
 
     func xcgLogMsg(_ sMessage:String)
     {
