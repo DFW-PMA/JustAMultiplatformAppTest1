@@ -375,7 +375,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
                 }
 
-                self.xcgLogMsg("[\(sCurrMethodDisp)] Saving the LOG Filespec of [\(String(describing: self.urlAppDelegateVisitorLogFilespec))] to the 'target' LOG Filespec of [\(String(describing: self.urlAppDelegateVisitorLogToSaveFilespec))]...")
+                self.xcgLogMsg("[\(sCurrMethodDisp)] Saving the LOG Filespec of [\(self.urlAppDelegateVisitorLogFilespec)] to the 'target' LOG Filespec of [\(String(describing: self.urlAppDelegateVisitorLogToSaveFilespec))]...")
 
                 self.sAppDelegateVisitorLogToSaveFilespec = self.urlAppDelegateVisitorLogToSaveFilespec?.path
 

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+// import TipKit
 
 @available(iOS 16.0, *)
 struct SettingsSingleViewIos: View 
@@ -16,7 +17,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0109"
+        static let sClsVers      = "v1.0203"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -32,10 +33,12 @@ struct SettingsSingleViewIos: View
     @State private var cContentViewAppAboutButtonPresses:Int    = 0
     @State private var cContentViewAppHelpViewButtonPresses:Int = 0
     @State private var cContentViewAppLogViewButtonPresses:Int  = 0
+    @State private var cContentViewAppCrashButtonPresses:Int    = 0
 
     @State private var isAppAboutViewModal:Bool                 = false
     @State private var isAppHelpViewModal:Bool                  = false
     @State private var isAppLogViewModal:Bool                   = false
+    @State private var isAppCrashShowing:Bool                   = false
     
     var jmAppDelegateVisitor:JmAppDelegateVisitor               = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
@@ -92,6 +95,8 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "questionmark.diamond")
                             .padding()
                             .imageScale(.large)
+                            .help("App About Information")
+                    //      .popoverTip("", arrowEdge:.top)
 
                     }
                     .fullScreenCover(isPresented:$isAppAboutViewModal)
@@ -123,6 +128,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "questionmark.circle")
                             .padding()
                             .imageScale(.large)
+                            .help("App HELP Information")
 
                     }
                     .fullScreenCover(isPresented:$isAppHelpViewModal)
@@ -156,6 +162,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "doc.text.magnifyingglass")
                             .padding()
                             .imageScale(.large)
+                            .help("App LOG Viewer")
 
                     }
                     .fullScreenCover(isPresented:$isAppLogViewModal)
@@ -186,12 +193,56 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "xmark.circle")
                             .padding()
                             .imageScale(.large)
+                            .help("Dismiss this Screen")
 
                     }
                 //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
                 //  .foregroundColor(.accentColor)
 
                 }   // End of HStack #1.1
+
+                Spacer()
+
+                HStack(alignment:.center)
+                {
+
+                    Spacer()
+                
+                    Button
+                    {
+
+                        self.cContentViewAppCrashButtonPresses += 1
+
+                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'App Crash'.#(\(self.cContentViewAppCrashButtonPresses))...")
+
+                        self.isAppCrashShowing.toggle()
+
+                    }
+                    label: 
+                    {
+
+                        Label("", systemImage: "xmark.octagon")
+                            .padding()
+                            .imageScale(.large)
+                            .help("FORCE this App to CRASH")
+
+                    }
+                    .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
+                    {
+                        Button("Cancel", role:.cancel)
+                        {
+                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'crash' the App - resuming...")
+                        }
+                        Button("Ok", role:.destructive)
+                        {
+                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'crash' the App - crashing...")
+                            fatalError("The User pressed 'Ok' to force an App 'crash'!")
+                        }
+                    }
+
+                    Spacer()
+
+                }   // End of HStack
 
                 Spacer()
                 
@@ -263,7 +314,7 @@ struct SettingsSingleViewIos: View
 
             }   // End of VStack #1
             .padding()
-            .frame(minWidth: 50, idealWidth: 200, maxWidth: .infinity, minHeight: 70, idealHeight: 100, maxHeight: .infinity)
+        //  .frame(minWidth: 50, idealWidth: 200, maxWidth: .infinity, minHeight: 70, idealHeight: 100, maxHeight: .infinity)
 
         }
         

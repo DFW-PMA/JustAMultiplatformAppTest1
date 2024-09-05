@@ -17,7 +17,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0811"
+        static let sClsVers      = "v1.0901"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -33,11 +33,11 @@ struct ContentView: View
 
 #if os(iOS)
 
-    @State private var cAppViewSuspendButtonPresses:Int  = 0
-    @State private var cAppViewSettingsButtonPresses:Int = 0
+    @State private var cAppViewSuspendButtonPresses:Int     = 0
+    @State private var cAppViewSettingsButtonPresses:Int    = 0
     
-    @State private var isAppSuspendShowing:Bool          = false
-    @State private var isAppSettingsModal:Bool           = false
+    @State private var isAppSuspendShowing:Bool             = false
+    @State private var isAppSettingsModal:Bool              = false
 
 #endif
 
@@ -232,42 +232,6 @@ struct ContentView: View
         
     }
 
-//  func askIfQuitIsOkOrCancel()
-//  {
-//
-//      let sCurrMethod:String = #function
-//      let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-//      
-//      self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
-//
-//      let uiAlertQuit = UIAlertController(title:          "Quit", 
-//                                          message:        "Are you sure you want to 'quit'?", 
-//                                          preferredStyle: UIAlertController.Style.alert)
-//
-//      uiAlertQuit.addAction(UIAlertAction(title: "Ok", 
-//                                          style: .default, 
-//                                          handler: { (action: UIAlertAction!) in
-//                                                       self.xcgLogMsg("\(sCurrMethodDisp) User pressed 'Ok' to 'quit' the App - suspending...")
-//                                                       UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
-//                                                   }))
-//
-//      uiAlertQuit.addAction(UIAlertAction(title: "Cancel", 
-//                                          style: .cancel, 
-//                                          handler: { (action: UIAlertAction!) in
-//                                                       self.xcgLogMsg("\(sCurrMethodDisp) User pressed 'Cancel' to 'quit' the App - resuming...")
-//                                                   }))
-//
-//  //  presentViewController(uiAlertQuit, animated: true, completion: nil)
-//      uiAlertQuit.show(self, sender: Any?)
-//
-//      // Exit:
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-//
-//      return
-//
-//  }   // End of func askIfQuitIsOkOrCancel().
-    
 }
 
 #Preview 

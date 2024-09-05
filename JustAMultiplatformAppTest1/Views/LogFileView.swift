@@ -17,7 +17,7 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.0905"
+        static let sClsVers        = "v1.1001"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -69,8 +69,6 @@ struct LogFileView: View
         VStack
         {
 
-            Spacer()
-
         #if os(iOS)
 
             HStack(alignment:.center)           // HStack #1.3
@@ -103,9 +101,9 @@ struct LogFileView: View
 
             }   // End of HStack #1.1
 
-            Spacer()
-
         #endif
+
+            Spacer()
 
             Text("Log file:")
                 .font(.callout)
