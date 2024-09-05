@@ -16,7 +16,7 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0706"
+        static let sClsVers        = "v1.0805"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -40,21 +40,30 @@ struct HelpBasicView: View
     @State                       var sHelpBasicContents:String = "----NOT-Loaded-(View)----"
 
     var jmAppDelegateVisitor:JmAppDelegateVisitor              = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
-    
-//  init()
-//  {
+
+// --------------------------------------------------------------------------------------------------------------------
+// NOTE: This init() method is commented out because if it is coded then compile fails with an error of:
+//           'Argument passed to call that takes no arguments'..
+//       >>> Adding the parameter 'sHelpBasicContents' silences this error but it appears that the 'set' does NOT work...
+//       >>> Confirmed by test output...
+// --------------------------------------------------------------------------------------------------------------------
 //
+//  init(sHelpBasicContents:String)
+//  {
+//  
 //      let sCurrMethod:String = #function
 //      let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 //      
-//      self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+//      self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'sHelpBasicContents' is [\(sHelpBasicContents)]...")
 //
+//      self.sHelpBasicContents = sHelpBasicContents
+//  
 //      // Exit...
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-//
+//  
+//      self.xcgLogMsg("\(sCurrMethodDisp) Exiting 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)] - parameter 'sHelpBasicContents' was [\(sHelpBasicContents)]...")
+//  
 //      return
-//
+//  
 //  }   // End of init().
 
     func xcgLogMsg(_ sMessage:String)
@@ -82,7 +91,6 @@ struct HelpBasicView: View
 
                 Spacer()
 
-            //  Button("Dismiss") 
                 Button
                 {
 
@@ -101,8 +109,6 @@ struct HelpBasicView: View
                         .imageScale(.large)
 
                 }
-            //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-            //  .foregroundColor(.accentColor)
                 .padding()
 
             }   // End of HStack #1.1
@@ -125,8 +131,8 @@ struct HelpBasicView: View
             .padding()
 
         }
-        .padding()
-        .frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 50, idealHeight: 100, maxHeight: 300)
+    //  .padding()
+    //  .frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 50, idealHeight: 100, maxHeight: 300)
         
     }
     

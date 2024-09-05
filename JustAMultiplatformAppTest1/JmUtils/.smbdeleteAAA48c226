@@ -595,7 +595,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self.helpBasicLoader' is [\(String(describing: self.helpBasicLoader))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self.helpBasicLoader' is [\(self.helpBasicLoader)]...")
 
         if (self.helpBasicLoader == nil)
         {
@@ -609,19 +609,19 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         if (self.helpBasicLoader?.bHelpSetupRequired == true)
         {
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Setting up HELP 'basic' content(s) - 'self.helpBasicLoader?.bHelpSetupRequired' is [\(String(describing: self.helpBasicLoader?.bHelpSetupRequired))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Setting up HELP 'basic' content(s) - 'self.helpBasicLoader?.bHelpSetupRequired' is [\(self.helpBasicLoader?.bHelpSetupRequired)]...")
 
             self.sHelpBasicContents                  = self.helpBasicLoader?.loadHelpBasicContents(helpbasicfileext:self.sHelpBasicFileExt, helpbasicloadertag:"'get...()'") ?? "---Error: HELP was NOT loaded properly---"
             self.helpBasicLoader?.bHelpSetupRequired = false
             bWasHelpSetupPerformed                   = true
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Set up the HELP 'basic' content(s) - 'self.helpBasicLoader?.bHelpSetupRequired' is [\(String(describing: self.helpBasicLoader?.bHelpSetupRequired))] - 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Set up the HELP 'basic' content(s) - 'self.helpBasicLoader?.bHelpSetupRequired' is [\(self.helpBasicLoader?.bHelpSetupRequired)] - 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)]...")
 
         }
 
         // Exit:
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'bWasHelpSetupPerformed' is [\(bWasHelpSetupPerformed)] - 'self.helpBasicLoader?.bHelpSetupRequired' is [\(String(describing: self.helpBasicLoader?.bHelpSetupRequired))] - 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'bWasHelpSetupPerformed' is [\(bWasHelpSetupPerformed)] - 'self.helpBasicLoader?.bHelpSetupRequired' is [\(self.helpBasicLoader?.bHelpSetupRequired)] - 'self.sHelpBasicContents' is [\(self.sHelpBasicContents)]...")
 
         return self.sHelpBasicContents
 
