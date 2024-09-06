@@ -3,7 +3,7 @@
 //  JustAMultiplatformAppTest1
 //
 //  Created by JustMacApps.net on 07/19/2024.
-//  Copyright © 2023-2024 JustMacApps. All rights reserved.
+//  Copyright © JustMacApps 2023-2024. All rights reserved.
 //
 
 //import Cocoa
@@ -17,12 +17,12 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
     struct ClassInfo
     {
         
-        static let sClsId          = "JustAMultiplatformAppTest1NSAppDelegate"
-        static let sClsVers        = "v1.1001"
-        static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
-        static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
-        static let bClsTrace       = true
-        static let bClsFileLog     = true
+        static let sClsId        = "JustAMultiplatformAppTest1NSAppDelegate"
+        static let sClsVers      = "v1.1101"
+        static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
+        static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+        static let bClsTrace     = true
+        static let bClsFileLog   = true
         
     }
 
@@ -35,9 +35,9 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
 
     // Various App field(s):
 
-    var cAppDelegateInitCalls:Int                   = 0
+    var cAppDelegateInitCalls:Int                 = 0
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor   = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
     public func toString()->String
     {
