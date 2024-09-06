@@ -16,7 +16,7 @@ struct DeveloperSupportEmail
     {
         
         static let sClsId        = "DeveloperSupportEmail"
-        static let sClsVers      = "v1.0102"
+        static let sClsVers      = "v1.0110"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -26,17 +26,28 @@ struct DeveloperSupportEmail
 
     // App Data field(s):
 
+#if os(macOS)
+    private var sAppOSName:String                 = "MacOS"
+    private var sAppOSVersion:String              = "\(ProcessInfo.processInfo.operatingSystemVersionString)"
+    private var sAppOSHostModel:String            = "HostName: \(ProcessInfo.processInfo.hostName)"
+#elseif os(iOS)
+    private var sAppOSName:String                 = "iOS (iPadOS or iPhone)"
+    private var sAppOSVersion:String              = "\(UIDevice.current.systemVersion)"
+    private var sAppOSHostModel:String            = "Model: \(UIDevice.current.model)"
+#endif
+
     private var sEmailToAddress:String            = "dcox@justmacapps.net"
     private var sEmailSubject:String              = "---None Supplied"
     private var sEmailBody:String
                     {"""
-                      Application Name:  \(JmXcodeBuildSettings.jmAppDisplayName)
-                      iOS Version:       \(UIDevice.current.systemVersion)
-                      Device Model:      \(UIDevice.current.model)
-                      App Version/Build: \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)
+                      Application Name:    \(JmXcodeBuildSettings.jmAppDisplayName)
+                      App Version/Build:   \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)
+                      App OS Name:         \(sAppOSName)
+                      App OS Version:      \(sAppOSVersion)
+                      App OS Device Model: \(sAppOSHostModel)
                       
                           ...App::LOG Attached...
-                     
+                      
                      """}
     
     var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
@@ -81,6 +92,7 @@ struct DeveloperSupportEmail
 
         let sEmailReplacedSubject:String = sEmailSubject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let sEmailReplacedBody:String    = sEmailBody.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+    //  let sEmailURL:String             = "mailto:\(sEmailToAddress)?subject=\(sEmailReplacedSubject)&body=\(sEmailReplacedBody)&attachment=\"\(jmAppDelegateVisitor.sAppDelegateVisitorLogToSaveFilespec ?? "")\""
         let sEmailURL:String             = "mailto:\(sEmailToAddress)?subject=\(sEmailReplacedSubject)&body=\(sEmailReplacedBody)"
 
         self.xcgLogMsg("\(sCurrMethodDisp) Sending 'sEmailURL' of [\(String(describing: sEmailURL))]...")
