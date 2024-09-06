@@ -10,6 +10,10 @@ import Foundation
 import Combine
 import SwiftUI
 
+#if os(iOS)
+import UIKit
+#endif
+
 struct ContentView: View 
 {
     
@@ -17,7 +21,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1004"
+        static let sClsVers      = "v1.1007"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -45,7 +49,7 @@ struct ContentView: View
 
                    var bDidAppCrash:Bool                    = false
            private var sAppExecutionButtonText:String       = "App::-N/A-"
-           private var sAppEcecutionAlertText:String        = "Do you want to 'send' the App LOG data?"
+           private var sAppExecutionAlertText:String        = "Do you want to 'send' the App LOG data?"
     @State private var isAppExecutionShowing:Bool           = false
 
     @State private var cContentViewRefreshButtonPresses:Int = 0
@@ -67,15 +71,15 @@ struct ContentView: View
         if (bDidAppCrash == false)
         {
 
-            sAppExecutionButtonText = "App::Send 'success' Log to Developers..."
-            sAppEcecutionAlertText  = "Do you want to 'send' the App execution 'success' LOG data to the Developers?"
+            sAppExecutionButtonText = "Share the App 'success' Log with Developers..."
+            sAppExecutionAlertText  = "Do you want to 'send' the App execution 'success' LOG data to the Developers?"
 
         }
         else
         {
 
-            sAppExecutionButtonText = "App::Send CRASH Log to Developers..."
-            sAppEcecutionAlertText  = "Do you want to 'send' the App execution 'crash' LOG data to the Developers?"
+            sAppExecutionButtonText = "Share the App CRASH Log with Developers..."
+            sAppExecutionAlertText  = "Do you want to 'send' the App execution 'crash' LOG data to the Developers?"
 
         }
 
@@ -225,35 +229,52 @@ struct ContentView: View
                 }
             
             Spacer()
-
-            Button(sAppExecutionButtonText)
+            
+            if #available(iOS 16.0, *)
             {
                 
-                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionButtonText)'...")
-
-                self.isAppExecutionShowing.toggle()
+                ShareLink(item:    jmAppDelegateVisitor.urlAppDelegateVisitorLogToSaveFilespec!,
+                          subject: Text(sAppExecutionButtonText),
+                          message: Text("The App LOG is attached...")
+                         )
+                {
+                    Label("Tap to \(sAppExecutionButtonText)", systemImage:"square.and.arrow.up")
+                }
 
             }
-            .alert(sAppEcecutionAlertText, isPresented:$isAppExecutionShowing)
+            else
             {
-                Button("Cancel", role:.cancel)
+                
+                Button("Tap to \(sAppExecutionButtonText)")
                 {
-                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
+                    
+                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionButtonText)'...")
+
+                    self.isAppExecutionShowing.toggle()
+
                 }
-                Button("Ok", role:.destructive)
+                .alert(sAppExecutionAlertText, isPresented:$isAppExecutionShowing)
                 {
-                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
+                    Button("Cancel", role:.cancel)
+                    {
+                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
+                    }
+                    Button("Ok", role:.destructive)
+                    {
+                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
 
-                    let emailToDevs = DeveloperSupportEmail(sEmailSubject:sAppExecutionButtonText)
+                        let emailToDevs = DeveloperSupportEmail(sEmailSubject:sAppExecutionButtonText)
 
-                    emailToDevs.sendEmailToDevelopersViaURL(openURL:openURL)
+                        emailToDevs.sendEmailToDevelopersViaURL(openURL:openURL)
+                    }
                 }
+                .controlSize(.regular)
+                .background(Color(red: 0, green: 0.5, blue: 0.5))
+                .foregroundStyle(.white)
+                .buttonStyle(.borderedProminent)
+
             }
-            .controlSize(.regular)
-            .background(Color(red: 0, green: 0.5, blue: 0.5))
-            .foregroundStyle(.white)
-            .buttonStyle(.borderedProminent)
-
+                
             Spacer()
             
             Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
