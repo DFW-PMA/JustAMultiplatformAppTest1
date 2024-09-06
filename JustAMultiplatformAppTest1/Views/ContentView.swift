@@ -17,7 +17,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.0901"
+        static let sClsVers      = "v1.1002"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -41,6 +41,11 @@ struct ContentView: View
 
 #endif
 
+                   var bDidAppCrash:Bool                    = false
+           private var sAppExecutionButtonText:String       = "App::-N/A-"
+           private var sAppEcecutionAlertText:String        = "Do you want to 'send' the App LOG data?"
+    @State private var isAppExecutionShowing:Bool           = false
+
     @State private var cContentViewRefreshButtonPresses:Int = 0
 
     @State private var shouldContentViewShowAlert:Bool      = false
@@ -55,9 +60,26 @@ struct ContentView: View
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
+        bDidAppCrash = checkIfAppDidCrash()
+
+        if (bDidAppCrash == false)
+        {
+
+            sAppExecutionButtonText = "App::Send 'success' Log to Developers..."
+            sAppEcecutionAlertText  = "Do you want to 'send' the App execution 'success' LOG data to the Developers?"
+
+        }
+        else
+        {
+
+            sAppExecutionButtonText = "App::Send CRASH Log to Developers..."
+            sAppEcecutionAlertText  = "Do you want to 'send' the App execution 'crash' LOG data to the Developers?"
+
+        }
+
         // Exit...
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'bDidAppCrash' is [\(bDidAppCrash)]...")
 
         return
 
@@ -201,6 +223,33 @@ struct ContentView: View
                 }
             
             Spacer()
+
+            Button(sAppExecutionButtonText)
+            {
+                
+                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionButtonText)'...")
+
+                self.isAppExecutionShowing.toggle()
+
+            }
+            .alert(sAppEcecutionAlertText, isPresented:$isAppExecutionShowing)
+            {
+                Button("Cancel", role:.cancel)
+                {
+                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
+                }
+                Button("Ok", role:.destructive)
+                {
+                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
+                //  UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                }
+            }
+            .controlSize(.regular)
+            .background(Color(red: 0, green: 0.5, blue: 0.5))
+            .foregroundStyle(.white)
+            .buttonStyle(.borderedProminent)
+
+            Spacer()
             
             Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
                 .italic()
@@ -217,7 +266,7 @@ struct ContentView: View
                 
                 self.cContentViewRefreshButtonPresses += 1
                 
-                let _ = xcgLogMsg("...\(ClassInfo.sClsDisp),ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
+                let _ = xcgLogMsg("...\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
 
             }
             .controlSize(.regular)
@@ -231,6 +280,28 @@ struct ContentView: View
         .padding()
         
     }
+
+    func checkIfAppDidCrash() -> Bool
+    {
+  
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) 'jmAppDelegateVisitor' is [\(String(describing: jmAppDelegateVisitor))] - details are [\(jmAppDelegateVisitor.toString())]...")
+  
+        let bDidAppCrashOnLastRun:Bool = jmAppDelegateVisitor.bWasAppCrashFilePresentAtStartup
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) 'bDidAppCrashOnLastRun' is [\(String(describing: bDidAppCrashOnLastRun))]...")
+        
+        // Exit...
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'bDidAppCrashOnLastRun' is [\(bDidAppCrashOnLastRun)]...")
+  
+        return bDidAppCrashOnLastRun
+  
+    }   // End of checkIfAppDidCrash().
 
 }
 
