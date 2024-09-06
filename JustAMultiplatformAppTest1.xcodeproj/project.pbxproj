@@ -77,6 +77,8 @@
 		F0D17B922C52E951000E5A52 /* SettingsSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */; };
 		F0D17B932C52E951000E5A52 /* LogFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B912C52E951000E5A52 /* LogFileView.swift */; };
 		F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */; };
+		F0EF628B2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */; };
+		F0EF628C2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,7 @@
 		F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSingleView.swift; sourceTree = "<group>"; };
 		F0D17B912C52E951000E5A52 /* LogFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFileView.swift; sourceTree = "<group>"; };
 		F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmAppDelegateVisitor.swift; sourceTree = "<group>"; };
+		F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperSupportEmail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,7 @@
 		F0289D2C2C53D920001B19CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */,
 				F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */,
 				F0289D312C53D98D001B19CD /* HelpBasicMode.swift */,
 			);
@@ -403,6 +407,7 @@
 				F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */,
 				F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */,
 				F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */,
+				F0EF628B2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */,
 				F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */,
 				F0D17B8A2C52E414000E5A52 /* JmStringExtensions.swift in Sources */,
 			);
@@ -420,6 +425,7 @@
 				F0BCCC5C2C820EF1007EA382 /* LogFileView.swift in Sources */,
 				F0BCCC5D2C820EF1007EA382 /* HelpBasicView.swift in Sources */,
 				F0BCCC5E2C820EF1007EA382 /* SettingsSingleView.swift in Sources */,
+				F0EF628C2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */,
 				F0BCCC602C820EF1007EA382 /* JmFileIO.swift in Sources */,
 				F0BCCC612C820EF1007EA382 /* JmUserDefaults.swift in Sources */,
 				F029E0B62C82386D00FC96B9 /* SettingsSingleViewIos.swift in Sources */,
@@ -586,7 +592,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.04.24C250;
+				CURRENT_PROJECT_VERSION = 10.05.24C250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -623,7 +629,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.04.24C250;
+				CURRENT_PROJECT_VERSION = 10.05.24C250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -659,7 +665,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.04.24C250;
+				CURRENT_PROJECT_VERSION = 10.05.24C250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -702,7 +708,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.04.24C250;
+				CURRENT_PROJECT_VERSION = 10.05.24C250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;

@@ -17,7 +17,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1002"
+        static let sClsVers      = "v1.1004"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -28,6 +28,8 @@ struct ContentView: View
 //  // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
 //
 //  @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
+
+    @Environment(\.openURL) var openURL
 
     // App Data field(s):
 
@@ -100,7 +102,7 @@ struct ContentView: View
     var body: some View 
     {
 
-        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppCopyright)...")
+        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)...")
         
         VStack 
         {
@@ -241,7 +243,10 @@ struct ContentView: View
                 Button("Ok", role:.destructive)
                 {
                     let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
-                //  UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+
+                    let emailToDevs = DeveloperSupportEmail(sEmailSubject:sAppExecutionButtonText)
+
+                    emailToDevs.sendEmailToDevelopersViaURL(openURL:openURL)
                 }
             }
             .controlSize(.regular)

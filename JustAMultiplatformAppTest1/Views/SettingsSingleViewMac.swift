@@ -15,7 +15,7 @@ struct SettingsSingleViewMac: View
     {
         
         static let sClsId        = "SettingsSingleViewMac"
-        static let sClsVers      = "v1.0102"
+        static let sClsVers      = "v1.0103"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -62,7 +62,7 @@ struct SettingsSingleViewMac: View
     var body: some View 
     {
         
-        let _ = self.xcgLogMsg("...'SettingsSingleViewMac(.swift):body'...")
+        let _ = self.xcgLogMsg("...'SettingsSingleViewMac(.swift):body' \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)...")
 
         VStack(alignment:.leading)              // VStack #1
         {

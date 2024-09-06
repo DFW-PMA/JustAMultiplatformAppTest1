@@ -17,7 +17,7 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0610"
+        static let sClsVers      = "v1.0611"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
         static let bClsTrace     = true
@@ -63,7 +63,7 @@ struct AppAboutView: View
     var body: some View 
     {
         
-        let _ = self.xcgLogMsg("...'AppAboutView(.swift):body'...")
+        let _ = self.xcgLogMsg("...'AppAboutView(.swift):body' \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)...")
 
         VStack
         {
