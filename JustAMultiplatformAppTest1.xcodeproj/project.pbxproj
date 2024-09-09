@@ -49,6 +49,12 @@
 		F091A2892C8F73DD00FB85D5 /* RestURLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2822C8F6FEF00FB85D5 /* RestURLEndpoint.swift */; };
 		F091A28A2C8F73DD00FB85D5 /* RestURLProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2832C8F6FEF00FB85D5 /* RestURLProcessor.swift */; };
 		F091A28B2C8F73DD00FB85D5 /* RestURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2812C8F6FEF00FB85D5 /* RestURLResponse.swift */; };
+		F091A28E2C8F812F00FB85D5 /* AppLogUploadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A28C2C8F812F00FB85D5 /* AppLogUploadItem.swift */; };
+		F091A28F2C8F813000FB85D5 /* AppLogUploadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A28C2C8F812F00FB85D5 /* AppLogUploadItem.swift */; };
+		F091A2902C8F813000FB85D5 /* AppLogUploadProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A28D2C8F812F00FB85D5 /* AppLogUploadProcessor.swift */; };
+		F091A2912C8F813000FB85D5 /* AppLogUploadProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A28D2C8F812F00FB85D5 /* AppLogUploadProcessor.swift */; };
+		F091A2952C8F865800FB85D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F091A2942C8F865700FB85D5 /* LaunchScreen.storyboard */; };
+		F091A2962C8F865800FB85D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F091A2942C8F865700FB85D5 /* LaunchScreen.storyboard */; };
 		F0981DB42C52C5AE0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0981DB32C52C5AD0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift */; };
 		F0A443392C498ED6005EEE81 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */; };
@@ -132,6 +138,11 @@
 		F091A2812C8F6FEF00FB85D5 /* RestURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLResponse.swift; sourceTree = "<group>"; };
 		F091A2822C8F6FEF00FB85D5 /* RestURLEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLEndpoint.swift; sourceTree = "<group>"; };
 		F091A2832C8F6FEF00FB85D5 /* RestURLProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLProcessor.swift; sourceTree = "<group>"; };
+		F091A28C2C8F812F00FB85D5 /* AppLogUploadItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLogUploadItem.swift; sourceTree = "<group>"; };
+		F091A28D2C8F812F00FB85D5 /* AppLogUploadProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLogUploadProcessor.swift; sourceTree = "<group>"; };
+		F091A2922C8F849C00FB85D5 /* JustAMultiplatformAppTest1-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JustAMultiplatformAppTest1-Mac-Info.plist"; sourceTree = "<group>"; };
+		F091A2932C8F84E600FB85D5 /* JustAMultiplatformAppTest1-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "JustAMultiplatformAppTest1-iOS-Info.plist"; sourceTree = "<group>"; };
+		F091A2942C8F865700FB85D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0981DB32C52C5AD0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustAMultiplatformAppTest1AppGlobalInfo.swift; sourceTree = "<group>"; };
 		F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmObjCSwiftEnvBridge.swift; sourceTree = "<group>"; };
 		F0A59E042C5962E900302BA8 /* JmObjCSwiftEnvBridge-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JmObjCSwiftEnvBridge-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -183,6 +194,8 @@
 		F0289D2C2C53D920001B19CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F091A28C2C8F812F00FB85D5 /* AppLogUploadItem.swift */,
+				F091A28D2C8F812F00FB85D5 /* AppLogUploadProcessor.swift */,
 				F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */,
 				F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */,
 				F0289D312C53D98D001B19CD /* HelpBasicMode.swift */,
@@ -193,6 +206,8 @@
 		F028C5A42C486109007C459E = {
 			isa = PBXGroup;
 			children = (
+				F091A2932C8F84E600FB85D5 /* JustAMultiplatformAppTest1-iOS-Info.plist */,
+				F091A2922C8F849C00FB85D5 /* JustAMultiplatformAppTest1-Mac-Info.plist */,
 				F028C5AF2C48610A007C459E /* JustAMultiplatformAppTest1 */,
 				F028C5AE2C48610A007C459E /* Products */,
 			);
@@ -222,6 +237,7 @@
 				F091A27F2C8F68A600FB85D5 /* RestApis */,
 				F028C5BF2C486134007C459E /* Views */,
 				F028C5B42C48610B007C459E /* Assets.xcassets */,
+				F091A2942C8F865700FB85D5 /* LaunchScreen.storyboard */,
 				F0002DBF2C7C0ABF00520A9F /* README.md */,
 				F028C5B92C48610B007C459E /* JustAMultiplatformAppTest1.entitlements */,
 				F028C5B62C48610B007C459E /* Preview Content */,
@@ -356,6 +372,7 @@
 					};
 					F0BCCC772C821E34007EA382 = {
 						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
 					};
 				};
 			};
@@ -390,6 +407,7 @@
 				F028C5B82C48610B007C459E /* Preview Assets.xcassets in Resources */,
 				F0289D2F2C53D933001B19CD /* HelpBasic.html in Resources */,
 				F0002DC02C7C0ABF00520A9F /* README.md in Resources */,
+				F091A2952C8F865800FB85D5 /* LaunchScreen.storyboard in Resources */,
 				F0289D302C53D933001B19CD /* HelpBasic.md in Resources */,
 				F028C5B52C48610B007C459E /* Assets.xcassets in Resources */,
 			);
@@ -402,6 +420,7 @@
 				F0BCCC6E2C820EF1007EA382 /* Preview Assets.xcassets in Resources */,
 				F0BCCC6F2C820EF1007EA382 /* HelpBasic.html in Resources */,
 				F0BCCC702C820EF1007EA382 /* README.md in Resources */,
+				F091A2962C8F865800FB85D5 /* LaunchScreen.storyboard in Resources */,
 				F0BCCC712C820EF1007EA382 /* HelpBasic.md in Resources */,
 				F0BCCC722C820EF1007EA382 /* Assets.xcassets in Resources */,
 			);
@@ -435,6 +454,8 @@
 				F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */,
 				F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */,
 				F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */,
+				F091A28E2C8F812F00FB85D5 /* AppLogUploadItem.swift in Sources */,
+				F091A2902C8F813000FB85D5 /* AppLogUploadProcessor.swift in Sources */,
 				F0EF628B2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */,
 				F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */,
 				F0D17B8A2C52E414000E5A52 /* JmStringExtensions.swift in Sources */,
@@ -445,6 +466,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F091A28F2C8F813000FB85D5 /* AppLogUploadItem.swift in Sources */,
+				F091A2912C8F813000FB85D5 /* AppLogUploadProcessor.swift in Sources */,
 				F091A2882C8F73DD00FB85D5 /* RestURLData.swift in Sources */,
 				F091A2892C8F73DD00FB85D5 /* RestURLEndpoint.swift in Sources */,
 				F091A28A2C8F73DD00FB85D5 /* RestURLProcessor.swift in Sources */,
@@ -631,6 +654,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "JustAMultiplatformAppTest1-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest1;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved.";
@@ -668,6 +692,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "JustAMultiplatformAppTest1-Mac-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest1;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved.";
@@ -704,6 +729,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "JustAMultiplatformAppTest1-iOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest1;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved.";
@@ -747,6 +773,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "JustAMultiplatformAppTest1-iOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = JustAMultiplatformAppTest1;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved.";
@@ -775,6 +802,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ONLY_ACTIVE_ARCH = NO;
@@ -782,6 +810,8 @@
 				SDKROOT = driverkit;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -789,6 +819,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ONLY_ACTIVE_ARCH = NO;
@@ -796,6 +827,7 @@
 				SDKROOT = driverkit;
 				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
