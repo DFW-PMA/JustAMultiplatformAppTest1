@@ -156,7 +156,7 @@ class RestURLResponse: NSObject
     private func xcgLogMsg(_ sMessage:String)
     {
 
-        if (self.bAppDelegateVisitorLogFilespecIsUsable == true)
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
         {
 
             self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
