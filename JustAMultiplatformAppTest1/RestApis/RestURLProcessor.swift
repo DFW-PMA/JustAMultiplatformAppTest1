@@ -111,6 +111,13 @@ class RestURLProcessor: NSObject
 
     }   // End of private func xcgLogMsg().
 
+    func generateURLRequestBoundaryString() -> String
+    {
+
+        return "Web-Form-Boundary-\(NSUUID().uuidString)";
+
+    } // End of func generateURLRequestBoundaryString().
+
     func handleURLRequestWithJsonResponse(reset: Bool) -> RestURLResponse
     {
         
