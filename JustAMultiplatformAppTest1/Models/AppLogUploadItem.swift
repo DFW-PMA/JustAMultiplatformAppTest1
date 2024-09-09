@@ -15,7 +15,7 @@ public class AppLogUploadItem: NSObject
     {
 
         static let sClsId        = "AppLogUploadItem"
-        static let sClsVers      = "v1.0101"
+        static let sClsVers      = "v1.0102"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2018-2024. All rights reserved."
         static let bClsTrace     = true
@@ -35,6 +35,11 @@ public class AppLogUploadItem: NSObject
     }
 
     var completed:Bool
+    {
+        didSet { postNotificationOfChanges() }
+    }
+
+    var sAppLogUploadFilespec:String
     {
         didSet { postNotificationOfChanges() }
     }
@@ -62,6 +67,7 @@ public class AppLogUploadItem: NSObject
         asToString.append("'id': [\(String(describing: self.id))],")
         asToString.append("'title': [\(self.title)],")
         asToString.append("'completed': [\(self.completed)],")
+        asToString.append("'sAppLogUploadFilespec': [\(self.sAppLogUploadFilespec)],")
         asToString.append("'urlResponse': [\(self.urlResponse)],")
         asToString.append("]")
 
