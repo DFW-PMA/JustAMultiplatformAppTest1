@@ -41,6 +41,10 @@
 		F03240302C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift */; };
 		F042521C2C59356600EA22D8 /* CalledObjCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F04252192C59356600EA22D8 /* CalledObjCModule.m */; };
 		F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */; };
+		F091A2842C8F6FEF00FB85D5 /* RestURLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2802C8F6FEE00FB85D5 /* RestURLData.swift */; };
+		F091A2852C8F6FEF00FB85D5 /* RestURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2812C8F6FEF00FB85D5 /* RestURLResponse.swift */; };
+		F091A2862C8F6FEF00FB85D5 /* RestURLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2822C8F6FEF00FB85D5 /* RestURLEndpoint.swift */; };
+		F091A2872C8F6FEF00FB85D5 /* RestURLProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091A2832C8F6FEF00FB85D5 /* RestURLProcessor.swift */; };
 		F0981DB42C52C5AE0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0981DB32C52C5AD0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift */; };
 		F0A443392C498ED6005EEE81 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */; };
@@ -120,6 +124,10 @@
 		F042521A2C59356600EA22D8 /* CalledObjCModule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CalledObjCModule-Bridging-Header.h"; sourceTree = "<group>"; };
 		F042521B2C59356600EA22D8 /* CalledObjCModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalledObjCModule.h; sourceTree = "<group>"; };
 		F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmXcodeBuildSettings.swift; sourceTree = "<group>"; };
+		F091A2802C8F6FEE00FB85D5 /* RestURLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLData.swift; sourceTree = "<group>"; };
+		F091A2812C8F6FEF00FB85D5 /* RestURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLResponse.swift; sourceTree = "<group>"; };
+		F091A2822C8F6FEF00FB85D5 /* RestURLEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLEndpoint.swift; sourceTree = "<group>"; };
+		F091A2832C8F6FEF00FB85D5 /* RestURLProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestURLProcessor.swift; sourceTree = "<group>"; };
 		F0981DB32C52C5AD0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustAMultiplatformAppTest1AppGlobalInfo.swift; sourceTree = "<group>"; };
 		F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmObjCSwiftEnvBridge.swift; sourceTree = "<group>"; };
 		F0A59E042C5962E900302BA8 /* JmObjCSwiftEnvBridge-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JmObjCSwiftEnvBridge-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 				F0289D2C2C53D920001B19CD /* Models */,
 				F04252182C59352800EA22D8 /* Objective-C */,
 				F0289D272C53D84A001B19CD /* Resources */,
+				F091A27F2C8F68A600FB85D5 /* RestApis */,
 				F028C5BF2C486134007C459E /* Views */,
 				F028C5B42C48610B007C459E /* Assets.xcassets */,
 				F0002DBF2C7C0ABF00520A9F /* README.md */,
@@ -248,6 +257,17 @@
 				F04252192C59356600EA22D8 /* CalledObjCModule.m */,
 			);
 			path = "Objective-C";
+			sourceTree = "<group>";
+		};
+		F091A27F2C8F68A600FB85D5 /* RestApis */ = {
+			isa = PBXGroup;
+			children = (
+				F091A2802C8F6FEE00FB85D5 /* RestURLData.swift */,
+				F091A2822C8F6FEF00FB85D5 /* RestURLEndpoint.swift */,
+				F091A2832C8F6FEF00FB85D5 /* RestURLProcessor.swift */,
+				F091A2812C8F6FEF00FB85D5 /* RestURLResponse.swift */,
+			);
+			path = RestApis;
 			sourceTree = "<group>";
 		};
 		F0D17B862C52E3D5000E5A52 /* JmUtils */ = {
@@ -392,10 +412,13 @@
 			files = (
 				F0D17B8F2C52E942000E5A52 /* HelpCommands.swift in Sources */,
 				F029E0B72C82386D00FC96B9 /* SettingsSingleViewMac.swift in Sources */,
+				F091A2872C8F6FEF00FB85D5 /* RestURLProcessor.swift in Sources */,
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
 				F0289D332C53D98D001B19CD /* HelpBasicMode.swift in Sources */,
+				F091A2862C8F6FEF00FB85D5 /* RestURLEndpoint.swift in Sources */,
 				F0981DB42C52C5AE0054CE7C /* JustAMultiplatformAppTest1AppGlobalInfo.swift in Sources */,
 				F042521C2C59356600EA22D8 /* CalledObjCModule.m in Sources */,
+				F091A2842C8F6FEF00FB85D5 /* RestURLData.swift in Sources */,
 				F0D17B932C52E951000E5A52 /* LogFileView.swift in Sources */,
 				F0289D2B2C53D863001B19CD /* HelpBasicView.swift in Sources */,
 				F0D17B922C52E951000E5A52 /* SettingsSingleView.swift in Sources */,
@@ -403,6 +426,7 @@
 				F0D17B892C52E414000E5A52 /* JmFileIO.swift in Sources */,
 				F0289D292C53D85B001B19CD /* JmUserDefaults.swift in Sources */,
 				F0D17B8D2C52E572000E5A52 /* AppInfoCommands.swift in Sources */,
+				F091A2852C8F6FEF00FB85D5 /* RestURLResponse.swift in Sources */,
 				F028C5B12C48610A007C459E /* JustAMultiplatformAppTest1App.swift in Sources */,
 				F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */,
 				F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */,
@@ -592,7 +616,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.11.24C250;
+				CURRENT_PROJECT_VERSION = 11.01.24C253;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -629,7 +653,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.11.24C250;
+				CURRENT_PROJECT_VERSION = 11.01.24C253;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -665,7 +689,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.11.24C250;
+				CURRENT_PROJECT_VERSION = 11.01.24C253;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -708,7 +732,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10.11.24C250;
+				CURRENT_PROJECT_VERSION = 11.01.24C253;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
