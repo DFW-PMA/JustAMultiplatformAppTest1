@@ -15,7 +15,7 @@ class AppLogUploadProcessor: NSObject
     {
 
         static let sClsId          = "AppLogUploadProcessor"
-        static let sClsVers        = "v1.0105"
+        static let sClsVers        = "v1.0201"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (c) JustMacApps 2018-2024. All rights reserved."
         static let bClsTrace       = true
@@ -373,175 +373,175 @@ class AppLogUploadProcessor: NSObject
         let sZipTaskExec   = "/usr/bin/zip"
         let pipeStdOut     = Pipe()
         let pipeStdErr     = Pipe()
-        let processZipTask = Process()
-
-        processZipTask.executableURL  = URL(fileURLWithPath: sZipTaskExec)
-        processZipTask.standardOutput = pipeStdOut
-        processZipTask.standardError  = pipeStdErr
-
-        let asZipTaskParmsPrefix =
-        [
-            "-r9",
-            "\(sZipFilespec)",
-            "\(sZipFromDir)"
-        ]
-
-        let asZipTaskParmsSuffix =
-        [
-            "@"
-        ]
-
-        //  "--include",
-        //  "*.swift",
-        //  "*.applescript",
-
-        var bZipParmsAdded = false
-        var asZipTaskParms = asZipTaskParmsPrefix
-
-        if (asInclude       != nil &&
-            asInclude!.count > 0)
-        {
-
-            asZipTaskParms.append("--include")
-
-            asZipTaskParms += asInclude!
-
-            bZipParmsAdded = true
-
-        }
-        else
-        {
-
-            let sCxExtTxt:String? = CxDataRepo.sharedCxDataRepo.retrieveCxDataToCacheFromCxDataRepo(sCxDataCacheKey: "CxExt.txt") as? String
-
-            if (sCxExtTxt        != nil &&
-                sCxExtTxt!.count > 0)
-            {
-
-                let asCxExtTxtInclude = sCxExtTxt!.components(separatedBy: ";")
-
-                 if (asCxExtTxtInclude.count > 0)
-                {
-
-                    asZipTaskParms.append("--include")
-
-                    asZipTaskParms += asCxExtTxtInclude
-
-                    bZipParmsAdded = true
-
-                }
-
-            }
-
-        }
-
-        if (asExclude       != nil &&
-            asExclude!.count > 0)
-        {
-
-            asZipTaskParms.append("--exclude")
-
-            asZipTaskParms += asExclude!
-
-            bZipParmsAdded = true
-
-        }
-
-        if (bZipParmsAdded == true)
-        {
-
-            asZipTaskParms.append(contentsOf: asZipTaskParmsSuffix)
-
-        }
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Create ZipFile [\(sZipFilespec)] with command parameters of [\(asZipTaskParms)]...")
-
-        var bProcessZipTaskOk = true
-
-        processZipTask.arguments = asZipTaskParms
-
-        do
-        {
-
-            try processZipTask.run()
-
-            bProcessZipTaskOk = true
-
-        }
-        catch let error as NSError
-        {
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Failed to create ZipFile [\(sZipFilespec)] - Error: [\(error.domain)]!")
-
-            bProcessZipTaskOk = false
-
-        }
-
-        let dataStdOut = pipeStdOut.fileHandleForReading.readDataToEndOfFile()
-        let sStdOutput = String(decoding: dataStdOut, as: UTF8.self)
-
-        let dataStdErr = pipeStdErr.fileHandleForReading.readDataToEndOfFile()
-        let sStdError  = String(decoding: dataStdErr, as: UTF8.self)
-
-        self.xcgLogMsg("\(sCurrMethodDisp) ZipFile process 'stdout' was [\(sStdOutput)]...")
-        self.xcgLogMsg("\(sCurrMethodDisp) ZipFile process 'stderr' was [\(sStdError)]...")
-
-        if (bProcessZipTaskOk == false)
-        {
-
-            // Exit:
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
-
-            return false
-
-        }
-
-        if (JmFileIO.fileExists(sFilespec: sZipFilespec) == false)
-        {
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Failed to create ZipFile [\(sZipFilespec)] - the file does NOT exist!")
-
-            // Exit:
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
-
-            return false
-
-        }
-
-        let nsDictFileAttributes:NSDictionary? = try? FileManager.default.attributesOfItem(atPath: sZipFilespec) as NSDictionary
-
-        if (nsDictFileAttributes == nil)
-        {
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Creation of the 'sZipFilespec' [\(sZipFilespec)] failed - unable to retrieve the File attributes - Error!")
-
-            // Exit:
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
-
-            return false
-
-        }
-
-        if (nsDictFileAttributes!.fileType() != "NSFileTypeRegular")
-        {
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Creation of the 'sZipFilespec' [\(sZipFilespec)] failed - it is NOT a valid file - Error!")
-
-            // Exit:
-
-            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
-
-            return false
-
-        }
-
-        let cZipFileSize:UInt64            = nsDictFileAttributes!.fileSize()
-        let sScanProcessorStatusMsg:String = "Successfully created the ZipFile [\(sZipFilespec)] - the file exists and contains (\(cZipFileSize)) byte(s)..."
-
-        self.xcgLogMsg("\(sCurrMethodDisp) \(sScanProcessorStatusMsg)")
+//        let processZipTask = Process()
+//
+//        processZipTask.executableURL  = URL(fileURLWithPath: sZipTaskExec)
+//        processZipTask.standardOutput = pipeStdOut
+//        processZipTask.standardError  = pipeStdErr
+//
+//        let asZipTaskParmsPrefix =
+//        [
+//            "-r9",
+//            "\(sZipFilespec)",
+//            "\(sZipFromDir)"
+//        ]
+//
+//        let asZipTaskParmsSuffix =
+//        [
+//            "@"
+//        ]
+//
+//        //  "--include",
+//        //  "*.swift",
+//        //  "*.applescript",
+//
+//        var bZipParmsAdded = false
+//        var asZipTaskParms = asZipTaskParmsPrefix
+//
+//        if (asInclude       != nil &&
+//            asInclude!.count > 0)
+//        {
+//
+//            asZipTaskParms.append("--include")
+//
+//            asZipTaskParms += asInclude!
+//
+//            bZipParmsAdded = true
+//
+//        }
+//        else
+//        {
+//
+//            let sCxExtTxt:String? = CxDataRepo.sharedCxDataRepo.retrieveCxDataToCacheFromCxDataRepo(sCxDataCacheKey: "CxExt.txt") as? String
+//
+//            if (sCxExtTxt        != nil &&
+//                sCxExtTxt!.count > 0)
+//            {
+//
+//                let asCxExtTxtInclude = sCxExtTxt!.components(separatedBy: ";")
+//
+//                 if (asCxExtTxtInclude.count > 0)
+//                {
+//
+//                    asZipTaskParms.append("--include")
+//
+//                    asZipTaskParms += asCxExtTxtInclude
+//
+//                    bZipParmsAdded = true
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//        if (asExclude       != nil &&
+//            asExclude!.count > 0)
+//        {
+//
+//            asZipTaskParms.append("--exclude")
+//
+//            asZipTaskParms += asExclude!
+//
+//            bZipParmsAdded = true
+//
+//        }
+//
+//        if (bZipParmsAdded == true)
+//        {
+//
+//            asZipTaskParms.append(contentsOf: asZipTaskParmsSuffix)
+//
+//        }
+//
+//        self.xcgLogMsg("\(sCurrMethodDisp) Create ZipFile [\(sZipFilespec)] with command parameters of [\(asZipTaskParms)]...")
+//
+//        var bProcessZipTaskOk = true
+//
+//        processZipTask.arguments = asZipTaskParms
+//
+//        do
+//        {
+//
+//            try processZipTask.run()
+//
+//            bProcessZipTaskOk = true
+//
+//        }
+//        catch let error as NSError
+//        {
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Failed to create ZipFile [\(sZipFilespec)] - Error: [\(error.domain)]!")
+//
+//            bProcessZipTaskOk = false
+//
+//        }
+//
+//        let dataStdOut = pipeStdOut.fileHandleForReading.readDataToEndOfFile()
+//        let sStdOutput = String(decoding: dataStdOut, as: UTF8.self)
+//
+//        let dataStdErr = pipeStdErr.fileHandleForReading.readDataToEndOfFile()
+//        let sStdError  = String(decoding: dataStdErr, as: UTF8.self)
+//
+//        self.xcgLogMsg("\(sCurrMethodDisp) ZipFile process 'stdout' was [\(sStdOutput)]...")
+//        self.xcgLogMsg("\(sCurrMethodDisp) ZipFile process 'stderr' was [\(sStdError)]...")
+//
+//        if (bProcessZipTaskOk == false)
+//        {
+//
+//            // Exit:
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
+//
+//            return false
+//
+//        }
+//
+//        if (JmFileIO.fileExists(sFilespec: sZipFilespec) == false)
+//        {
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Failed to create ZipFile [\(sZipFilespec)] - the file does NOT exist!")
+//
+//            // Exit:
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
+//
+//            return false
+//
+//        }
+//
+//        let nsDictFileAttributes:NSDictionary? = try? FileManager.default.attributesOfItem(atPath: sZipFilespec) as NSDictionary
+//
+//        if (nsDictFileAttributes == nil)
+//        {
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Creation of the 'sZipFilespec' [\(sZipFilespec)] failed - unable to retrieve the File attributes - Error!")
+//
+//            // Exit:
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
+//
+//            return false
+//
+//        }
+//
+//        if (nsDictFileAttributes!.fileType() != "NSFileTypeRegular")
+//        {
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Creation of the 'sZipFilespec' [\(sZipFilespec)] failed - it is NOT a valid file - Error!")
+//
+//            // Exit:
+//
+//            self.xcgLogMsg("\(sCurrMethodDisp) Exiting with Error!")
+//
+//            return false
+//
+//        }
+//
+//        let cZipFileSize:UInt64            = nsDictFileAttributes!.fileSize()
+//        let sScanProcessorStatusMsg:String = "Successfully created the ZipFile [\(sZipFilespec)] - the file exists and contains (\(cZipFileSize)) byte(s)..."
+//
+//        self.xcgLogMsg("\(sCurrMethodDisp) \(sScanProcessorStatusMsg)")
 
         // Exit:
 

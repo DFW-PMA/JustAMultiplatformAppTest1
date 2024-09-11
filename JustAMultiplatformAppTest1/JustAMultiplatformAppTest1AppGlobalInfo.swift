@@ -12,7 +12,7 @@ struct AppGlobalInfo
 {
     
     static let sGlobalInfoAppId:String                   = "JustAMultiplatformAppTest1"
-    static let sGlobalInfoAppVers:String                 = "v1.0604"
+    static let sGlobalInfoAppVers:String                 = "v1.0701"
     static let sGlobalInfoAppDisp:String                 = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
     static let sGlobalInfoAppCopyRight:String            = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
     static let sGlobalInfoAppLogFilespec:String          = "JustAMultiplatformAppTest1.log"
@@ -34,5 +34,7 @@ struct AppGlobalInfo
 
 #endif
     
+    static let bPerformAppObjCSwiftBridgeTest:Bool       = false
+
 }
 

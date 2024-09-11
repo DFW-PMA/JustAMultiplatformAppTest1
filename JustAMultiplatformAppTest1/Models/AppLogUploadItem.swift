@@ -15,7 +15,7 @@ public class AppLogUploadItem: NSObject
     {
 
         static let sClsId        = "AppLogUploadItem"
-        static let sClsVers      = "v1.0102"
+        static let sClsVers      = "v1.0201"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2018-2024. All rights reserved."
         static let bClsTrace     = true
@@ -83,10 +83,11 @@ public class AppLogUploadItem: NSObject
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         
-        self.id          = UUID().uuidString
-        self.title       = ""
-        self.completed   = false
-        self.urlResponse = RestURLResponse()
+        self.id                    = UUID().uuidString
+        self.title                 = ""
+        self.completed             = false
+        self.urlResponse           = RestURLResponse()
+        self.sAppLogUploadFilespec = ""
 
         super.init()
 
