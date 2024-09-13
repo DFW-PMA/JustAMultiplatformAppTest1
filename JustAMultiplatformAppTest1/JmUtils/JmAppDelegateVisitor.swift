@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0801"
+        static let sClsVers        = "v1.0802"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -406,7 +406,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
             }
 
-            try FileManager.default.createDirectory(atPath: sAppDelegateVisitorLogFilepath, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: self.sAppDelegateVisitorLogFilepath, withIntermediateDirectories: true, attributes: nil)
 
             let sContents = "\(sCurrMethodDisp) Invoked - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]..."
 
