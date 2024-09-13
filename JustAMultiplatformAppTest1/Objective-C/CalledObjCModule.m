@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DefinesObjCOverrides.h"
+
 #import "CalledObjCModule.h"
 
 #import "JmObjCSwiftEnvBridge-Bridging-Header.h"

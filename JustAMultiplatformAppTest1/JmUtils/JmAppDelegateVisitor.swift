@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0802"
+        static let sClsVers        = "v1.0901"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -224,17 +224,25 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         if (AppGlobalInfo.bPerformAppObjCSwiftBridgeTest == true)
         {
 
-            let calledObjCModule = CalledObjCModule()
+            let definesObjCModule = Defines()
 
             self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
 
-            calledObjCModule.initInstance()
+            definesObjCModule.initInstance()
 
             self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
 
+            let calledObjCModule = CalledObjCModule()
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - invoking 'initInstance()' with NO parameter(s)...")
+
+            calledObjCModule.initInstance()
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - invoked 'initInstance()' with NO parameter(s)...")
+
             let sInternalVariable:String? = calledObjCModule.getInternalVariable()
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
 
             let sHelloMessage:String = "Message from 'JmAppDelegateVisitor'..."
 
