@@ -21,7 +21,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1101"
+        static let sClsVers      = "v1.1103"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -371,16 +371,34 @@ struct ContentView: View
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
-        // Prepare to 'upload' the AppLog file...
+        // Prepare specifics to 'upload' the AppLog file...
 
-        let urlAppDelegateVisitorLogFilespec:URL?     = URL(string:sAppExecutionLogToUpload)!
-        let sAppDelegateVisitorLogFilespec:String!    = urlAppDelegateVisitorLogFilespec?.path
-        let sAppDelegateVisitorLogFilepath:String!    = urlAppDelegateVisitorLogFilespec?.path
-        let sAppDelegateVisitorLogFilenameExt:String! = urlAppDelegateVisitorLogFilespec?.lastPathComponent
+        var urlAppDelegateVisitorLogFilepath:URL?     = nil
+        var urlAppDelegateVisitorLogFilespec:URL?     = nil
+        var sAppDelegateVisitorLogFilespec:String!    = nil
+        var sAppDelegateVisitorLogFilepath:String!    = nil
+        var sAppDelegateVisitorLogFilenameExt:String! = nil
 
-        self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilespec'    (computed) is [\(String(describing: sAppDelegateVisitorLogFilespec))]...")
-        self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilepath'    (resolved #2) is [\(String(describing: sAppDelegateVisitorLogFilepath))]...")
-        self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilenameExt' (computed) is [\(String(describing: sAppDelegateVisitorLogFilenameExt))]...")
+        do 
+        {
+
+            urlAppDelegateVisitorLogFilepath  = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask ,appropriateFor: nil, create: true)
+            urlAppDelegateVisitorLogFilespec  = urlAppDelegateVisitorLogFilepath?.appendingPathComponent(sAppExecutionLogToUpload)
+            sAppDelegateVisitorLogFilespec    = urlAppDelegateVisitorLogFilespec?.path
+            sAppDelegateVisitorLogFilepath    = urlAppDelegateVisitorLogFilepath?.path
+            sAppDelegateVisitorLogFilenameExt = urlAppDelegateVisitorLogFilespec?.lastPathComponent
+
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilespec'    (computed) is [\(String(describing: sAppDelegateVisitorLogFilespec))]...")
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilepath'    (resolved #2) is [\(String(describing: sAppDelegateVisitorLogFilepath))]...")
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilenameExt' (computed) is [\(String(describing: sAppDelegateVisitorLogFilenameExt))]...")
+
+        }
+        catch
+        {
+
+            self.xcgLogMsg("[\(sCurrMethodDisp)] Failed to 'stat' item(s) in the 'path' of [.documentDirectory] - Error: \(error)...")
+
+        }
 
         // Create the AppLog's 'multipartRequestInfo' object (but WITHOUT any Data (yet))...
 

@@ -16,7 +16,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0310"
+        static let sClsVers        = "v1.0311"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -194,8 +194,8 @@ class MultipartRequestDriver: NSObject
             (self.multipartRequestInfo?.sAppUploadURL.count)! < 1)
         {
 
-            self.multipartRequestInfo?.sAppUploadURL = "http://localhost/dfwpma/file_uploads"
-        //  self.multipartRequestInfo?.sAppUploadURL = "http://justmacapps.net/dfwpma/file_uploads"
+        //  self.multipartRequestInfo?.sAppUploadURL = "http://localhost/dfwpma/file_uploads"
+            self.multipartRequestInfo?.sAppUploadURL = "http://justmacapps.net/dfwpma/file_uploads"
 
         }
 
