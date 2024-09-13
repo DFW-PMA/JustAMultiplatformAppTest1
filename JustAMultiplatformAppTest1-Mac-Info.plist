@@ -6,16 +6,6 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>justmacapps.net</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <string>true</string>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-		</dict>
 	</dict>
 </dict>
 </plist>
