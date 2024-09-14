@@ -16,7 +16,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0311"
+        static let sClsVers        = "v1.0403"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -37,6 +37,8 @@ class MultipartRequestDriver: NSObject
 
     public  var urlResponse:HTTPURLResponse?               = nil
     public  var urlResponseData:Data?                      = nil
+
+    var jmAppDelegateVisitor:JmAppDelegateVisitor          = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
     override init()
     {
@@ -59,20 +61,18 @@ class MultipartRequestDriver: NSObject
     private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
-    //  {
-    //
-    //      self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-    //
-    //  }
-    //  else
-    //  {
-    //
-    //      print("\(sMessage)")
-    //
-    //  }
-
-        print("\(sMessage)")
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
 
         // Exit:
 
@@ -113,6 +113,9 @@ class MultipartRequestDriver: NSObject
 
                 self.xcgLogMsg("\(sCurrMethodDisp) Called  'processMultipartRequest()' with a 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo))]...")
 
+            // --------------------------------------------------------------------------------------------------------
+            // NOTE: Do NOT issue a 'notify' from here (now) - 'processMultipartRequest' is now 'async'...
+            // --------------------------------------------------------------------------------------------------------
             //  let jsAppDelegate:AppDelegate? = AppDelegate.ClassSingleton.jsAppDelegate
             //
             //  if (jsAppDelegate != nil)
@@ -126,6 +129,7 @@ class MultipartRequestDriver: NSObject
             //      })
             //
             //  }
+            // --------------------------------------------------------------------------------------------------------
 
             }
 
@@ -293,6 +297,19 @@ class MultipartRequestDriver: NSObject
 
             self.multipartRequestInfo!.urlResponse     = self.urlResponse
             self.multipartRequestInfo!.urlResponseData = self.urlResponseData
+
+            let sUploadAlertDetails:String = "Status [\(String(describing: self.multipartRequestInfo!.urlResponse?.statusCode))] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
+
+            DispatchQueue.main.async
+            {
+
+                self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
+                self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
+                self.jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
+
+            }
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Triggered an upload completed 'Alert' - Details: [\(sUploadAlertDetails)]...")
 
         }
         catch

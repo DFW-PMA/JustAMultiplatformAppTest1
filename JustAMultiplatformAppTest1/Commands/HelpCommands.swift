@@ -15,7 +15,7 @@ struct HelpCommands: Commands
     {
         
         static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.0903"
+        static let sClsVers        = "v1.0904"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -35,6 +35,18 @@ struct HelpCommands: Commands
 
     var jmAppDelegateVisitor:JmAppDelegateVisitor                = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+    //  print("\(sMessage)")
+        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     var body: some Commands
     {
         
@@ -94,18 +106,6 @@ struct HelpCommands: Commands
 
     }
 
-    private func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-
-        // Exit:
-
-        return
-
-    }   // End of private func xcgLogMsg().
-
     func clearAppDelegateTraceLogFile()
     {
 
@@ -122,7 +122,7 @@ struct HelpCommands: Commands
         jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'Cleared'..."
         jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
 
-        xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
+        self.xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
 
         // Exit:
 
