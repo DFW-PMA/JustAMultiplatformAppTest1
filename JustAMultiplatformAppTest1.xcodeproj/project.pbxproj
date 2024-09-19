@@ -287,8 +287,6 @@
 			children = (
 				F07F7B932C94DB2D0094AE18 /* DefinesObjCOverrides.h */,
 				F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */,
-				F0A59E042C5962E900302BA8 /* JmObjCSwiftEnvBridge-Bridging-Header.h */,
-				F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */,
 				F042521A2C59356600EA22D8 /* CalledObjCModule-Bridging-Header.h */,
 				F042521B2C59356600EA22D8 /* CalledObjCModule.h */,
 				F04252192C59356600EA22D8 /* CalledObjCModule.m */,
@@ -315,6 +313,8 @@
 				F0289D282C53D85B001B19CD /* JmUserDefaults.swift */,
 				F0D17B872C52E414000E5A52 /* JmFileIO.swift */,
 				F0D17B882C52E414000E5A52 /* JmStringExtensions.swift */,
+				F0A59E042C5962E900302BA8 /* JmObjCSwiftEnvBridge-Bridging-Header.h */,
+				F0A59E032C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift */,
 			);
 			path = JmUtils;
 			sourceTree = "<group>";
@@ -671,7 +671,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15.01.24C260;
+				CURRENT_PROJECT_VERSION = 16.01.24C263;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -709,7 +709,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15.01.24C260;
+				CURRENT_PROJECT_VERSION = 16.01.24C263;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -746,7 +746,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15.01.24C260;
+				CURRENT_PROJECT_VERSION = 16.01.24C263;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -790,7 +790,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15.01.24C260;
+				CURRENT_PROJECT_VERSION = 16.01.24C263;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
