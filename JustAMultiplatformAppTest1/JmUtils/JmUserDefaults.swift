@@ -25,7 +25,7 @@ class JmUserDefaults: NSObject
     {
         
         static let sClsId        = "JmUserDefaults"
-        static let sClsVers      = "v1.0603"
+        static let sClsVers      = "v1.0701"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -43,6 +43,46 @@ class JmUserDefaults: NSObject
 
     var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
+    override init()
+    {
+        
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        super.init()
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)]...")
+
+        return
+
+    }   // End of override init().
+
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     @objc public func toString()->String
     {
 
@@ -71,36 +111,6 @@ class JmUserDefaults: NSObject
         return sContents
 
     }   // End of @objc public func toString().
-
-    override init()
-    {
-        
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-
-        super.init()
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)]...")
-
-        // Exit:
-
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)]...")
-
-        return
-
-    }   // End of override init().
-
-    private func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-
-        // Exit:
-
-        return
-
-    }   // End of private func xcgLogMsg().
 
     @objc func getObjectForKey(_ forKey:String = "") -> Any?
     {

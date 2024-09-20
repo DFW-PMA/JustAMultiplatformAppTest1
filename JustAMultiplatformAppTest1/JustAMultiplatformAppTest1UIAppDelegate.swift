@@ -18,7 +18,7 @@ class JustAMultiplatformAppTest1UIAppDelegate: NSObject, UIApplicationDelegate, 
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1UIAppDelegate"
-        static let sClsVers      = "v1.0201"
+        static let sClsVers      = "v1.0301"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -87,17 +87,27 @@ class JustAMultiplatformAppTest1UIAppDelegate: NSObject, UIApplicationDelegate, 
 
     }   // End of init().
         
-    public func xcgLogMsg(_ sMessage:String)
+    private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
 
         // Exit:
 
         return
 
-    }   // End of public func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
 //  func applicationWillFinishLaunching(_ aNotification: Notification) 
     func applicationWillFinishLaunchingWithOptions(_ uiApplication:UIApplication, willFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool

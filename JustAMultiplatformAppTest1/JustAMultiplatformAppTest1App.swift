@@ -16,7 +16,7 @@ struct JustAMultiplatformAppTest1App: App
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1App"
-        static let sClsVers      = "v1.0801"
+        static let sClsVers      = "v1.1001"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -42,21 +42,47 @@ struct JustAMultiplatformAppTest1App: App
 
     // App Data field(s):
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
-    
     let sAppBundlePath:String                     = Bundle.main.bundlePath
 
-    func xcgLogMsg(_ sMessage:String)
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+    init()
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of init().
+
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
 
         // Exit:
 
         return
 
-    }   // End of func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
     var body: some Scene 
     {
