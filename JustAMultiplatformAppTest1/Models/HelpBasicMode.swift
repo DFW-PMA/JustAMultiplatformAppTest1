@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+@available(iOS 14.0, *)
 enum HelpBasicMode: String, CaseIterable
 {
     

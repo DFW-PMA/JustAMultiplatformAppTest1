@@ -16,6 +16,7 @@ import Cocoa
 import UIKit
 #endif
 
+@available(iOS 14.0, *)
 @objc(JmUserDefaults)
 class JmUserDefaults: NSObject
 {
@@ -24,7 +25,7 @@ class JmUserDefaults: NSObject
     {
         
         static let sClsId        = "JmUserDefaults"
-        static let sClsVers      = "v1.0602"
+        static let sClsVers      = "v1.0603"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true

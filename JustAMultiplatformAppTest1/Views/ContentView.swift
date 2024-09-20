@@ -21,17 +21,13 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1103"
+        static let sClsVers      = "v1.1201"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
         static let bClsFileLog   = true
         
     }
-
-//  // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
-//
-//  @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
     @Environment(\.openURL) var openURL
 
@@ -94,17 +90,27 @@ struct ContentView: View
 
     }   // End of init().
 
-    func xcgLogMsg(_ sMessage:String)
+    private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
         // Exit:
 
         return
 
-    }   // End of func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
     var body: some View 
     {
@@ -296,10 +302,6 @@ struct ContentView: View
                 {
                     let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
 
-                //  let emailToDevs = DeveloperSupportEmail(sEmailSubject:sAppExecutionButtonText)
-                //
-                //  emailToDevs.sendEmailToDevelopersViaURL(openURL:openURL)
-
                     self.uploadAppLogToDevs()
 
                 }
@@ -406,7 +408,8 @@ struct ContentView: View
 
         multipartRequestInfo.bAppZipSourceToUpload    = false
         multipartRequestInfo.sAppUploadURL            = ""          // "" takes the Upload URL 'default'...
-        multipartRequestInfo.sAppUploadNotify         = ""          // This is email notification - "" defaults to all Dev(s)...
+        multipartRequestInfo.sAppUploadNotifyTo       = ""          // This is email notification - "" defaults to all Dev(s)...
+        multipartRequestInfo.sAppUploadNotifyCc       = ""          // This is email notification - "" defaults to 'none'...
         multipartRequestInfo.sAppSourceFilespec       = sAppDelegateVisitorLogFilespec
         multipartRequestInfo.sAppSourceFilename       = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppZipFilename          = "-N/A-"

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 struct AppAboutView: View 
 {
     
@@ -17,7 +17,7 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0611"
+        static let sClsVers      = "v1.0702"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
         static let bClsTrace     = true
@@ -48,17 +48,27 @@ struct AppAboutView: View
 
     }   // End of init().
 
-    func xcgLogMsg(_ sMessage:String)
+    private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
-        // Exit...
+        // Exit:
 
         return
 
-    }   // End of func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
     var body: some View 
     {
@@ -94,8 +104,6 @@ struct AppAboutView: View
                         .imageScale(.large)
 
                 }
-            //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-            //  .foregroundColor(.accentColor)
                 .padding()
 
             }   // End of HStack #1.1
@@ -153,7 +161,7 @@ struct AppAboutView: View
     
 }
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 #Preview
 {
     

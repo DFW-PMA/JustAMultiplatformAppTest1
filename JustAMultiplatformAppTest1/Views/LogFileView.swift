@@ -17,17 +17,13 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.1001"
+        static let sClsVers        = "v1.1003"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
         
     }
-
-//  // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
-//
-//  @EnvironmentObject private var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
     // App Data field(s):
 
@@ -36,8 +32,6 @@ struct LogFileView: View
     @State private var cLogFileViewAppLogClearButtonPresses:Int = 0
 
     @State private var isAppLogClearShowingAlert:Bool           = false
-    
-    var jmAppDelegateVisitor:JmAppDelegateVisitor               = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
 #if os(macOS)
 
@@ -51,17 +45,45 @@ struct LogFileView: View
 
     @State  var logFileUrl:URL?
     
-    func xcgLogMsg(_ sMessage:String)
+    var jmAppDelegateVisitor:JmAppDelegateVisitor               = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+    init()
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of init().
+
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
         // Exit:
 
         return
 
-    }   // End of func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
     var body: some View 
     {
@@ -76,7 +98,6 @@ struct LogFileView: View
 
                 Spacer()
 
-            //  Button("Dismiss") 
                 Button
                 {
 
@@ -95,8 +116,6 @@ struct LogFileView: View
                         .imageScale(.large)
 
                 }
-            //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-            //  .foregroundColor(.accentColor)
                 .padding()
 
             }   // End of HStack #1.1

@@ -15,7 +15,7 @@ struct SettingsSingleView: View
     {
         
         static let sClsId        = "SettingsSingleView"
-        static let sClsVers      = "v1.0703"
+        static let sClsVers      = "v1.0706"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -43,6 +43,28 @@ struct SettingsSingleView: View
 
     }   // End of init().
 
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     var body: some View 
     {
         
@@ -60,18 +82,6 @@ struct SettingsSingleView: View
 
     }
     
-    func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
-
-        // Exit...
-
-        return
-
-    }   // End of func xcgLogMsg().
-
 }
 
 #Preview 

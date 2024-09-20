@@ -15,7 +15,7 @@ class MultipartRequestInfo: NSObject
     {
         
         static let sClsId          = "MultipartRequestInfo"
-        static let sClsVers        = "v1.0104"
+        static let sClsVers        = "v1.0201"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -25,18 +25,24 @@ class MultipartRequestInfo: NSObject
 
     // App Data field(s):
 
-    public var bAppZipSourceToUpload:Bool   = false     // This is a 'flag' to indicate to Zip the Data or not...
-    public var sAppUploadURL:String         = ""        // This is an 'override' Upload URL...
-    public var sAppUploadNotify:String      = ""        // This should be an email address...
-    public var sAppSourceFilespec:String    = ""        // This is the fully-qualified filespec...
-    public var sAppSourceFilename:String    = ""        // This is 'just' the filename...
-    public var sAppZipFilename:String       = ""        // This is 'just' the filename of the Zip (if zipped)...
-    public var sAppSaveAsFilename:String    = ""        // This is 'just' the filename to save the upload file as...
-    public var sAppFileMimeType:String      = ""        // This required for successfull upload...
-    public var dataAppFile:Data?            = nil       // This is the Data (object) of the upload...
+    public var bAppZipSourceToUpload:Bool         = false     // This is a 'flag' to indicate to Zip the Data or not...
+    public var sAppUploadURL:String               = ""        // This is an 'override' Upload URL...
+                                                              // Email address may be a list - string(s) separated by ';'...
+    public var sAppUploadNotifyTo:String          = ""        // This should be an email address - 'To:' field...
+    public var sAppUploadNotifyCc:String          = ""        // This should be an email address - 'Cc:' field...
 
-    public var urlResponse:HTTPURLResponse? = nil       // This is the 'response' URL...
-    public var urlResponseData:Data?        = nil       // This is the 'response' Data...
+    public var sAppSourceFilespec:String          = ""        // This is the fully-qualified filespec...
+    public var sAppSourceFilename:String          = ""        // This is 'just' the filename...
+    public var sAppZipFilename:String             = ""        // This is 'just' the filename of the Zip (if zipped)...
+    public var sAppSaveAsFilename:String          = ""        // This is 'just' the filename to save the upload file as...
+
+    public var sAppFileMimeType:String            = ""        // This required for successfull upload...
+    public var dataAppFile:Data?                  = nil       // This is the Data (object) of the upload...
+
+    public var urlResponse:HTTPURLResponse?       = nil       // This is the 'response' URL...
+    public var urlResponseData:Data?              = nil       // This is the 'response' Data...
+
+    var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
     override init()
     {
@@ -59,20 +65,18 @@ class MultipartRequestInfo: NSObject
     private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
-    //  {
-    //
-    //      self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-    //
-    //  }
-    //  else
-    //  {
-    //
-    //      print("\(sMessage)")
-    //
-    //  }
-
-        print("\(sMessage)")
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
         // Exit:
 
@@ -97,7 +101,8 @@ class MultipartRequestInfo: NSObject
         asToString.append("[")
         asToString.append("'self.bAppZipSourceToUpload': (\(self.bAppZipSourceToUpload)),")
         asToString.append("'self.sAppUploadURL': (\(self.sAppUploadURL)),")
-        asToString.append("'self.sAppUploadNotify': (\(self.sAppUploadNotify)),")
+        asToString.append("'self.sAppUploadNotifyTo': (\(self.sAppUploadNotifyTo)),")
+        asToString.append("'self.sAppUploadNotifyCc': (\(self.sAppUploadNotifyCc)),")
         asToString.append("'self.sAppSourceFilespec': (\(self.sAppSourceFilespec)),")
         asToString.append("'self.sAppSourceFilename': (\(self.sAppSourceFilename)),")
         asToString.append("'self.sAppZipFilename': (\(self.sAppZipFilename)),")
@@ -116,21 +121,5 @@ class MultipartRequestInfo: NSObject
         return sContents
 
     }   // End of public func toString().
-
-//  public func executeMultipartRequest()
-//  {
-//
-//      let sCurrMethod:String = #function
-//      let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
-//
-//      // Exit:
-//
-//      self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
-//
-//      return
-//
-//  }   // End of public func executeMultipartRequest().
 
 }   // End of class MultipartRequestInfo(NSObject).

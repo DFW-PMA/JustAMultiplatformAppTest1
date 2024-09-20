@@ -15,7 +15,7 @@ struct SettingsSingleViewMac: View
     {
         
         static let sClsId        = "SettingsSingleViewMac"
-        static let sClsVers      = "v1.0103"
+        static let sClsVers      = "v1.0207"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -25,12 +25,12 @@ struct SettingsSingleViewMac: View
     
     // App Data field(s):
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor            = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
-    
     @State private var cContentViewAppCrashButtonPresses:Int = 0
 
     @State private var isAppCrashShowing:Bool                = false
 
+    var jmAppDelegateVisitor:JmAppDelegateVisitor            = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
     init()
     {
 
@@ -47,17 +47,27 @@ struct SettingsSingleViewMac: View
 
     }   // End of init().
 
-    func xcgLogMsg(_ sMessage:String)
+    private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
-        // Exit...
+        // Exit:
 
         return
 
-    }   // End of func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
     var body: some View 
     {
@@ -68,15 +78,16 @@ struct SettingsSingleViewMac: View
         {
 
             Spacer()
-                .frame(height:5)
             
             Divider()
-                .border(Color.purple, width:5)
 
             HStack(alignment:.center)
             {
 
                 Spacer()
+
+                Text("Press to FORCE an App 'crash' -> ")
+                    .bold()
 
                 Button
                 {
@@ -92,8 +103,6 @@ struct SettingsSingleViewMac: View
                 {
 
                     Label("", systemImage: "xmark.octagon")
-                        .padding()
-                        .imageScale(.large)
                         .help("FORCE this App to CRASH")
 
                 }
@@ -115,47 +124,77 @@ struct SettingsSingleViewMac: View
             }   // End of HStack
             
             Divider()
-                .border(Color.purple, width:5)
             
             Spacer()
-                .frame(height:5)
-            
-        //  HStack(alignment:.center)           // HStack #1.1
-        //  {
-        //  
-        //      Spacer()
-        //          .frame(width:30)
-        //      
-        //      Text("Preferences:")
-        //  
-        //  }   // End of HStack #1.1
-        //
-        //  Divider()
-        //      .border(Color.purple, width:5)
-        //
-        //  Spacer()
-        //      .frame(height:5)
-        //
-        //  HStack(alignment:.bottom)   // HStack #1.2
-        //  {
-        //
-        //      Spacer()
-        //          .frame(width:60, height:10)
-        //
-        //      Text("Settings field #1...")
-        //          .frame(alignment:.bottom)
-        //
-        //      Spacer()
-        //          .frame(width:60, height:10)
-        //
-        //  }   // End of HStack #1.2
+                .frame(height:15)
+
+            HStack(alignment:.center)
+            {
+
+                Spacer()
+
+                Text(" - - - - - - - - - - - - - - - - - - - - ")
+                    .bold()
+
+                Spacer()
+
+            }
+
+            HStack(alignment:.center)
+            {
+
+                Spacer()
+
+                VStack(alignment:.center)
+                {
+
+                    if #available(iOS 15.0, *) 
+                    {
+                        Text("Application Information:")
+                            .bold()
+                            .dynamicTypeSize(.small)
+
+                        Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
+                            .italic()
+                            .dynamicTypeSize(.small)
+
+                        Text("\(JmXcodeBuildSettings.jmAppCopyright)")
+                            .italic()
+                            .dynamicTypeSize(.small)
+                    }
+                    else
+                    {
+                        Text("Application Information:")
+                            .bold()
+
+                        Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
+                            .italic()
+
+                        Text("\(JmXcodeBuildSettings.jmAppCopyright)")
+                            .italic()
+                    }
+
+                }
+
+                Spacer()
+
+            }
+
+            HStack(alignment:.center)
+            {
+
+                Spacer()
+
+                Text(" - - - - - - - - - - - - - - - - - - - - ")
+                    .bold()
+
+                Spacer()
+
+            }
             
             Spacer()
-                .frame(height:5)
 
         }   // End of VStack #1
-        .background(Color.black)
-        .frame(minWidth: 250, idealWidth: 300, maxWidth: .infinity, minHeight: 70, idealHeight: 100, maxHeight: .infinity)
         
     }
     
