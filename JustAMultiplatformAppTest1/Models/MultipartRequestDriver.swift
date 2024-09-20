@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+@available(iOS 14.0, *)
 class MultipartRequestDriver: NSObject
 {
 
@@ -16,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0403"
+        static let sClsVers        = "v1.0406"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -113,24 +114,6 @@ class MultipartRequestDriver: NSObject
 
                 self.xcgLogMsg("\(sCurrMethodDisp) Called  'processMultipartRequest()' with a 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo))]...")
 
-            // --------------------------------------------------------------------------------------------------------
-            // NOTE: Do NOT issue a 'notify' from here (now) - 'processMultipartRequest' is now 'async'...
-            // --------------------------------------------------------------------------------------------------------
-            //  let jsAppDelegate:AppDelegate? = AppDelegate.ClassSingleton.jsAppDelegate
-            //
-            //  if (jsAppDelegate != nil)
-            //  {
-            //
-            //      dispatchGroup.notify(queue: DispatchQueue.main, execute:
-            //      {
-            //    
-            //          jsAppDelegate!.updateAppDelegateDisplay(sAppDelegateMessage:"Search <query> 'cache(s)' refreshed in the background with a total of (\(cMovieSearchTotalCacheItems)) item(s)...")
-            //    
-            //      })
-            //
-            //  }
-            // --------------------------------------------------------------------------------------------------------
-
             }
 
             dispatchGroup.leave()
@@ -184,7 +167,8 @@ class MultipartRequestDriver: NSObject
 
             self.multipartRequestInfo?.bAppZipSourceToUpload = false
             self.multipartRequestInfo?.sAppUploadURL         = ""                       // "" takes the Upload URL 'default'...
-            self.multipartRequestInfo?.sAppUploadNotify      = "dcox@justmacapps.org"
+            self.multipartRequestInfo?.sAppUploadNotifyTo    = "dcox@justmacapps.org"
+            self.multipartRequestInfo?.sAppUploadNotifyCc    = "dcox@justmacapps.net"
             self.multipartRequestInfo?.sAppSourceFilespec    = "test1.txt"
             self.multipartRequestInfo?.sAppSourceFilename    = "test1.txt"
             self.multipartRequestInfo?.sAppZipFilename       = "test1.zip"
@@ -232,7 +216,8 @@ class MultipartRequestDriver: NSObject
         [
         //  "Content-Type":      "multipart/form-data; boundary=\(sFormBoundary)",
             "appOrigin":         "\(AppGlobalInfo.sGlobalInfoAppId)",
-            "appUploadNotify":   self.multipartRequestInfo!.sAppUploadNotify,
+            "appUploadNotifyTo": self.multipartRequestInfo!.sAppUploadNotifyTo,
+            "appUploadNotifyCc": self.multipartRequestInfo!.sAppUploadNotifyCc,
             "appSourceFilespec": self.multipartRequestInfo!.sAppSourceFilespec,
             "appSourceFilename": self.multipartRequestInfo!.sAppSourceFilename,
             "appZipFilename":    self.multipartRequestInfo!.sAppZipFilename,
@@ -298,7 +283,23 @@ class MultipartRequestDriver: NSObject
             self.multipartRequestInfo!.urlResponse     = self.urlResponse
             self.multipartRequestInfo!.urlResponseData = self.urlResponseData
 
-            let sUploadAlertDetails:String = "Status [\(String(describing: self.multipartRequestInfo!.urlResponse?.statusCode))] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
+            var iUrlStatusCode:Int = 0
+
+            if ((self.multipartRequestInfo!.urlResponse?.statusCode) != nil)
+            {
+
+                iUrlStatusCode = self.multipartRequestInfo!.urlResponse!.statusCode
+
+            }
+            else
+            {
+
+                iUrlStatusCode = -1
+
+            }
+
+            let sUploadAlertDetails:String = "Status [\(iUrlStatusCode)] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
+        //  let sUploadAlertDetails:String = "Status [\(String(describing: self.multipartRequestInfo!.urlResponse?.statusCode))] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
 
             DispatchQueue.main.async
             {

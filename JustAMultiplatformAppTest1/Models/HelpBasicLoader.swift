@@ -15,6 +15,7 @@ import Cocoa
 import UIKit
 #endif
 
+@available(iOS 14.0, *)
 class HelpBasicLoader: NSObject
 {
 
@@ -22,7 +23,7 @@ class HelpBasicLoader: NSObject
     {
         
         static let sClsId        = "HelpBasicLoader"
-        static let sClsVers      = "v1.0702"
+        static let sClsVers      = "v1.0703"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true

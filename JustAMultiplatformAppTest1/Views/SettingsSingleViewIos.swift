@@ -17,7 +17,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0204"
+        static let sClsVers      = "v1.0209"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -58,6 +58,28 @@ struct SettingsSingleViewIos: View
 
     }   // End of init().
 
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     var body: some View 
     {
         
@@ -90,8 +112,6 @@ struct SettingsSingleViewIos: View
                     label: 
                     {
                         
-                    //  Text("About")
-
                         Label("", systemImage: "questionmark.diamond")
                             .padding()
                             .imageScale(.large)
@@ -105,8 +125,6 @@ struct SettingsSingleViewIos: View
                         AppAboutView()
                     
                     }
-                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                //  .foregroundColor(.accentColor)
 
                     Spacer()
 
@@ -123,8 +141,6 @@ struct SettingsSingleViewIos: View
                     label: 
                     {
                         
-                    //  Text("Help")
-
                         Label("", systemImage: "questionmark.circle")
                             .padding()
                             .imageScale(.large)
@@ -134,13 +150,10 @@ struct SettingsSingleViewIos: View
                     .fullScreenCover(isPresented:$isAppHelpViewModal)
                     {
                     
-                    //  HelpBasicView()
                         HelpBasicView(sHelpBasicContents: jmAppDelegateVisitor.getAppDelegateVisitorHelpBasicContents())
                             .navigationBarBackButtonHidden(true)
                     
                     }
-                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                //  .foregroundColor(.accentColor)
 
                     Spacer()
 
@@ -157,8 +170,6 @@ struct SettingsSingleViewIos: View
                     label: 
                     {
                         
-                    //  Text("LogView")
-
                         Label("", systemImage: "doc.text.magnifyingglass")
                             .padding()
                             .imageScale(.large)
@@ -171,12 +182,9 @@ struct SettingsSingleViewIos: View
                         LogFileView()
                     
                     }
-                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                //  .foregroundColor(.accentColor)
 
                     Spacer()
 
-                //  Button("Dismiss") 
                     Button
                     {
 
@@ -196,8 +204,6 @@ struct SettingsSingleViewIos: View
                             .help("Dismiss this Screen")
 
                     }
-                //  .background(Color(red: 0.8784, green: 1.0, blue: 1.0))
-                //  .foregroundColor(.accentColor)
 
                 }   // End of HStack #1.1
 
@@ -314,7 +320,6 @@ struct SettingsSingleViewIos: View
 
             }   // End of VStack #1
             .padding()
-        //  .frame(minWidth: 50, idealWidth: 200, maxWidth: .infinity, minHeight: 70, idealHeight: 100, maxHeight: .infinity)
 
         }
         
@@ -322,18 +327,6 @@ struct SettingsSingleViewIos: View
         
     }
     
-    func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
-
-        // Exit...
-
-        return
-
-    }   // End of func xcgLogMsg().
-
 }
 
 #Preview 

@@ -15,6 +15,7 @@ import XCGLogger
 import UIKit
 #endif
 
+@available(iOS 14.0, *)
 @objc(JmAppDelegateVisitor)
 public class JmAppDelegateVisitor: NSObject, ObservableObject
 {
@@ -23,7 +24,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0901"
+        static let sClsVers        = "v1.0907"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -970,14 +971,15 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     // NOTE: This method can NOT be marked @objc because 'willFinishLaunchingWithOptions' is a Swift struct...
     
 //  @objc public func appDelegateVisitorWillFinishLaunching(_ aNotification: Notification)
-    public func appDelegateVisitorWillFinishLaunchingWithOptions(_ uiApplication:UIApplication, willFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool
+//  public func appDelegateVisitorWillFinishLaunchingWithOptions(_ uiApplication:UIApplication, willFinishLaunchingWithOptions:Dictionary<UIApplication.LaunchOptionsKey,AnyObject?>) -> Bool
+    public func appDelegateVisitorWillFinishLaunchingWithOptions(_ uiApplication:UIApplication, willFinishLaunchingWithOptions:[UIApplication.LaunchOptionsKey:Any?]) -> Bool
     {
 
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
     //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'willFinishLaunchingWithOptions' is [\(willFinishLaunchingWithOptions)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(String(describing: uiApplication))] - 'willFinishLaunchingWithOptions' is [\(String(describing: willFinishLaunchingWithOptions))] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
 
         // Exit:
 
@@ -987,17 +989,33 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     }   // End of public func appDelegateVisitorWillFinishLaunchingWithOptions(uiApplication:, willFinishLaunchingWithOptions:).
     
+    @objc public func appDelegateVisitorWillFinishLaunchingWithOptions(_ uiApplication:UIApplication) -> Bool
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(String(describing: uiApplication))] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return true
+
+    }   // End of public func @objc appDelegateVisitorWillFinishLaunchingWithOptions(uiApplication:).
+    
     // NOTE: This method can NOT be marked @objc because 'willFinishLaunchingWithOptions' is a Swift struct...
     
 //  @objc public func appDelegateVisitorDidFinishLaunching(_ aNotification: Notification)
-    public func appDelegateVisitorDidFinishLaunchingWithOptions(_ uiApplication:UIApplication, didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey:Any?]) -> Bool
+    public func appDelegateVisitorDidFinishLaunchingWithOptions(_ uiApplication:UIApplication, didFinishLaunchingWithOptions:[UIApplication.LaunchOptionsKey:Any?]) -> Bool
     {
 
         let sCurrMethod:String = #function
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
     //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'didFinishLaunchingWithOptions' is [\(didFinishLaunchingWithOptions)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(String(describing: uiApplication))] - 'didFinishLaunchingWithOptions' is [\(String(describing: didFinishLaunchingWithOptions))] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
 
         self.dumpAppCommandLineArgs()
 
@@ -1008,6 +1026,24 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         return true
 
     }   // End of public func appDelegateVisitorDidFinishLaunchingWithOptions(uiApplication:, didFinishLaunchingWithOptions:).
+
+    @objc public func appDelegateVisitorDidFinishLaunchingWithOptions(_ uiApplication:UIApplication) -> Bool
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(String(describing: uiApplication))] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        self.dumpAppCommandLineArgs()
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return true
+
+    }   // End of public func @objc appDelegateVisitorDidFinishLaunchingWithOptions(uiApplication:).
 
 //  @objc public func appDelegateVisitorWillTerminate(_ aNotification: Notification) 
     @objc public func appDelegateVisitorWillTerminate(_ uiApplication: UIApplication)

@@ -16,17 +16,13 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0808"
+        static let sClsVers        = "v1.0901"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
         
     }
-
-//  // AppDelegate (via @EnvironmentObject - automatic via the App's @NSApplicationDelegateAdaptor property wrapper
-//
-//  @EnvironmentObject private   var appDelegate:JustAMultiplatformAppTest1NSAppDelegate
 
     // App Data field(s):
 
@@ -42,12 +38,8 @@ struct HelpBasicView: View
     var jmAppDelegateVisitor:JmAppDelegateVisitor              = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
 // --------------------------------------------------------------------------------------------------------------------
-// NOTE: This init() method is commented out because if it is coded then compile fails with an error of:
-//           'Argument passed to call that takes no arguments'..
-//       >>> Adding the parameter 'sHelpBasicContents' silences this error but it appears that the 'set' does NOT work...
-//       >>> Confirmed by test output...
-//       >>> ANSWER: see below - must access the variable name with a leading '_' and
-//       >>>                     wrap the inbound parameter with a 'State()' method ('wrapper').
+// NOTE: ANSWER: see below - must access the variable name with a leading '_' and
+//                     >>>   wrap the inbound parameter with a 'State()' method ('wrapper').
 // --------------------------------------------------------------------------------------------------------------------
   
     init(sHelpBasicContents:String)
@@ -69,17 +61,27 @@ struct HelpBasicView: View
     
     }   // End of init().
 
-    func xcgLogMsg(_ sMessage:String)
+    private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg("\(sMessage)")
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
-        // Exit...
+        // Exit:
 
         return
 
-    }   // End of func xcgLogMsg().
+    }   // End of private func xcgLogMsg().
 
     var body: some View 
     {
@@ -134,8 +136,6 @@ struct HelpBasicView: View
             .padding()
 
         }
-    //  .padding()
-    //  .frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 50, idealHeight: 100, maxHeight: 300)
         
     }
     
