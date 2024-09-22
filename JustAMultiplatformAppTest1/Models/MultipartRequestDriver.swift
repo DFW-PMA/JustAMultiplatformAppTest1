@@ -17,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0406"
+        static let sClsVers        = "v1.0501"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -28,6 +28,7 @@ class MultipartRequestDriver: NSObject
     // App Data field(s):
 
     private var bInternalTest:Bool                         = false
+    private var bGenerateResponseLongMsg:Bool              = false
 
                                                              // For 'test':
     private var dictUserData:[String:String]               = ["firstName": "John",
@@ -39,7 +40,7 @@ class MultipartRequestDriver: NSObject
     public  var urlResponse:HTTPURLResponse?               = nil
     public  var urlResponseData:Data?                      = nil
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor          = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+            var jmAppDelegateVisitor:JmAppDelegateVisitor  = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
     override init()
     {
@@ -51,6 +52,8 @@ class MultipartRequestDriver: NSObject
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
+        self.bGenerateResponseLongMsg = false
+
         // Exit...
 
         self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
@@ -58,6 +61,26 @@ class MultipartRequestDriver: NSObject
         return
 
     }   // End of override init().
+
+    convenience init(bGenerateResponseLongMsg:Bool)
+    {
+    
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.init()
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'bGenerateResponseLongMsg' is [\(bGenerateResponseLongMsg)]...")
+
+        self.bGenerateResponseLongMsg = bGenerateResponseLongMsg
+
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'self.bGenerateResponseLongMsg' is [\(self.bGenerateResponseLongMsg)]...")
+
+        return
+    
+    }   // End of (convenience) init().
 
     private func xcgLogMsg(_ sMessage:String)
     {
@@ -288,6 +311,8 @@ class MultipartRequestDriver: NSObject
             if ((self.multipartRequestInfo!.urlResponse?.statusCode) != nil)
             {
 
+                // If we have a 'statusCode', flatten it to an Int to avoid using String(describing:)...
+
                 iUrlStatusCode = self.multipartRequestInfo!.urlResponse!.statusCode
 
             }
@@ -298,8 +323,14 @@ class MultipartRequestDriver: NSObject
 
             }
 
-            let sUploadAlertDetails:String = "Status [\(iUrlStatusCode)] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
-        //  let sUploadAlertDetails:String = "Status [\(String(describing: self.multipartRequestInfo!.urlResponse?.statusCode))] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
+            var sUploadAlertDetails:String = "Status [\(iUrlStatusCode)]"
+
+            if (self.bGenerateResponseLongMsg == true)
+            {
+
+                sUploadAlertDetails = "Status [\(iUrlStatusCode)] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
+
+            }
 
             DispatchQueue.main.async
             {

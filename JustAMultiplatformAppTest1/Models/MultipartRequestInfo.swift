@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 14.0, *)
 class MultipartRequestInfo: NSObject
 {
 
@@ -15,7 +16,7 @@ class MultipartRequestInfo: NSObject
     {
         
         static let sClsId          = "MultipartRequestInfo"
-        static let sClsVers        = "v1.0201"
+        static let sClsVers        = "v1.0202"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true

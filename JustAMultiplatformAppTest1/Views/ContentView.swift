@@ -21,7 +21,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1201"
+        static let sClsVers      = "v1.1401"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -43,7 +43,8 @@ struct ContentView: View
 
 #endif
 
-                   var bDidAppCrash:Bool                    = false
+           private var bIsAppUploadUsingLongMsg:Bool        = true
+           private var bDidAppCrash:Bool                    = false
            private var sAppExecutionButtonText:String       = "App::-N/A-"
            private var sAppExecutionAlertText:String        = "Do you want to 'send' the App LOG data?"
            private var sAppExecutionLogToUpload:String      = ""
@@ -424,7 +425,7 @@ struct ContentView: View
 
         // Send the AppLog as an 'upload' to the Server...
 
-        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver()
+        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:self.bIsAppUploadUsingLongMsg)
 
         self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
 
