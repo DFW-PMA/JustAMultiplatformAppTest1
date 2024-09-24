@@ -15,7 +15,7 @@ struct AppInfoCommands: Commands
     {
         
         static let sClsId        = "AppInfoCommands"
-        static let sClsVers      = "v1.0501"
+        static let sClsVers      = "v1.0601"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -33,6 +33,28 @@ struct AppInfoCommands: Commands
 
     var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
+    private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
     var body: some Commands
     {
         
@@ -58,17 +80,5 @@ struct AppInfoCommands: Commands
 
     }
     
-    private func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-
-        // Exit:
-
-        return
-
-    }   // End of private func xcgLogMsg().
-
 }   // End of struct AppInfoCommands(Commands). 
 

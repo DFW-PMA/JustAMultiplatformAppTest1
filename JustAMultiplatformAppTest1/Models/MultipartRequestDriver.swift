@@ -17,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0501"
+        static let sClsVers        = "v1.0603"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -327,17 +327,24 @@ class MultipartRequestDriver: NSObject
 
             if (self.bGenerateResponseLongMsg == true)
             {
+                
+                let sUploadURLResponse:String = String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8) ?? "-N/A-"
 
-                sUploadAlertDetails = "Status [\(iUrlStatusCode)] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
+                sUploadAlertDetails = "Status [\(iUrlStatusCode)] Response [\(sUploadURLResponse)]"
 
             }
+
+            let sAppUploadedSaveAsFilename:String = self.multipartRequestInfo?.sAppSaveAsFilename ?? "-unknown-"
 
             DispatchQueue.main.async
             {
 
-                self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
-                self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
-                self.jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
+                self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...", 
+                                                                                 alertButtonText:"Ok")
+
+            //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
+            //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
+            //  self.jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
 
             }
 
