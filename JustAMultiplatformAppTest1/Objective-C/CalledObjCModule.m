@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-//#import "DefinesObjCOverrides.h"
+#import "DefinesObjCOverrides.h"
 
 #import "CalledObjCModule.h"
 

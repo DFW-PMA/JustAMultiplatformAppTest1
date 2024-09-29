@@ -24,7 +24,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.0907"
+        static let sClsVers        = "v1.1001"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -225,13 +225,13 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         if (AppGlobalInfo.bPerformAppObjCSwiftBridgeTest == true)
         {
 
-        //  let definesObjCModule = Defines()
-        //
-        //  self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
-        //
-        //  definesObjCModule.initInstance()
-        //
-        //  self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
+            let definesObjCModule = DefinesObjCOverrides()
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'definesObjCModule.initInstance()' with NO parameter(s)...")
+          
+            definesObjCModule.initInstance()
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'definesObjCModule.initInstance()' with NO parameter(s)...")
 
             let calledObjCModule = CalledObjCModule()
 
