@@ -21,7 +21,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1502"
+        static let sClsVers      = "v1.1503"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -328,32 +328,37 @@ struct ContentView: View
         //
         //  }
 
-            Button("Tap to \(sAppExecutionPreviousButtonText)")
+            if (bWasAppLogFilePresentAtStartup == true)
             {
 
-                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionPreviousButtonText)'...")
-
-                self.isAppExecutionPreviousShowing.toggle()
-
-            }
-            .alert(sAppExecutionPreviousAlertText, isPresented:$isAppExecutionPreviousShowing)
-            {
-                Button("Cancel", role:.cancel)
+                Button("Tap to \(sAppExecutionPreviousButtonText)")
                 {
-                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
-                }
-                Button("Ok", role:.destructive)
-                {
-                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
 
-                    self.uploadPreviousAppLogToDevs()
+                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionPreviousButtonText)'...")
+
+                    self.isAppExecutionPreviousShowing.toggle()
 
                 }
+                .alert(sAppExecutionPreviousAlertText, isPresented:$isAppExecutionPreviousShowing)
+                {
+                    Button("Cancel", role:.cancel)
+                    {
+                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
+                    }
+                    Button("Ok", role:.destructive)
+                    {
+                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
+
+                        self.uploadPreviousAppLogToDevs()
+
+                    }
+                }
+                .controlSize(.regular)
+                .background(Color(red: 0, green: 0.5, blue: 0.5))
+                .foregroundStyle(.white)
+                .buttonStyle(.borderedProminent)
+
             }
-            .controlSize(.regular)
-            .background(Color(red: 0, green: 0.5, blue: 0.5))
-            .foregroundStyle(.white)
-            .buttonStyle(.borderedProminent)
                 
             Spacer()
             

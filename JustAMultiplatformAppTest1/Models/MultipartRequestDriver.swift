@@ -17,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0603"
+        static let sClsVers        = "v1.0606"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -190,6 +190,7 @@ class MultipartRequestDriver: NSObject
 
             self.multipartRequestInfo?.bAppZipSourceToUpload = false
             self.multipartRequestInfo?.sAppUploadURL         = ""                       // "" takes the Upload URL 'default'...
+            self.multipartRequestInfo?.sAppUploadNotifyFrom  = "dcox@justmacapps.net"
             self.multipartRequestInfo?.sAppUploadNotifyTo    = "dcox@justmacapps.org"
             self.multipartRequestInfo?.sAppUploadNotifyCc    = "dcox@justmacapps.net"
             self.multipartRequestInfo?.sAppSourceFilespec    = "test1.txt"
@@ -237,18 +238,19 @@ class MultipartRequestDriver: NSObject
 
         let listRequestHeaders =
         [
-        //  "Content-Type":      "multipart/form-data; boundary=\(sFormBoundary)",
-            "appOrigin":         "\(AppGlobalInfo.sGlobalInfoAppId)",
-            "appUploadNotifyTo": self.multipartRequestInfo!.sAppUploadNotifyTo,
-            "appUploadNotifyCc": self.multipartRequestInfo!.sAppUploadNotifyCc,
-            "appSourceFilespec": self.multipartRequestInfo!.sAppSourceFilespec,
-            "appSourceFilename": self.multipartRequestInfo!.sAppSourceFilename,
-            "appZipFilename":    self.multipartRequestInfo!.sAppZipFilename,
-            "appSaveAsFilename": self.multipartRequestInfo!.sAppSaveAsFilename,
-            "appFileMimeType":   self.multipartRequestInfo!.sAppFileMimeType,
-            "Accept":            "*/*",
-        //  "accept-encoding":   "gzip, deflate",
-            "cache-control":     "no-cache"
+        //  "Content-Type":        "multipart/form-data; boundary=\(sFormBoundary)",
+            "appOrigin":           "\(AppGlobalInfo.sGlobalInfoAppId)",
+            "appUploadNotifyFrom": self.multipartRequestInfo!.sAppUploadNotifyFrom,
+            "appUploadNotifyTo":   self.multipartRequestInfo!.sAppUploadNotifyTo,
+            "appUploadNotifyCc":   self.multipartRequestInfo!.sAppUploadNotifyCc,
+            "appSourceFilespec":   self.multipartRequestInfo!.sAppSourceFilespec,
+            "appSourceFilename":   self.multipartRequestInfo!.sAppSourceFilename,
+            "appZipFilename":      self.multipartRequestInfo!.sAppZipFilename,
+            "appSaveAsFilename":   self.multipartRequestInfo!.sAppSaveAsFilename,
+            "appFileMimeType":     self.multipartRequestInfo!.sAppFileMimeType,
+            "Accept":              "*/*",
+        //  "accept-encoding":     "gzip, deflate",
+            "cache-control":       "no-cache"
         ]
 
         request.allHTTPHeaderFields = listRequestHeaders
@@ -327,10 +329,8 @@ class MultipartRequestDriver: NSObject
 
             if (self.bGenerateResponseLongMsg == true)
             {
-                
-                let sUploadURLResponse:String = String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8) ?? "-N/A-"
 
-                sUploadAlertDetails = "Status [\(iUrlStatusCode)] Response [\(sUploadURLResponse)]"
+                sUploadAlertDetails = "Status [\(iUrlStatusCode)] Response [\(String(data:self.multipartRequestInfo!.urlResponseData!, encoding:.utf8)!)]"
 
             }
 
@@ -339,8 +339,11 @@ class MultipartRequestDriver: NSObject
             DispatchQueue.main.async
             {
 
-                self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...", 
+                
+                self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...",
                                                                                  alertButtonText:"Ok")
+                
+            //  self.jmAppDelegateVisitor
 
             //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
             //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
