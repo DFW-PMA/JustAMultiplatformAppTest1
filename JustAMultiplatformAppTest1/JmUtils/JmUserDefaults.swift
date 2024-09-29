@@ -25,7 +25,7 @@ class JmUserDefaults: NSObject
     {
         
         static let sClsId        = "JmUserDefaults"
-        static let sClsVers      = "v1.0701"
+        static let sClsVers      = "v1.0704"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -112,7 +112,42 @@ class JmUserDefaults: NSObject
 
     }   // End of @objc public func toString().
 
-    @objc func getObjectForKey(_ forKey:String = "") -> Any?
+    @objc func getObjCObjectForKey(_ forKey:NSString = "") -> Any?
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "'"+sCurrMethod+"'"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)] - 'forKey' is [\(forKey)]...")
+
+        let sSuppliedForKey:String = forKey as String
+
+        if (sSuppliedForKey.count < 1)
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'forKey' value is an 'empty' string - this is required - Error!")
+
+            // Exit:
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)] - 'sSuppliedForKey' was None or empty - Error!...")
+
+            return nil
+
+        }
+
+        let objUserDefaults:Any? = self.getObjectForKey(sSuppliedForKey)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) The 'objUserDefaults' value returned from UserDefaults for the key of [\(sSuppliedForKey)] is [\(String(describing: objUserDefaults))]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)] - 'sSuppliedForKey' is [\(sSuppliedForKey)]...")
+
+        return objUserDefaults
+
+    }   // End of @objc public func getObjCObjectForKey().
+
+    public func getObjectForKey(_ forKey:String = "") -> Any?
     {
 
         let sCurrMethod:String = #function
@@ -145,9 +180,44 @@ class JmUserDefaults: NSObject
 
         return objUserDefaults
 
-    }   // End of @objc public func getObjectForKey().
+    }   // End of public func getObjectForKey().
 
-    @objc public func setObjectForKey(_ keyValue:Any?, forKey:String = "")
+    @objc public func setObjCObjectForKey(_ keyValue:Any?, forKey:NSString = "")
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "'"+sCurrMethod+"'"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)] - 'forKey' is [\(forKey)]...")
+
+        let sSuppliedForKey:String = forKey as String
+
+        if (sSuppliedForKey.count < 1)
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'forKey' value is an 'empty' string - this is required - Error!")
+
+            // Exit:
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)] - 'sSuppliedForKey' was None or empty - Error!...")
+
+            return
+
+        }
+
+        self.setObjectForKey((keyValue as Any), forKey:sSuppliedForKey)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) The Supplied 'kayValue' object has been set into UserDefaults for the key of [\(sSuppliedForKey)] as [\(String(describing: keyValue))]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'jmAppDelegateVisitor' is [\(self.jmAppDelegateVisitor)] - 'sSuppliedForKey' is [\(sSuppliedForKey)]...")
+
+        return
+
+    }   // End of @objc public func setObjCObjectForKey().
+
+    public func setObjectForKey(_ keyValue:Any?, forKey:String = "")
     {
 
         let sCurrMethod:String = #function
@@ -180,7 +250,7 @@ class JmUserDefaults: NSObject
 
         return
 
-    }   // End of @objc public func setObjectForKey().
+    }   // End of public func setObjectForKey().
 
 }   // End of class JmUserDefaults(NSObject).
 
