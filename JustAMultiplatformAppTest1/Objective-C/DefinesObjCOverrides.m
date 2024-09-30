@@ -22,28 +22,32 @@
 - (void)initInstance
 {
 
-    NSLogv(@"--- Defines.initInstance() - Invoked...", NULL);
+    NSLog(@"--- Defines.initInstance() - Invoked...");
+//  NSLogv(@"--- Defines.initInstance() - Invoked...", NULL);
 
     _jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedEnvBridge;
 
 //    NSLogv(@"--- Defines.initInstance() - Exiting - '_jmObjCSwiftEnvBridge' is [%@] ---", (__bridge struct __va_list_tag *)(_jmObjCSwiftEnvBridge));
+    NSLog(@"--- Defines.initInstance() - Exiting...");
 
 }
 
 - (void)customLogger:(NSString * _Nullable)message
 {
 
-    NSLogv(@"--- Defines.customLogger() - Invoked ---", NULL);
-//    NSLogv(@"--- Defines.customLogger() - Invoked - Parameter 'message': %@", (__bridge struct __va_list_tag *)(message));
+    NSLog(@"--- Defines.customLogger() - Invoked ---");
+//  NSLogv(@"--- Defines.customLogger() - Invoked - Parameter 'message': %@", (__bridge struct __va_list_tag *)(message));
     
     if (_jmObjCSwiftEnvBridge) {
 //        NSLogv(@"--- Defines.customLogger() - Test - '_jmObjCSwiftEnvBridge' is NOT Null - is [%@] ---", (__bridge struct __va_list_tag *)(_jmObjCSwiftEnvBridge));
         [_jmObjCSwiftEnvBridge jmLogMsg:message];
     } else {
-        NSLogv(@"--- Defines.customLogger() - Test - '_jmObjCSwiftEnvBridge' is NULL - Error! ---", NULL);
+//      NSLogv(@"--- Defines.customLogger() - Test - '_jmObjCSwiftEnvBridge' is NULL - Error! ---", NULL);
+        NSLog(@"--- Defines.customLogger() - Test - '_jmObjCSwiftEnvBridge' is NULL - Error! ---");
     }
 
-    NSLogv(@"--- Defines.customLogger() - Exiting ---", NULL);
+    NSLog(@"--- Defines.customLogger() - Exiting ---");
+//  NSLogv(@"--- Defines.customLogger() - Exiting ---", NULL);
 
 }
 
