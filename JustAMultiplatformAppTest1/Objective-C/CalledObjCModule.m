@@ -12,8 +12,6 @@
 
 #import "CalledObjCModule.h"
 
-#import "JmObjCSwiftEnvBridge-Bridging-Header.h"
-
 @implementation CalledObjCModule
 {
 
@@ -34,17 +32,6 @@
 
 }
 
-//  - (void)setObjCSwiftEnvBridge:(JmObjCSwiftEnvBridge * _Nullable)jmobjcswiftenvbridge
-//  {
-//
-//      NSLog(@"--- CalledObjCModule.setObjCSwiftEnvBridge() - Invoked - parameter 'jmobjcswiftenvbridge' is [%@] ---", jmobjcswiftenvbridge);
-//
-//      _jmObjCSwiftEnvBridge = jmobjcswiftenvbridge;
-//
-//      NSLog(@"--- CalledObjCModule.setObjCSwiftEnvBridge() - Exiting - '_jmObjCSwiftEnvBridge' is [%@] ---", jmobjcswiftenvbridge);
-//
-//  }
-
 - (NSString * _Nullable)getInternalVariable
 {
 
@@ -60,8 +47,7 @@
 - (void)sayHello:(NSString * _Nullable)message
 {
 
-    NSLog(@"--- CalledObjCModule.sayHello() - Invoked ---");
-    NSLog(@"--- CalledObjCModule.sayHello() - Parameter 'message': %@", message);
+    NSLog(@"--- CalledObjCModule.sayHello() - Invoked - Parameter 'message': %@", message);
     
     if (_jmObjCSwiftEnvBridge) {
         NSLog(@"--- CalledObjCModule.sayHello() - Test - '_jmObjCSwiftEnvBridge' is NOT Null - is [%@] ---", _jmObjCSwiftEnvBridge);

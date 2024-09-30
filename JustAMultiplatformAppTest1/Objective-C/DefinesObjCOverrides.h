@@ -8,12 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+#import "JmObjCSwiftEnvBridge-Bridging-Header.h"
+
 @interface DefinesObjCOverrides : NSObject
 - (void)initInstance;
 - (void)customLoggerTest1:(NSString * _Nullable)message;
 @end
 
-//efine NSLog(...) customLoggerTest1(__VA_ARGS__);
-//#define NSLog(...) \
-//             ((customLoggerTest1([NSString stringWithFormat:format_string,##__VA_ARGS__])))
+#define NSLog(...) CustomLoggerTest3(__VA_ARGS__);
+
+static void CustomLoggerTest3(NSString * _Nonnull format, ...)
+{
+    
+    va_list argumentList;
+    
+    va_start(argumentList, format);
+    
+    NSMutableString *message = [[NSMutableString alloc] initWithFormat:format arguments:argumentList];
+    
+    [JmObjCSwiftEnvBridge.sharedEnvBridge jmLogMsg:message];
+
+    //  NSLogv(message, argumentList);
+
+    va_end(argumentList);
+    
+}
 
