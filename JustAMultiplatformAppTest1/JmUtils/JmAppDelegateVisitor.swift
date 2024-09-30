@@ -24,7 +24,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1103"
+        static let sClsVers      = "v1.1105"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -243,31 +243,47 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         if (AppGlobalInfo.bPerformAppObjCSwiftBridgeTest == true)
         {
 
+            // Initialize and call the class DefinesObjCOverrides...
+
             let definesObjCModule = DefinesObjCOverrides()
           
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'definesObjCModule.initInstance()' with NO parameter(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - calling 'definesObjCModule.initInstance()' with NO parameter(s)...")
           
             definesObjCModule.initInstance()
           
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'definesObjCModule.initInstance()' with NO parameter(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - called  'definesObjCModule.initInstance()' with NO parameter(s)...")
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - calling 'definesObjCModule.customLoggerTest1()' with 1 parameter(s)...")
+          
+            let sHelloMessage1:String = "Message from 'JmAppDelegateVisitor' to 'definesObjCModule.customLoggerTest1(sHelloMessage1)'..."
+
+            definesObjCModule.customLoggerTest1(sHelloMessage1)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - called  'definesObjCModule.customLoggerTest1()' with a parameter of [\(String(describing: sHelloMessage1))]...")
+
+            // Initialize and call the class CalledObjCModule...
 
             let calledObjCModule = CalledObjCModule()
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - invoking 'initInstance()' with NO parameter(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - calling 'calledObjCModule.initInstance()' with NO parameter(s)...")
 
             calledObjCModule.initInstance()
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #2 - invoked 'initInstance()' with NO parameter(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - called  'calledObjCModule.initInstance()' with NO parameter(s)...")
 
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #4 - calling 'calledObjCModule.getInternalVariable()' with 1 parameter(s)...")
+          
             let sInternalVariable:String? = calledObjCModule.getInternalVariable()
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sInternalVariable' (via 'getCalledObjCModuleVariable()') is [\(String(describing: sInternalVariable))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #4 - called  'calledObjCModule.getInternalVariable()' - returned parameter 'sInternalVariable' is [\(String(describing: sInternalVariable))]...")
 
-            let sHelloMessage:String = "Message from 'JmAppDelegateVisitor'..."
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #5 - calling 'calledObjCModule.sayHello()' with 1 parameter(s)...")
+          
+            let sHelloMessage2:String = "Message from 'JmAppDelegateVisitor' to 'calledObjCModule.sayHello(sHelloMessage2)'..."
 
-            calledObjCModule.sayHello(sHelloMessage)
+            calledObjCModule.sayHello(sHelloMessage2)
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #3 - 'sayHello()' with a parameter of [\(String(describing: sHelloMessage))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #5 - called  'calledObjCModule.sayHello()' with a parameter of [\(String(describing: sHelloMessage2))]...")
 
         }
 

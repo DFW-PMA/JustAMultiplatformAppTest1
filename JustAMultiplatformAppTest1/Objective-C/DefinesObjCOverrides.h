@@ -10,10 +10,10 @@
 
 @interface DefinesObjCOverrides : NSObject
 - (void)initInstance;
-- (void)customLogger:(NSString * _Nullable)message;
+- (void)customLoggerTest1:(NSString * _Nullable)message;
 @end
 
-//efine NSLog(...) customLogger(__VA_ARGS__);
+//efine NSLog(...) customLoggerTest1(__VA_ARGS__);
 //#define NSLog(...) \
-//             ((customLogger([NSString stringWithFormat:format_string,##__VA_ARGS__])))
+//             ((customLoggerTest1([NSString stringWithFormat:format_string,##__VA_ARGS__])))
 
