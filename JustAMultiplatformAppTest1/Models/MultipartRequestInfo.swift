@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 14.0, *)
 class MultipartRequestInfo: NSObject
 {
 
@@ -15,7 +16,7 @@ class MultipartRequestInfo: NSObject
     {
         
         static let sClsId          = "MultipartRequestInfo"
-        static let sClsVers        = "v1.0201"
+        static let sClsVers        = "v1.0203"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -28,6 +29,7 @@ class MultipartRequestInfo: NSObject
     public var bAppZipSourceToUpload:Bool         = false     // This is a 'flag' to indicate to Zip the Data or not...
     public var sAppUploadURL:String               = ""        // This is an 'override' Upload URL...
                                                               // Email address may be a list - string(s) separated by ';'...
+    public var sAppUploadNotifyFrom:String        = ""        // This should be an email address - 'From:' field...
     public var sAppUploadNotifyTo:String          = ""        // This should be an email address - 'To:' field...
     public var sAppUploadNotifyCc:String          = ""        // This should be an email address - 'Cc:' field...
 
@@ -101,6 +103,7 @@ class MultipartRequestInfo: NSObject
         asToString.append("[")
         asToString.append("'self.bAppZipSourceToUpload': (\(self.bAppZipSourceToUpload)),")
         asToString.append("'self.sAppUploadURL': (\(self.sAppUploadURL)),")
+        asToString.append("'self.sAppUploadNotifyFrom': (\(self.sAppUploadNotifyFrom)),")
         asToString.append("'self.sAppUploadNotifyTo': (\(self.sAppUploadNotifyTo)),")
         asToString.append("'self.sAppUploadNotifyCc': (\(self.sAppUploadNotifyCc)),")
         asToString.append("'self.sAppSourceFilespec': (\(self.sAppSourceFilespec)),")

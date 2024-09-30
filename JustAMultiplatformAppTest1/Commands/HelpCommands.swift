@@ -15,7 +15,7 @@ struct HelpCommands: Commands
     {
         
         static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.0904"
+        static let sClsVers        = "v1.1001"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -32,14 +32,66 @@ struct HelpCommands: Commands
     // App Data field(s):
 
     @State private var cHelpCommandsAppLogClearButtonPresses:Int = 0
+    @State private var cContentViewAppCrashButtonPresses:Int     = 0
+
+           private var bWasAppLogFilePresentAtStartup:Bool       = false
+           private var bDidAppCrash:Bool                         = false
+           private var sAppExecutionPreviousAlertText:String     = "Do you want to 'send' the App LOG data?"
+           private var sAppExecutionPreviousLogToUpload:String   = ""
 
     var jmAppDelegateVisitor:JmAppDelegateVisitor                = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
+    init()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Get some 'internal' Dev Detail(s)...
+
+        bWasAppLogFilePresentAtStartup = checkIfAppLogWasPresent()
+        bDidAppCrash                   = checkIfAppDidCrash()
+
+        if (bDidAppCrash == false)
+        {
+
+            sAppExecutionPreviousAlertText   = "'success'"
+            sAppExecutionPreviousLogToUpload = AppGlobalInfo.sGlobalInfoAppLastGoodLogFilespec
+
+        }
+        else
+        {
+
+            sAppExecutionPreviousAlertText   = "'crash'"
+            sAppExecutionPreviousLogToUpload = AppGlobalInfo.sGlobalInfoAppLastCrashLogFilespec
+
+        }
+
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of init().
+
     private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  print("\(sMessage)")
-        self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+        
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+        
+        }
+        else
+        {
+        
+            print("\(sMessage)")
+        
+        }
 
         // Exit:
 
@@ -53,7 +105,7 @@ struct HelpCommands: Commands
         CommandGroup(replacing: .help) 
         {
 
-            Button(action: {xcgLogMsg("Clicked on the \(ClassInfo.sClsDisp)Help menu #1...")})
+            Button(action: {self.xcgLogMsg("Clicked on the \(ClassInfo.sClsDisp)Help menu #1...")})
             {
       
                 Text("\(ClassInfo.sClsId) 'help' #1...")
@@ -81,30 +133,68 @@ struct HelpCommands: Commands
           
             }
 
-        //  Button
-        //  {
-        //
-        //      self.cHelpCommandsAppLogClearButtonPresses += 1
-        //
-        //      let _ = xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
-        //
-        //      self.clearAppDelegateTraceLogFile()
-        //
-        //  }
-        //  label: 
-        //  {
-        //
-        //      Text("\(ClassInfo.sClsId) 'clear' Log file")
-        //
-        //  }
-        //  .controlSize(.regular)
-        //  .background(Color(red: 0, green: 0.5, blue: 0.5))
-        //  .foregroundStyle(.white)
-        //  .buttonStyle(.borderedProminent)
+            Button(action: {uploadCurrentAppLogToDevs()})
+            {
+          
+                Text("\(ClassInfo.sClsId) 'send' the 'current' App Log file to Devs")
+          
+            }
+
+            if (bWasAppLogFilePresentAtStartup)
+            {
+
+                Button(action: {uploadPreviousAppLogToDevs()})
+                {
+
+                    Text("\(ClassInfo.sClsId) 'send' the \(sAppExecutionPreviousAlertText) App Log file to Devs")
+
+                }
+
+            }
 
         }
 
     }
+
+    func checkIfAppLogWasPresent() -> Bool
+    {
+  
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) 'jmAppDelegateVisitor' is [\(String(describing: jmAppDelegateVisitor))] - details are [\(jmAppDelegateVisitor.toString())]...")
+  
+        let bWasAppLogPresentAtStart:Bool = jmAppDelegateVisitor.bWasAppLogFilePresentAtStartup
+        
+        // Exit...
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'bWasAppLogPresentAtStart' is [\(String(describing: bWasAppLogPresentAtStart))]...")
+  
+        return bWasAppLogPresentAtStart
+  
+    }   // End of checkIfAppLogWasPresent().
+
+    func checkIfAppDidCrash() -> Bool
+    {
+  
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) 'jmAppDelegateVisitor' is [\(String(describing: jmAppDelegateVisitor))] - details are [\(jmAppDelegateVisitor.toString())]...")
+  
+        let bDidAppCrashOnLastRun:Bool = jmAppDelegateVisitor.bWasAppCrashFilePresentAtStartup
+        
+        // Exit...
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'bDidAppCrashOnLastRun' is [\(String(describing: bDidAppCrashOnLastRun))]...")
+  
+        return bDidAppCrashOnLastRun
+  
+    }   // End of checkIfAppDidCrash().
 
     func clearAppDelegateTraceLogFile()
     {
@@ -119,7 +209,7 @@ struct HelpCommands: Commands
         jmAppDelegateVisitor.clearAppDelegateVisitorTraceLogFile()
 
         jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
-        jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'Cleared'..."
+        jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert::App Log has been 'Cleared'..."
         jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
 
         self.xcgLogMsg("\(ClassInfo.sClsDisp):Commands(Help) in Button(Xcode).'App Log 'Clear'.#(\(self.cHelpCommandsAppLogClearButtonPresses))'...")
@@ -132,5 +222,155 @@ struct HelpCommands: Commands
         
     }   // End of func clearAppDelegateTraceLogFile().
     
+    func uploadCurrentAppLogToDevs()
+    {
+  
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Prepare specifics to 'upload' the AppLog file...
+
+        var urlAppDelegateVisitorLogFilepath:URL?     = nil
+        var urlAppDelegateVisitorLogFilespec:URL?     = nil
+        var sAppDelegateVisitorLogFilespec:String!    = nil
+        var sAppDelegateVisitorLogFilepath:String!    = nil
+        var sAppDelegateVisitorLogFilenameExt:String! = nil
+
+        do 
+        {
+
+            urlAppDelegateVisitorLogFilepath  = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask ,appropriateFor: nil, create: true)
+            urlAppDelegateVisitorLogFilespec  = urlAppDelegateVisitorLogFilepath?.appendingPathComponent(AppGlobalInfo.sGlobalInfoAppLogFilespec)
+            sAppDelegateVisitorLogFilespec    = urlAppDelegateVisitorLogFilespec?.path
+            sAppDelegateVisitorLogFilepath    = urlAppDelegateVisitorLogFilepath?.path
+            sAppDelegateVisitorLogFilenameExt = urlAppDelegateVisitorLogFilespec?.lastPathComponent
+
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilespec'    (computed) is [\(String(describing: sAppDelegateVisitorLogFilespec))]...")
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilepath'    (resolved #2) is [\(String(describing: sAppDelegateVisitorLogFilepath))]...")
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilenameExt' (computed) is [\(String(describing: sAppDelegateVisitorLogFilenameExt))]...")
+
+        }
+        catch
+        {
+
+            self.xcgLogMsg("[\(sCurrMethodDisp)] Failed to 'stat' item(s) in the 'path' of [.documentDirectory] - Error: \(error)...")
+
+        }
+
+        // Create the AppLog's 'multipartRequestInfo' object (but WITHOUT any Data (yet))...
+
+        let multipartRequestInfo:MultipartRequestInfo = MultipartRequestInfo()
+
+        multipartRequestInfo.bAppZipSourceToUpload    = false
+        multipartRequestInfo.sAppUploadURL            = ""          // "" takes the Upload URL 'default'...
+        multipartRequestInfo.sAppUploadNotifyTo       = ""          // This is email notification - "" defaults to all Dev(s)...
+        multipartRequestInfo.sAppUploadNotifyCc       = ""          // This is email notification - "" defaults to 'none'...
+        multipartRequestInfo.sAppSourceFilespec       = sAppDelegateVisitorLogFilespec
+        multipartRequestInfo.sAppSourceFilename       = sAppDelegateVisitorLogFilenameExt
+        multipartRequestInfo.sAppZipFilename          = "-N/A-"
+        multipartRequestInfo.sAppSaveAsFilename       = sAppDelegateVisitorLogFilenameExt
+        multipartRequestInfo.sAppFileMimeType         = "text/plain"
+
+        // Create the AppLog's 'multipartRequestInfo.dataAppFile' object...
+
+        multipartRequestInfo.dataAppFile              = FileManager.default.contents(atPath: sAppDelegateVisitorLogFilespec)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) The 'upload' is using 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo.toString()))]...")
+
+        // Send the AppLog as an 'upload' to the Server...
+
+        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:true)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:multipartRequestInfo)
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Called  'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        // Exit...
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+  
+        return
+  
+    }   // End of uploadCurrentAppLogToDevs().
+
+    func uploadPreviousAppLogToDevs()
+    {
+  
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+
+        // Prepare specifics to 'upload' the AppLog file...
+
+        var urlAppDelegateVisitorLogFilepath:URL?     = nil
+        var urlAppDelegateVisitorLogFilespec:URL?     = nil
+        var sAppDelegateVisitorLogFilespec:String!    = nil
+        var sAppDelegateVisitorLogFilepath:String!    = nil
+        var sAppDelegateVisitorLogFilenameExt:String! = nil
+
+        do 
+        {
+
+            urlAppDelegateVisitorLogFilepath  = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask ,appropriateFor: nil, create: true)
+            urlAppDelegateVisitorLogFilespec  = urlAppDelegateVisitorLogFilepath?.appendingPathComponent(sAppExecutionPreviousLogToUpload)
+            sAppDelegateVisitorLogFilespec    = urlAppDelegateVisitorLogFilespec?.path
+            sAppDelegateVisitorLogFilepath    = urlAppDelegateVisitorLogFilepath?.path
+            sAppDelegateVisitorLogFilenameExt = urlAppDelegateVisitorLogFilespec?.lastPathComponent
+
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilespec'    (computed) is [\(String(describing: sAppDelegateVisitorLogFilespec))]...")
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilepath'    (resolved #2) is [\(String(describing: sAppDelegateVisitorLogFilepath))]...")
+            self.xcgLogMsg("[\(sCurrMethodDisp)] 'sAppDelegateVisitorLogFilenameExt' (computed) is [\(String(describing: sAppDelegateVisitorLogFilenameExt))]...")
+
+        }
+        catch
+        {
+
+            self.xcgLogMsg("[\(sCurrMethodDisp)] Failed to 'stat' item(s) in the 'path' of [.documentDirectory] - Error: \(error)...")
+
+        }
+
+        // Create the AppLog's 'multipartRequestInfo' object (but WITHOUT any Data (yet))...
+
+        let multipartRequestInfo:MultipartRequestInfo = MultipartRequestInfo()
+
+        multipartRequestInfo.bAppZipSourceToUpload    = false
+        multipartRequestInfo.sAppUploadURL            = ""          // "" takes the Upload URL 'default'...
+        multipartRequestInfo.sAppUploadNotifyTo       = ""          // This is email notification - "" defaults to all Dev(s)...
+        multipartRequestInfo.sAppUploadNotifyCc       = ""          // This is email notification - "" defaults to 'none'...
+        multipartRequestInfo.sAppSourceFilespec       = sAppDelegateVisitorLogFilespec
+        multipartRequestInfo.sAppSourceFilename       = sAppDelegateVisitorLogFilenameExt
+        multipartRequestInfo.sAppZipFilename          = "-N/A-"
+        multipartRequestInfo.sAppSaveAsFilename       = sAppDelegateVisitorLogFilenameExt
+        multipartRequestInfo.sAppFileMimeType         = "text/plain"
+
+        // Create the AppLog's 'multipartRequestInfo.dataAppFile' object...
+
+        multipartRequestInfo.dataAppFile              = FileManager.default.contents(atPath: sAppDelegateVisitorLogFilespec)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) The 'upload' is using 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo.toString()))]...")
+
+        // Send the AppLog as an 'upload' to the Server...
+
+        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:true)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:multipartRequestInfo)
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Called  'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        // Exit...
+  
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+  
+        return
+  
+    }   // End of uploadPreviousAppLogToDevs().
+
 }   // End of struct HelpCommands(Commands).
 

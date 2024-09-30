@@ -17,7 +17,7 @@ public class JmXcodeBuildSettings
     {
 
         static let sClsId        = "JmXcodeBuildSettings"
-        static let sClsVers      = "v1.0201"
+        static let sClsVers      = "v1.0301"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
@@ -80,6 +80,30 @@ public class JmXcodeBuildSettings
         return getAppInfoPlistString(for: "JMA_USER_SETTING_2")
 
     }
+
+    static var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+    
+    class private func xcgLogMsg(_ sMessage:String)
+    {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
 
     class public func toString() -> String
     {
@@ -210,18 +234,6 @@ public class JmXcodeBuildSettings
         return (Bundle.main.infoDictionary?[key] as? String) ?? "-N/A-"
 
     }   // End of class public func getAppInfoPlistString(for key:).
-
-    class private func xcgLogMsg(_ sMessage:String)
-    {
-
-    //  self.appDelegate.xcgLogMsg("\(sMessage)")
-        print("\(sMessage)")
-
-        // Exit:
-
-        return
-
-    }   // End of class private func xcgLogMsg().
 
 }   // End of public class JmXcodeBuildSettings.
 

@@ -23,12 +23,12 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     struct ClassInfo
     {
         
-        static let sClsId          = "JmAppDelegateVisitor"
-        static let sClsVers        = "v1.1001"
-        static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
-        static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
-        static let bClsTrace       = true
-        static let bClsFileLog     = true
+        static let sClsId        = "JmAppDelegateVisitor"
+        static let sClsVers      = "v1.1103"
+        static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
+        static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+        static let bClsTrace     = true
+        static let bClsFileLog   = true
         
     }
 
@@ -81,7 +81,23 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     // App <global> 'Alert' control(s):
 
-    @Published var isAppDelegateVisitorShowingAlert:Bool     = false
+    @Published 
+    var appDelegateVisitorSwiftViewsShouldChange:Bool        = false
+    {
+
+        didSet
+        {
+
+            objectWillChange.send()
+
+        }
+
+    }
+
+    // App <global> 'Alert' control(s):
+
+    @Published 
+    var isAppDelegateVisitorShowingAlert:Bool                = false
     {
 
         didSet
@@ -98,6 +114,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     // App <global> 'state' control(s):
 
+    var bWasAppLogFilePresentAtStartup:Bool                  = false
     var bWasAppCrashFilePresentAtStartup:Bool                = false
     var bAppDelegateVisitorCrashMarkerFilespecIsUsable:Bool  = false
     var bAppDelegateVisitorCrashMarkerFilespecIsCreated:Bool = false
@@ -164,6 +181,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         asToString.append("sAppDelegateVisitorGlobalAlertButtonText': [\(String(describing: self.sAppDelegateVisitorGlobalAlertButtonText))],")
         asToString.append("],")
         asToString.append("[")
+        asToString.append("bWasAppLogFilePresentAtStartup': [\(self.bWasAppLogFilePresentAtStartup)],")
         asToString.append("bWasAppCrashFilePresentAtStartup': [\(self.bWasAppCrashFilePresentAtStartup)],")
         asToString.append("bAppDelegateVisitorCrashMarkerFilespecIsUsable': [\(self.bAppDelegateVisitorCrashMarkerFilespecIsUsable)],")
         asToString.append("bAppDelegateVisitorCrashMarkerFilespecIsCreated': [\(self.bAppDelegateVisitorCrashMarkerFilespecIsCreated)],")
@@ -368,6 +386,8 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
             if (bIsAppLogFilePresent == true)
             {
 
+                self.bWasAppLogFilePresentAtStartup = true
+
                 // The LOG file 'exists', calculate the 'target' Log file name:
 
                 self.xcgLogMsg("\(sCurrMethodDisp) 'self.bWasAppCrashFilePresentAtStartup' is [\(self.bWasAppCrashFilePresentAtStartup)]...")
@@ -414,6 +434,12 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
                 self.xcgLogMsg("[\(sCurrMethodDisp)] Successfully 'saved' the Log Filespec of [\(String(describing: self.sAppDelegateVisitorLogFilespec))] to a 'target' Log Filespec of [\(String(describing: self.urlAppDelegateVisitorLogToSaveFilespec))]...")
 
             }
+            else
+            {
+
+                self.bWasAppLogFilePresentAtStartup = false
+
+            }
 
             try FileManager.default.createDirectory(atPath: self.sAppDelegateVisitorLogFilepath, withIntermediateDirectories: true, attributes: nil)
 
@@ -437,7 +463,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         // Exit:
 
-        self.xcgLogMsg("[\(sCurrMethodDisp)] Exiting - 'self.bAppDelegateVisitorLogFilespecIsUsable' is [\(self.bAppDelegateVisitorLogFilespecIsUsable)]...")
+        self.xcgLogMsg("[\(sCurrMethodDisp)] Exiting - 'self.bAppDelegateVisitorLogFilespecIsUsable' is [\(self.bAppDelegateVisitorLogFilespecIsUsable)] - 'self.bWasAppLogFilePresentAtStartup' is [\(self.bWasAppLogFilePresentAtStartup)]...")
 
         return
 
@@ -885,6 +911,169 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         return
 
     }   // End of @objc public func performAppDelegateVisitorTerminatingCrashLogic().
+
+    // Method(s) that signal interaction(s) with Swift View(s):
+
+    @objc public func setAppDelegateVisitorSignalSwiftViewsShouldChange()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
+        // Signal Swift 'view(s)' that they should change (if watching this AppDelegateVisitor)...
+
+        self.appDelegateVisitorSwiftViewsShouldChange = true
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func setAppDelegateVisitorSignalSwiftViewsShouldChange().
+
+    @objc public func resetAppDelegateVisitorSignalSwiftViewsShouldChange()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
+        // Reset the signal Swift 'view(s)' that they should change (if watching this AppDelegateVisitor)...
+
+        self.appDelegateVisitorSwiftViewsShouldChange = false
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func resetAppDelegateVisitorSignalSwiftViewsShouldChange().
+
+    @objc public func setAppDelegateVisitorSignalGlobalAlert(_ alertMsg:String? = nil, alertButtonText:String? = nil)
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter(s) 'alertMsg' is [\(String(describing: alertMsg))] - 'alertButtonText' is [\(String(describing: alertButtonText))] - 'self' is [\(self)]...")
+
+        // Set the Alert fields (Message and Button Text) and then signal the Global Alert...
+
+        if (alertMsg        == nil ||
+            alertMsg!.count  < 1)
+        {
+
+            self.sAppDelegateVisitorGlobalAlertMessage = "-N/A-"
+
+        }
+        else
+        {
+
+            self.sAppDelegateVisitorGlobalAlertMessage = alertMsg
+
+        }
+
+        if (alertButtonText        == nil ||
+            alertButtonText!.count  < 1)
+        {
+
+            self.sAppDelegateVisitorGlobalAlertButtonText = "-N/A-"
+
+        }
+        else
+        {
+
+            self.sAppDelegateVisitorGlobalAlertButtonText = alertButtonText
+
+        }
+
+        self.isAppDelegateVisitorShowingAlert = true
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func setAppDelegateVisitorSignalGlobalAlert().
+
+    @objc public func resetAppDelegateVisitorSignalGlobalAlert()
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
+        // Reset the signal of the Global Alert...
+
+        self.isAppDelegateVisitorShowingAlert = false
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func resetAppDelegateVisitorSignalGlobalAlert().
+
+    // Method to assist with sending Email with a File upload...
+
+    @objc public func appDelegateVisitorSendEmailUpload(_ emailAddressTo:String,
+                                                        emailAddressCc:String,  
+                                                        emailSourceFilespec:String,
+                                                        emailSourceFilename:String,
+                                                        emailZipFilename:String,
+                                                        emailSaveAsFilename:String,
+                                                        emailFileMimeType:String,
+                                                        emailFileData:NSData)
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
+        // Remap the inbound parameter(s) into a MultipartRequestInfo object...
+
+        let multipartRequestInfo:MultipartRequestInfo = MultipartRequestInfo()
+
+        multipartRequestInfo.bAppZipSourceToUpload    = false
+        multipartRequestInfo.sAppUploadURL            = ""          // "" takes the Upload URL 'default'...
+        multipartRequestInfo.sAppUploadNotifyFrom     = ""
+        multipartRequestInfo.sAppUploadNotifyTo       = emailAddressTo
+        multipartRequestInfo.sAppUploadNotifyCc       = emailAddressCc
+        multipartRequestInfo.sAppSourceFilespec       = emailSourceFilespec
+        multipartRequestInfo.sAppSourceFilename       = emailSourceFilename
+        multipartRequestInfo.sAppZipFilename          = "-N/A-"
+        multipartRequestInfo.sAppSaveAsFilename       = emailSourceFilename
+        multipartRequestInfo.sAppFileMimeType         = emailFileMimeType
+        multipartRequestInfo.dataAppFile              = Data(referencing:emailFileData)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) The 'upload' is using 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo.toString()))]...")
+
+        // Send the 'upload' to the Server...
+
+        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:false)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:multipartRequestInfo)
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Called  'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorSendEmailUpload().
 
 #if os(macOS)
 
