@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DefinesObjCOverrides.h"
+
 #import "CalledObjCModule.h"
 
 #endif /* CalledObjCModule_Bridging_Header_h */

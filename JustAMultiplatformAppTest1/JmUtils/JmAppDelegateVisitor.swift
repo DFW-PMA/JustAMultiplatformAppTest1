@@ -243,13 +243,13 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         if (AppGlobalInfo.bPerformAppObjCSwiftBridgeTest == true)
         {
 
-        //  let definesObjCModule = Defines()
-        //
-        //  self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'initInstance()' with NO parameter(s)...")
-        //
-        //  definesObjCModule.initInstance()
-        //
-        //  self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'initInstance()' with NO parameter(s)...")
+            let definesObjCModule = DefinesObjCOverrides()
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoking 'definesObjCModule.initInstance()' with NO parameter(s)...")
+          
+            definesObjCModule.initInstance()
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #1 - invoked 'definesObjCModule.initInstance()' with NO parameter(s)...")
 
             let calledObjCModule = CalledObjCModule()
 
