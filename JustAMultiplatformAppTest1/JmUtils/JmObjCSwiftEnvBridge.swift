@@ -20,9 +20,9 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.0801"
+        static let sClsVers        = "v1.0901"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
-        static let sClsCopyRight   = "Copyright (C) DFW-PMA 2024. All Rights Reserved."
+        static let sClsCopyRight   = "Copyright (C) JustMacApps 2024. All Rights Reserved."
         static let bClsTrace       = true
         static let bClsFileLog     = true
         
@@ -31,16 +31,19 @@ public class JmObjCSwiftEnvBridge: NSObject
     // Class 'singleton' instance:
 
     @objc(sharedObjCSwiftEnvBridge)
-    static let sharedObjCSwiftEnvBridge            = JmObjCSwiftEnvBridge()
+    static let sharedObjCSwiftEnvBridge                    = JmObjCSwiftEnvBridge()
 
     // Various App field(s):
 
-    var cJmObjCSwiftEnvBridgeMethodCalls:Int       = 0
+    private var bInternalTest:Bool                         = true
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor? = nil
-                                                    // This MUST remain this way as having it reference the 'shared'
-                                                    // instance of JmAppDelegateVisitor causes a circular reference
-                                                    // between the 'init()' methods of the 2 classes...
+    private var cJmObjCSwiftEnvBridgeMethodCalls:Int       = 0
+
+            var jmAppDelegateVisitor:JmAppDelegateVisitor? = nil
+                                                             // 'jmAppDelegateVisitor' MUST remain declared this way
+                                                             // as having it reference the 'shared' instance of 
+                                                             // JmAppDelegateVisitor causes a circular reference
+                                                             // between the 'init()' methods of the 2 classes...
 
     private override init()
     {
@@ -119,14 +122,25 @@ public class JmObjCSwiftEnvBridge: NSObject
 
         self.cJmObjCSwiftEnvBridgeMethodCalls += 1
 
-        self.xcgLogMsg("-------------------------------------------------------------------------------------------------------------")
-        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - Swift code has been called with a parameter 'message' of [\(message)]...")
-        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' JmObjCSwiftEnvBridge 'self' is [\(self)]...")
-        self.xcgLogMsg("-------------------------------------------------------------------------------------------------------------")
+        if (bInternalTest == false)
+        {
 
-        // Exit:
+            self.xcgLogMsg(message as String)
 
-        self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
+        }
+        else
+        {
+
+            self.xcgLogMsg("-------------------------------------------------------------------------------------------------------------")
+            self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - Swift code has been called with a parameter 'message' of [\(message)]...")
+            self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' JmObjCSwiftEnvBridge 'self' is [\(self)]...")
+            self.xcgLogMsg("-------------------------------------------------------------------------------------------------------------")
+
+            // Exit:
+
+            self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Exiting...")
+
+        }
 
         return
 
