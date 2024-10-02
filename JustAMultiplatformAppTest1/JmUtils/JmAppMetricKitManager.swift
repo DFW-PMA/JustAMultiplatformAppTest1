@@ -36,6 +36,10 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
                                                      // JmAppDelegateVisitor causes a circular reference
                                                      // between the 'init()' methods of the 2 classes...
 
+    // App <global> Message(s) 'stack' cached before XCGLogger is available:
+
+            var listPreXCGLoggerMessages:[String]          = Array()
+
     override init()
     {
         
@@ -77,6 +81,8 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
 
                 print("\(sMessage)")
 
+                self.listPreXCGLoggerMessages.append(sMessage)
+
             }
 
         }
@@ -84,6 +90,8 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
         {
 
             print("\(sMessage)")
+
+            self.listPreXCGLoggerMessages.append(sMessage)
 
         }
 
@@ -128,7 +136,26 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - supplied parameter 'jmAppDelegateVisitor' is [\(jmAppDelegateVisitor)]...")
 
+        // Set the AppDelegateVisitor instance...
+
         self.jmAppDelegateVisitor = jmAppDelegateVisitor
+    
+        // Spool <any> pre-XDGLogger (via the AppDelegateVisitor) message(s) into the Log...
+
+        if (self.listPreXCGLoggerMessages.count > 0)
+        {
+
+            self.xcgLogMsg("")
+            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooling the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) === >>>")
+
+            let sPreXCGLoggerMessages:String = self.listPreXCGLoggerMessages.joined(separator: "\n")
+
+            self.xcgLogMsg(sPreXCGLoggerMessages)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooled  the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) === >>>")
+            self.xcgLogMsg("")
+
+        }
     
         // Exit:
 
