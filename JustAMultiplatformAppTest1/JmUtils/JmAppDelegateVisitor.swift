@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1204"
+        static let sClsVers      = "v1.1205"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true

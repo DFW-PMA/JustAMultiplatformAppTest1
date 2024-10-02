@@ -18,7 +18,7 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         static let sClsId        = "JmAppMetricKitManager"
-        static let sClsVers      = "v1.0105"
+        static let sClsVers      = "v1.0107"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
@@ -221,13 +221,14 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"<MXMetricPayload>':"
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
         // Handle the payload list by looping to convert the item(s) into string(s) to be able to 'upload'...
 
-        var listPayloadAttachments:[String] = []
+        var listPayloadAttachmentsJSON:[String]   = []
+        var listPayloadAttachmentsBase64:[String] = []
 
         if (payloads.count > 0)
         {
@@ -235,11 +236,16 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
             for payload in payloads
             {
 
-                listPayloadAttachments.append(payload.jsonRepresentation().base64EncodedString())
+                let sPayloadAttachmentJSON:String   = String(decoding:payload.jsonRepresentation(), as:UTF8.self)
+                let sPayloadAttachmentBase64:String = payload.jsonRepresentation().base64EncodedString()
+
+                listPayloadAttachmentsJSON.append(sPayloadAttachmentJSON)
+                listPayloadAttachmentsBase64.append(sPayloadAttachmentBase64)
 
             }
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'payload' list was converted to 'upload' string(s) as [\(listPayloadAttachments)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'payload' list was converted to JSON 'data' string(s) as [\(listPayloadAttachmentsJSON)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'payload' list was converted to Base64 'upload' string(s) as [\(listPayloadAttachmentsBase64)]...")
 
             // ...this is where we'd 'upload' this data and email it...
 
@@ -265,13 +271,14 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"<MXDiagnosticPayload>':"
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
         // Handle the payload list by looping to convert the item(s) into string(s) to be able to 'upload'...
 
-        var listPayloadAttachments:[String] = []
+        var listPayloadAttachmentsJSON:[String]   = []
+        var listPayloadAttachmentsBase64:[String] = []
 
         if (payloads.count > 0)
         {
@@ -279,11 +286,16 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
             for payload in payloads
             {
 
-                listPayloadAttachments.append(payload.jsonRepresentation().base64EncodedString())
+                let sPayloadAttachmentJSON:String   = String(decoding:payload.jsonRepresentation(), as:UTF8.self)
+                let sPayloadAttachmentBase64:String = payload.jsonRepresentation().base64EncodedString()
+
+                listPayloadAttachmentsJSON.append(sPayloadAttachmentJSON)
+                listPayloadAttachmentsBase64.append(sPayloadAttachmentBase64)
 
             }
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'payload' list was converted to 'upload' string(s) as [\(listPayloadAttachments)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'payload' list was converted to JSON 'data' string(s) as [\(listPayloadAttachmentsJSON)]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'payload' list was converted to Base64 'upload' string(s) as [\(listPayloadAttachmentsBase64)]...")
 
             // ...this is where we'd 'upload' this data and email it...
 
