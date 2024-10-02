@@ -17,7 +17,7 @@ public class JmXcodeBuildSettings
     {
 
         static let sClsId        = "JmXcodeBuildSettings"
-        static let sClsVers      = "v1.0301"
+        static let sClsVers      = "v1.0401"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
@@ -148,7 +148,7 @@ public class JmXcodeBuildSettings
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppCategory' is [\(sAppCategory)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppCategory' is [\(sAppCategory)]...")
 
         return sAppCategory
 
@@ -166,7 +166,7 @@ public class JmXcodeBuildSettings
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppDiaplayName' is [\(sAppDiaplayName)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppDiaplayName' is [\(sAppDiaplayName)]...")
 
         return sAppDiaplayName
 
@@ -184,7 +184,7 @@ public class JmXcodeBuildSettings
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppBundleIdentifier' is [\(sAppBundleIdentifier)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppBundleIdentifier' is [\(sAppBundleIdentifier)]...")
 
         return sAppBundleIdentifier
 
@@ -204,7 +204,7 @@ public class JmXcodeBuildSettings
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppVersionAndBuildNumber' is [\(sAppVersionAndBuildNumber)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppVersionAndBuildNumber' is [\(sAppVersionAndBuildNumber)]...")
 
         return sAppVersionAndBuildNumber
 
@@ -222,7 +222,7 @@ public class JmXcodeBuildSettings
 
         // Exit:
 
-        xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppCopyRight' is [\(sAppCopyRight)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'sAppCopyRight' is [\(sAppCopyRight)]...")
 
         return sAppCopyRight
 

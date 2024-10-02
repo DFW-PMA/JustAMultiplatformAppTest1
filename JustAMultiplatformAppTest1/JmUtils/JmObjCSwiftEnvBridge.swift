@@ -20,7 +20,7 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.0901"
+        static let sClsVers        = "v1.1001"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -71,7 +71,18 @@ public class JmObjCSwiftEnvBridge: NSObject
         if (self.jmAppDelegateVisitor != nil)
         {
 
-            self.jmAppDelegateVisitor?.xcgLogMsg(sMessage)
+            if (self.jmAppDelegateVisitor!.bAppDelegateVisitorLogFilespecIsUsable == true)
+            {
+
+                self.jmAppDelegateVisitor!.xcgLogMsg(sMessage)
+
+            }
+            else
+            {
+
+                print("\(sMessage)")
+
+            }
 
         }
         else
