@@ -98,6 +98,8 @@
 		F0D17B922C52E951000E5A52 /* SettingsSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */; };
 		F0D17B932C52E951000E5A52 /* LogFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D17B912C52E951000E5A52 /* LogFileView.swift */; };
 		F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */; };
+		F0EEDD872CADC38400E437E8 /* JmAppMetricKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EEDD852CADC38400E437E8 /* JmAppMetricKitManager.swift */; };
+		F0EEDD882CADC38400E437E8 /* JmAppMetricKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EEDD852CADC38400E437E8 /* JmAppMetricKitManager.swift */; };
 		F0EF628B2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */; };
 		F0EF628C2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */; };
 /* End PBXBuildFile section */
@@ -167,6 +169,9 @@
 		F0D17B902C52E951000E5A52 /* SettingsSingleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSingleView.swift; sourceTree = "<group>"; };
 		F0D17B912C52E951000E5A52 /* LogFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFileView.swift; sourceTree = "<group>"; };
 		F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmAppDelegateVisitor.swift; sourceTree = "<group>"; };
+		F0EEDD842CADC38400E437E8 /* JmAppDelegateVisitor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JmAppDelegateVisitor-Bridging-Header.h"; sourceTree = "<group>"; };
+		F0EEDD852CADC38400E437E8 /* JmAppMetricKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JmAppMetricKitManager.swift; sourceTree = "<group>"; };
+		F0EEDD862CADC38400E437E8 /* JmUserDefaults-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JmUserDefaults-Bridging-Header.h"; sourceTree = "<group>"; };
 		F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperSupportEmail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -308,6 +313,9 @@
 		F0D17B862C52E3D5000E5A52 /* JmUtils */ = {
 			isa = PBXGroup;
 			children = (
+				F0EEDD842CADC38400E437E8 /* JmAppDelegateVisitor-Bridging-Header.h */,
+				F0EEDD852CADC38400E437E8 /* JmAppMetricKitManager.swift */,
+				F0EEDD862CADC38400E437E8 /* JmUserDefaults-Bridging-Header.h */,
 				F0D473972C7AD2960027F651 /* JmAppDelegateVisitor.swift */,
 				F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */,
 				F0289D282C53D85B001B19CD /* JmUserDefaults.swift */,
@@ -389,7 +397,7 @@
 					};
 					F0BCCC772C821E34007EA382 = {
 						CreatedOnToolsVersion = 15.4;
-						LastSwiftMigration = 1540;
+						LastSwiftMigration = 1600;
 					};
 				};
 			};
@@ -451,6 +459,7 @@
 			files = (
 				F0D17B8F2C52E942000E5A52 /* HelpCommands.swift in Sources */,
 				F029E0B72C82386D00FC96B9 /* SettingsSingleViewMac.swift in Sources */,
+				F0EEDD882CADC38400E437E8 /* JmAppMetricKitManager.swift in Sources */,
 				F091A2872C8F6FEF00FB85D5 /* RestURLProcessor.swift in Sources */,
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
 				F0289D332C53D98D001B19CD /* HelpBasicMode.swift in Sources */,
@@ -509,6 +518,7 @@
 				F07F7B962C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */,
 				F029E0BB2C823ACB00FC96B9 /* AppAboutView.swift in Sources */,
 				F006199F2C94A8060094614E /* ZipFileCreator.swift in Sources */,
+				F0EEDD872CADC38400E437E8 /* JmAppMetricKitManager.swift in Sources */,
 				F00619A12C94A8060094614E /* MultipartRequestDriver.swift in Sources */,
 				F0BCCC642C820EF1007EA382 /* JmXcodeBuildSettings.swift in Sources */,
 				F0BCCC652C820EF1007EA382 /* JmAppDelegateVisitor.swift in Sources */,
@@ -672,7 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20.09.24C274;
+				CURRENT_PROJECT_VERSION = 21.03.24C276;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -712,7 +722,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20.09.24C274;
+				CURRENT_PROJECT_VERSION = 21.03.24C276;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -751,7 +761,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20.09.24C274;
+				CURRENT_PROJECT_VERSION = 21.03.24C276;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -797,7 +807,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20.09.24C274;
+				CURRENT_PROJECT_VERSION = 21.03.24C276;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";

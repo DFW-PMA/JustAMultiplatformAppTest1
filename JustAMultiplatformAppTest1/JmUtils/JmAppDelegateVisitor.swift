@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1106"
+        static let sClsVers      = "v1.1202"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -128,6 +128,10 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     var listPreXCGLoggerMessages:[String]                    = Array()
 
+    // App <possible> (Apple) MetricKitManager instance:
+
+    var jmAppMetricKitManager:JmAppMetricKitManager?         = nil
+
     @objc public func toString() -> String
     {
 
@@ -190,6 +194,9 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         asToString.append("sAppDelegateVisitorCrashMarkerFilepath': [\(String(describing: self.sAppDelegateVisitorCrashMarkerFilepath))],")
         asToString.append("urlAppDelegateVisitorLogToSaveFilespec': [\(String(describing: self.urlAppDelegateVisitorLogToSaveFilespec))],")
         asToString.append("sAppDelegateVisitorLogToSaveFilespec': [\(String(describing: self.sAppDelegateVisitorLogToSaveFilespec))],")
+        asToString.append("],")
+        asToString.append("[")
+        asToString.append("jmAppMetricKitManager': [\(String(describing: self.jmAppMetricKitManager))],")
         asToString.append("],")
         asToString.append("]")
 
@@ -283,6 +290,23 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
             calledObjCModule.sayHello(sHelloMessage2)
 
             self.xcgLogMsg("\(sCurrMethodDisp) Objective-C call #5 - called  'calledObjCModule.sayHello()' with a parameter of [\(String(describing: sHelloMessage2))]...")
+
+        }
+
+        // Apple MetricKitManager instantiation <maybe>:
+
+        if (AppGlobalInfo.bInstantiateAppMetricKitManager == true)
+        {
+
+            // Instantiate the jmAppMetricKitManager...
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Instantiating the 'self.jmAppMetricKitManager' instance...")
+
+            self.jmAppMetricKitManager = JmAppMetricKitManager()
+
+            self.jmAppMetricKitManager?.setJmAppDelegateVisitorInstance(jmAppDelegateVisitor:self)
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Instantiated  the 'self.jmAppMetricKitManager' instance...")
 
         }
 
