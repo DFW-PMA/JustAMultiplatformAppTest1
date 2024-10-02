@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1202"
+        static let sClsVers      = "v1.1204"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -124,13 +124,13 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     var urlAppDelegateVisitorLogToSaveFilespec:URL?          = nil
     var sAppDelegateVisitorLogToSaveFilespec:String!         = nil
 
-    // App <global> Message(s) 'stack' cached before XCGLogger is available:
-
-    var listPreXCGLoggerMessages:[String]                    = Array()
-
     // App <possible> (Apple) MetricKitManager instance:
 
     var jmAppMetricKitManager:JmAppMetricKitManager?         = nil
+
+    // App <global> Message(s) 'stack' cached before XCGLogger is available:
+
+    var listPreXCGLoggerMessages:[String]                    = Array()
 
     @objc public func toString() -> String
     {

@@ -20,7 +20,7 @@ public class JmObjCSwiftEnvBridge: NSObject
     {
         
         static let sClsId          = "JmObjCSwiftEnvBridge"
-        static let sClsVers        = "v1.1001"
+        static let sClsVers        = "v1.1002"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -44,6 +44,10 @@ public class JmObjCSwiftEnvBridge: NSObject
                                                              // as having it reference the 'shared' instance of 
                                                              // JmAppDelegateVisitor causes a circular reference
                                                              // between the 'init()' methods of the 2 classes...
+
+    // App <global> Message(s) 'stack' cached before XCGLogger is available:
+
+            var listPreXCGLoggerMessages:[String]          = Array()
 
     private override init()
     {
@@ -82,6 +86,8 @@ public class JmObjCSwiftEnvBridge: NSObject
 
                 print("\(sMessage)")
 
+                self.listPreXCGLoggerMessages.append(sMessage)
+
             }
 
         }
@@ -89,6 +95,8 @@ public class JmObjCSwiftEnvBridge: NSObject
         {
 
             print("\(sMessage)")
+
+            self.listPreXCGLoggerMessages.append(sMessage)
 
         }
 
@@ -108,7 +116,26 @@ public class JmObjCSwiftEnvBridge: NSObject
     
         self.xcgLogMsg("\(ClassInfo.sClsDisp)\(sCurrMethodDisp)#(\(self.cJmObjCSwiftEnvBridgeMethodCalls))' Invoked - supplied parameter 'jmAppDelegateVisitor' is [\(jmAppDelegateVisitor)]...")
 
+        // Set the AppDelegateVisitor instance...
+
         self.jmAppDelegateVisitor = jmAppDelegateVisitor
+
+        // Spool <any> pre-XDGLogger (via the AppDelegateVisitor) message(s) into the Log...
+
+        if (self.listPreXCGLoggerMessages.count > 0)
+        {
+
+            self.xcgLogMsg("")
+            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooling the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) === >>>")
+
+            let sPreXCGLoggerMessages:String = self.listPreXCGLoggerMessages.joined(separator: "\n")
+
+            self.xcgLogMsg(sPreXCGLoggerMessages)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooled  the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) === >>>")
+            self.xcgLogMsg("")
+
+        }
     
         // Exit:
 
