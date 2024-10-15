@@ -17,7 +17,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0209"
+        static let sClsVers      = "v1.0210"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -115,7 +115,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "questionmark.diamond")
                             .padding()
                             .imageScale(.large)
-                            .help("App About Information")
+                            .help(Text("App About Information"))
                     //      .popoverTip("", arrowEdge:.top)
 
                     }
@@ -144,7 +144,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "questionmark.circle")
                             .padding()
                             .imageScale(.large)
-                            .help("App HELP Information")
+                            .help(Text("App HELP Information"))
 
                     }
                     .fullScreenCover(isPresented:$isAppHelpViewModal)
@@ -173,7 +173,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "doc.text.magnifyingglass")
                             .padding()
                             .imageScale(.large)
-                            .help("App LOG Viewer")
+                            .help(Text("App LOG Viewer"))
 
                     }
                     .fullScreenCover(isPresented:$isAppLogViewModal)
@@ -201,7 +201,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "xmark.circle")
                             .padding()
                             .imageScale(.large)
-                            .help("Dismiss this Screen")
+                            .help(Text("Dismiss this Screen"))
 
                     }
 
@@ -230,7 +230,7 @@ struct SettingsSingleViewIos: View
                         Label("", systemImage: "xmark.octagon")
                             .padding()
                             .imageScale(.large)
-                            .help("FORCE this App to CRASH")
+                            .help(Text("FORCE this App to CRASH"))
 
                     }
                     .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)

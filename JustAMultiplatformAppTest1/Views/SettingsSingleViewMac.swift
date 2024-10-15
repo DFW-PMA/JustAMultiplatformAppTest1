@@ -15,7 +15,7 @@ struct SettingsSingleViewMac: View
     {
         
         static let sClsId        = "SettingsSingleViewMac"
-        static let sClsVers      = "v1.0207"
+        static let sClsVers      = "v1.0208"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -103,7 +103,7 @@ struct SettingsSingleViewMac: View
                 {
 
                     Label("", systemImage: "xmark.octagon")
-                        .help("FORCE this App to CRASH")
+                        .help(Text("FORCE this App to CRASH"))
 
                 }
                 .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
