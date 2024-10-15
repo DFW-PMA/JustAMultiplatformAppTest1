@@ -12,6 +12,27 @@ import SwiftUI
 import TipKit
 #endif
 
+@available(iOS 17.0, *)
+struct AppAboutTip: Tip
+{
+
+    var title:Text 
+    {
+        Text("App ABOUT Information")
+    }
+
+    var message:Text? 
+    {
+        Text("Display information details of this Application.")
+    }
+
+    var image:Image? 
+    {
+        Image(systemName: "questionmark.diamond")
+    }
+
+}
+
 @available(iOS 16.0, *)
 struct SettingsSingleViewIos: View 
 {
@@ -20,7 +41,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0302"
+        static let sClsVers      = "v1.0307"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -32,6 +53,9 @@ struct SettingsSingleViewIos: View
     
 //  @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var presentationMode
+    
+    //     private var appAboutTip:any Tip                      = AppAboutTip()
+           private var appAboutTip                              = AppAboutTip()
 
     @State private var cContentViewAppAboutButtonPresses:Int    = 0
     @State private var cContentViewAppHelpViewButtonPresses:Int = 0
@@ -101,6 +125,16 @@ struct SettingsSingleViewIos: View
                 
                 HStack(alignment:.center)           // HStack #1.3
                 {
+
+                //  if #available(iOS 18.0, *) 
+                //  {
+                //      TipView(appAboutTip, arrowEdge:.bottom)
+                //  } 
+                //  else 
+                //  {
+                //      // Fallback on earlier versions
+                //  //  TipView(appAboutTip)
+                //  }
                 
                     Button
                     {
@@ -112,14 +146,13 @@ struct SettingsSingleViewIos: View
                         self.isAppAboutViewModal.toggle()
 
                     }
-                    label: 
+                    label:
                     {
                         
                         Label("", systemImage: "questionmark.diamond")
                             .padding()
                             .imageScale(.large)
                             .help(Text("App About Information"))
-                    //      .popoverTip("", arrowEdge:.top)
 
                     }
                     .fullScreenCover(isPresented:$isAppAboutViewModal)
@@ -128,6 +161,13 @@ struct SettingsSingleViewIos: View
                         AppAboutView()
                     
                     }
+                    .popoverTip(appAboutTip)
+//                if #available(iOS 18.0, *)
+//                {
+//                //  .popoverTip(AppAboutTip, arrowEdge:.bottom)
+//                    .popoverTip(appAboutTip)
+//                //  .popoverTip("", arrowEdge:.top)
+//                }
 
                     Spacer()
 
