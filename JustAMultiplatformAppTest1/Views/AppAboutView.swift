@@ -17,7 +17,7 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0702"
+        static let sClsVers      = "v1.0801"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
         static let bClsTrace     = true
@@ -96,12 +96,20 @@ struct AppAboutView: View
                     //  dismiss()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "xmark.circle")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "xmark.circle")
+                            .help(Text("Dismiss this Screen"))
+                            .imageScale(.large)
+
+                        Text("Dismiss")
+                            .font(.caption)
+
+                    }
 
                 }
                 .padding()

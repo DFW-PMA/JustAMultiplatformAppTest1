@@ -12,27 +12,6 @@ import SwiftUI
 import TipKit
 #endif
 
-@available(iOS 17.0, *)
-struct AppAboutTip: Tip
-{
-
-    var title:Text 
-    {
-        Text("App ABOUT Information")
-    }
-
-    var message:Text? 
-    {
-        Text("Display information details of this Application.")
-    }
-
-    var image:Image? 
-    {
-        Image(systemName: "questionmark.diamond")
-    }
-
-}
-
 @available(iOS 16.0, *)
 struct SettingsSingleViewIos: View 
 {
@@ -41,7 +20,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0307"
+        static let sClsVers      = "v1.0404"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -54,7 +33,6 @@ struct SettingsSingleViewIos: View
 //  @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var presentationMode
     
-    //     private var appAboutTip:any Tip                      = AppAboutTip()
            private var appAboutTip                              = AppAboutTip()
 
     @State private var cContentViewAppAboutButtonPresses:Int    = 0
@@ -149,11 +127,18 @@ struct SettingsSingleViewIos: View
                     label:
                     {
                         
-                        Label("", systemImage: "questionmark.diamond")
-                            .padding()
-                            .imageScale(.large)
-                            .help(Text("App About Information"))
-
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "questionmark.diamond")
+                                .help(Text("App About Information"))
+                                .imageScale(.large)
+                            
+                            Text("About")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
                     .fullScreenCover(isPresented:$isAppAboutViewModal)
                     {
@@ -181,14 +166,21 @@ struct SettingsSingleViewIos: View
                         self.isAppHelpViewModal.toggle()
 
                     }
-                    label: 
+                    label:
                     {
                         
-                        Label("", systemImage: "questionmark.circle")
-                            .padding()
-                            .imageScale(.large)
-                            .help(Text("App HELP Information"))
-
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "questionmark.circle")
+                                .help(Text("App HELP Information"))
+                                .imageScale(.large)
+                            
+                            Text("Help")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
                     .fullScreenCover(isPresented:$isAppHelpViewModal)
                     {
@@ -210,14 +202,21 @@ struct SettingsSingleViewIos: View
                         self.isAppLogViewModal.toggle()
 
                     }
-                    label: 
+                    label:
                     {
                         
-                        Label("", systemImage: "doc.text.magnifyingglass")
-                            .padding()
-                            .imageScale(.large)
-                            .help(Text("App LOG Viewer"))
-
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "doc.text.magnifyingglass")
+                                .help(Text("App LOG Viewer"))
+                                .imageScale(.large)
+                            
+                            Text("View Log")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
                     .fullScreenCover(isPresented:$isAppLogViewModal)
                     {
@@ -238,14 +237,21 @@ struct SettingsSingleViewIos: View
                         //  dismiss()
 
                     }
-                    label: 
+                    label:
                     {
-
-                        Label("", systemImage: "xmark.circle")
-                            .padding()
-                            .imageScale(.large)
-                            .help(Text("Dismiss this Screen"))
-
+                        
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "xmark.circle")
+                                .help(Text("Dismiss this Screen"))
+                                .imageScale(.large)
+                            
+                            Text("Dismiss")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
 
                 }   // End of HStack #1.1
@@ -267,14 +273,21 @@ struct SettingsSingleViewIos: View
                         self.isAppCrashShowing.toggle()
 
                     }
-                    label: 
+                    label:
                     {
-
-                        Label("", systemImage: "xmark.octagon")
-                            .padding()
-                            .imageScale(.large)
-                            .help(Text("FORCE this App to CRASH"))
-
+                        
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "xmark.octagon")
+                                .help(Text("FORCE this App to CRASH"))
+                                .imageScale(.large)
+                            
+                            Text("Force CRASH")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
                     .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
                     {
@@ -377,5 +390,26 @@ struct SettingsSingleViewIos: View
     
     SettingsSingleViewIos()
     
+}
+
+@available(iOS 17.0, *)
+struct AppAboutTip: Tip
+{
+
+    var title:Text 
+    {
+        Text("App ABOUT Information")
+    }
+
+    var message:Text? 
+    {
+        Text("Display information details of this Application.")
+    }
+
+    var image:Image? 
+    {
+        Image(systemName: "questionmark.diamond")
+    }
+
 }
 

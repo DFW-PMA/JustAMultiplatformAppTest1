@@ -25,7 +25,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1602"
+        static let sClsVers      = "v1.1701"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -150,12 +150,20 @@ struct ContentView: View
                     self.isAppSuspendShowing.toggle()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "xmark.circle")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "xmark.circle")
+                            .help(Text("Suspend this App"))
+                            .imageScale(.large)
+
+                        Text("Suspend App")
+                            .font(.caption)
+
+                    }
 
                 }
                 .alert("Are you sure you want to 'suspend' this App?", isPresented:$isAppSuspendShowing)
@@ -185,13 +193,21 @@ struct ContentView: View
 
                     }
                 //  Button("Tap to \(sAppExecutionCurrentButtonText)")
-                    label: 
+                    label:
                     {
-
-                        Label("", systemImage: "arrow.up.message")
-                            .padding()
-                            .imageScale(.large)
-
+                        
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "arrow.up.message")
+                                .help(Text("'Send' current App LOG"))
+                                .imageScale(.large)
+                            
+                            Text("Current LOG")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
                     .alert(sAppExecutionCurrentAlertText, isPresented:$isAppExecutionCurrentShowing)
                     {
@@ -222,12 +238,20 @@ struct ContentView: View
                     self.isAppSettingsModal.toggle()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "gearshape")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "gearshape")
+                            .help(Text("App Settings"))
+                            .imageScale(.large)
+
+                        Text("Settings")
+                            .font(.caption)
+
+                    }
 
                 }
                 .fullScreenCover(isPresented:$isAppSettingsModal)

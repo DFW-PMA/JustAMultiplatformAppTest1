@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1205"
+        static let sClsVers      = "v1.1401"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -519,12 +519,12 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         // Setup the AppDelegateVisitor XCGLogger instance:
 
         self.xcgLogger?.setup(level:             .verbose,
-                              showLogIdentifier: true,
-                              showFunctionName:  true,
-                              showThreadName:    true,
-                              showLevel:         true,
-                              showFileNames:     true,
-                              showLineNumbers:   true,
+                              showLogIdentifier: false,
+                              showFunctionName:  false,
+                              showThreadName:    false,
+                              showLevel:         false,
+                              showFileNames:     false,
+                              showLineNumbers:   false,
                               showDate:          true,
                               writeToFile:       self.urlAppDelegateVisitorLogFilespec,
                               fileLevel:         .verbose)
@@ -641,12 +641,12 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
                                                  identifier:  XCGLogger.Constants.fileDestinationIdentifier)
         
         xcgFileDestination.outputLevel       = .verbose
-        xcgFileDestination.showLogIdentifier = true
-        xcgFileDestination.showFunctionName  = true
-        xcgFileDestination.showThreadName    = true
-        xcgFileDestination.showLevel         = true
-        xcgFileDestination.showFileName      = true
-        xcgFileDestination.showLineNumber    = true
+        xcgFileDestination.showLogIdentifier = false
+        xcgFileDestination.showFunctionName  = false
+        xcgFileDestination.showThreadName    = false
+        xcgFileDestination.showLevel         = false
+        xcgFileDestination.showFileName      = false
+        xcgFileDestination.showLineNumber    = false
         xcgFileDestination.showDate          = true
         
         // Process this destination in the background:
