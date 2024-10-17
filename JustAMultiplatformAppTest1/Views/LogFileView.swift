@@ -17,7 +17,7 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.1003"
+        static let sClsVers        = "v1.1101"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -108,12 +108,20 @@ struct LogFileView: View
                     //  dismiss()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "xmark.circle")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "xmark.circle")
+                            .help(Text("Dismiss this Screen"))
+                            .imageScale(.large)
+
+                        Text("Dismiss")
+                            .font(.caption)
+
+                    }
 
                 }
                 .padding()

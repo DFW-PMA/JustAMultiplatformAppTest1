@@ -14,6 +14,10 @@ import SwiftUI
 import UIKit
 #endif
 
+#if canImport(TipKit)
+import TipKit
+#endif
+
 struct ContentView: View 
 {
     
@@ -21,7 +25,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1503"
+        static let sClsVers      = "v1.1701"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -126,7 +130,7 @@ struct ContentView: View
     var body: some View 
     {
 
-        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)...")
+        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp):body(some Scene) \(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)...")
         
         VStack 
         {
@@ -146,12 +150,20 @@ struct ContentView: View
                     self.isAppSuspendShowing.toggle()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "xmark.circle")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "xmark.circle")
+                            .help(Text("Suspend this App"))
+                            .imageScale(.large)
+
+                        Text("Suspend App")
+                            .font(.caption)
+
+                    }
 
                 }
                 .alert("Are you sure you want to 'suspend' this App?", isPresented:$isAppSuspendShowing)
@@ -181,13 +193,21 @@ struct ContentView: View
 
                     }
                 //  Button("Tap to \(sAppExecutionCurrentButtonText)")
-                    label: 
+                    label:
                     {
-
-                        Label("", systemImage: "arrow.up.message")
-                            .padding()
-                            .imageScale(.large)
-
+                        
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "arrow.up.message")
+                                .help(Text("'Send' current App LOG"))
+                                .imageScale(.large)
+                            
+                            Text("Current LOG")
+                                .font(.caption)
+                            
+                        }
+                        
                     }
                     .alert(sAppExecutionCurrentAlertText, isPresented:$isAppExecutionCurrentShowing)
                     {
@@ -218,12 +238,20 @@ struct ContentView: View
                     self.isAppSettingsModal.toggle()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "gearshape")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "gearshape")
+                            .help(Text("App Settings"))
+                            .imageScale(.large)
+
+                        Text("Settings")
+                            .font(.caption)
+
+                    }
 
                 }
                 .fullScreenCover(isPresented:$isAppSettingsModal)
@@ -283,51 +311,6 @@ struct ContentView: View
             
             Spacer()
             
-        //  if #available(iOS 16.0, *)
-        //  {
-        //      
-        //      ShareLink(item:    jmAppDelegateVisitor.urlAppDelegateVisitorLogToSaveFilespec!,
-        //                subject: Text(sAppExecutionPreviousButtonText),
-        //                message: Text("The App LOG is attached...")
-        //               )
-        //      {
-        //          Label("Tap to \(sAppExecutionPreviousButtonText)", systemImage:"square.and.arrow.up")
-        //      }
-        //
-        //  }
-        //  else
-        //  {
-        //      
-        //      Button("Tap to \(sAppExecutionPreviousButtonText)")
-        //      {
-        //          
-        //          let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionPreviousButtonText)'...")
-        //
-        //          self.isAppExecutionPreviousShowing.toggle()
-        //
-        //      }
-        //      .alert(sAppExecutionPreviousAlertText, isPresented:$isAppExecutionPreviousShowing)
-        //      {
-        //          Button("Cancel", role:.cancel)
-        //          {
-        //              let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
-        //          }
-        //          Button("Ok", role:.destructive)
-        //          {
-        //              let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
-        //
-        //              let emailToDevs = DeveloperSupportEmail(sEmailSubject:sAppExecutionPreviousButtonText)
-        //
-        //              emailToDevs.sendEmailToDevelopersViaURL(openURL:openURL)
-        //          }
-        //      }
-        //      .controlSize(.regular)
-        //      .background(Color(red: 0, green: 0.5, blue: 0.5))
-        //      .foregroundStyle(.white)
-        //      .buttonStyle(.borderedProminent)
-        //
-        //  }
-
             if (bWasAppLogFilePresentAtStartup == true)
             {
 
@@ -387,7 +370,7 @@ struct ContentView: View
                 
                 self.cContentViewRefreshButtonPresses += 1
                 
-                let _ = xcgLogMsg("...\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
+                let _ = self.xcgLogMsg("...\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
 
             }
             .controlSize(.regular)
@@ -399,6 +382,27 @@ struct ContentView: View
             
         }
         .padding()
+        .task 
+        {
+
+            // Configure and load your tips at app launch...
+
+            do
+            {
+
+                try Tips.configure([.displayFrequency(.immediate), .datastoreLocation(.applicationDefault)])
+
+            } 
+            catch 
+            {
+
+                // Handle TipKit errors
+
+                let _ = self.xcgLogMsg("...\(ClassInfo.sClsDisp)ContentView - Failed to initialize the TipKit framework - Detail(s) are [\(error.localizedDescription)] - Error!")
+
+            }
+
+        }
         
     }
 

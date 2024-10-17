@@ -16,7 +16,7 @@ struct HelpBasicView: View
     {
         
         static let sClsId          = "HelpBasicView"
-        static let sClsVers        = "v1.0901"
+        static let sClsVers        = "v1.1001"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -106,12 +106,20 @@ struct HelpBasicView: View
                     //  dismiss()
 
                 }
-                label: 
+                label:
                 {
 
-                    Label("", systemImage: "xmark.circle")
-                        .padding()
-                        .imageScale(.large)
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "xmark.circle")
+                            .help(Text("Dismiss this Screen"))
+                            .imageScale(.large)
+
+                        Text("Dismiss")
+                            .font(.caption)
+
+                    }
 
                 }
                 .padding()
