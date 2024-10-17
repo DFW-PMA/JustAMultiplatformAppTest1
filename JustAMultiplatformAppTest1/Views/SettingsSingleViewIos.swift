@@ -20,7 +20,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0404"
+        static let sClsVers      = "v1.0405"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -279,7 +279,7 @@ struct SettingsSingleViewIos: View
                         VStack(alignment:.center)
                         {
                             
-                            Label("", systemImage: "xmark.octagon")
+                            Label("", systemImage: "autostartstop.slash")
                                 .help(Text("FORCE this App to CRASH"))
                                 .imageScale(.large)
                             
