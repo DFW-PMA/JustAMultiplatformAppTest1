@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1401"
+        static let sClsVers      = "v1.1403"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -1084,7 +1084,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         multipartRequestInfo.bAppZipSourceToUpload    = false
         multipartRequestInfo.sAppUploadURL            = ""          // "" takes the Upload URL 'default'...
-        multipartRequestInfo.sAppUploadNotifyFrom     = ""
+        multipartRequestInfo.sAppUploadNotifyFrom     = AppGlobalInfo.sAppUploadNotifyFrom
         multipartRequestInfo.sAppUploadNotifyTo       = emailAddressTo
         multipartRequestInfo.sAppUploadNotifyCc       = emailAddressCc
         multipartRequestInfo.sAppSourceFilespec       = emailSourceFilespec
