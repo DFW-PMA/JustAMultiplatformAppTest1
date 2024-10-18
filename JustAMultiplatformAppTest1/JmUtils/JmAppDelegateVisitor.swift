@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1401"
+        static let sClsVers      = "v1.1501"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -1061,7 +1061,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     }   // End of @objc public func resetAppDelegateVisitorSignalGlobalAlert().
 
-    // Method to assist with sending Email with a File upload...
+    // Method(s) to assist with sending Email with a File upload (and 'optional' Alert message)...
 
     @objc public func appDelegateVisitorSendEmailUpload(_ emailAddressTo:String,
                                                         emailAddressCc:String,  
@@ -1077,6 +1077,77 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
+        // Pass the request on to the 'core' method...
+
+        self.appDelegateVisitorSendUploadCore(alertIsBypassed:false,
+                                              emailAddressTo:emailAddressTo,
+                                              emailAddressCc:emailAddressCc,  
+                                              emailSourceFilespec:emailSourceFilespec,
+                                              emailSourceFilename:emailSourceFilename,
+                                              emailZipFilename:emailZipFilename,
+                                              emailSaveAsFilename:emailSaveAsFilename,
+                                              emailFileMimeType:emailFileMimeType,
+                                              emailFileData:emailFileData)
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorSendEmailUpload().
+
+    @objc public func appDelegateVisitorSendSilentUpload(_ emailAddressTo:String,
+                                                           emailAddressCc:String,  
+                                                           emailSourceFilespec:String,
+                                                           emailSourceFilename:String,
+                                                           emailZipFilename:String,
+                                                           emailSaveAsFilename:String,
+                                                           emailFileMimeType:String,
+                                                           emailFileData:NSData)
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
+        // Pass the request on to the 'core' method...
+
+        self.appDelegateVisitorSendUploadCore(alertIsBypassed:true,
+                                              emailAddressTo:emailAddressTo,
+                                              emailAddressCc:emailAddressCc,  
+                                              emailSourceFilespec:emailSourceFilespec,
+                                              emailSourceFilename:emailSourceFilename,
+                                              emailZipFilename:emailZipFilename,
+                                              emailSaveAsFilename:emailSaveAsFilename,
+                                              emailFileMimeType:emailFileMimeType,
+                                              emailFileData:emailFileData)
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of @objc public func appDelegateVisitorSendEmailUpload().
+
+    private func appDelegateVisitorSendUploadCore(alertIsBypassed:Bool,
+                                                  emailAddressTo:String,
+                                                  emailAddressCc:String,  
+                                                  emailSourceFilespec:String,
+                                                  emailSourceFilename:String,
+                                                  emailZipFilename:String,
+                                                  emailSaveAsFilename:String,
+                                                  emailFileMimeType:String,
+                                                  emailFileData:NSData)
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)] - 'alertIsBypassed' is [\(alertIsBypassed)]...")
 
         // Remap the inbound parameter(s) into a MultipartRequestInfo object...
 
@@ -1098,7 +1169,8 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         // Send the 'upload' to the Server...
 
-        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:false)
+        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:false, 
+                                                                                   bAlertIsBypassed:alertIsBypassed)
 
         self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
 
@@ -1112,7 +1184,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         return
 
-    }   // End of @objc public func appDelegateVisitorSendEmailUpload().
+    }   // End of private func appDelegateVisitorSendUploadCore().
 
 #if os(macOS)
 

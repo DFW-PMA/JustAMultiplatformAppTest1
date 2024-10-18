@@ -17,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0606"
+        static let sClsVers        = "v1.0701"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -29,6 +29,7 @@ class MultipartRequestDriver: NSObject
 
     private var bInternalTest:Bool                         = false
     private var bGenerateResponseLongMsg:Bool              = false
+    private var bAlertIsBypassed                           = false
 
                                                              // For 'test':
     private var dictUserData:[String:String]               = ["firstName": "John",
@@ -53,6 +54,7 @@ class MultipartRequestDriver: NSObject
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
         self.bGenerateResponseLongMsg = false
+        self.bAlertIsBypassed         = false
 
         // Exit...
 
@@ -62,7 +64,7 @@ class MultipartRequestDriver: NSObject
 
     }   // End of override init().
 
-    convenience init(bGenerateResponseLongMsg:Bool)
+    convenience init(bGenerateResponseLongMsg:Bool, bAlertIsBypassed:Bool = false)
     {
     
         let sCurrMethod:String = #function
@@ -70,13 +72,14 @@ class MultipartRequestDriver: NSObject
         
         self.init()
         
-        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'bGenerateResponseLongMsg' is [\(bGenerateResponseLongMsg)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'bGenerateResponseLongMsg' is [\(bGenerateResponseLongMsg)] and 'bAlertIsBypassed' is [\(bAlertIsBypassed)]...")
 
         self.bGenerateResponseLongMsg = bGenerateResponseLongMsg
+        self.bAlertIsBypassed         = bAlertIsBypassed
 
         // Exit...
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'self.bGenerateResponseLongMsg' is [\(self.bGenerateResponseLongMsg)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'self.bGenerateResponseLongMsg' is [\(self.bGenerateResponseLongMsg)] - 'self.bAlertIsBypassed' is [\(self.bAlertIsBypassed)]...")
 
         return
     
@@ -336,22 +339,33 @@ class MultipartRequestDriver: NSObject
 
             let sAppUploadedSaveAsFilename:String = self.multipartRequestInfo?.sAppSaveAsFilename ?? "-unknown-"
 
-            DispatchQueue.main.async
+            if (self.bAlertIsBypassed == false)
             {
 
-                
-                self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...",
-                                                                                 alertButtonText:"Ok")
-                
-            //  self.jmAppDelegateVisitor
+                DispatchQueue.main.async
+                {
 
-            //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
-            //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
-            //  self.jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
+
+                    self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...",
+                                                                                     alertButtonText:"Ok")
+
+                //  self.jmAppDelegateVisitor
+
+                //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
+                //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
+                //  self.jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
+
+                }
+
+                self.xcgLogMsg("\(sCurrMethodDisp) Triggered an upload completed 'Alert' - Details: [\(sUploadAlertDetails)]...")
 
             }
+            else
+            {
 
-            self.xcgLogMsg("\(sCurrMethodDisp) Triggered an upload completed 'Alert' - Details: [\(sUploadAlertDetails)]...")
+                self.xcgLogMsg("\(sCurrMethodDisp) Bypassed an upload completed 'Alert' - But these are the Details: [\(sUploadAlertDetails)]...")
+
+            }
 
         }
         catch
