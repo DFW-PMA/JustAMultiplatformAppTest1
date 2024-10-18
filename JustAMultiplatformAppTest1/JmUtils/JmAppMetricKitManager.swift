@@ -18,7 +18,7 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         static let sClsId        = "JmAppMetricKitManager"
-        static let sClsVers      = "v1.0107"
+        static let sClsVers      = "v1.0203"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
@@ -31,10 +31,10 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     private var jmMetricManager:MXMetricManager            = MXMetricManager.shared
 
             var jmAppDelegateVisitor:JmAppDelegateVisitor? = nil
-                                                     // 'jmAppDelegateVisitor' MUST remain declared this way
-                                                     // as having it reference the 'shared' instance of 
-                                                     // JmAppDelegateVisitor causes a circular reference
-                                                     // between the 'init()' methods of the 2 classes...
+                                                             // 'jmAppDelegateVisitor' MUST remain declared this way
+                                                             // as having it reference the 'shared' instance of 
+                                                             // JmAppDelegateVisitor causes a circular reference
+                                                             // between the 'init()' methods of the 2 classes...
 
     // App <global> Message(s) 'stack' cached before XCGLogger is available:
 
@@ -249,6 +249,8 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
 
             // ...this is where we'd 'upload' this data and email it...
 
+            self.sendMXPayloadViaEmail(listPayloadAttachments:listPayloadAttachmentsJSON, sPayloadTag:"MXMetricPayload")
+
         }
         else
         {
@@ -299,6 +301,8 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
 
             // ...this is where we'd 'upload' this data and email it...
 
+            self.sendMXPayloadViaEmail(listPayloadAttachments:listPayloadAttachmentsJSON, sPayloadTag:"MXDiagnosticPayload")
+
         }
         else
         {
@@ -314,6 +318,63 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
         return
 
     }   // End of public func didReceive(_ payloads: [MXDiagnosticPayload]).
+
+    private func sendMXPayloadViaEmail(listPayloadAttachments:[String], sPayloadTag:String)
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'listPayloadAttachments' has (\(listPayloadAttachments.count)) element(s) with 'sPayloadTag' of [\(sPayloadTag)]...")
+
+        // If there were supplied 'payload' String(s), convert to a single String and upload the data...
+
+        if (listPayloadAttachments.count > 0)
+        {
+
+            let sPayloadAttachments:String = listPayloadAttachments.joined(separator: "")
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'listPayloadAttachments' list was converted into an 'upload' string of (\(sPayloadAttachments.count)) byte(s)...")
+
+            var sPayloadType:String = sPayloadTag
+
+            if (sPayloadType.count < 1)
+            {
+
+                sPayloadType = "UnTaggedData"
+
+            }
+
+            let sPayloadFilenameExt:String = "MXPayload.\(sPayloadType).json"
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Sending an 'upload' string of (\(sPayloadAttachments.count)) byte(s) with a 'sPayloadFilenameExt' of [\(sPayloadFilenameExt)]...")
+
+            self.jmAppDelegateVisitor?.appDelegateVisitorSendEmailUpload("dcox@justmacapps.net",
+                                                                         emailAddressCc:"",  
+                                                                         emailSourceFilespec:sPayloadFilenameExt,
+                                                                         emailSourceFilename:sPayloadFilenameExt,
+                                                                         emailZipFilename:"",
+                                                                         emailSaveAsFilename:sPayloadFilenameExt,
+                                                                         emailFileMimeType:"",
+                                                                         emailFileData:Data(sPayloadAttachments.utf8) as NSData)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Sent    an 'upload' string of (\(sPayloadAttachments.count)) byte(s) with a 'sPayloadFilenameExt' of [\(sPayloadFilenameExt)]...")
+
+        }
+        else
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Supplied 'listPayloadAttachments' list was Empty - no action was taken...")
+
+        }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of public func sendMXPayloadViaEmail(listPayloadAttachments:[String]).
 
 }   // End of public class JmAppMetricKitManager.
 
