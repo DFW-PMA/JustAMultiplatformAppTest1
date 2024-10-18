@@ -18,7 +18,7 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         static let sClsId        = "JmAppMetricKitManager"
-        static let sClsVers      = "v1.0301"
+        static let sClsVers      = "v1.0401"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
