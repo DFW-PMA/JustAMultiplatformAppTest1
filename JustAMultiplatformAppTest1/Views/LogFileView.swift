@@ -17,7 +17,7 @@ struct LogFileView: View
     {
         
         static let sClsId          = "LogFileView"
-        static let sClsVers        = "v1.1101"
+        static let sClsVers        = "v1.1203"
         static let sClsDisp        = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -176,55 +176,6 @@ struct LogFileView: View
                     }
                 
                 }
-
-            Spacer()
-
-            Button("Preview Log file") 
-            {
-
-                self.logFileUrl = self.jmAppDelegateVisitor.urlAppDelegateVisitorLogFilespec
-
-                xcgLogMsg("\(ClassInfo.sClsDisp):LogFileView.Button('Preview Log file') performed for the URL of [\(String(describing: self.logFileUrl))]...")
-
-                
-
-            }
-            .quickLookPreview($logFileUrl)
-            .controlSize(.regular)
-            .background(Color(red: 0, green: 0.5, blue: 0.5))
-            .foregroundStyle(.white)
-            .buttonStyle(.borderedProminent)
-
-            Spacer()
-
-            Button
-            {
-
-                self.cLogFileViewAppLogClearButtonPresses += 1
-
-                let _ = xcgLogMsg("\(ClassInfo.sClsDisp):LogFileView in Button(Xcode).'App Log 'Clear'.#(\(self.cLogFileViewAppLogClearButtonPresses))'...")
-
-                self.jmAppDelegateVisitor.clearAppDelegateVisitorTraceLogFile()
-
-                self.isAppLogClearShowingAlert = true
-
-            }
-            label: 
-            {
-
-                Text("App Log 'Clear'")
-
-            }
-            .alert("App Log has been 'Cleared'...", isPresented:$isAppLogClearShowingAlert)
-            {
-
-                Button("Ok", role:.cancel) { }
-
-            }
-            .controlSize(.regular)
-            .background(Color(red: 0, green: 0.5, blue: 0.5))
-            .foregroundStyle(.white)
-            .buttonStyle(.borderedProminent)
 
             Spacer()
 

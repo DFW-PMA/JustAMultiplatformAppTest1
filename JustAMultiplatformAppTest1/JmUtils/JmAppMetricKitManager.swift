@@ -18,7 +18,7 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         static let sClsId        = "JmAppMetricKitManager"
-        static let sClsVers      = "v1.0401"
+        static let sClsVers      = "v1.0402"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
@@ -146,13 +146,13 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
         {
 
             self.xcgLogMsg("")
-            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooling the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) === >>>")
+            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooling the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) from JmAppMetricKitManager === >>>")
 
             let sPreXCGLoggerMessages:String = self.listPreXCGLoggerMessages.joined(separator: "\n")
 
             self.xcgLogMsg(sPreXCGLoggerMessages)
 
-            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooled  the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) === >>>")
+            self.xcgLogMsg("\(sCurrMethodDisp) <<< === Spooled  the JmAppDelegateVisitor.XCGLogger 'pre' Message(s) from JmAppMetricKitManager === >>>")
             self.xcgLogMsg("")
 
         }
