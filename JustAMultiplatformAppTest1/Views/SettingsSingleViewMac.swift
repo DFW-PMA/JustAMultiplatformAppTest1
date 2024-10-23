@@ -15,7 +15,7 @@ struct SettingsSingleViewMac: View
     {
         
         static let sClsId        = "SettingsSingleViewMac"
-        static let sClsVers      = "v1.0301"
+        static let sClsVers      = "v1.0302"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -133,7 +133,7 @@ struct SettingsSingleViewMac: View
 
                 Spacer()
 
-                Text(" - - - - - - - - - - - - - - - - - - - - ")
+                Text(" - - - - - - - - - - - - - - - ")
                     .bold()
 
                 Spacer()
@@ -185,7 +185,7 @@ struct SettingsSingleViewMac: View
 
                 Spacer()
 
-                Text(" - - - - - - - - - - - - - - - - - - - - ")
+                Text(" - - - - - - - - - - - - - - - ")
                     .bold()
 
                 Spacer()

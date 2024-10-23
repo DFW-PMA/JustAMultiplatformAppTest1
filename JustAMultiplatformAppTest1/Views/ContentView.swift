@@ -25,7 +25,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1701"
+        static let sClsVers      = "v1.1802"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -55,6 +55,7 @@ struct ContentView: View
 
            private var bWasAppLogFilePresentAtStartup:Bool      = false
            private var bDidAppCrash:Bool                        = false
+           private var sAppExecutionPreviousTypeText:String     = "-N/A-"
            private var sAppExecutionPreviousButtonText:String   = "App::-N/A-"
            private var sAppExecutionPreviousAlertText:String    = "Do you want to 'send' the App LOG data?"
            private var sAppExecutionPreviousLogToUpload:String  = ""
@@ -83,6 +84,7 @@ struct ContentView: View
         if (bDidAppCrash == false)
         {
 
+            sAppExecutionPreviousTypeText    = "Success"
             sAppExecutionPreviousButtonText  = "Share the App 'success' Log with Developers..."
             sAppExecutionPreviousAlertText   = "Do you want to 'send' the App execution 'success' LOG data to the Developers?"
             sAppExecutionPreviousLogToUpload = AppGlobalInfo.sGlobalInfoAppLastGoodLogFilespec
@@ -91,6 +93,7 @@ struct ContentView: View
         else
         {
 
+            sAppExecutionPreviousTypeText    = "Crash"
             sAppExecutionPreviousButtonText  = "Share the App CRASH Log with Developers..."
             sAppExecutionPreviousAlertText   = "Do you want to 'send' the App execution 'crash' LOG data to the Developers?"
             sAppExecutionPreviousLogToUpload = AppGlobalInfo.sGlobalInfoAppLastCrashLogFilespec
@@ -177,6 +180,52 @@ struct ContentView: View
                         let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'suspend' the App - suspending...")
                         UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                     }
+                }
+
+                Spacer()
+
+                if (bWasAppLogFilePresentAtStartup == true)
+                {
+
+                    Button
+                    {
+
+                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentViewClock in Button(Xcode).'\(sAppExecutionPreviousButtonText)'...")
+
+                        self.isAppExecutionPreviousShowing.toggle()
+
+                    }
+                    label:
+                    {
+                        
+                        VStack(alignment:.center)
+                        {
+                            
+                            Label("", systemImage: "arrow.up.message")
+                                .help(Text("'Send' \(sAppExecutionPreviousTypeText) App LOG"))
+                                .imageScale(.large)
+                            
+                            Text("\(sAppExecutionPreviousTypeText) LOG")
+                                .font(.caption)
+                            
+                        }
+                        
+                    }
+                    .alert(sAppExecutionPreviousAlertText, isPresented:$isAppExecutionPreviousShowing)
+                    {
+                        Button("Cancel", role:.cancel)
+                        {
+                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the \(sAppExecutionPreviousTypeText) App LOG - resuming...")
+                        }
+                        Button("Ok", role:.destructive)
+                        {
+                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the \(sAppExecutionPreviousTypeText) App LOG - sending...")
+
+                            self.uploadPreviousAppLogToDevs()
+
+                        }
+                    }
+
                 }
 
                 Spacer()
@@ -311,39 +360,39 @@ struct ContentView: View
             
             Spacer()
             
-            if (bWasAppLogFilePresentAtStartup == true)
-            {
-
-                Button("Tap to \(sAppExecutionPreviousButtonText)")
-                {
-
-                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionPreviousButtonText)'...")
-
-                    self.isAppExecutionPreviousShowing.toggle()
-
-                }
-                .alert(sAppExecutionPreviousAlertText, isPresented:$isAppExecutionPreviousShowing)
-                {
-                    Button("Cancel", role:.cancel)
-                    {
-                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
-                    }
-                    Button("Ok", role:.destructive)
-                    {
-                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
-
-                        self.uploadPreviousAppLogToDevs()
-
-                    }
-                }
-                .controlSize(.regular)
-                .background(Color(red: 0, green: 0.5, blue: 0.5))
-                .foregroundStyle(.white)
-                .buttonStyle(.borderedProminent)
-
-            }
-                
-            Spacer()
+        //  if (bWasAppLogFilePresentAtStartup == true)
+        //  {
+        //
+        //      Button("Tap to \(sAppExecutionPreviousButtonText)")
+        //      {
+        //
+        //          let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'\(sAppExecutionPreviousButtonText)'...")
+        //
+        //          self.isAppExecutionPreviousShowing.toggle()
+        //
+        //      }
+        //      .alert(sAppExecutionPreviousAlertText, isPresented:$isAppExecutionPreviousShowing)
+        //      {
+        //          Button("Cancel", role:.cancel)
+        //          {
+        //              let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'send' the App LOG - resuming...")
+        //          }
+        //          Button("Ok", role:.destructive)
+        //          {
+        //              let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the App LOG - sending...")
+        //
+        //              self.uploadPreviousAppLogToDevs()
+        //
+        //          }
+        //      }
+        //      .controlSize(.regular)
+        //      .background(Color(red: 0, green: 0.5, blue: 0.5))
+        //      .foregroundStyle(.white)
+        //      .buttonStyle(.borderedProminent)
+        //
+        //  }
+        //      
+        //  Spacer()
             
             Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
                 .italic()
@@ -365,7 +414,8 @@ struct ContentView: View
             
             Spacer()
             
-            Button("Refresh - #(\(self.cContentViewRefreshButtonPresses))...")
+        //  Button("Refresh - #(\(self.cContentViewRefreshButtonPresses))...")
+            Button
             {
                 
                 self.cContentViewRefreshButtonPresses += 1
@@ -373,10 +423,26 @@ struct ContentView: View
                 let _ = self.xcgLogMsg("...\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'Refresh'.#(\(self.cContentViewRefreshButtonPresses))...")
 
             }
-            .controlSize(.regular)
-            .background(Color(red: 0, green: 0.5, blue: 0.5))
-            .foregroundStyle(.white)
-            .buttonStyle(.borderedProminent)
+            label:
+            {
+
+                VStack(alignment:.center)
+                {
+
+                    Label("", systemImage: "arrow.clockwise")
+                        .help(Text("'Refresh' App Screen..."))
+                        .imageScale(.large)
+
+                    Text("Refresh - #(\(self.cContentViewRefreshButtonPresses))...")
+                        .font(.caption)
+
+                }
+
+            }
+        //  .controlSize(.regular)
+        //  .background(Color(red: 0, green: 0.5, blue: 0.5))
+        //  .foregroundStyle(.white)
+        //  .buttonStyle(.borderedProminent)
             
             Spacer()
             

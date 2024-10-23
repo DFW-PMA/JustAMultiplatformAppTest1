@@ -96,6 +96,73 @@ struct LogFileView: View
             HStack(alignment:.center)           // HStack #1.3
             {
 
+            //  Spacer()
+
+            //  Button("Preview Log file") 
+                Button
+                {
+
+                    self.logFileUrl = self.jmAppDelegateVisitor.urlAppDelegateVisitorLogFilespec
+
+                    xcgLogMsg("\(ClassInfo.sClsDisp):LogFileView.Button('Preview Log file') performed for the URL of [\(String(describing: self.logFileUrl))]...")
+
+                }
+                label:
+                {
+
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "text.viewfinder")
+                            .help(Text("Preview the LOG file..."))
+                            .imageScale(.large)
+
+                        Text("Preview LOG")
+                            .font(.caption)
+
+                    }
+
+                }
+                .quickLookPreview($logFileUrl)
+                .padding()
+
+                Spacer()
+
+                Button
+                {
+
+                    self.cLogFileViewAppLogClearButtonPresses += 1
+
+                    let _ = xcgLogMsg("\(ClassInfo.sClsDisp):LogFileView in Button(Xcode).'App Log 'Clear'.#(\(self.cLogFileViewAppLogClearButtonPresses))'...")
+
+                    self.jmAppDelegateVisitor.clearAppDelegateVisitorTraceLogFile()
+
+                    self.isAppLogClearShowingAlert = true
+
+                }
+                label:
+                {
+
+                    VStack(alignment:.center)
+                    {
+
+                        Label("", systemImage: "clear")
+                            .help(Text("Clear the LOG file..."))
+                            .imageScale(.large)
+
+                        Text("Clear LOG")
+                            .font(.caption)
+
+                    }
+
+                }
+                .alert("App Log has been 'Cleared'...", isPresented:$isAppLogClearShowingAlert)
+                {
+
+                    Button("Ok", role:.cancel) { }
+
+                }
+
                 Spacer()
 
                 Button

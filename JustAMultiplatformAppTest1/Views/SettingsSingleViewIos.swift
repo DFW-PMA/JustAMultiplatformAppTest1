@@ -20,7 +20,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0405"
+        static let sClsVers      = "v1.0502"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -95,13 +95,13 @@ struct SettingsSingleViewIos: View
         NavigationView
         {
 
-            VStack(alignment:.leading)              // VStack #1
+            VStack(alignment:.leading)
             {
 
                 Spacer()
                     .frame(height:5)
                 
-                HStack(alignment:.center)           // HStack #1.3
+                HStack(alignment:.center)
                 {
 
                 //  if #available(iOS 18.0, *) 
@@ -254,7 +254,78 @@ struct SettingsSingleViewIos: View
                         
                     }
 
-                }   // End of HStack #1.1
+                }
+
+                Spacer()
+                
+                VStack(alignment:.center)
+                {
+
+                    HStack(alignment:.center)
+                    {
+
+                        Spacer()
+
+                        Text(" - - - - - - - - - - - - - - - ")
+                            .bold()
+
+                        Spacer()
+
+                    }
+
+                    HStack(alignment:.center)
+                    {
+
+                        Spacer()
+
+                        VStack(alignment:.center)
+                        {
+
+                            if #available(iOS 15.0, *) 
+                            {
+                                Text("Application Information:")
+                                    .bold()
+                                    .dynamicTypeSize(.small)
+
+                                Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
+                                    .italic()
+                                    .dynamicTypeSize(.small)
+
+                                Text("\(JmXcodeBuildSettings.jmAppCopyright)")
+                                    .italic()
+                                    .dynamicTypeSize(.small)
+                            }
+                            else
+                            {
+                                Text("Application Information:")
+                                    .bold()
+
+                                Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
+                                    .italic()
+
+                                Text("\(JmXcodeBuildSettings.jmAppCopyright)")
+                                    .italic()
+                            }
+
+                        }
+
+                        Spacer()
+
+                    }
+
+                    HStack(alignment:.center)
+                    {
+
+                        Spacer()
+
+                        Text(" - - - - - - - - - - - - - - - ")
+                            .bold()
+
+                        Spacer()
+
+                    }
+
+                }
 
                 Spacer()
 
@@ -304,77 +375,11 @@ struct SettingsSingleViewIos: View
 
                     Spacer()
 
-                }   // End of HStack
-
-                Spacer()
-                
-                HStack(alignment:.center)
-                {
-                    
-                    Spacer()
-                    
-                    Text(" - - - - - - - - - - - - - - - - - - - - ")
-                        .bold()
-
-                    Spacer()
-                    
-                }
-
-                HStack(alignment:.center)
-                {
-                    
-                    Spacer()
-                    
-                    VStack(alignment:.center)
-                    {
-                        
-                        if #available(iOS 15.0, *) 
-                        {
-                            Text("Application Information:")
-                                .bold()
-                                .dynamicTypeSize(.small)
-                            
-                            Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
-                                .italic()
-                                .dynamicTypeSize(.small)
-
-                            Text("\(JmXcodeBuildSettings.jmAppCopyright)")
-                                .italic()
-                                .dynamicTypeSize(.small)
-                        }
-                        else
-                        {
-                            Text("Application Information:")
-                                .bold()
-                            
-                            Text("\(JmXcodeBuildSettings.jmAppVersionAndBuildNumber)")     // <=== Version...
-                                .italic()
-
-                            Text("\(JmXcodeBuildSettings.jmAppCopyright)")
-                                .italic()
-                        }
-
-                    }
-                    
-                    Spacer()
-                    
-                }
-
-                HStack(alignment:.center)
-                {
-                    
-                    Spacer()
-                    
-                    Text(" - - - - - - - - - - - - - - - - - - - - ")
-                        .bold()
-
-                    Spacer()
-                    
                 }
 
                 Spacer()
 
-            }   // End of VStack #1
+            }
             .padding()
 
         }
