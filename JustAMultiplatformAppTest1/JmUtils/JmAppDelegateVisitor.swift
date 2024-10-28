@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1706"
+        static let sClsVers      = "v1.1709"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -721,16 +721,17 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         
     #if os(iOS)
 
-        self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.idomGlobalDeviceUserInterfaceIdiom' is [\(String(describing: appGlobalInfo.idomGlobalDeviceUserInterfaceIdiom))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.idiomGlobalDeviceUserInterfaceIdiom' is [\(String(describing: appGlobalInfo.idiomGlobalDeviceUserInterfaceIdiom))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.iGlobalDeviceUserInterfaceIdiom' is [\(String(describing: appGlobalInfo.iGlobalDeviceUserInterfaceIdiom))]...")
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.uuidGlobalDeviceIdForVendor' is [\(String(describing: appGlobalInfo.uuidGlobalDeviceIdForVendor))]...")
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.fGlobalDeviceCurrentBatteryLevel' is [\(String(describing: appGlobalInfo.fGlobalDeviceCurrentBatteryLevel))]...")
 
+    #endif
+        
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.fGlobalDeviceScreenSizeWidth' is [\(String(describing: appGlobalInfo.fGlobalDeviceScreenSizeWidth))]...")
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.fGlobalDeviceScreenSizeHeight' is [\(String(describing: appGlobalInfo.fGlobalDeviceScreenSizeHeight))]...")
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.iGlobalDeviceScreenSizeScale' is [\(String(describing: appGlobalInfo.iGlobalDeviceScreenSizeScale))]...")
 
-    #endif
-        
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.sAppCategory' is [\(String(describing: appGlobalInfo.sAppCategory))]...")
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.sAppDisplayName' is [\(String(describing: appGlobalInfo.sAppDisplayName))]...")
         self.xcgLogMsg("\(sCurrMethodDisp) 'appGlobalInfo.sAppBundleIdentifier' is [\(String(describing: appGlobalInfo.sAppBundleIdentifier))]...")

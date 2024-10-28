@@ -12,7 +12,6 @@ import SwiftUI
 import IOKit
 #endif
 
-//struct AppGlobalInfo
 public class AppGlobalInfo: NSObject
 {
     
@@ -20,71 +19,72 @@ public class AppGlobalInfo: NSObject
     {
 
         static 
-        var appGlobalInfo:AppGlobalInfo                                 = AppGlobalInfo()
+        var appGlobalInfo:AppGlobalInfo                                  = AppGlobalInfo()
 
     }
 
-    static let sGlobalInfoAppId:String                                  = "JustAMultiplatformAppTest1"
-    static let sGlobalInfoAppVers:String                                = "v1.1401"
-    static let sGlobalInfoAppDisp:String                                = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
-    static let sGlobalInfoAppCopyRight:String                           = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
-    static let sGlobalInfoAppLogFilespec:String                         = "JustAMultiplatformAppTest1.log"
-    static let sGlobalInfoAppLastGoodLogFilespec:String                 = "JustAMultiplatformAppTest1.last_good.log"
-    static let sGlobalInfoAppLastCrashLogFilespec:String                = "JustAMultiplatformAppTest1.crashed_last.log"
-    static let sGlobalInfoAppCrashMarkerFilespec:String                 = "JustAMultiplatformAppTest1.crash_marker.txt"
+    static let sGlobalInfoAppId:String                                   = "JustAMultiplatformAppTest1"
+    static let sGlobalInfoAppVers:String                                 = "v1.1406"
+    static let sGlobalInfoAppDisp:String                                 = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
+    static let sGlobalInfoAppCopyRight:String                            = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+    static let sGlobalInfoAppLogFilespec:String                          = "JustAMultiplatformAppTest1.log"
+    static let sGlobalInfoAppLastGoodLogFilespec:String                  = "JustAMultiplatformAppTest1.last_good.log"
+    static let sGlobalInfoAppLastCrashLogFilespec:String                 = "JustAMultiplatformAppTest1.crashed_last.log"
+    static let sGlobalInfoAppCrashMarkerFilespec:String                  = "JustAMultiplatformAppTest1.crash_marker.txt"
 
-    static let bUseApplicationShortTitle:Bool                           = false
-    static let sApplicationTitle:String                                                = sGlobalInfoAppId
-    static let sApplicationShortTitle:String                            = "JAMpAT1"
+    static let bUseApplicationShortTitle:Bool                            = false
+    static let sApplicationTitle:String                                                 = sGlobalInfoAppId
+    static let sApplicationShortTitle:String                             = "JAMpAT1"
 
 #if os(macOS)
 
-    static let sHelpBasicFileExt:String                                 = "html"     // 'help' File extension: "md", "html", or "txt"
+    static let sHelpBasicFileExt:String                                  = "html"     // 'help' File extension: "md", "html", or "txt"
 
 #elseif os(iOS)
 
-    static let sHelpBasicFileExt:String                                 = "md"       // 'help' File extension: "md", "html", or "txt"
+    static let sHelpBasicFileExt:String                                  = "md"       // 'help' File extension: "md", "html", or "txt"
 
 #endif
     
-    static let bPerformAppObjCSwiftBridgeTest:Bool                      = true
-    static let bInstantiateAppMetricKitManager:Bool                     = true
-    static let sAppUploadNotifyFrom:String                              = "dcox@justmacapps.net"
+    static let bPerformAppObjCSwiftBridgeTest:Bool                       = true
+    static let bInstantiateAppMetricKitManager:Bool                      = true
+    static let sAppUploadNotifyFrom:String                               = "dcox@justmacapps.net"
 
     // Various 'device' information:
 
-           var sGlobalDeviceType:String                                 = "-unknown-"   // Values: "Mac", "iPad", "iPhone, "AppleWatch"
-           var bGlobalDeviceIsMac:Bool                                  = false
-           var bGlobalDeviceIsIPad:Bool                                 = false
-           var bGlobalDeviceIsIPhone:Bool                               = false
-           var bGlobalDeviceIsAppleWatch:Bool                           = false
-           var bGlobalDeviceIsXcodeSimulator:Bool                       = false
+           var sGlobalDeviceType:String                                  = "-unknown-"   // Values: "Mac", "iPad", "iPhone, "AppleWatch"
+           var bGlobalDeviceIsMac:Bool                                   = false
+           var bGlobalDeviceIsIPad:Bool                                  = false
+           var bGlobalDeviceIsIPhone:Bool                                = false
+           var bGlobalDeviceIsAppleWatch:Bool                            = false
+           var bGlobalDeviceIsXcodeSimulator:Bool                        = false
 
-           var sGlobalDeviceName:String                                 = "-unknown-"
-           var sGlobalDeviceSystemName:String                           = "-unknown-"
-           var sGlobalDeviceSystemVersion:String                        = "-unknown-"
-           var sGlobalDeviceModel:String                                = "-unknown-"
-           var sGlobalDeviceLocalizedModel:String                       = "-unknown-"
+           var sGlobalDeviceName:String                                  = "-unknown-"
+           var sGlobalDeviceSystemName:String                            = "-unknown-"
+           var sGlobalDeviceSystemVersion:String                         = "-unknown-"
+           var sGlobalDeviceModel:String                                 = "-unknown-"
+           var sGlobalDeviceLocalizedModel:String                        = "-unknown-"
 
        #if os(iOS)
 
-           var idomGlobalDeviceUserInterfaceIdiom:UIUserInterfaceIdiom? = nil
-           var uuidGlobalDeviceIdForVendor:UUID?                        = nil
-           var fGlobalDeviceCurrentBatteryLevel:Float                   = 1.0
-
-           var fGlobalDeviceScreenSizeWidth:Float                       = 0.0
-           var fGlobalDeviceScreenSizeHeight:Float                      = 0.0
-           var iGlobalDeviceScreenSizeScale:Int                         = 0
+           var idiomGlobalDeviceUserInterfaceIdiom:UIUserInterfaceIdiom? = nil
+           var iGlobalDeviceUserInterfaceIdiom:Int                       = 0
+           var uuidGlobalDeviceIdForVendor:UUID?                         = nil
+           var fGlobalDeviceCurrentBatteryLevel:Float                    = 1.0
 
        #endif
 
+           var fGlobalDeviceScreenSizeWidth:Float                        = 0.0
+           var fGlobalDeviceScreenSizeHeight:Float                       = 0.0
+           var iGlobalDeviceScreenSizeScale:Int                          = 0
+
     // Various 'app' information:
 
-           var sAppCategory:String                                      = "-unknown-"
-           var sAppDisplayName:String                                   = "-unknown-"
-           var sAppBundleIdentifier:String                              = "-unknown-"
-           var sAppVersionAndBuildNumber:String                         = "-unknown-"
-           var sAppCopyright:String                                     = "-unknown-"
+           var sAppCategory:String                                       = "-unknown-"
+           var sAppDisplayName:String                                    = "-unknown-"
+           var sAppBundleIdentifier:String                               = "-unknown-"
+           var sAppVersionAndBuildNumber:String                          = "-unknown-"
+           var sAppCopyright:String                                      = "-unknown-"
 
     // Private 'init()' to make this class a 'singleton':
 
@@ -129,6 +129,15 @@ public class AppGlobalInfo: NSObject
         sGlobalDeviceModel            = sModelIdentifier ?? "-unknown-"
         sGlobalDeviceLocalizedModel   = sModelIdentifier ?? "-unknown-"
 
+        if let screenSize = NSScreen.main?.frame as CGRect?
+        {
+
+            fGlobalDeviceScreenSizeWidth   = Float(screenSize.width)
+            fGlobalDeviceScreenSizeHeight  = Float(screenSize.height)
+            iGlobalDeviceScreenSizeScale   = 1
+
+        }
+
     #elseif os(iOS)
 
         // Get various 'device' setting(s):
@@ -163,22 +172,23 @@ public class AppGlobalInfo: NSObject
 
         }
 
-        sGlobalDeviceName                  = UIDevice.current.name
-        sGlobalDeviceSystemName            = UIDevice.current.systemName
-        sGlobalDeviceSystemVersion         = UIDevice.current.systemVersion
-        sGlobalDeviceModel                 = UIDevice.current.model
-        sGlobalDeviceLocalizedModel        = UIDevice.current.localizedModel
+        sGlobalDeviceName                   = UIDevice.current.name
+        sGlobalDeviceSystemName             = UIDevice.current.systemName
+        sGlobalDeviceSystemVersion          = UIDevice.current.systemVersion
+        sGlobalDeviceModel                  = UIDevice.current.model
+        sGlobalDeviceLocalizedModel         = UIDevice.current.localizedModel
 
-        idomGlobalDeviceUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
-        uuidGlobalDeviceIdForVendor        = UIDevice.current.identifierForVendor
-        fGlobalDeviceCurrentBatteryLevel   = UIDevice.current.batteryLevel
+        idiomGlobalDeviceUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+        iGlobalDeviceUserInterfaceIdiom     = ((idiomGlobalDeviceUserInterfaceIdiom?.rawValue ?? 0) as Int)
+        uuidGlobalDeviceIdForVendor         = UIDevice.current.identifierForVendor
+        fGlobalDeviceCurrentBatteryLevel    = UIDevice.current.batteryLevel
 
         if let screenSize = UIScreen.main.bounds as CGRect?
         {
 
-            fGlobalDeviceScreenSizeWidth   = Float(screenSize.width)
-            fGlobalDeviceScreenSizeHeight  = Float(screenSize.height)
-            iGlobalDeviceScreenSizeScale   = Int(UIScreen.main.scale)
+            fGlobalDeviceScreenSizeWidth    = Float(screenSize.width)
+            fGlobalDeviceScreenSizeHeight   = Float(screenSize.height)
+            iGlobalDeviceScreenSizeScale    = Int(UIScreen.main.scale)
 
         }
 
