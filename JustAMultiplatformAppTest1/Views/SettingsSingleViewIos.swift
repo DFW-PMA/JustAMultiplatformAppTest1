@@ -20,7 +20,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0502"
+        static let sClsVers      = "v1.0601"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -119,7 +119,7 @@ struct SettingsSingleViewIos: View
 
                         self.cContentViewAppAboutButtonPresses += 1
 
-                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView in Button(Xcode).'App About'.#(\(self.cContentViewAppAboutButtonPresses))...")
+                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleViewIos in Button(Xcode).'App About'.#(\(self.cContentViewAppAboutButtonPresses))...")
 
                         self.isAppAboutViewModal.toggle()
 
@@ -161,7 +161,7 @@ struct SettingsSingleViewIos: View
 
                         self.cContentViewAppHelpViewButtonPresses += 1
 
-                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView in Button(Xcode).'App HelpView'.#(\(self.cContentViewAppHelpViewButtonPresses))...")
+                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleViewIos in Button(Xcode).'App HelpView'.#(\(self.cContentViewAppHelpViewButtonPresses))...")
 
                         self.isAppHelpViewModal.toggle()
 
@@ -197,7 +197,7 @@ struct SettingsSingleViewIos: View
 
                         self.cContentViewAppLogViewButtonPresses += 1
 
-                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView in Button(Xcode).'App LogView'.#(\(self.cContentViewAppLogViewButtonPresses))...")
+                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleViewIos in Button(Xcode).'App LogView'.#(\(self.cContentViewAppLogViewButtonPresses))...")
 
                         self.isAppLogViewModal.toggle()
 
@@ -230,7 +230,7 @@ struct SettingsSingleViewIos: View
                     Button
                     {
 
-                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleView.Button(Xcode).'Dismiss' pressed...")
+                        let _ = xcgLogMsg("\(ClassInfo.sClsDisp):SettingsSingleViewIos.Button(Xcode).'Dismiss' pressed...")
                         
                         self.presentationMode.wrappedValue.dismiss()
                         
@@ -329,51 +329,58 @@ struct SettingsSingleViewIos: View
 
                 Spacer()
 
-                HStack(alignment:.center)
+                if (AppGlobalInfo.bPerformAppDevTesting == true)
                 {
 
                     Spacer()
-                
-                    Button
+
+                    HStack(alignment:.center)
                     {
 
-                        self.cContentViewAppCrashButtonPresses += 1
+                        Spacer()
 
-                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'App Crash'.#(\(self.cContentViewAppCrashButtonPresses))...")
+                        Button
+                        {
 
-                        self.isAppCrashShowing.toggle()
+                            self.cContentViewAppCrashButtonPresses += 1
+
+                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)SettingsSingleViewIos in Button(Xcode).'App Crash'.#(\(self.cContentViewAppCrashButtonPresses))...")
+
+                            self.isAppCrashShowing.toggle()
+
+                        }
+                        label:
+                        {
+
+                            VStack(alignment:.center)
+                            {
+
+                                Label("", systemImage: "autostartstop.slash")
+                                    .help(Text("FORCE this App to CRASH"))
+                                    .imageScale(.large)
+
+                                Text("Force CRASH")
+                                    .font(.caption)
+
+                            }
+
+                        }
+                        .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
+                        {
+                            Button("Cancel", role:.cancel)
+                            {
+                                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'crash' the App - resuming...")
+                            }
+                            Button("Ok", role:.destructive)
+                            {
+                                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'crash' the App - crashing...")
+                                fatalError("The User pressed 'Ok' to force an App 'crash'!")
+                            }
+                        }
+
+                        Spacer()
 
                     }
-                    label:
-                    {
-                        
-                        VStack(alignment:.center)
-                        {
-                            
-                            Label("", systemImage: "autostartstop.slash")
-                                .help(Text("FORCE this App to CRASH"))
-                                .imageScale(.large)
-                            
-                            Text("Force CRASH")
-                                .font(.caption)
-                            
-                        }
-                        
-                    }
-                    .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
-                    {
-                        Button("Cancel", role:.cancel)
-                        {
-                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'crash' the App - resuming...")
-                        }
-                        Button("Ok", role:.destructive)
-                        {
-                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'crash' the App - crashing...")
-                            fatalError("The User pressed 'Ok' to force an App 'crash'!")
-                        }
-                    }
-
-                    Spacer()
 
                 }
 

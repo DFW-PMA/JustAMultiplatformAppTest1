@@ -18,7 +18,7 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
 
         static let sClsId        = "JmAppMetricKitManager"
-        static let sClsVers      = "v1.0402"
+        static let sClsVers      = "v1.0501"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = false
@@ -132,7 +132,7 @@ public class JmAppMetricKitManager: NSObject, MXMetricManagerSubscriber
     {
         
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - supplied parameter 'jmAppDelegateVisitor' is [\(jmAppDelegateVisitor)]...")
 

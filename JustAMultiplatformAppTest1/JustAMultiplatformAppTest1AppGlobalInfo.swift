@@ -24,7 +24,7 @@ public class AppGlobalInfo: NSObject
     }
 
     static let sGlobalInfoAppId:String                                   = "JustAMultiplatformAppTest1"
-    static let sGlobalInfoAppVers:String                                 = "v1.1406"
+    static let sGlobalInfoAppVers:String                                 = "v1.1603"
     static let sGlobalInfoAppDisp:String                                 = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
     static let sGlobalInfoAppCopyRight:String                            = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
     static let sGlobalInfoAppLogFilespec:String                          = "JustAMultiplatformAppTest1.log"
@@ -33,7 +33,7 @@ public class AppGlobalInfo: NSObject
     static let sGlobalInfoAppCrashMarkerFilespec:String                  = "JustAMultiplatformAppTest1.crash_marker.txt"
 
     static let bUseApplicationShortTitle:Bool                            = false
-    static let sApplicationTitle:String                                                 = sGlobalInfoAppId
+    static let sApplicationTitle:String                                  = sGlobalInfoAppId
     static let sApplicationShortTitle:String                             = "JAMpAT1"
 
 #if os(macOS)
@@ -48,6 +48,9 @@ public class AppGlobalInfo: NSObject
     
     static let bPerformAppObjCSwiftBridgeTest:Bool                       = true
     static let bInstantiateAppMetricKitManager:Bool                      = true
+    static let bInstantiateAppUserNotificationsManager:Bool              = true
+    static let bIssueTestAppUserNotifications:Bool                       = false
+    static let bPerformAppDevTesting:Bool                                = false
     static let sAppUploadNotifyFrom:String                               = "dcox@justmacapps.net"
 
     // Various 'device' information:

@@ -51,6 +51,10 @@
 		F029E0BB2C823ACB00FC96B9 /* AppAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029E0B92C823ACB00FC96B9 /* AppAboutView.swift */; };
 		F03240302C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F032402F2C49672900ED9508 /* JustAMultiplatformAppTest1NSAppDelegate.swift */; };
 		F042521C2C59356600EA22D8 /* CalledObjCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F04252192C59356600EA22D8 /* CalledObjCModule.m */; };
+		F0474E592CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E582CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift */; };
+		F0474E5A2CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */; };
+		F0474E5B2CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E582CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift */; };
+		F0474E5C2CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */; };
 		F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */; };
 		F07F7B952C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */ = {isa = PBXBuildFile; fileRef = F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */; };
 		F07F7B962C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */ = {isa = PBXBuildFile; fileRef = F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */; };
@@ -147,6 +151,8 @@
 		F04252192C59356600EA22D8 /* CalledObjCModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalledObjCModule.m; sourceTree = "<group>"; };
 		F042521A2C59356600EA22D8 /* CalledObjCModule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CalledObjCModule-Bridging-Header.h"; sourceTree = "<group>"; };
 		F042521B2C59356600EA22D8 /* CalledObjCModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalledObjCModule.h; sourceTree = "<group>"; };
+		F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JmAppUserNotificationIdentifiers.swift; sourceTree = "<group>"; };
+		F0474E582CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JmAppUserNotificationManager.swift; sourceTree = "<group>"; };
 		F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmXcodeBuildSettings.swift; sourceTree = "<group>"; };
 		F07F7B932C94DB2D0094AE18 /* DefinesObjCOverrides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinesObjCOverrides.h; sourceTree = "<group>"; };
 		F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinesObjCOverrides.m; sourceTree = "<group>"; };
@@ -313,6 +319,8 @@
 		F0D17B862C52E3D5000E5A52 /* JmUtils */ = {
 			isa = PBXGroup;
 			children = (
+				F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */,
+				F0474E582CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift */,
 				F0EEDD842CADC38400E437E8 /* JmAppDelegateVisitor-Bridging-Header.h */,
 				F0EEDD852CADC38400E437E8 /* JmAppMetricKitManager.swift */,
 				F0EEDD862CADC38400E437E8 /* JmUserDefaults-Bridging-Header.h */,
@@ -397,7 +405,7 @@
 					};
 					F0BCCC772C821E34007EA382 = {
 						CreatedOnToolsVersion = 15.4;
-						LastSwiftMigration = 1600;
+						LastSwiftMigration = 1610;
 					};
 				};
 			};
@@ -460,6 +468,8 @@
 				F0D17B8F2C52E942000E5A52 /* HelpCommands.swift in Sources */,
 				F029E0B72C82386D00FC96B9 /* SettingsSingleViewMac.swift in Sources */,
 				F0EEDD882CADC38400E437E8 /* JmAppMetricKitManager.swift in Sources */,
+				F0474E592CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift in Sources */,
+				F0474E5A2CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift in Sources */,
 				F091A2872C8F6FEF00FB85D5 /* RestURLProcessor.swift in Sources */,
 				F028C5B32C48610A007C459E /* ContentView.swift in Sources */,
 				F0289D332C53D98D001B19CD /* HelpBasicMode.swift in Sources */,
@@ -509,6 +519,8 @@
 				F0BCCC5D2C820EF1007EA382 /* HelpBasicView.swift in Sources */,
 				F0BCCC5E2C820EF1007EA382 /* SettingsSingleView.swift in Sources */,
 				F0EF628C2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */,
+				F0474E5B2CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift in Sources */,
+				F0474E5C2CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift in Sources */,
 				F00619A52C94A8060094614E /* MultipartRequest.swift in Sources */,
 				F0BCCC602C820EF1007EA382 /* JmFileIO.swift in Sources */,
 				F00619A32C94A8060094614E /* MultipartDataExtension.swift in Sources */,
@@ -682,7 +694,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26.03.24C302;
+				CURRENT_PROJECT_VERSION = 27.01.24C310;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -700,7 +712,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
@@ -722,7 +734,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26.03.24C302;
+				CURRENT_PROJECT_VERSION = 27.01.24C310;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -740,7 +752,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
@@ -761,7 +773,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26.03.24C302;
+				CURRENT_PROJECT_VERSION = 27.01.24C310;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -782,7 +794,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;
@@ -807,7 +819,7 @@
 				CODE_SIGN_ENTITLEMENTS = JustAMultiplatformAppTest1/JustAMultiplatformAppTest1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26.03.24C302;
+				CURRENT_PROJECT_VERSION = 27.01.24C310;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"JustAMultiplatformAppTest1/Preview Content\"";
@@ -828,7 +840,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.02;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.justmacapps.JustAMultiplatformAppTest1;

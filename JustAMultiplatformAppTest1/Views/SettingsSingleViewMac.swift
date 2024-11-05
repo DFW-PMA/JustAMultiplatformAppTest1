@@ -15,7 +15,7 @@ struct SettingsSingleViewMac: View
     {
         
         static let sClsId        = "SettingsSingleViewMac"
-        static let sClsVers      = "v1.0302"
+        static let sClsVers      = "v1.0501"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -78,50 +78,6 @@ struct SettingsSingleViewMac: View
         {
 
             Spacer()
-            
-            Divider()
-
-            HStack(alignment:.center)
-            {
-
-                Spacer()
-
-                Text("Press to FORCE an App 'crash' -> ")
-                    .bold()
-
-                Button
-                {
-
-                    self.cContentViewAppCrashButtonPresses += 1
-
-                    let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)ContentView in Button(Xcode).'App Crash'.#(\(self.cContentViewAppCrashButtonPresses))...")
-
-                    self.isAppCrashShowing.toggle()
-
-                }
-                label: 
-                {
-
-                    Label("", systemImage: "xmark.octagon")
-                        .help(Text("FORCE this App to CRASH"))
-
-                }
-                .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
-                {
-                    Button("Cancel", role:.cancel)
-                    {
-                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'crash' the App - resuming...")
-                    }
-                    Button("Ok", role:.destructive)
-                    {
-                        let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'crash' the App - crashing...")
-                        fatalError("The User pressed 'Ok' to force an App 'crash'!")
-                    }
-                }
-
-                Spacer()
-
-            }   // End of HStack
             
             Divider()
             
@@ -192,6 +148,68 @@ struct SettingsSingleViewMac: View
 
             }
             
+            Spacer()
+
+            if (AppGlobalInfo.bPerformAppDevTesting == true)
+            {
+
+                Spacer()
+
+                VStack(alignment:.leading)
+                {
+
+                    Divider()
+                        .background(Color.primary)
+
+                    HStack(alignment:.center)
+                    {
+
+                        Spacer()
+
+                        Text("Press to FORCE an App 'crash' -> ")
+                            .bold()
+
+                        Button
+                        {
+
+                            self.cContentViewAppCrashButtonPresses += 1
+
+                            let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp)SettingsSingleViewMac in Button(Xcode).'App Crash'.#(\(self.cContentViewAppCrashButtonPresses))...")
+
+                            self.isAppCrashShowing.toggle()
+
+                        }
+                        label: 
+                        {
+
+                            Label("", systemImage: "xmark.octagon")
+                                .help(Text("FORCE this App to CRASH"))
+
+                        }
+                        .alert("Are you sure you want to 'crash' this App?", isPresented:$isAppCrashShowing)
+                        {
+                            Button("Cancel", role:.cancel)
+                            {
+                                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Cancel' to 'crash' the App - resuming...")
+                            }
+                            Button("Ok", role:.destructive)
+                            {
+                                let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'crash' the App - crashing...")
+                                fatalError("The User pressed 'Ok' to force an App 'crash'!")
+                            }
+                        }
+
+                        Spacer()
+
+                    }
+
+                    Divider()
+                        .background(Color.primary)
+
+                }
+
+            }
+
             Spacer()
 
         }   // End of VStack #1

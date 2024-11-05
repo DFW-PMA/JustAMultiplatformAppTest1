@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1709"
+        static let sClsVers      = "v1.1802"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -35,53 +35,53 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
 
         static 
-        var appDelegateVisitor:JmAppDelegateVisitor          = JmAppDelegateVisitor()
+        var appDelegateVisitor:JmAppDelegateVisitor                = JmAppDelegateVisitor()
 
     }
 
     // App 'name' field:
 
-    let sApplicationName:String                              = AppGlobalInfo.sGlobalInfoAppId
+    let sApplicationName:String                                    = AppGlobalInfo.sGlobalInfoAppId
 
     // Various App field(s):
 
-    var cAppDelegateVisitorInitCalls:Int                     = 0
+    var cAppDelegateVisitorInitCalls:Int                           = 0
 
-    var bAppTitleSetupRequired:Bool                          = true
-    let bUseApplicationShortTitle:Bool                       = AppGlobalInfo.bUseApplicationShortTitle
-    var sApplicationTitle:String                             = AppGlobalInfo.sApplicationTitle
-    let sApplicationShortTitle:String                        = AppGlobalInfo.sApplicationShortTitle
+    var bAppTitleSetupRequired:Bool                                = true
+    let bUseApplicationShortTitle:Bool                             = AppGlobalInfo.bUseApplicationShortTitle
+    var sApplicationTitle:String                                   = AppGlobalInfo.sApplicationTitle
+    let sApplicationShortTitle:String                              = AppGlobalInfo.sApplicationShortTitle
 
-                                                               // 'help' File extension: "md", "html", or "txt":
-    let sHelpBasicFileExt:String                             = AppGlobalInfo.sHelpBasicFileExt
-    var sHelpBasicContents:String                            = "-N/A-"
+                                                                     // 'help' File extension: "md", "html", or "txt":
+    let sHelpBasicFileExt:String                                   = AppGlobalInfo.sHelpBasicFileExt
+    var sHelpBasicContents:String                                  = "-N/A-"
 
     @AppStorage("helpBasicMode") 
-    var helpBasicMode                                        = HelpBasicMode.simpletext
+    var helpBasicMode                                              = HelpBasicMode.simpletext
 
-    var helpBasicLoader:HelpBasicLoader?                     = nil
+    var helpBasicLoader:HelpBasicLoader?                           = nil
 
     // Misc:
 
-    let bClsTraceInternal:Bool                               = true
-    var bAppDelegateVisitorTraceLogInitRequired:Bool         = true
-    var sInitAppDelegateVisitorTraceLogTag:String            = "-unknown-"
-    var bAppDelegateVisitorLogFilespecIsUsable:Bool          = false
-    var urlAppDelegateVisitorLogFilespec:URL?                = nil
-    var urlAppDelegateVisitorLogFilepath:URL?                = nil
-    var sAppDelegateVisitorLogFilespec:String!               = nil
-    var sAppDelegateVisitorLogFilepath:String!               = nil
-    var xcgLogger:XCGLogger?                                 = XCGLogger.default
+    let bClsTraceInternal:Bool                                     = true
+    var bAppDelegateVisitorTraceLogInitRequired:Bool               = true
+    var sInitAppDelegateVisitorTraceLogTag:String                  = "-unknown-"
+    var bAppDelegateVisitorLogFilespecIsUsable:Bool                = false
+    var urlAppDelegateVisitorLogFilespec:URL?                      = nil
+    var urlAppDelegateVisitorLogFilepath:URL?                      = nil
+    var sAppDelegateVisitorLogFilespec:String!                     = nil
+    var sAppDelegateVisitorLogFilepath:String!                     = nil
+    var xcgLogger:XCGLogger?                                       = XCGLogger.default
     
     // Swift/ObjC Bridge:
 
     @objc 
-    var jmObjCSwiftEnvBridge:JmObjCSwiftEnvBridge?           = nil
+    var jmObjCSwiftEnvBridge:JmObjCSwiftEnvBridge?                 = nil
 
     // App <global> 'Alert' control(s):
 
     @Published 
-    var appDelegateVisitorSwiftViewsShouldChange:Bool        = false
+    var appDelegateVisitorSwiftViewsShouldChange:Bool              = false
     {
 
         didSet
@@ -96,7 +96,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     // App <global> 'Alert' control(s):
 
     @Published 
-    var isAppDelegateVisitorShowingAlert:Bool                = false
+    var isAppDelegateVisitorShowingAlert:Bool                      = false
     {
 
         didSet
@@ -108,29 +108,33 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     }
 
-    var sAppDelegateVisitorGlobalAlertMessage:String?        = nil
-    var sAppDelegateVisitorGlobalAlertButtonText:String?     = nil
+    var sAppDelegateVisitorGlobalAlertMessage:String?              = nil
+    var sAppDelegateVisitorGlobalAlertButtonText:String?           = nil
 
     // App <global> 'state' control(s):
 
-    var bWasAppLogFilePresentAtStartup:Bool                  = false
-    var bWasAppCrashFilePresentAtStartup:Bool                = false
-    var bAppDelegateVisitorCrashMarkerFilespecIsUsable:Bool  = false
-    var bAppDelegateVisitorCrashMarkerFilespecIsCreated:Bool = false
-    var urlAppDelegateVisitorCrashMarkerFilespec:URL?        = nil
-    var urlAppDelegateVisitorCrashMarkerFilepath:URL?        = nil
-    var sAppDelegateVisitorCrashMarkerFilespec:String!       = nil
-    var sAppDelegateVisitorCrashMarkerFilepath:String!       = nil
-    var urlAppDelegateVisitorLogToSaveFilespec:URL?          = nil
-    var sAppDelegateVisitorLogToSaveFilespec:String!         = nil
+    var bWasAppLogFilePresentAtStartup:Bool                        = false
+    var bWasAppCrashFilePresentAtStartup:Bool                      = false
+    var bAppDelegateVisitorCrashMarkerFilespecIsUsable:Bool        = false
+    var bAppDelegateVisitorCrashMarkerFilespecIsCreated:Bool       = false
+    var urlAppDelegateVisitorCrashMarkerFilespec:URL?              = nil
+    var urlAppDelegateVisitorCrashMarkerFilepath:URL?              = nil
+    var sAppDelegateVisitorCrashMarkerFilespec:String!             = nil
+    var sAppDelegateVisitorCrashMarkerFilepath:String!             = nil
+    var urlAppDelegateVisitorLogToSaveFilespec:URL?                = nil
+    var sAppDelegateVisitorLogToSaveFilespec:String!               = nil
 
     // App <possible> (Apple) MetricKitManager instance:
 
-    var jmAppMetricKitManager:JmAppMetricKitManager?         = nil
+    var jmAppMetricKitManager:JmAppMetricKitManager?               = nil
+
+    // App <possible> (Apple) UNUserNotificationCenter Manager instance:
+
+    var jmAppUserNotificationManager:JmAppUserNotificationManager? = JmAppUserNotificationManager()
 
     // App <global> Message(s) 'stack' cached before XCGLogger is available:
 
-    var listPreXCGLoggerMessages:[String]                    = Array()
+    var listPreXCGLoggerMessages:[String]                          = Array()
 
     @objc public func toString() -> String
     {
@@ -197,6 +201,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         asToString.append("],")
         asToString.append("[")
         asToString.append("jmAppMetricKitManager': [\(String(describing: self.jmAppMetricKitManager))],")
+        asToString.append("jmAppUserNotificationManager': [\(String(describing: self.jmAppUserNotificationManager))],")
         asToString.append("],")
         asToString.append("]")
 
@@ -311,6 +316,23 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
             self.jmAppMetricKitManager?.setJmAppDelegateVisitorInstance(jmAppDelegateVisitor:self)
           
             self.xcgLogMsg("\(sCurrMethodDisp) Instantiated  the 'self.jmAppMetricKitManager' instance...")
+
+        }
+
+        // Apple UNUserNotificationCenter Manager instantiation <maybe>:
+
+        if (AppGlobalInfo.bInstantiateAppUserNotificationsManager == true)
+        {
+
+            // Instantiate the jmAppUserNotificationManager...
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Instantiating the 'self.jmAppUserNotificationManager' instance...")
+
+            self.jmAppUserNotificationManager = JmAppUserNotificationManager()
+
+            self.jmAppUserNotificationManager?.setJmAppDelegateVisitorInstance(jmAppDelegateVisitor:self)
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Instantiated  the 'self.jmAppUserNotificationManager' instance...")
 
         }
 
@@ -1433,6 +1455,23 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
     //  self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'aNotification' is [\(aNotification)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'uiApplication' is [\(uiApplication)] - 'sApplicationName' is [\(self.sApplicationName)] - 'self' is [\(self)]...")
+
+        // Pass the 'terminate' on to the Apple UNUserNotificationCenter Manager instantiation <maybe>:
+
+        if (AppGlobalInfo.bInstantiateAppUserNotificationsManager == true)
+        {
+
+            // Terminate the jmAppUserNotificationManager...
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Terminating the 'self.jmAppUserNotificationManager' instance...")
+
+            self.jmAppUserNotificationManager?.terminateAppUserNotifications()
+          
+            self.xcgLogMsg("\(sCurrMethodDisp) Terminated  the 'self.jmAppUserNotificationManager' instance...")
+
+        }
+
+        // Finish the 'terminate' of the AppDelegateVisitor instance...
 
         self.xcgLogMsg("\(sCurrMethodDisp) Current '\(ClassInfo.sClsId)' is [\(self.toString())]...")
         self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is stopping...")
