@@ -1,5 +1,5 @@
 //
-//  ZipFileCreator.swift
+//  MultipartZipFileCreator.swift
 //  JustAMultipartRequestTest1
 //
 //  Created by JustMacApps.net on 09/10/2024.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-class ZipFileCreator: NSObject
+class MultipartZipFileCreator: NSObject
 {
 
     struct ClassInfo
     {
         
-        static let sClsId          = "ZipFileCreator"
-        static let sClsVers        = "v1.0410"
+        static let sClsId          = "MultipartZipFileCreator"
+        static let sClsVers        = "v1.0101"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -23,7 +23,12 @@ class ZipFileCreator: NSObject
         
     }
 
-    private let bGenerateInternalTextFiles:Bool = true
+    // App Data field(s):
+
+    private var bInternalTest:Bool                        = false
+    private let bGenerateInternalTextFiles:Bool           = true
+
+            var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
 
     override init()
     {
@@ -46,20 +51,18 @@ class ZipFileCreator: NSObject
     private func xcgLogMsg(_ sMessage:String)
     {
 
-    //  if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
-    //  {
-    //
-    //      self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
-    //
-    //  }
-    //  else
-    //  {
-    //
-    //      print("\(sMessage)")
-    //
-    //  }
-
-        print("\(sMessage)")
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
 
         // Exit:
 
@@ -67,7 +70,7 @@ class ZipFileCreator: NSObject
 
     }   // End of private func xcgLogMsg().
 
-    public func createTargetZipFileFromSource(multipartRequestInfo:MultipartRequestInfo) -> URL?
+    public func createTargetZipFileFromSource(multipartRequestInfo:MultipartRequestInfo)->URL?
     {
 
         let sCurrMethod:String = #function
@@ -199,73 +202,5 @@ class ZipFileCreator: NSObject
 
     }   // End of func createTargetZipFileFromSource().
 
-}   // End of class ZipFileCreator(NSObject).
-
-// --------------------------------------------------------------------------------------------------------------------------------------
-// Swift 'playground':
-// --------------------------------------------------------------------------------------------------------------------------------------
-//
-//  let sTestFilename        = "/Volumes/Crucial-X6-2-SSD/Users/Shared/public_hda2/JWeb.Software/JWeb_MacOSx_apps/SwiftUI_GUI_tools/DrcSwiftUI4MastersWork1/JustAMultipartRequestTest1/work/Xcode_console.ot1_09122024.log"
-//  let urlTestFilespec:URL  = URL(string:sTestFilename)!
-//  let sTestFilespec:String = urlTestFilespec.path
-//
-//  let sContents = "TEST Invoked...\r\n"
-//
-//  try sContents.write(toFile: sTestFilespec, atomically:true, encoding:String.Encoding.utf8)
-//
-//  print("Successfully wrote to the TEST Filespec of [\(String(describing: sTestFilespec))]...")
-//  print("")
-//
-//  var nsDictItemAttributes:NSDictionary? = try? FileManager.default.attributesOfItem(atPath: sTestFilespec) as NSDictionary
-//      
-//  print("...'nsDictItemAttributes' is [\(String(describing: nsDictItemAttributes))] for the filespec 'sClsFilespec' of [\(sTestFilespec)]...")
-//  print("")
-//
-//  print("...'nsDictItemAttributes.NSFileType'  is [\(String(describing: nsDictItemAttributes?["NSFileType"]))]")
-//  print("...'nsDictItemAttributes?.fileType()' is [\(String(describing: nsDictItemAttributes?.fileType()))]...")
-//
-//  let isURLTestFileAFile:Bool      = (nsDictItemAttributes?.fileType() == "NSFileTypeRegular")
-//  let isURLTestFileADirectory:Bool = (nsDictItemAttributes?.fileType() == "NSFileTypeDirectory")
-//
-//  print("...'isURLTestFileAFile'      is [\(isURLTestFileAFile)]...")
-//  print("...'isURLTestFileADirectory' is [\(isURLTestFileADirectory)]...")
-//  print("")
-//
-//  print("...'urlTestFilespec' is [\(urlTestFilespec)]...")
-//  print("...'urlTestFilespec.baseURL' is [\(String(describing: urlTestFilespec.baseURL))]...")
-//  print("...'urlTestFilespec.absoluteURL' is [\(String(describing: urlTestFilespec.absoluteURL))]...")
-//  print("...'urlTestFilespec.relativePath' is [\(String(describing: urlTestFilespec.relativePath))]...")
-//  print("...'urlTestFilespec.lastPathComponent' is [\(String(describing: urlTestFilespec.lastPathComponent))]...")
-//  print("...'urlTestFilespec.path' is [\(String(describing: urlTestFilespec.path))]...")
-//  print("...'urlTestFilespec.path(percentEncoded:)' is [\(String(describing: urlTestFilespec.path(percentEncoded: false)))]...")
-//  print("...'urlTestFilespec.pathComponents' is [\(String(describing: urlTestFilespec.pathComponents))]...")
-//
-//  let sTestFilenameExt:String = urlTestFilespec.lastPathComponent
-//
-//  print("...'sTestFilespec'    is [\(sTestFilespec)]...")
-//  print("...'sTestFilenameExt' is [\(sTestFilenameExt)]...")
-//
-//  // let sTestDirspec:String = sTestFilespec.dropLast(sTestFilenameExt.count)
-//  let sTestDirspec:String = String(sTestFilespec.dropLast(sTestFilenameExt.count))
-//  let urlTestDirspec:URL  = URL(string:sTestDirspec)!
-//
-//  print("...'sTestDirspec'   is [\(sTestDirspec)]...")
-//  print("...'urlTestDirspec' is [\(urlTestDirspec)]...")
-//
-//  nsDictItemAttributes = try? FileManager.default.attributesOfItem(atPath: sTestDirspec) as NSDictionary
-//
-//  print("...'nsDictItemAttributes' is [\(String(describing: nsDictItemAttributes))] for the dirspec 'sTestDirspec' of [\(sTestDirspec)]...")
-//  print("")
-//
-//  print("...'nsDictItemAttributes.NSFileType'  is [\(String(describing: nsDictItemAttributes?["NSFileType"]))]")
-//  print("...'nsDictItemAttributes?.fileType()' is [\(String(describing: nsDictItemAttributes?.fileType()))]...")
-//
-//  let isURLTestDirAFile:Bool      = (nsDictItemAttributes?.fileType() == "NSFileTypeRegular")
-//  let isURLTestDirADirectory:Bool = (nsDictItemAttributes?.fileType() == "NSFileTypeDirectory")
-//
-//  print("...'isURLTestDirAFile'      is [\(isURLTestDirAFile)]...")
-//  print("...'isURLTestDirADirectory' is [\(isURLTestDirADirectory)]...")
-//  print("")
-//
-// --------------------------------------------------------------------------------------------------------------------------------------
+}   // End of class MultipartZipFileCreator(NSObject).
 

@@ -25,8 +25,6 @@
 
 /* Begin PBXBuildFile section */
 		F0002DC02C7C0ABF00520A9F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F0002DBF2C7C0ABF00520A9F /* README.md */; };
-		F006199E2C94A8060094614E /* ZipFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00619992C94A8060094614E /* ZipFileCreator.swift */; };
-		F006199F2C94A8060094614E /* ZipFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00619992C94A8060094614E /* ZipFileCreator.swift */; };
 		F00619A02C94A8060094614E /* MultipartRequestDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006199A2C94A8060094614E /* MultipartRequestDriver.swift */; };
 		F00619A12C94A8060094614E /* MultipartRequestDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006199A2C94A8060094614E /* MultipartRequestDriver.swift */; };
 		F00619A22C94A8060094614E /* MultipartDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006199B2C94A8060094614E /* MultipartDataExtension.swift */; };
@@ -55,6 +53,8 @@
 		F0474E5A2CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */; };
 		F0474E5B2CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E582CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift */; };
 		F0474E5C2CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */; };
+		F04D88A22CDAA8A00002AA0B /* MultipartZipFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04D88A12CDAA8A00002AA0B /* MultipartZipFileCreator.swift */; };
+		F04D88A32CDAA8A00002AA0B /* MultipartZipFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04D88A12CDAA8A00002AA0B /* MultipartZipFileCreator.swift */; };
 		F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */; };
 		F07F7B952C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */ = {isa = PBXBuildFile; fileRef = F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */; };
 		F07F7B962C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */ = {isa = PBXBuildFile; fileRef = F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */; };
@@ -127,7 +127,6 @@
 
 /* Begin PBXFileReference section */
 		F0002DBF2C7C0ABF00520A9F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F00619992C94A8060094614E /* ZipFileCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipFileCreator.swift; sourceTree = "<group>"; };
 		F006199A2C94A8060094614E /* MultipartRequestDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartRequestDriver.swift; sourceTree = "<group>"; };
 		F006199B2C94A8060094614E /* MultipartDataExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartDataExtension.swift; sourceTree = "<group>"; };
 		F006199C2C94A8060094614E /* MultipartRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartRequest.swift; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		F042521B2C59356600EA22D8 /* CalledObjCModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalledObjCModule.h; sourceTree = "<group>"; };
 		F0474E572CDAA54A0079B1E0 /* JmAppUserNotificationIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JmAppUserNotificationIdentifiers.swift; sourceTree = "<group>"; };
 		F0474E582CDAA54A0079B1E0 /* JmAppUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JmAppUserNotificationManager.swift; sourceTree = "<group>"; };
+		F04D88A12CDAA8A00002AA0B /* MultipartZipFileCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartZipFileCreator.swift; sourceTree = "<group>"; };
 		F0601D922C77C73C00443D72 /* JmXcodeBuildSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JmXcodeBuildSettings.swift; sourceTree = "<group>"; };
 		F07F7B932C94DB2D0094AE18 /* DefinesObjCOverrides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinesObjCOverrides.h; sourceTree = "<group>"; };
 		F07F7B942C94DB2D0094AE18 /* DefinesObjCOverrides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinesObjCOverrides.m; sourceTree = "<group>"; };
@@ -217,11 +217,11 @@
 		F0289D2C2C53D920001B19CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F04D88A12CDAA8A00002AA0B /* MultipartZipFileCreator.swift */,
 				F006199B2C94A8060094614E /* MultipartDataExtension.swift */,
 				F006199C2C94A8060094614E /* MultipartRequest.swift */,
 				F006199A2C94A8060094614E /* MultipartRequestDriver.swift */,
 				F006199D2C94A8060094614E /* MultipartRequestInfo.swift */,
-				F00619992C94A8060094614E /* ZipFileCreator.swift */,
 				F0EF628A2C8B70BD00DB79DB /* DeveloperSupportEmail.swift */,
 				F0289D322C53D98D001B19CD /* HelpBasicLoader.swift */,
 				F0289D312C53D98D001B19CD /* HelpBasicMode.swift */,
@@ -481,6 +481,7 @@
 				F00619A22C94A8060094614E /* MultipartDataExtension.swift in Sources */,
 				F042521C2C59356600EA22D8 /* CalledObjCModule.m in Sources */,
 				F091A2842C8F6FEF00FB85D5 /* RestURLData.swift in Sources */,
+				F04D88A22CDAA8A00002AA0B /* MultipartZipFileCreator.swift in Sources */,
 				F0D17B932C52E951000E5A52 /* LogFileView.swift in Sources */,
 				F07F7B952C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */,
 				F0289D2B2C53D863001B19CD /* HelpBasicView.swift in Sources */,
@@ -494,7 +495,6 @@
 				F0601D932C77C73C00443D72 /* JmXcodeBuildSettings.swift in Sources */,
 				F0D473982C7AD2960027F651 /* JmAppDelegateVisitor.swift in Sources */,
 				F0A59E052C5962E900302BA8 /* JmObjCSwiftEnvBridge.swift in Sources */,
-				F006199E2C94A8060094614E /* ZipFileCreator.swift in Sources */,
 				F0EF628B2C8B70BE00DB79DB /* DeveloperSupportEmail.swift in Sources */,
 				F0289D342C53D98D001B19CD /* HelpBasicLoader.swift in Sources */,
 				F0D17B8A2C52E414000E5A52 /* JmStringExtensions.swift in Sources */,
@@ -529,12 +529,12 @@
 				F0BCCC632C820EF1007EA382 /* JustAMultiplatformAppTest1App.swift in Sources */,
 				F07F7B962C94DB2D0094AE18 /* DefinesObjCOverrides.m in Sources */,
 				F029E0BB2C823ACB00FC96B9 /* AppAboutView.swift in Sources */,
-				F006199F2C94A8060094614E /* ZipFileCreator.swift in Sources */,
 				F0EEDD872CADC38400E437E8 /* JmAppMetricKitManager.swift in Sources */,
 				F00619A12C94A8060094614E /* MultipartRequestDriver.swift in Sources */,
 				F0BCCC642C820EF1007EA382 /* JmXcodeBuildSettings.swift in Sources */,
 				F0BCCC652C820EF1007EA382 /* JmAppDelegateVisitor.swift in Sources */,
 				F0BCCC662C820EF1007EA382 /* JmObjCSwiftEnvBridge.swift in Sources */,
+				F04D88A32CDAA8A00002AA0B /* MultipartZipFileCreator.swift in Sources */,
 				F0BCCC672C820EF1007EA382 /* HelpBasicLoader.swift in Sources */,
 				F0BCCC682C820EF1007EA382 /* JmStringExtensions.swift in Sources */,
 			);
