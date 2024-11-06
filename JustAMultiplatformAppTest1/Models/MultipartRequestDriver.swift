@@ -17,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0701"
+        static let sClsVers        = "v1.0801"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -345,11 +345,8 @@ class MultipartRequestDriver: NSObject
                 DispatchQueue.main.async
                 {
 
-
                     self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...",
                                                                                      alertButtonText:"Ok")
-
-                //  self.jmAppDelegateVisitor
 
                 //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
                 //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."

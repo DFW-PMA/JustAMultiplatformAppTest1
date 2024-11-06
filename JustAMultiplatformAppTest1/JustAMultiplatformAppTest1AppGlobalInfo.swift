@@ -24,7 +24,7 @@ public class AppGlobalInfo: NSObject
     }
 
     static let sGlobalInfoAppId:String                                   = "JustAMultiplatformAppTest1"
-    static let sGlobalInfoAppVers:String                                 = "v1.1603"
+    static let sGlobalInfoAppVers:String                                 = "v1.1701"
     static let sGlobalInfoAppDisp:String                                 = sGlobalInfoAppId+".("+sGlobalInfoAppVers+"): "
     static let sGlobalInfoAppCopyRight:String                            = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
     static let sGlobalInfoAppLogFilespec:String                          = "JustAMultiplatformAppTest1.log"
@@ -50,7 +50,7 @@ public class AppGlobalInfo: NSObject
     static let bInstantiateAppMetricKitManager:Bool                      = true
     static let bInstantiateAppUserNotificationsManager:Bool              = true
     static let bIssueTestAppUserNotifications:Bool                       = false
-    static let bPerformAppDevTesting:Bool                                = false
+    static let bPerformAppDevTesting:Bool                                = true
     static let sAppUploadNotifyFrom:String                               = "dcox@justmacapps.net"
 
     // Various 'device' information:

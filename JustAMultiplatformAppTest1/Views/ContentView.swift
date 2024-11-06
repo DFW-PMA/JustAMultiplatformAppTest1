@@ -25,7 +25,7 @@ struct ContentView: View
     {
         
         static let sClsId        = "ContentView"
-        static let sClsVers      = "v1.1802"
+        static let sClsVers      = "v1.1803"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -178,6 +178,7 @@ struct ContentView: View
                     Button("Ok", role:.destructive)
                     {
                         let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'suspend' the App - suspending...")
+
                         UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                     }
                 }
@@ -222,7 +223,6 @@ struct ContentView: View
                             let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the \(sAppExecutionPreviousTypeText) App LOG - sending...")
 
                             self.uploadPreviousAppLogToDevs()
-
                         }
                     }
 
@@ -269,7 +269,6 @@ struct ContentView: View
                             let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp) User pressed 'Ok' to 'send' the current App LOG - sending...")
 
                             self.uploadCurrentAppLogToDevs()
-
                         }
                     }
 
@@ -402,7 +401,9 @@ struct ContentView: View
                         if (bChange == true)
                         {
                             let _ = self.xcgLogMsg("\(ClassInfo.sClsDisp).onReceive #2 - Received a 'view(s)' SHOULD Change...")
+
                             shouldContentViewChange = true
+
                             jmAppDelegateVisitor.resetAppDelegateVisitorSignalSwiftViewsShouldChange()
                         }
                     })
