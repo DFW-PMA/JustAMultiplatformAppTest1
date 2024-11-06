@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+
 class MultipartZipFileCreator: NSObject
 {
 
@@ -16,7 +17,7 @@ class MultipartZipFileCreator: NSObject
     {
         
         static let sClsId          = "MultipartZipFileCreator"
-        static let sClsVers        = "v1.0101"
+        static let sClsVers        = "v1.0202"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -52,7 +53,7 @@ class MultipartZipFileCreator: NSObject
     private func xcgLogMsg(_ sMessage:String)
     {
 
-        if (self.jmAppDelegateVisitor.bForZipOperationsFilespecIsUsable == true)
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
         {
       
             self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
@@ -80,14 +81,14 @@ class MultipartZipFileCreator: NSObject
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'multipartRequestInfo' is [\(multipartRequestInfo.toString())]...")
 
         var urlCreatedZipFile:URL?                    = nil     // URL of the Zip file (created)...
-        var urlForZipOperationsSource:URL?            = URL(string:multipartRequestInfo.sAppSourceFilespec)!
-        var urlForZipOperationsTarget:URL?            = URL(string:multipartRequestInfo.sAppZipFilename)!
-        var sForZipOperationsSourceFilespec:String    = self.urlForZipOperationsSource?.path
-        var sForZipOperationsTargetFilename:String    = self.urlForZipOperationsTarget?.path
+        let urlForZipOperationsSource:URL             = URL(string:multipartRequestInfo.sAppSourceFilespec)!
+        let urlForZipOperationsTarget:URL             = URL(string:multipartRequestInfo.sAppZipFilename)!
+        var sForZipOperationsSourceFilespec:String    = urlForZipOperationsSource.path
+        let sForZipOperationsTargetFilename:String    = urlForZipOperationsTarget.path
 
         // Check that we have a 'target' file (string) that is NOT nil...
 
-        if (sForZipOperationsTargetFilespec.count < 1)
+        if (sForZipOperationsTargetFilename.count < 1)
         {
 
             self.xcgLogMsg("[\(sCurrMethodDisp)] Unable to Zip the 'source' filespec of [\(String(describing: sForZipOperationsSourceFilespec))] - the 'target' Zip filename is 'nil' - Error!")
@@ -104,7 +105,7 @@ class MultipartZipFileCreator: NSObject
 
         // Check that we have a 'source' file to zip (or if 'testing' make sure we have one)...
 
-        let bIsForZipOperationsSourceFilePresent:Bool = JmFileIO.fileExists(sFilespec:self.sForZipOperationsSourceFilespec)
+        let bIsForZipOperationsSourceFilePresent:Bool = JmFileIO.fileExists(sFilespec:sForZipOperationsSourceFilespec)
 
         if (bIsForZipOperationsSourceFilePresent == true)
         {
@@ -135,13 +136,13 @@ class MultipartZipFileCreator: NSObject
                 do 
                 {
 
-                    var urlForZipOperationsFilepath = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask ,appropriateFor: nil, create: true)
-                    var urlForZipOperationsFilespec = urlForZipOperationsFilepath?.appendingPathComponent("Test-for-Zip_1.txt")
-                    var sForZipOperationsFilespec   = urlForZipOperationsFilespec?.path
-                    var sForZipOperationsFilepath   = urlForZipOperationsFilepath?.path
+                    let urlForZipOperationsFilepath = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask ,appropriateFor: nil, create: true)
+                    let urlForZipOperationsFilespec = urlForZipOperationsFilepath.appendingPathComponent("Test-for-Zip_1.txt")
+                    let sForZipOperationsFilespec   = urlForZipOperationsFilespec.path
+                    let sForZipOperationsFilepath   = urlForZipOperationsFilepath.path
 
-                    self.xcgLogMsg("[\(sCurrMethodDisp)] 'self.sForZipOperationsFilespec' (computed) is [\(String(describing: self.sForZipOperationsFilespec))]...")
-                    self.xcgLogMsg("[\(sCurrMethodDisp)] 'self.sForZipOperationsFilepath' (resolved #1) is [\(String(describing: self.sForZipOperationsFilepath))]...")
+                    self.xcgLogMsg("[\(sCurrMethodDisp)] 'sForZipOperationsFilespec' (computed) is [\(String(describing: sForZipOperationsFilespec))]...")
+                    self.xcgLogMsg("[\(sCurrMethodDisp)] 'sForZipOperationsFilepath' (resolved #1) is [\(String(describing: sForZipOperationsFilepath))]...")
 
                     let bIsForZipOperationsFilePresent:Bool = JmFileIO.fileExists(sFilespec:sForZipOperationsFilespec)
 
@@ -156,13 +157,13 @@ class MultipartZipFileCreator: NSObject
                     else
                     {
 
-                        try FileManager.default.createDirectory(atPath: self.sForZipOperationsFilepath, withIntermediateDirectories: true, attributes: nil)
+                        try FileManager.default.createDirectory(atPath: sForZipOperationsFilepath, withIntermediateDirectories: true, attributes: nil)
 
-                        let sGeneratedFileContents:String = "\(sCurrMethodDisp) Invoked - 'sApplicationName' is [\(AppGlobalInfo.sApplicationName)] - 'self' is [\(self)]...\r\nThis is an 'auto' generated file used for 'testing'..."
+                        let sGeneratedFileContents:String = "\(sCurrMethodDisp) Invoked - 'sApplicationName' is [\(AppGlobalInfo.sGlobalInfoAppId)] - 'self' is [\(self)]...\r\nThis is an 'auto' generated file used for 'testing'..."
 
-                        try sGeneratedFileContents.write(toFile: self.sForZipOperationsFilespec, atomically:true, encoding:String.Encoding.utf8)
+                        try sGeneratedFileContents.write(toFile: sForZipOperationsFilespec, atomically:true, encoding:String.Encoding.utf8)
 
-                        self.xcgLogMsg("[\(sCurrMethodDisp)] Successfully created the 'path' of [.documentDirectory] and the 'source' filespec of [\(String(describing: self.sForZipOperationsFilespec))]...")
+                        self.xcgLogMsg("[\(sCurrMethodDisp)] Successfully created the 'path' of [.documentDirectory] and the 'source' filespec of [\(String(describing: sForZipOperationsFilespec))]...")
 
                         sForZipOperationsSourceFilespec = sForZipOperationsFilespec
 
@@ -195,16 +196,20 @@ class MultipartZipFileCreator: NSObject
         do
         {
 
-            let urlForSourceFilespec:URL? = URL(string:sForZipOperationsSourceFilespec)!
-            let urlForTargetZipFile:URL?  = FileManager.default.temporaryDirectoryappendingPathComponent(sForZipOperationsTargetFilename)
-            let zipArchiver:ZipArchive    = ZipArchive()
+            let urlForSourceFilespec:URL?                       = URL(string:sForZipOperationsSourceFilespec)!
+            let urlForTargetZipFile:URL?                        = FileManager.default.temporaryDirectory
+                                                                      .appendingPathComponent(sForZipOperationsTargetFilename)
+            let multipartZipFileService:MultipartZipFileService = MultipartZipFileService()
 
-            try zipArchiver.createZipFile(at:urlForTargetZipFile, withContentsOf:urlForSourceFilespec, options:.default)
+            let urlForTmpZipFile:URL = 
+                try multipartZipFileService.createZipAtTmp(zipFilename: sForZipOperationsTargetFilename, 
+                                                           zipExtension:"zip", 
+                                                           filesToZip:  [FileToZip.existingFile(urlForSourceFilespec!)])
 
-            multipartRequestInfo.dataAppFile      = try Data(contentsOf:urlForTargetZipFile)
+            multipartRequestInfo.dataAppFile      = try Data(contentsOf:urlForTmpZipFile)
             multipartRequestInfo.sAppFileMimeType = "application/zip"
 
-            urlCreatedZipFile                     = urlForTargetZipFile
+            urlCreatedZipFile                     = urlForTmpZipFile
 
         }
         catch
