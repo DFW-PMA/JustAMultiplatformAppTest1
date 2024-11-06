@@ -20,7 +20,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0705"
+        static let sClsVers      = "v1.0708"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -34,6 +34,7 @@ struct SettingsSingleViewIos: View
     @Environment(\.presentationMode) var presentationMode
     
            private var appAboutTip                               = AppAboutTip()
+           private var bInternalZipTest:Bool                     = false
 
     @State private var cContentViewAppAboutButtonPresses:Int     = 0
     @State private var cContentViewAppHelpViewButtonPresses:Int  = 0
@@ -523,7 +524,7 @@ struct SettingsSingleViewIos: View
         multipartRequestInfo.sAppUploadNotifyCc       = ""          // This is email notification - "" defaults to 'none'...
         multipartRequestInfo.sAppSourceFilespec       = sAppDelegateVisitorLogFilespec
         multipartRequestInfo.sAppSourceFilename       = sAppDelegateVisitorLogFilenameExt
-        multipartRequestInfo.sAppZipFilename          = "-N/A-"
+        multipartRequestInfo.sAppZipFilename          = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppSaveAsFilename       = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppFileMimeType         = "text/plain"
 
@@ -548,6 +549,8 @@ struct SettingsSingleViewIos: View
 
             self.xcgLogMsg("\(sCurrMethodDisp) Produced a Zip file 'urlCreatedZipFile' of [\(urlCreatedZipFile)]...")
 
+            multipartRequestInfo.sAppZipFilename  = "\(multipartRequestInfo.sAppZipFilename).zip"
+
         } 
         else 
         {
@@ -564,15 +567,23 @@ struct SettingsSingleViewIos: View
 
         }
 
-        // Send the AppLog as an 'upload' to the Server...
+        // If this is NOT an 'internal' Zip 'test', then send the upload:
 
-        let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:true)
+        if (bInternalZipTest == false)
+        {
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+            // Send the AppLog as an 'upload' to the Server...
 
-        multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:multipartRequestInfo)
-        
-        self.xcgLogMsg("\(sCurrMethodDisp) Called  'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+            let multipartRequestDriver:MultipartRequestDriver = MultipartRequestDriver(bGenerateResponseLongMsg:true)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Using 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo.toString()))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) Calling 'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+            multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:multipartRequestInfo)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Called  'multipartRequestDriver.executeMultipartRequest(multipartRequestInfo:)'...")
+
+        }
 
         // Exit...
   

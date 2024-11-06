@@ -1,10 +1,34 @@
 //
-// MultipartZipFileService.swift
+//  MultipartZipFileService.swift
+//  JustAMultipartRequestTest1
+//
+//  Created by JustMacApps.net on 11/06/2024.
+//  Copyright © 2023-2024 JustMacApps. All rights reserved.
 //
 
 import Foundation
 
-// MARK: - Extensions
+// Enum(s):
+
+enum ZipServiceError:Swift.Error 
+{
+
+    case urlNotADirectory(URL)
+    case failedToCreateZIP(Swift.Error)
+    case failedToGetDataFromZipURL
+
+}   // END of enum ZipServiceError:Swift.Error.
+
+enum ZipFileDetails 
+{
+
+    case data(Data, filename:String)
+    case existingFile(URL)
+    case renamedFile(URL, toFilename:String)
+
+}   // END of enum ZipFileDetails.
+
+// Extension(s):
 
 extension URL 
 {
@@ -18,84 +42,157 @@ extension URL
 
 }   // END of extension URL.
 
-// MARK: - Errors
-
-enum CreateZipError:Swift.Error 
+extension ZipFileDetails 
 {
 
-    case urlNotADirectory(URL)
-    case failedToCreateZIP(Swift.Error)
-    case failedToGetDataFromZipURL
-
-}   // END of enum CreateZipError:Swift.Error.
-
-// MARK: - FileToZip
-
-enum FileToZip 
-{
-
-    case data(Data, filename:String)
-    case existingFile(URL)
-    case renamedFile(URL, toFilename:String)
-
-}   // END of enum FileToZip.
-
-extension FileToZip 
-{
-
-    static func text(_ text:String, filename:String)->FileToZip 
+    static func text(_ text:String, filename:String)->ZipFileDetails 
     {
 
         .data(text.data(using: .utf8) ?? Data(), filename: filename)
 
-    }   // END of static func text(_ text:String, filename:String)->FileToZip
+    }   // END of static func text(_ text:String, filename:String)->ZipFileDetails
 
-}   // END of extension FileToZip.
+}   // END of extension ZipFileDetails.
 
-extension FileToZip 
+extension ZipFileDetails 
 {
 
     func prepareInDirectory(directoryURL:URL) throws 
     {
 
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "Extension<ZipFileDetails>.'"+sCurrMethod+"':"
+
+        print("\(sCurrMethodDisp) Invoked - parameter 'directoryURL' is [\(directoryURL)]...")
+
         switch self 
         {
+
         case .data(let data, filename:let filename):
+
             let fileURL = directoryURL.appendingPathComponent(filename)
-            try data.write(to: fileURL)
+
+            print("\(sCurrMethodDisp) <case .data> Writing .data to 'fileURL' is [\(fileURL)]...")
+
+            try data.write(to:fileURL)
+
         case .existingFile(let existingFileURL):
-            let filename   = existingFileURL.lastPathComponent
-            let newFileURL = directoryURL.appendingPathComponent(filename)
+
+            let filename                      = existingFileURL.lastPathComponent
+            let newFileURL                    = directoryURL.appendingPathComponent(filename)
+            var sTargetFilespec:String        = newFileURL.path
+            let bIsTargetFilespecPresent:Bool = JmFileIO.fileExists(sFilespec:sTargetFilespec)
+
+            if (bIsTargetFilespecPresent == true)
+            {
+
+                print("\(sCurrMethodDisp) <case .existingFile> 'target' file [\(String(describing: sTargetFilespec))] exists - deleting it...")
+
+                try FileManager.default.removeItem(at:newFileURL)
+
+                print("\(sCurrMethodDisp) <case .existingFile> Successfully removed the 'target' URL of [\(String(describing: newFileURL))]...")
+
+            }
+
+            print("\(sCurrMethodDisp) <case .existingFile> Copying 'existingFileURL' of [\(existingFileURL)] to 'newFileURL' of [\(newFileURL)]...")
+
             try FileManager.default.copyItem(at:existingFileURL, to:newFileURL)
+
         case .renamedFile(let existingFileURL, toFilename:let filename):
+
             let newFileURL = directoryURL.appendingPathComponent(filename)
+
+            print("\(sCurrMethodDisp) <case .renamedFile> Copying 'existingFileURL' of [\(existingFileURL)] to 'newFileURL' of [\(newFileURL)]...")
+
             try FileManager.default.copyItem(at:existingFileURL, to:newFileURL)
+
         }
+
+        // Exit:
+
+        print("\(sCurrMethodDisp) Exiting...")
+
+        return
 
     }   // END of func prepareInDirectory(directoryURL:URL) throws.
 
-}   // END of extension FileToZip.
+}   // END of extension ZipFileDetails.
 
-// MARK: - ZipService
+// Method(s) - ZIP 'service':
 
-//final class MultipartZipFileService 
 class MultipartZipFileService: NSObject 
 {
 
-    var shouldOverwriteIfNecessary:Bool = false
-    
+    struct ClassInfo
+    {
+        
+        static let sClsId          = "MultipartZipFileService"
+        static let sClsVers        = "v1.0111"
+        static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
+        static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+        static let bClsTrace       = true
+        static let bClsFileLog     = true
+        
+    }
+
+    // App Data field(s):
+
+            var bShouldOverwriteZipIfNecessary:Bool       = true
+
+            var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+
     override init()
     {
 
-    }
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        
+        super.init()
+        
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
-    func createZip(zipFinalURL:URL, fromDirectory directoryURL:URL)throws->URL 
+        // Exit...
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
+
+        return
+
+    }   // End of override init().
+
+    private func xcgLogMsg(_ sMessage:String)
     {
+
+        if (self.jmAppDelegateVisitor.bAppDelegateVisitorLogFilespecIsUsable == true)
+        {
+      
+            self.jmAppDelegateVisitor.xcgLogMsg(sMessage)
+      
+        }
+        else
+        {
+      
+            print("\(sMessage)")
+      
+        }
+
+        // Exit:
+
+        return
+
+    }   // End of private func xcgLogMsg().
+
+    public func createZip(zipFinalURL:URL, fromDirectory directoryURL:URL)throws->URL 
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFinalURL' is [\(zipFinalURL)] - 'directoryURL' is [\(directoryURL)]...")
 
         // See URL extension below...
 
         guard directoryURL.isDirectory 
-        else { throw CreateZipError.urlNotADirectory(directoryURL) }
+        else { throw ZipServiceError.urlNotADirectory(directoryURL) }
         
         var fileManagerError:Swift.Error?
         var coordinatorError:NSError?
@@ -108,7 +205,7 @@ class MultipartZipFileService: NSObject
             do 
             {
 
-                if (shouldOverwriteIfNecessary)
+                if (self.bShouldOverwriteZipIfNecessary)
                 {
 
                     let _ = try FileManager.default.replaceItemAt(zipFinalURL, withItemAt:zipAccessURL)
@@ -127,53 +224,136 @@ class MultipartZipFileService: NSObject
 
                 fileManagerError = error
 
+                self.xcgLogMsg("\(sCurrMethodDisp) <do/catch> Failed to create the 'target' Zip file [\(zipFinalURL)] - Details: [\(error)] - Error!")
+
             }
 
         }
 
-        if let error = (coordinatorError ?? fileManagerError)
+        if let zipServiceError = (coordinatorError ?? fileManagerError)
         {
 
-            throw CreateZipError.failedToCreateZIP(error)
+            throw ZipServiceError.failedToCreateZIP(zipServiceError)
 
         }
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'zipFinalURL' is [\(String(describing: zipFinalURL))]...")
 
         return zipFinalURL
 
-    }   // END of func createZip(zipFinalURL:URL, fromDirectory directoryURL:URL)throws->URL.
+    }   // END of public func createZip(zipFinalURL:URL, fromDirectory directoryURL:URL)throws->URL.
 
-    func createZipAtTmp(zipFilename:String, zipExtension:String="zip", fromDirectory directoryURL:URL)throws->URL 
+    public func createZipAtTmp(zipFilename:String, zipExtension:String="zip", fromDirectory directoryURL:URL)throws->URL 
     {
 
-        let finalURL = FileManager.default.temporaryDirectory.appending(path:zipFilename).appendingPathExtension(zipExtension)
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
 
-        return try createZip(zipFinalURL:finalURL, fromDirectory:directoryURL)
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFilename' is [\(zipFilename)] - 'zipExtension' is [\(zipExtension)] - 'directoryURL' is [\(directoryURL)]...")
 
-    }   // END of func createZipAtTmp(zipFilename:String, zipExtension:String="zip", fromDirectory directoryURL:URL)throws->URL.
+        self.xcgLogMsg("\(sCurrMethodDisp) Creating the Final 'finalDirectoryToZipURL'...")
 
-    func createZipAtTmp(zipFilename:String, zipExtension:String="zip", filesToZip:[FileToZip])throws->URL 
+        let finalDirectoryToZipURL = FileManager.default.temporaryDirectory.appending(path:zipFilename).appendingPathExtension(zipExtension)
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Created  the Final 'finalDirectoryToZipURL' of [\(String(describing: finalDirectoryToZipURL))]...")
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'finalDirectoryToZipURL' is [\(String(describing: finalDirectoryToZipURL))]...")
+
+        return try createZip(zipFinalURL:finalDirectoryToZipURL, fromDirectory:directoryURL)
+
+    }   // END of public func createZipAtTmp(zipFilename:String, zipExtension:String="zip", fromDirectory directoryURL:URL)throws->URL.
+
+    public func createZipAtTmp(zipFilename:String, zipExtension:String="zip", filesToZip:[ZipFileDetails])throws->URL 
     {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFilename' is [\(zipFilename)] - 'zipExtension' is [\(zipExtension)] - 'filesToZip' is [\(filesToZip)]...")
 
         let directoryToZipURL = FileManager.default.temporaryDirectory.appending(path:UUID().uuidString).appending(path:zipFilename)
 
+        self.xcgLogMsg("\(sCurrMethodDisp) Calculated that the Temporary 'directoryToZipURL' is [\(String(describing: directoryToZipURL))]...")
+
         try FileManager.default.createDirectory(at:directoryToZipURL, withIntermediateDirectories:true, attributes:[:])
 
-        for fileToZip in filesToZip 
+        self.xcgLogMsg("\(sCurrMethodDisp) Created the Temporary 'directoryToZipURL' of [\(String(describing: directoryToZipURL))]...")
+
+        for zipFileDetails in filesToZip 
         {
 
-            try fileToZip.prepareInDirectory(directoryURL:directoryToZipURL)
+            self.xcgLogMsg("\(sCurrMethodDisp) Adding the file 'zipFileDetails' of [\(zipFileDetails)] to the Temporary 'directoryToZipURL' of [\(String(describing: directoryToZipURL))]...")
+
+            try zipFileDetails.prepareInDirectory(directoryURL:directoryToZipURL)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Added  the file 'zipFileDetails' of [\(zipFileDetails)] to the Temporary 'directoryToZipURL' of [\(String(describing: directoryToZipURL))]...")
 
         }
 
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'directoryToZipURL' is [\(String(describing: directoryToZipURL))]...")
+
         return try createZipAtTmp(zipFilename:zipFilename, zipExtension:zipExtension, fromDirectory:directoryToZipURL)
 
-    }   // END of func createZipAtTmp(zipFilename:String, zipExtension:String="zip", filesToZip:[FileToZip])throws->URL.
+    }   // END of public func createZipAtTmp(zipFilename:String, zipExtension:String="zip", filesToZip:[ZipFileDetails])throws->URL.
     
+    public func getZipData(zipFilename:String=UUID().uuidString, fromDirectory directoryURL:URL)throws->Data 
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFilename' is [\(zipFilename)] - 'directoryURL' is [\(directoryURL)]...")
+
+        let tmpZipURL = try self.createZipAtTmp(zipFilename:zipFilename, fromDirectory:directoryURL)
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'tmpZipURL' is [\(tmpZipURL)]...")
+
+        return try self.getZipData(zipFileURL:tmpZipURL)
+
+    }   // END of public func getZipData(zipFilename:String=UUID().uuidString, fromDirectory directoryURL:URL)throws->Data.
+    
+    public func getZipData(zipFilename:String=UUID().uuidString, filesToZip:[ZipFileDetails])throws->Data 
+    {
+
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFilename' is [\(zipFilename)] - 'filesToZip' is [\(filesToZip)]...")
+
+        let tmpZipURL = try self.createZipAtTmp(zipFilename:zipFilename, filesToZip:filesToZip)
+
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - 'tmpZipURL' is [\(tmpZipURL)]...")
+
+        return try self.getZipData(zipFileURL:tmpZipURL)
+
+    }   // END of func public getZipData(zipFilename:String=UUID().uuidString, filesToZip:[ZipFileDetails])throws->Data.
+
     private func getZipData(zipFileURL:URL)throws->Data 
     {
 
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFileURL' is [\(zipFileURL)]...")
+
         if let data = FileManager.default.contents(atPath:zipFileURL.path)
         {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) FileManager read the contents of the ZIP file 'zipFileURL' is [\(String(describing: zipFileURL))]...")
+            
+            // Exit:
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
             return data
 
@@ -181,28 +361,15 @@ class MultipartZipFileService: NSObject
         else 
         {
 
-            throw CreateZipError.failedToGetDataFromZipURL
+            // Exit:
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Exiting - via 'throw' of 'ZipServiceError.failedToGetDataFromZipURL' - Error!")
+
+            throw ZipServiceError.failedToGetDataFromZipURL
 
         }
 
     }   // END of private func getZipData(zipFileURL:URL)throws->Data.
 
-    func getZipData(zipFilename:String=UUID().uuidString, fromDirectory directoryURL:URL)throws->Data 
-    {
+}   // END of final class MultipartZipFileService(NSObject).
 
-        let zipURL = try createZipAtTmp(zipFilename:zipFilename, fromDirectory:directoryURL)
-
-        return try getZipData(zipFileURL:zipURL)
-
-    }   // END of func getZipData(zipFilename:String=UUID().uuidString, fromDirectory directoryURL:URL)throws->Data.
-    
-    func getZipData(zipFilename:String=UUID().uuidString, filesToZip:[FileToZip])throws->Data 
-    {
-
-        let zipURL = try createZipAtTmp(zipFilename:zipFilename, filesToZip:filesToZip)
-
-        return try getZipData(zipFileURL:zipURL)
-
-    }   // END of func getZipData(zipFilename:String=UUID().uuidString, filesToZip:[FileToZip])throws->Data.
-
-}   // END of final class MultipartZipFileService.

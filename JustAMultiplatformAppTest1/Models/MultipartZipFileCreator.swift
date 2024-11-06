@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-
 class MultipartZipFileCreator: NSObject
 {
 
@@ -17,7 +16,7 @@ class MultipartZipFileCreator: NSObject
     {
         
         static let sClsId          = "MultipartZipFileCreator"
-        static let sClsVers        = "v1.0204"
+        static let sClsVers        = "v1.0209"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -28,6 +27,7 @@ class MultipartZipFileCreator: NSObject
     // App Data field(s):
 
     private var bInternalTest:Bool                        = false
+    private var bInternalZipTest:Bool                     = true
     private let bGenerateInternalTextFiles:Bool           = true
 
             var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
@@ -81,8 +81,10 @@ class MultipartZipFileCreator: NSObject
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'multipartRequestInfo' is [\(multipartRequestInfo.toString())]...")
 
         var urlCreatedZipFile:URL?                    = nil     // URL of the Zip file (created)...
-        let urlForZipOperationsSource:URL             = URL(string:multipartRequestInfo.sAppSourceFilespec)!
-        let urlForZipOperationsTarget:URL             = URL(string:multipartRequestInfo.sAppZipFilename)!
+    //  let urlForZipOperationsSource:URL             = URL(string:multipartRequestInfo.sAppSourceFilespec)!
+    //  let urlForZipOperationsTarget:URL             = URL(string:multipartRequestInfo.sAppZipFilename)!
+        let urlForZipOperationsSource:URL             = URL(fileURLWithPath:multipartRequestInfo.sAppSourceFilespec)
+        let urlForZipOperationsTarget:URL             = URL(fileURLWithPath:multipartRequestInfo.sAppZipFilename)
         var sForZipOperationsSourceFilespec:String    = urlForZipOperationsSource.path
         let sForZipOperationsTargetFilename:String    = urlForZipOperationsTarget.path
 
@@ -191,13 +193,12 @@ class MultipartZipFileCreator: NSObject
 
         // Zip the 'source' file to the 'target' Zip file...
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Zipping the 'source' filespec of [\(String(describing: sForZipOperationsSourceFilespec))] to the 'target' Zip filename of [\(sForZipOperationsTargetFilename)]...")
-
+        self.xcgLogMsg("\(sCurrMethodDisp) Zipping the 'source' filespec of [\(String(describing: sForZipOperationsSourceFilespec))] as a URL 'urlForZipOperationsSource' of [\(urlForZipOperationsSource)] to the 'target' Zip filename of [\(sForZipOperationsTargetFilename)]...")
 
         do
         {
 
-            let urlForSourceFilespec:URL?                       = URL(string:sForZipOperationsSourceFilespec)!
+            let urlForSourceFilespec:URL?                       = urlForZipOperationsSource
             let urlForTargetZipFile:URL?                        = FileManager.default.temporaryDirectory
                                                                       .appendingPathComponent(sForZipOperationsTargetFilename)
             let multipartZipFileService:MultipartZipFileService = MultipartZipFileService()
@@ -205,7 +206,7 @@ class MultipartZipFileCreator: NSObject
             let urlForTmpZipFile:URL = 
                 try multipartZipFileService.createZipAtTmp(zipFilename: sForZipOperationsTargetFilename, 
                                                            zipExtension:"zip", 
-                                                           filesToZip:  [FileToZip.existingFile(urlForSourceFilespec!)])
+                                                           filesToZip:  [ZipFileDetails.existingFile(urlForSourceFilespec!)])
 
             multipartRequestInfo.dataAppFile      = try Data(contentsOf:urlForTmpZipFile)
             multipartRequestInfo.sAppFileMimeType = "application/zip"
