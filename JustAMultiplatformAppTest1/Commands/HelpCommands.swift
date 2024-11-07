@@ -14,12 +14,12 @@ struct HelpCommands: Commands
     struct ClassInfo
     {
         
-        static let sClsId          = "HelpCommands"
-        static let sClsVers        = "v1.1001"
-        static let sClsDisp        = sClsId+".("+sClsVers+"): "
-        static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
-        static let bClsTrace       = true
-        static let bClsFileLog     = true
+        static let sClsId        = "HelpCommands"
+        static let sClsVers      = "v1.1101"
+        static let sClsDisp      = sClsId+".("+sClsVers+"): "
+        static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
+        static let bClsTrace     = true
+        static let bClsFileLog   = true
         
     }
 
@@ -39,7 +39,7 @@ struct HelpCommands: Commands
            private var sAppExecutionPreviousAlertText:String     = "Do you want to 'send' the App LOG data?"
            private var sAppExecutionPreviousLogToUpload:String   = ""
 
-    var jmAppDelegateVisitor:JmAppDelegateVisitor                = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
+                   var jmAppDelegateVisitor:JmAppDelegateVisitor = JmAppDelegateVisitor.ClassSingleton.appDelegateVisitor
     
     init()
     {
@@ -124,7 +124,7 @@ struct HelpCommands: Commands
       
                 Label("\(ClassInfo.sClsId) Log file viewer...", systemImage: "questionmark.circle")
       
-             }
+            }
 
             Button(action: {clearAppDelegateTraceLogFile()})
             {
