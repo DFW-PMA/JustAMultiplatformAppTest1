@@ -17,7 +17,7 @@ class MultipartRequestDriver: NSObject
     {
         
         static let sClsId          = "MultipartRequestDriver"
-        static let sClsVers        = "v1.0801"
+        static let sClsVers        = "v1.0902"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -181,7 +181,7 @@ class MultipartRequestDriver: NSObject
 
         }
 
-        // Create the Multipart 'request':
+        // Create the Multipart 'request' (Phase 1):
 
         var multipart = MultipartRequest()
 
@@ -213,6 +213,76 @@ class MultipartRequestDriver: NSObject
             self.multipartRequestInfo?.sAppUploadURL = "http://justmacapps.net/dfwpma/file_uploads"
 
         }
+
+        // Check that we have a 'target' file (string) that is NOT nil, an Mime 'type' that is NOT zip, then zip...
+
+        var sCheckAppZipFilename:String = self.multipartRequestInfo?.sAppZipFilename ?? ""
+
+        if (self.multipartRequestInfo?.sAppZipFilename == "-N/A-")
+        {
+
+            sCheckAppZipFilename = ""
+
+        }
+
+        if (sCheckAppZipFilename.count < 1)
+        {
+
+            self.xcgLogMsg("\(sCurrMethodDisp) Unable to Zip the 'source' filespec of [\(String(describing: self.multipartRequestInfo?.sAppSourceFilespec))] - the 'check' Zip filename is 'nil' - Warning!")
+
+        }
+        else
+        {
+
+            if (self.multipartRequestInfo?.sAppFileMimeType == "application/zip")
+            {
+
+                self.xcgLogMsg("\(sCurrMethodDisp) Bypassing the Zip of the 'source' filespec of [\(String(describing: self.multipartRequestInfo?.sAppSourceFilespec))] - the MIME 'type' indicates the payload is already zipped...")
+
+            }
+            else
+            {
+
+                self.xcgLogMsg("\(sCurrMethodDisp) The 'upload' is using 'multipartRequestInfo' of [\(String(describing: multipartRequestInfo?.toString()))]...")
+
+                // Attempting to 'zip' the file (content(s))...
+
+                let multipartZipFileCreator:MultipartZipFileCreator = MultipartZipFileCreator()
+
+            //  multipartRequestInfo.sAppZipFilename = multipartRequestInfo.sAppSourceFilename
+
+                var urlCreatedZipFile:URL? = multipartZipFileCreator.createTargetZipFileFromSource(multipartRequestInfo:multipartRequestInfo ?? MultipartRequestInfo())
+
+                // Check if we actually got the 'target' Zip file created...
+
+                if let urlCreatedZipFile = urlCreatedZipFile 
+                {
+
+                    self.xcgLogMsg("\(sCurrMethodDisp) Produced a Zip file 'urlCreatedZipFile' of [\(urlCreatedZipFile)]...")
+
+                    multipartRequestInfo!.sAppZipFilename  = "\(multipartRequestInfo?.sAppZipFilename ?? "-undefined-").zip"
+
+                } 
+                else 
+                {
+
+                    self.xcgLogMsg("\(sCurrMethodDisp) Failed to produce a Zip file - the 'target' Zip filename was [\(multipartRequestInfo?.sAppZipFilename ?? "-undefined-")] - Error!")
+
+                    multipartRequestInfo?.sAppZipFilename  = "-N/A-"
+                    multipartRequestInfo?.sAppFileMimeType = "text/plain"
+                    multipartRequestInfo?.dataAppFile      = FileManager.default.contents(atPath: self.multipartRequestInfo?.sAppSourceFilespec ?? "-undefined-")
+
+                    self.xcgLogMsg("\(sCurrMethodDisp) Reset the 'multipartRequestInfo' to upload the <raw> file without 'zipping'...")
+
+                    urlCreatedZipFile = nil
+
+                }
+
+            }
+
+        }
+
+        // Create the Multipart 'request' (Phase 2):
 
         if (self.bInternalTest == true)
         {
@@ -276,7 +346,6 @@ class MultipartRequestDriver: NSObject
             if (sMultipartHttpBodyData.count > 2000)
             {
 
-            //  sMultipartHttpBodyData = sMultipartHttpBodyData.prefix(2000)
                 sMultipartHttpBodyData = sMultipartHttpBodyData.subString(startIndex: 0, length: 2000)
 
             }
@@ -347,10 +416,6 @@ class MultipartRequestDriver: NSObject
 
                     self.jmAppDelegateVisitor.setAppDelegateVisitorSignalGlobalAlert("Alert::App file [\(sAppUploadedSaveAsFilename)] has been 'uploaded' - [\(sUploadAlertDetails)]...",
                                                                                      alertButtonText:"Ok")
-
-                //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertButtonText = "Ok"
-                //  self.jmAppDelegateVisitor.sAppDelegateVisitorGlobalAlertMessage    = "Alert:: App Log has been 'uploaded' - [\(sUploadAlertDetails)]..."
-                //  self.jmAppDelegateVisitor.isAppDelegateVisitorShowingAlert         = true
 
                 }
 

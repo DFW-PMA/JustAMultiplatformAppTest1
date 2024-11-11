@@ -16,7 +16,7 @@ class MultipartZipFileCreator: NSObject
     {
         
         static let sClsId          = "MultipartZipFileCreator"
-        static let sClsVers        = "v1.0209"
+        static let sClsVers        = "v1.0301"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -81,14 +81,19 @@ class MultipartZipFileCreator: NSObject
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'multipartRequestInfo' is [\(multipartRequestInfo.toString())]...")
 
         var urlCreatedZipFile:URL?                    = nil     // URL of the Zip file (created)...
-    //  let urlForZipOperationsSource:URL             = URL(string:multipartRequestInfo.sAppSourceFilespec)!
-    //  let urlForZipOperationsTarget:URL             = URL(string:multipartRequestInfo.sAppZipFilename)!
         let urlForZipOperationsSource:URL             = URL(fileURLWithPath:multipartRequestInfo.sAppSourceFilespec)
         let urlForZipOperationsTarget:URL             = URL(fileURLWithPath:multipartRequestInfo.sAppZipFilename)
         var sForZipOperationsSourceFilespec:String    = urlForZipOperationsSource.path
         let sForZipOperationsTargetFilename:String    = urlForZipOperationsTarget.path
 
         // Check that we have a 'target' file (string) that is NOT nil...
+
+        if (multipartRequestInfo.sAppZipFilename == "-N/A-")
+        {
+
+            sForZipOperationsSourceFilespec = ""
+
+        }
 
         if (sForZipOperationsTargetFilename.count < 1)
         {

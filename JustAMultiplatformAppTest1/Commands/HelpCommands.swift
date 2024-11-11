@@ -15,7 +15,7 @@ struct HelpCommands: Commands
     {
         
         static let sClsId        = "HelpCommands"
-        static let sClsVers      = "v1.1101"
+        static let sClsVers      = "v1.1201"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -269,7 +269,7 @@ struct HelpCommands: Commands
         multipartRequestInfo.sAppUploadNotifyCc       = ""          // This is email notification - "" defaults to 'none'...
         multipartRequestInfo.sAppSourceFilespec       = sAppDelegateVisitorLogFilespec
         multipartRequestInfo.sAppSourceFilename       = sAppDelegateVisitorLogFilenameExt
-        multipartRequestInfo.sAppZipFilename          = "-N/A-"
+        multipartRequestInfo.sAppZipFilename          = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppSaveAsFilename       = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppFileMimeType         = "text/plain"
 
@@ -344,7 +344,7 @@ struct HelpCommands: Commands
         multipartRequestInfo.sAppUploadNotifyCc       = ""          // This is email notification - "" defaults to 'none'...
         multipartRequestInfo.sAppSourceFilespec       = sAppDelegateVisitorLogFilespec
         multipartRequestInfo.sAppSourceFilename       = sAppDelegateVisitorLogFilenameExt
-        multipartRequestInfo.sAppZipFilename          = "-N/A-"
+        multipartRequestInfo.sAppZipFilename          = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppSaveAsFilename       = sAppDelegateVisitorLogFilenameExt
         multipartRequestInfo.sAppFileMimeType         = "text/plain"
 
