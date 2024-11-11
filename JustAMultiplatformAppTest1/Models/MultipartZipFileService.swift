@@ -127,7 +127,7 @@ class MultipartZipFileService: NSObject
     {
         
         static let sClsId          = "MultipartZipFileService"
-        static let sClsVers        = "v1.0111"
+        static let sClsVers        = "v1.0205"
         static let sClsDisp        = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight   = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace       = true
@@ -255,9 +255,27 @@ class MultipartZipFileService: NSObject
 
         self.xcgLogMsg("\(sCurrMethodDisp) Creating the Final 'finalDirectoryToZipURL'...")
 
+    #if os(macOS)
+
+    //  let urlForZipFilename:URL  = URL(fileURLWithPath:zipFilename)
+    //  let finalDirectoryToZipURL = try FileManager.default.url(for:           .itemReplacementDirectory,
+    //                                                           in:            .userDomainMask,
+    //                                                           appropriateFor:urlForZipFilename,
+    //                                                           create:        true)
+    //                                                           .appending(path:UUID().uuidString).appending(path:zipFilename)
+    //                                                       //  .appending(path:zipFilename).appendingPathExtension(zipExtension)
+
+        let finalDirectoryToZipURL = directoryURL
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Using the <macOS> Final 'finalDirectoryToZipURL' of [\(String(describing: finalDirectoryToZipURL))]...")
+
+    #elseif os(iOS)
+
         let finalDirectoryToZipURL = FileManager.default.temporaryDirectory.appending(path:zipFilename).appendingPathExtension(zipExtension)
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Created  the Final 'finalDirectoryToZipURL' of [\(String(describing: finalDirectoryToZipURL))]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Created the <iOS> Final 'finalDirectoryToZipURL' of [\(String(describing: finalDirectoryToZipURL))]...")
+
+    #endif
 
         // Exit:
 
@@ -275,7 +293,22 @@ class MultipartZipFileService: NSObject
 
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - parameter 'zipFilename' is [\(zipFilename)] - 'zipExtension' is [\(zipExtension)] - 'filesToZip' is [\(filesToZip)]...")
 
+        self.xcgLogMsg("\(sCurrMethodDisp) Creating the 'directoryToZipURL'...")
+
+    #if os(macOS)
+
+        let urlForZipFilename:URL = URL(fileURLWithPath:zipFilename)
+        let directoryToZipURL     = try FileManager.default.url(for:           .itemReplacementDirectory,
+                                                                in:            .userDomainMask,
+                                                                appropriateFor:urlForZipFilename,
+                                                                create:        true)
+                                                                .appending(path:UUID().uuidString).appending(path:zipFilename)
+
+    #elseif os(iOS)
+
         let directoryToZipURL = FileManager.default.temporaryDirectory.appending(path:UUID().uuidString).appending(path:zipFilename)
+
+    #endif
 
         self.xcgLogMsg("\(sCurrMethodDisp) Calculated that the Temporary 'directoryToZipURL' is [\(String(describing: directoryToZipURL))]...")
 
