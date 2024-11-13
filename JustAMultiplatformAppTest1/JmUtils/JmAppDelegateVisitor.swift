@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1901"
+        static let sClsVers      = "v1.1903"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -229,10 +229,6 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         self.performAppDelegateVisitorStartupCrashLogic()
 
-        // Handle displaying the field(s) of the AppGlobalInfo class:
-
-        self.displayAppGlobalInfoFields()
-
         // Setup the 'logging' output (console and file):
 
         self.initAppDelegateVisitorTraceLog(initappdelegatetracelogtag:"\(sCurrMethodDisp)<>\(self.cAppDelegateVisitorInitCalls)")
@@ -241,6 +237,10 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
         self.xcgLogMsg("\(sCurrMethodDisp) AppDelegateVisitor is starting - 'self' is [\(self)]...")
         self.xcgLogMsg("\(sCurrMethodDisp) XCGLogger 'log' instance 'self.xcgLogger' is being used (default instance)...")
         
+        // Handle displaying the field(s) of the AppGlobalInfo class:
+
+        self.displayAppGlobalInfoFields()
+
         // Dump the App 'Info.plist':
 
         let _ = self.dumpAppInfoPlistToLog()
@@ -699,7 +699,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
 
         let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "(.swift):'"+sCurrMethod+"'"
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
 
