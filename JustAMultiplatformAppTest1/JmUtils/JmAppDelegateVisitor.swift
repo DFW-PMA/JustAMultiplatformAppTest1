@@ -23,7 +23,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
     {
         
         static let sClsId        = "JmAppDelegateVisitor"
-        static let sClsVers      = "v1.1903"
+        static let sClsVers      = "v1.2303"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -245,6 +245,22 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         let _ = self.dumpAppInfoPlistToLog()
 
+        // Exit:
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - #(\(self.cAppDelegateVisitorInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
+
+        return
+
+    }   // End of private init().
+        
+    public func runPostInitializationTasks()
+    {
+        
+        let sCurrMethod:String = #function
+        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+
+        self.xcgLogMsg("\(sCurrMethodDisp) Invoked - 'self' is [\(self)]...")
+
         // Setup the Objective-C/Swift Bridge:
   
         self.jmObjCSwiftEnvBridge = JmObjCSwiftEnvBridge.sharedObjCSwiftEnvBridge
@@ -338,11 +354,11 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         // Exit:
 
-        self.xcgLogMsg("\(sCurrMethodDisp) Exiting - #(\(self.cAppDelegateVisitorInitCalls)) time(s) - 'sApplicationName' is [\(self.sApplicationName)]...")
+        self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
         return
 
-    }   // End of private init().
+    }   // End of public func runPostInitializationTasks().
         
     @objc public func xcgLogMsg(_ sMessage:String)
     {

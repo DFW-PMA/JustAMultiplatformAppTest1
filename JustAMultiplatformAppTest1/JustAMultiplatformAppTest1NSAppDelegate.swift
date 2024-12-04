@@ -18,7 +18,7 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1NSAppDelegate"
-        static let sClsVers      = "v1.1201"
+        static let sClsVers      = "v1.1401"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -78,6 +78,10 @@ class JustAMultiplatformAppTest1NSAppDelegate: NSObject, NSApplicationDelegate, 
         self.cAppDelegateInitCalls += 1
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)]...")
+
+        // Run the AppDelegateVisitor 'post' initialization Task(s)...
+
+        self.jmAppDelegateVisitor.runPostInitializationTasks()
 
         // Exit:
 

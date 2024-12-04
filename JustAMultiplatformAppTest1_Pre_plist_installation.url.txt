@@ -1,0 +1,1 @@
+itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/DFW-PMA/JustAMultiplatformAppTest1/refs/heads/main/JustAMultiplatformAppTest1_Pre.plist

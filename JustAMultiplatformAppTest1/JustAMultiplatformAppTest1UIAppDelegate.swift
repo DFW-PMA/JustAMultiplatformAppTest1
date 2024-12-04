@@ -1,5 +1,5 @@
 //
-//  JustAMultiplatformAppTest1NSAppDelegate.swift
+//  JustAMultiplatformAppTest1UIAppDelegate.swift
 //  JustAMultiplatformAppTest1
 //
 //  Created by JustMacApps.net on 07/19/2024.
@@ -18,7 +18,7 @@ class JustAMultiplatformAppTest1UIAppDelegate: NSObject, UIApplicationDelegate, 
     {
         
         static let sClsId        = "JustAMultiplatformAppTest1UIAppDelegate"
-        static let sClsVers      = "v1.0301"
+        static let sClsVers      = "v1.0401"
         static let sClsDisp      = sClsId+"(.swift).("+sClsVers+"):"
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -78,6 +78,10 @@ class JustAMultiplatformAppTest1UIAppDelegate: NSObject, UIApplicationDelegate, 
         self.cAppDelegateInitCalls += 1
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked - #(\(self.cAppDelegateInitCalls)) time(s) - 'sApplicationName' is [\(self.jmAppDelegateVisitor.sApplicationName)]...")
+
+        // Run the AppDelegateVisitor 'post' initialization Task(s)...
+
+        self.jmAppDelegateVisitor.runPostInitializationTasks()
 
         // Exit:
 
