@@ -209,7 +209,7 @@ public class AppGlobalInfo: NSObject
         sAppVersionAndBuildNumber     = JmXcodeBuildSettings.jmAppVersionAndBuildNumber
         sAppCopyright                 = JmXcodeBuildSettings.jmAppCopyright      
 
-    }   // END of private override init().
+    }   // End of private override init().
 
 }
 

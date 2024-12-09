@@ -15,7 +15,7 @@ struct SettingsSingleViewCore: View
     {
         
         static let sClsId        = "SettingsSingleViewCore"
-        static let sClsVers      = "v1.0301"
+        static let sClsVers      = "v1.0401"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -726,7 +726,7 @@ struct SettingsSingleViewCore: View
   
         return
   
-    }   // END of private func uploadCurrentAppLogToDevs().
+    }   // End of private func uploadCurrentAppLogToDevs().
 
 #if os(iOS)
 
@@ -824,7 +824,7 @@ struct SettingsSingleViewCore: View
 
     }   // End of private func openAppSuppliedURL(urlToOpen:URL).
 
-}   // END of struct SettingsSingleViewCore(View). 
+}   // End of struct SettingsSingleViewCore(View). 
 
 #Preview 
 {

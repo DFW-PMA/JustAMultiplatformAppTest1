@@ -273,7 +273,7 @@ struct LogFileView: View
         
     }   // End of func copyLogFilespecToClipboard().
     
-}   // END of struct LogFileView(View). 
+}   // End of struct LogFileView(View). 
 
 #Preview 
 {

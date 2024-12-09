@@ -782,7 +782,7 @@ public class JmAppDelegateVisitor: NSObject, ObservableObject
 
         return
 
-    }   // END of private func displayAppGlobalInfoFields().
+    }   // End of private func displayAppGlobalInfoFields().
 
     // Method(s) that act as AppDelegate 'helpers':
 

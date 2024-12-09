@@ -3,7 +3,7 @@
 //  VisitVerify
 //
 //  Created by Daryl Cox on 08/24/2024.
-//  Copyright © DFW-PMA 2024. All rights reserved.
+//  Copyright © JustMacApps.net 2024. All rights reserved.
 //
 
 import Foundation
@@ -17,9 +17,9 @@ struct AppAboutView: View
     {
         
         static let sClsId        = "AppAboutView"
-        static let sClsVers      = "v1.0801"
+        static let sClsVers      = "v1.0903"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
-        static let sClsCopyRight = "Copyright © DFW-PMA 2024. All rights reserved."
+        static let sClsCopyRight = "Copyright © JustMacApps.net 2024. All rights reserved."
         static let bClsTrace     = true
         static let bClsFileLog   = true
         
@@ -80,12 +80,11 @@ struct AppAboutView: View
 
             Spacer()
 
-            HStack(alignment:.center)           // HStack #1.3
+            HStack(alignment:.center)
             {
 
                 Spacer()
 
-            //  Button("Dismiss") 
                 Button
                 {
 
@@ -93,7 +92,7 @@ struct AppAboutView: View
 
                     self.presentationMode.wrappedValue.dismiss()
 
-                    //  dismiss()
+                //  dismiss()
 
                 }
                 label:
@@ -114,7 +113,7 @@ struct AppAboutView: View
                 }
                 .padding()
 
-            }   // End of HStack #1.1
+            }
 
             Spacer()
 
@@ -163,11 +162,10 @@ struct AppAboutView: View
             Spacer()
 
         }
-    //  .padding()
         
     }
     
-}
+}   // End of struct AppAboutView(View).
 
 @available(iOS 14.0, *)
 #Preview

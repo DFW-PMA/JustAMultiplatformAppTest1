@@ -322,7 +322,7 @@ public class JmAppUserNotificationManager: NSObject, UNUserNotificationCenterDel
 
         return
 
-    }   // END of public func userNotificationCenter(_ center:UNUserNotificationCenter, willPresent notification:UNNotification, withCompletionHandler completionHandler:@escaping (UNNotificationPresentationOptions)->Void).
+    }   // End of public func userNotificationCenter(_ center:UNUserNotificationCenter, willPresent notification:UNNotification, withCompletionHandler completionHandler:@escaping (UNNotificationPresentationOptions)->Void).
 
     public func userNotificationCenter(_ center:UNUserNotificationCenter, didReceive response:UNNotificationResponse, withCompletionHandler completionHandler:@escaping ()->Void)
     {
@@ -343,7 +343,7 @@ public class JmAppUserNotificationManager: NSObject, UNUserNotificationCenterDel
 
         return
 
-    }   // END of public func userNotificationCenter(_ center:UNUserNotificationCenter, didReceive response:UNNotificationResponse, withCompletionHandler completionHandler:@escaping ()->Void).
+    }   // End of public func userNotificationCenter(_ center:UNUserNotificationCenter, didReceive response:UNNotificationResponse, withCompletionHandler completionHandler:@escaping ()->Void).
 
     public func userNotificationCenter(_ center:UNUserNotificationCenter, openSettingsFor:UNNotification?)
     {
@@ -362,7 +362,7 @@ public class JmAppUserNotificationManager: NSObject, UNUserNotificationCenterDel
         
         return
 
-    }   // END of public func userNotificationCenter(_ center:UNUserNotificationCenter, openSettingsFor:UNNotification?).
+    }   // End of public func userNotificationCenter(_ center:UNUserNotificationCenter, openSettingsFor:UNNotification?).
 
     // Method(s) to request Authorization and register Notification categories...
 
@@ -424,7 +424,7 @@ public class JmAppUserNotificationManager: NSObject, UNUserNotificationCenterDel
         
         return
 
-    }   // END of private func requestUserNotificationAuthorization().
+    }   // End of private func requestUserNotificationAuthorization().
 
     private func registerUserNotificationCategories()
     {
@@ -470,7 +470,7 @@ public class JmAppUserNotificationManager: NSObject, UNUserNotificationCenterDel
         
         return
 
-    }   // END of private func registerUserNotificationCategories().
+    }   // End of private func registerUserNotificationCategories().
 
     // Method(s) for manipulating UserNotification(s)...
 
@@ -561,7 +561,7 @@ public class JmAppUserNotificationManager: NSObject, UNUserNotificationCenterDel
         
         return
 
-    }   // END of private func createUserNotificationEvent().
+    }   // End of private func createUserNotificationEvent().
 
 }   // End of public class JmAppUserNotificationManager.
 

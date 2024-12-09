@@ -1,6 +1,6 @@
 //
 //  SettingsSingleViewIos.swift
-//  PTSLocate
+//  JustAMultiplatformAppTest1
 //
 //  Created by JustMacApps.net on 03/26/2024.
 //  Copyright © JustMacApps 2023-2024. All rights reserved.
@@ -16,7 +16,7 @@ struct SettingsSingleViewIos: View
     {
         
         static let sClsId        = "SettingsSingleViewIos"
-        static let sClsVers      = "v1.0802"
+        static let sClsVers      = "v1.0803"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2024. All Rights Reserved."
         static let bClsTrace     = true
@@ -78,7 +78,7 @@ struct SettingsSingleViewIos: View
         
     }
     
-}   // END of struct SettingsSingleViewIos(View). 
+}   // End of struct SettingsSingleViewIos(View). 
 
 #Preview 
 {
